@@ -48,7 +48,7 @@ jobs:
             done
           done
           cp -ur ./schemas-preview ./myrepo
-        continue-on-error
+        continue-on-error: true
 
       - name: CommitAndPush
         run: |
