@@ -22,6 +22,6 @@ jobs:
           rm -rf ./schemas/*-privatepreview
           mkdir ./merged
           for dir in ./schemas/* ; do
-            cp -u ./schemas/$dir/*.json ./merged
+            cp -u $dir/*.json ./merged
           done
           ls -l ./merged
