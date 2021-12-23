@@ -9,7 +9,6 @@ jobs:
 
     steps:
 
-
       - name: Checkout My Repo
         uses: actions/checkout@v2.4.0
         with:
