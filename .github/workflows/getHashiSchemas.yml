@@ -1,9 +1,10 @@
-name: Update Hashicorp Schema Lists
+name: Hashicorp Schema Lists
 on:
   workflow_dispatch:
 
 jobs:
-  checkout:
+  update:
+    name: Update HashiCorp Schema Lists
     runs-on: ubuntu-latest
 
     steps:
