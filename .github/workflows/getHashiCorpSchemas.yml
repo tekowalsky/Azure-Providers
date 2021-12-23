@@ -8,22 +8,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Create dir for TF Plugin SDK Repo
+        run: |
+          mkdir ./tf
+          mkdir ./tf/sdk
+          
       - name: Checkout HashiCorp Plugin SDK Repo
         uses: actions/checkout@v2.4.0
         with:
           repository: hashicorp/terraform-plugin-sdk
-          path: ./terraform-plugin-sdk
+          path: ./tf
           fetch-depth: 0
           submodules: true
           
       - name: Copy HashiCorp Files
         run: |
+          ls -l
           if [ -d ./schemas ]; then
-            rm -rf ./schemas
             cd ./schemas
             if [ -d ./terraform-plugin-sdk ]; then
               echo "Found ./schemas/terraform-plugin-sdk"
-              rm -rf ./terraform-plugin-sdk
             else
               mkdir ./terraform-plugin-sdk
             fi
@@ -32,7 +36,7 @@ jobs:
             cd ./schemas
             mkdir ./terraform-plugin-sdk
           fi
-          cp -rf ../terraform-plugin-sdk/. ./terraform-plugin-sdk/
+          cp -rf ../tf/. ./terraform-plugin-sdk/
           ls -ltR ../terraform-plugin-sdk/* > ./terraform-plugin-sdk.files.txt
           ls -ltR ../terraform-plugin-sdk/**/* >> ./terraform-plugin-sdk.files.txt
           ls -ltR ../.git >> ./terraform-plugin-sdk.files.txt
