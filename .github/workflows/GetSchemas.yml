@@ -17,5 +17,11 @@ jobs:
       - name: GetSchemaDir
         run: |
           mkdir ./schemas
-          cp -rf ./azure-resource-manager-schemas/schemas/* ./schemas
-          ls -l ./schemas          
+          cp -rf ./azure-resource-manager-schemas/schemas/20* ./schemas
+          rm -rf ./schemas/*-preview
+          rm -rf ./schemas/*-privatepreview
+          mkdir ./merged
+          for dir in (ls -drl ./schemas) ; do
+            cp -u ./schemas/$dir/*.json ./merged
+          done
+          ls -l ./merged
