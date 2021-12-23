@@ -14,13 +14,14 @@ jobs:
           repository: Azure/azure-resource-manager-schemas
           path: ./azure-resource-manager-schemas
           fetch-depth: 0
+          submodules: true
           
       - name: Copy ARM Schema Files
         run: |
           mkdir ./schemas
           mkdir ./schemas-preview
-          mkdir ./schemas-viewdefinition
           mkdir ./schemas-common
+          mkdir ./schemas-viewdefinition
           for dir in ./azure-resource-manager-schemas/schemas/20* ; do
             if [ "$dir" -ne "*preview" ]; then
               cp -urf $dir/*.json ./schemas
@@ -30,6 +31,7 @@ jobs:
               cp -urf $dir/**/*.json ./schemas-preview
             fi
           done
+          ls -ltR ./azure-resource-manager-schemas/**/* > ./azure-resource-manager-schema.files.txt
           cp -urf ./azure-resource-manager-schemas/schemas/common ./schemas-common
           cp -urf ./azure-resource-manager-schemas/schemas/viewdefinition ./schemas-viewdefinition
           # cp -urf ./azure-resource-manager-schemas/schemas/20*/*.json ./schemas
@@ -41,6 +43,8 @@ jobs:
         with:
           repository: tekowalsky/Azure-Providers
           path: ./myrepo
+          fetch-depth: 0
+          submodules: true
 
       - name: Consolidate Latest ARM Schema Version Files
         run: |
@@ -49,6 +53,7 @@ jobs:
             mkdir ./azure
           fi
           cd ./azure
+          cp -f ../../azure-resource-manager-schema.files.txt .
           if [ -d ./schemas ]; then
             cp -urf ../../schemas ./schemas
           else
@@ -61,17 +66,17 @@ jobs:
             mkdir ./schemas-preview
             cp -rf ../../schemas-preview ./schemas-preview
           fi
-          if [ -d ./schemas-common ]; then
-            cp -urf ../../schemas-common ./schemas-common
+          if [ -d ./common ]; then
+            cp -urf ../../schemas-common ./common
           else
-            mkdir ./schemas-common
-            cp -rf ../../schemas-common ./schemas-common
+            mkdir ./common
+            cp -rf ../../schemas-common ./common
           fi
           if [ -d ./viewdefinition ]; then
-            cp -urf ../../viewdefinition ./viewdefinition
+            cp -urf ../../schemas-viewdefinition ./viewdefinition
           else
             mkdir ./viewdefinition
-            cp -rf ../../viewdefinition ./viewdefinition
+            cp -rf ../../schemas-viewdefinition ./viewdefinition
           fi
 
       - name: Commit And Push ARM Schema Files
@@ -80,8 +85,6 @@ jobs:
           date > ./updatedARMschema.txt
           git config user.name GetSchemas-Workflow
           git config user.email github-actions@github.com
-          git add ./schemas-merged
-          git add ./schemas-preview
-          git add ./updatedARMschema.txt
+          git add ./azure
           git commit -m "ARM Schema List updated by getAzureSchema workflow"
           git push
