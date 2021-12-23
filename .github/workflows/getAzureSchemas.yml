@@ -23,15 +23,17 @@ jobs:
           mkdir ./schemas-common
           mkdir ./schemas-viewdefinition
           for dir in ./azure-resource-manager-schemas/schemas/20* ; do
-            if [ "$dir" -ne "*preview" ]; then
-              cp -urf $dir/*.json ./schemas
+            if [ "$dir" == "./azure-resource-manager-schemas/schemas/*preview" ]; then
+              cp -urf $dir/*.json ./schemas-preview/
             else
-              cp -urf $dir/*.json ./schemas-preview
+              cp -urf $dir/*.json ./schemas/
             fi
           done
           ls -ltR ./azure-resource-manager-schemas/**/* > ./azure-resource-manager-schema.files.txt
-          cp -urf ./azure-resource-manager-schemas/schemas/common ./schemas-common
-          cp -urf ./azure-resource-manager-schemas/schemas/viewdefinition ./schemas-viewdefinition
+          cd ./schemas-common
+          cp -urf ../azure-resource-manager-schemas/schemas/common/* .
+          cd ../schemas-viewdefinition
+          cp -urf ../azure-resource-manager-schemas/schemas/viewdefinition/* .
           # cp -urf ./azure-resource-manager-schemas/schemas/20*/*.json ./schemas
           # rm -rf ./schemas/*-preview
           # rm -rf ./schemas/*-privatepreview
