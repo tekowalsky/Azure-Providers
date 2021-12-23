@@ -44,7 +44,6 @@ jobs:
           repository: tekowalsky/Azure-Providers
           path: ./myrepo
           fetch-depth: 0
-          submodules: true
 
       - name: Consolidate Latest ARM Schema Version Files
         run: |
