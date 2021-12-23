@@ -1,4 +1,4 @@
-name: Update Schema List
+name: Update Azure Schema List
 on:
   workflow_dispatch:
 
