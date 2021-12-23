@@ -51,6 +51,8 @@ jobs:
         run: |
           cd ./myrepo
           if [ -d ./azure ]; then
+            echo "Found ./azure"
+          else
             mkdir ./azure
           fi
           cd ./azure
