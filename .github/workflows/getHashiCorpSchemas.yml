@@ -30,7 +30,7 @@ jobs:
             cd ./schemas
             mkdir ./terraform-plugin-sdk
           fi
-          cp -rf ../terraform-plugin-sdk ./terraform-plugin-sdk
+          cp -rf ../terraform-plugin-sdk/. ./terraform-plugin-sdk/
           ls -ltR ../terraform-plugin-sdk/* > ./terraform-plugin-sdk.files.txt
           ls -ltR ../terraform-plugin-sdk/**/* >> ./terraform-plugin-sdk.files.txt
           ls -ltR ../gi* >> ./terraform-plugin-sdk.files.txt
@@ -59,8 +59,8 @@ jobs:
             cd ./terraform
             mkdir ./terraform-plugin-sdk
           fi
-          cp -f ../../schemas/terraform-plugin-sdk.files.txt .
-          cp -urf ../../schemas/terraform-plugin-sdk ./terraform-plugin-sdk
+          cp -f ../../schemas/terraform-plugin-sdk.files.txt ./
+          cp -urf ../../schemas/terraform-plugin-sdk/. ./terraform-plugin-sdk/
           # for dir in ../schemas/terraform-plugin-sdk/* ; do
           #  for fn in $dir/*.json ; do
           #    cp -u $fn ./schemas-terraform-plugin-sdk
