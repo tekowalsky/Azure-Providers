@@ -25,17 +25,17 @@ jobs:
           mkdir ./common
           mkdir ./viewdefinition
           cd ..
-          test='./azure-resource-manager-schemas/schemas/####-##-##-p*'
-          for dir in ./azure-resource-manager-schemas/schemas/20* ; do
-            if [ $dir = "$test" ]; then
-              cp -ur "$dir"/. ./az/schemas-preview/
-            else
-              cp -ur "$dir"/. ./az/schemas/
-            fi
+          for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]' ; do
+            cp -ur $dir/. ./az/schemas/
           done
-          ls -ltR ./azure-resource-manager-schemas/**/* > ./az/arm-schema.files.txt
+          for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]-preview' ; do
+            cp -ur $dir/. ./az/schemas-preview/
+          done
+          for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]-privatepreview' ; do
+            cp -ur $dir/. ./az/schemas-preview/
+          done
           cp -r ./azure-resource-manager-schemas/schemas/common/. ./az/common/
-          cp -r ./azure-resource-manager-schemas/schemas/viewdefinition/* ./az/viewdefinition/
+          cp -r ./azure-resource-manager-schemas/schemas/viewdefinition/. ./az/viewdefinition/
         continue-on-error: true
 
       - name: Checkout My Repo
