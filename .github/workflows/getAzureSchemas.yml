@@ -25,11 +25,10 @@ jobs:
           mkdir ./common
           mkdir ./viewdefinition
           cd ..
-          test='./azure-resource-manager-schemas/schemas/*preview'
-          dest='./az/schemas-preview/'
+          test='./azure-resource-manager-schemas/schemas/####-##-##-p*'
           for dir in ./azure-resource-manager-schemas/schemas/20* ; do
             if [ $dir = "$test" ]; then
-              cp -ur "$dir"/. "$dest"
+              cp -ur "$dir"/. ./az/schemas-preview/
             else
               cp -ur "$dir"/. ./az/schemas/
             fi
