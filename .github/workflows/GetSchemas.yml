@@ -14,14 +14,37 @@ jobs:
           path: ./azure-resource-manager-schemas
           fetch-depth: 0
           
-      - name: GetSchemaDir
+      - name: SetupSchemaDir
         run: |
           mkdir ./schemas
           cp -rf ./azure-resource-manager-schemas/schemas/20* ./schemas
           rm -rf ./schemas/*-preview
           rm -rf ./schemas/*-privatepreview
-          mkdir ./merged
+
+      - name: Checkout My Repo
+        uses: actions/checkout@v2.4.0
+        with:
+          repository: tekowalsky/Azure-Providers
+          path: ./myrepo
+          
+      - name: MakeMerged
+        run: |
+          if [ -d ./myrepo/merged ]; then
+            echo "Found ./myrepo/merged"
+          else
+            mkdir ./myrepo/merged
+          fi
           for dir in ./schemas/* ; do
-            cp -u $dir/*.json ./merged
+            for fn in $dir/*.json ; do
+              cp -u $fn ./myrepo/merged
+            done
           done
-          ls -l ./merged
+
+      - name: CommitAndPush
+        run: |
+          date > generated.txt
+          git config user.name GetSchemas-Workflow
+          git config user.email github-actions@github.com
+          git add ./myrepo/merged
+          git commit -m "generated"
+          git push
