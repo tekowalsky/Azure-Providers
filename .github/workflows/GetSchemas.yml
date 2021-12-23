@@ -42,9 +42,10 @@ jobs:
 
       - name: CommitAndPush
         run: |
+          cd ./myrepo
           date > generated.txt
           git config user.name GetSchemas-Workflow
           git config user.email github-actions@github.com
-          git add ./myrepo/merged
+          git add ./merged
           git commit -m "generated"
           git push
