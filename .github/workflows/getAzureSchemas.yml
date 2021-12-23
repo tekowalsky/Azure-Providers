@@ -20,23 +20,23 @@ jobs:
         run: |
           mkdir ./schemas
           mkdir ./schemas-preview
-          mkdir ./schemas-common
-          mkdir ./schemas-viewdefinition
+          mkdir ./common
+          mkdir ./viewdefinition
           for dir in ./azure-resource-manager-schemas/schemas/20* ; do
             if [ "$dir" == "./azure-resource-manager-schemas/schemas/*preview" ]; then
-              cp -urf $dir/*.json ./schemas-preview/
+              cd ./schemas-preview
+              cp -ur $dir/*.json .
             else
-              cp -urf $dir/*.json ./schemas/
+              cd ./schemas
+              cp -ur $dir/*.json .
             fi
+            cd ..
           done
           ls -ltR ./azure-resource-manager-schemas/**/* > ./azure-resource-manager-schema.files.txt
-          cd ./schemas-common
-          cp -urf ../azure-resource-manager-schemas/schemas/common/* .
-          cd ../schemas-viewdefinition
-          cp -urf ../azure-resource-manager-schemas/schemas/viewdefinition/* .
-          # cp -urf ./azure-resource-manager-schemas/schemas/20*/*.json ./schemas
-          # rm -rf ./schemas/*-preview
-          # rm -rf ./schemas/*-privatepreview
+          cd ./common
+          cp -ur ../azure-resource-manager-schemas/schemas/common/* .
+          cd ../viewdefinition
+          cp -ur ../azure-resource-manager-schemas/schemas/viewdefinition/* .
         continue-on-error: true
 
       - name: Checkout My Repo
@@ -57,35 +57,15 @@ jobs:
           fi
           cd ./azure
           cp -f ../../azure-resource-manager-schema.files.txt .
-          if [ -d ./schemas ]; then
-            cp -urf ../../schemas ./schemas
-          else
-            mkdir ./schemas
-            cp -rf ../../schemas ./schemas
-          fi
-          if [ -d ./schemas-preview ]; then
-            cp -urf ../../schemas-preview ./schemas-preview
-          else
-            mkdir ./schemas-preview
-            cp -rf ../../schemas-preview ./schemas-preview
-          fi
-          if [ -d ./common ]; then
-            cp -urf ../../schemas-common ./common
-          else
-            mkdir ./common
-            cp -rf ../../schemas-common ./common
-          fi
-          if [ -d ./viewdefinition ]; then
-            cp -urf ../../schemas-viewdefinition ./viewdefinition
-          else
-            mkdir ./viewdefinition
-            cp -rf ../../schemas-viewdefinition ./viewdefinition
-          fi
+          cp -ur ../../schemas .
+          cp -ur ../../schemas-preview .
+          cp -ur ../../common .
+          cp -ur ../../viewdefinition .
 
       - name: Commit And Push ARM Schema Files
         run: |
           cd ./myrepo
-          date > ./updatedARMschema.txt
+          date > ./azure/updatedARMschema.txt
           git config user.name GetSchemas-Workflow
           git config user.email github-actions@github.com
           git add ./azure
