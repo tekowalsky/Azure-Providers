@@ -19,33 +19,60 @@ jobs:
         run: |
           mkdir ./schemas
           mkdir ./schemas-preview
-          cp -rf ./azure-resource-manager-schemas/schemas/20* ./schemas
-          cp -rf ./azure-resource-manager-schemas/schemas/20*-preview ./schemas-preview
-          cp -rf ./azure-resource-manager-schemas/schemas/20*-privatepreview ./schemas-preview
-          cp -rf ./azure-resource-manager-schemas/schemas/viewdefinition/0.0.1-preview ./schemas-preview
-          cp -rf ./azure-resource-manager-schemas/schemas/common ./schemas
-          rm -rf ./schemas/*-preview
-          rm -rf ./schemas/*-privatepreview
+          mkdir ./schemas-viewdefinition
+          mkdir ./schemas-common
+          for dir in ./azure-resource-manager-schemas/schemas/20* ; do
+            if [ "$dir" -ne "*preview" ]; then
+              cp -urf $dir/*.json ./schemas
+              cp -urf $dir/**/*.json ./schemas
+            else
+              cp -urf $dir/*.json ./schemas-preview
+              cp -urf $dir/**/*.json ./schemas-preview
+            fi
+          done
+          cp -urf ./azure-resource-manager-schemas/schemas/common ./schemas-common
+          cp -urf ./azure-resource-manager-schemas/schemas/viewdefinition ./schemas-viewdefinition
+          # cp -urf ./azure-resource-manager-schemas/schemas/20*/*.json ./schemas
+          # rm -rf ./schemas/*-preview
+          # rm -rf ./schemas/*-privatepreview
 
       - name: Checkout My Repo
         uses: actions/checkout@v2.4.0
         with:
           repository: tekowalsky/Azure-Providers
           path: ./myrepo
-          
+
       - name: Consolidate Latest ARM Schema Version Files
         run: |
-          if [ -d ./myrepo/schemas-merged ]; then
-            echo "Found ./myrepo/schemas-merged"
-          else
-            mkdir ./myrepo/schemas-merged
+          cd ./myrepo
+          if [ -d ./azure ]; then
+            mkdir ./azure
           fi
-          for dir in ./schemas/* ; do
-            for fn in $dir/*.json ; do
-              cp -u $fn ./myrepo/schemas-merged
-            done
-          done
-          cp -ur ./schemas-preview ./myrepo
+          cd ./azure
+          if [ -d ./schemas ]; then
+            cp -urf ../../schemas ./schemas
+          else
+            mkdir ./schemas
+            cp -rf ../../schemas ./schemas
+          fi
+          if [ -d ./schemas-preview ]; then
+            cp -urf ../../schemas-preview ./schemas-preview
+          else
+            mkdir ./schemas-preview
+            cp -rf ../../schemas-preview ./schemas-preview
+          fi
+          if [ -d ./schemas-common ]; then
+            cp -urf ../../schemas-common ./schemas-common
+          else
+            mkdir ./schemas-common
+            cp -rf ../../schemas-common ./schemas-common
+          fi
+          if [ -d ./viewdefinition ]; then
+            cp -urf ../../viewdefinition ./viewdefinition
+          else
+            mkdir ./viewdefinition
+            cp -rf ../../viewdefinition ./viewdefinition
+          fi
 
       - name: Commit And Push ARM Schema Files
         run: |
