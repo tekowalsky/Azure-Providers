@@ -1,0 +1,3373 @@
+-rw-r--r-- 1 runner docker   8189 Dec 23 20:23 ./azure-resource-manager-schemas/tools/tests.ts
+-rw-r--r-- 1 runner docker    520 Dec 23 20:23 ./azure-resource-manager-schemas/tools/tsconfig.json
+-rw-r--r-- 1 runner docker   2266 Dec 23 20:23 ./azure-resource-manager-schemas/tools/cycleCheck.ts
+-rw-r--r-- 1 runner docker 104768 Dec 23 20:23 ./azure-resource-manager-schemas/tools/package-lock.json
+-rw-r--r-- 1 runner docker   1047 Dec 23 20:23 ./azure-resource-manager-schemas/tools/package.json
+-rw-r--r-- 1 runner docker   7988 Dec 23 20:23 ./azure-resource-manager-schemas/tools/schemaTestsRunner.ts
+-rw-r--r-- 1 runner docker    697 Dec 23 20:23 ./azure-resource-manager-schemas/tools/server.ts
+-rw-r--r-- 1 runner docker  57348 Dec 23 20:23 ./azure-resource-manager-schemas/generator/package-lock.json
+-rw-r--r-- 1 runner docker   1406 Dec 23 20:23 ./azure-resource-manager-schemas/generator/package.json
+-rw-r--r-- 1 runner docker 223480 Dec 23 20:23 ./azure-resource-manager-schemas/generator/resources.json
+-rw-r--r-- 1 runner docker   4910 Dec 23 20:23 ./azure-resource-manager-schemas/generator/specs.ts
+-rw-r--r-- 1 runner docker    489 Dec 23 20:23 ./azure-resource-manager-schemas/generator/tsconfig.json
+-rw-r--r-- 1 runner docker   5933 Dec 23 20:23 ./azure-resource-manager-schemas/generator/utils.ts
+-rw-r--r-- 1 runner docker  26906 Dec 23 20:23 ./azure-resource-manager-schemas/onboarded-report/result.json
+-rw-r--r-- 1 runner docker   4398 Dec 23 20:23 ./azure-resource-manager-schemas/generator/README.md
+-rw-r--r-- 1 runner docker  32306 Dec 23 20:23 ./azure-resource-manager-schemas/generator/autogenlist.ts
+-rw-r--r-- 1 runner docker   2129 Dec 23 20:23 ./azure-resource-manager-schemas/generator/constants.ts
+-rw-r--r-- 1 runner docker  13884 Dec 23 20:23 ./azure-resource-manager-schemas/generator/generate.ts
+-rw-r--r-- 1 runner docker   1132 Dec 23 20:23 ./azure-resource-manager-schemas/generator/git.ts
+-rw-r--r-- 1 runner docker   1036 Dec 23 20:23 ./azure-resource-manager-schemas/generator/models.ts
+
+./azure-resource-manager-schemas/tools/templateTests:
+total 880
+-rw-r--r-- 1 runner docker  7248 Dec 23 20:23 Template_1.2019-03-01-hybrid.json
+-rw-r--r-- 1 runner docker 29435 Dec 23 20:23 Template_1.2019-04-01.SymbolicName.json
+-rw-r--r-- 1 runner docker 29195 Dec 23 20:23 Template_1.2019-04-01.json
+-rw-r--r-- 1 runner docker 57688 Dec 23 20:23 Template_2.2014-01-01-preview.SymbolicName.json
+-rw-r--r-- 1 runner docker 52583 Dec 23 20:23 Template_2.2014-01-01-preview.json
+-rw-r--r-- 1 runner docker 63192 Dec 23 20:23 Template_2.2015-01-01.SymbolicName.json
+-rw-r--r-- 1 runner docker 57565 Dec 23 20:23 Template_2.2015-01-01.json
+-rw-r--r-- 1 runner docker 21124 Dec 23 20:23 Template_2.2019-03-01-hybrid.json
+-rw-r--r-- 1 runner docker 63163 Dec 23 20:23 Template_2.2019-04-01.SymbolicName.json
+-rw-r--r-- 1 runner docker 57535 Dec 23 20:23 Template_2.2019-04-01.json
+-rw-r--r-- 1 runner docker 41811 Dec 23 20:23 Template_3.2015-01-01.SymbolicName.json
+-rw-r--r-- 1 runner docker 38862 Dec 23 20:23 Template_3.2015-01-01.json
+-rw-r--r-- 1 runner docker 64558 Dec 23 20:23 Template_3.2019-03-01-hybrid.json
+-rw-r--r-- 1 runner docker 42979 Dec 23 20:23 Template_3.2019-04-01.SymbolicName.json
+-rw-r--r-- 1 runner docker 39926 Dec 23 20:23 Template_3.2019-04-01.json
+-rw-r--r-- 1 runner docker  7048 Dec 23 20:23 TenantTemplate.2019-08-01.SymbolicName.json
+-rw-r--r-- 1 runner docker  6398 Dec 23 20:23 TenantTemplate.2019-08-01.json
+-rw-r--r-- 1 runner docker 10370 Dec 23 20:23 ManagementGroupTemplate.2019-08-01.SymbolicName.json
+-rw-r--r-- 1 runner docker  9555 Dec 23 20:23 ManagementGroupTemplate.2019-08-01.json
+-rw-r--r-- 1 runner docker 10588 Dec 23 20:23 SubscriptionTemplate.2018-05-01.SymbolicName.json
+-rw-r--r-- 1 runner docker  9748 Dec 23 20:23 SubscriptionTemplate.2018-05-01.json
+-rw-r--r-- 1 runner docker 29917 Dec 23 20:23 Template_1.2014-01-01-preview.SymbolicName.json
+-rw-r--r-- 1 runner docker 29665 Dec 23 20:23 Template_1.2014-01-01-preview.json
+-rw-r--r-- 1 runner docker 29955 Dec 23 20:23 Template_1.2015-01-01.SymbolicName.json
+-rw-r--r-- 1 runner docker 29703 Dec 23 20:23 Template_1.2015-01-01.json
+
+./azure-resource-manager-schemas/tests/2019-08-01:
+total 56
+-rw-r--r-- 1 runner docker 2644 Dec 23 20:23 Microsoft.Network.PublicIpAddress.tests.json
+-rw-r--r-- 1 runner docker 2065 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker 7529 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker 3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+-rw-r--r-- 1 runner docker 3688 Dec 23 20:23 Microsoft.Network.AppGwWebApplicationFirewallPolicy.tests.json
+-rw-r--r-- 1 runner docker  486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 6425 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker 1051 Dec 23 20:23 Microsoft.Network.NatGateway.tests.json
+-rw-r--r-- 1 runner docker 5875 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker 5488 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+
+./azure-resource-manager-schemas/tests/2019-09-01:
+total 108
+-rw-r--r-- 1 runner docker  3866 Dec 23 20:23 Microsoft.Authorization.PolicyAssignments.tests.json
+-rw-r--r-- 1 runner docker  6599 Dec 23 20:23 Microsoft.Authorization.PolicyDefinitions.tests.json
+-rw-r--r-- 1 runner docker  9324 Dec 23 20:23 Microsoft.Authorization.PolicySetDefinitions.tests.json
+-rw-r--r-- 1 runner docker  3688 Dec 23 20:23 Microsoft.Network.AppGwWebApplicationFirewallPolicy.tests.json
+-rw-r--r-- 1 runner docker   486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  6425 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker  1051 Dec 23 20:23 Microsoft.Network.NatGateway.tests.json
+-rw-r--r-- 1 runner docker  5875 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker  5488 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  2644 Dec 23 20:23 Microsoft.Network.PublicIpAddress.tests.json
+-rw-r--r-- 1 runner docker  2065 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker  7529 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker  3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+-rw-r--r-- 1 runner docker 26338 Dec 23 20:23 policyDefinition.tests.json
+
+./azure-resource-manager-schemas/tests/2019-09-07:
+total 12
+-rw-r--r-- 1 runner docker 8299 Dec 23 20:23 Microsoft.Kusto.tests.json
+
+./azure-resource-manager-schemas/tests/2019-09-16:
+total 16
+-rw-r--r-- 1 runner docker 15019 Dec 23 20:23 Microsoft.HealthcareApis.tests.json
+
+./azure-resource-manager-schemas/tests/2019-10-01:
+total 4
+-rw-r--r-- 1 runner docker 2272 Dec 23 20:23 Microsoft.Network.FrontDoorWebApplicationFirewall.tests.json
+
+./azure-resource-manager-schemas/tests/2019-11-01:
+total 4
+-rw-r--r-- 1 runner docker 1272 Dec 23 20:23 Microsoft.Network.NetworkExperimentProfiles.tests.json
+
+./azure-resource-manager-schemas/tests/2019-11-09:
+total 12
+-rw-r--r-- 1 runner docker 9512 Dec 23 20:23 Microsoft.Kusto.tests.json
+
+./azure-resource-manager-schemas/tests/2019-12-01:
+total 56
+-rw-r--r-- 1 runner docker 3688 Dec 23 20:23 Microsoft.Network.AppGwWebApplicationFirewallPolicy.tests.json
+-rw-r--r-- 1 runner docker  486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 6425 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker 1051 Dec 23 20:23 Microsoft.Network.NatGateway.tests.json
+-rw-r--r-- 1 runner docker 5875 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker 5487 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 2643 Dec 23 20:23 Microsoft.Network.PublicIpAddress.tests.json
+-rw-r--r-- 1 runner docker 2065 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker 7534 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker 3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+
+./azure-resource-manager-schemas/tests/2020-01-01:
+total 12
+-rw-r--r-- 1 runner docker 1246 Dec 23 20:23 Microsoft.Advisor.Configuration.json
+-rw-r--r-- 1 runner docker  680 Dec 23 20:23 Microsoft.Advisor.Suppression.json
+-rw-r--r-- 1 runner docker 1654 Dec 23 20:23 Microsoft.Network.FrontDoor.tests.json
+
+./azure-resource-manager-schemas/tests/2020-01-01-preview:
+total 28
+-rw-r--r-- 1 runner docker 2276 Dec 23 20:23 Microsoft.Peering.Direct.tests.json
+-rw-r--r-- 1 runner docker 2602 Dec 23 20:23 Microsoft.Peering.Exchange.tests.json
+-rw-r--r-- 1 runner docker  971 Dec 23 20:23 Microsoft.Peering.PeerAsn.tests.json
+-rw-r--r-- 1 runner docker  708 Dec 23 20:23 Microsoft.Peering.PeeringService.Prefix.tests.json
+-rw-r--r-- 1 runner docker  627 Dec 23 20:23 Microsoft.Peering.PeeringService.tests.json
+-rw-r--r-- 1 runner docker  591 Dec 23 20:23 Microsoft.Peering.Peering_RegisteredAsn.tests.json
+-rw-r--r-- 1 runner docker  618 Dec 23 20:23 Microsoft.Peering.Peering_RegisteredPrefix.tests.json
+
+./azure-resource-manager-schemas/tests/2020-02-15:
+total 12
+-rw-r--r-- 1 runner docker 9512 Dec 23 20:23 Microsoft.Kusto.tests.json
+
+./azure-resource-manager-schemas/tests/2020-06-14:
+total 12
+-rw-r--r-- 1 runner docker 9512 Dec 23 20:23 Microsoft.Kusto.tests.json
+
+./azure-resource-manager-schemas/tests/2020-09-01:
+total 32
+-rw-r--r-- 1 runner docker 31239 Dec 23 20:23 policyDefinition.tests.json
+
+./azure-resource-manager-schemas/tests/2020-09-18:
+total 12
+-rw-r--r-- 1 runner docker 9478 Dec 23 20:23 Microsoft.Kusto.tests.json
+
+./azure-resource-manager-schemas/tests/2020-10-01:
+total 32
+-rw-r--r-- 1 runner docker 31291 Dec 23 20:23 policyDefinition.tests.json
+
+./azure-resource-manager-schemas/tests/2021-09-07-preview:
+total 4
+-rw-r--r-- 1 runner docker 1072 Dec 23 20:23 Microsoft.PlayFab.tests.json
+
+./azure-resource-manager-schemas/tools/DeploymentsSchemaTests:
+total 20
+-rw-r--r-- 1 runner docker  799 Dec 23 20:23 DeploymentsSchemaTests.csproj
+-rw-r--r-- 1 runner docker 1124 Dec 23 20:23 DeploymentsSchemaTests.sln
+-rw-r--r-- 1 runner docker  654 Dec 23 20:23 DeploymentsTests.cs
+-rw-r--r-- 1 runner docker 7377 Dec 23 20:23 TestSchemaCache.cs
+
+./azure-resource-manager-schemas/tools/schemas:
+total 48
+-rw-r--r-- 1 runner docker 10871 Dec 23 20:23 ResourceMetaSchema.json
+-rw-r--r-- 1 runner docker 33123 Dec 23 20:23 ResourceMetaSchema.tests.json
+
+./azure-resource-manager-schemas/tests/2018-11-19:
+total 4
+-rw-r--r-- 1 runner docker 1482 Dec 23 20:23 Microsoft.MachineLearningServices.tests.json
+
+./azure-resource-manager-schemas/tests/2018-11-30:
+total 4
+-rw-r--r-- 1 runner docker 1212 Dec 23 20:23 Microsoft.ManagedIdentity.tests.json
+
+./azure-resource-manager-schemas/tests/2018-12-01:
+total 52
+-rw-r--r-- 1 runner docker 3348 Dec 23 20:23 Microsoft.Network.AppGwWebApplicationFirewallPolicies.tests.json
+-rw-r--r-- 1 runner docker  486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 6338 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker 5724 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker 5436 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 2603 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker 2052 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker 6885 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker 3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+
+./azure-resource-manager-schemas/tests/2019-01-01:
+total 148
+-rw-r--r-- 1 runner docker  4578 Dec 23 20:23 Microsoft.ApiManagement.Service.tests.json
+-rw-r--r-- 1 runner docker  3265 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiDiagnostic.tests.json
+-rw-r--r-- 1 runner docker  4772 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiOperations.tests.json
+-rw-r--r-- 1 runner docker  1776 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiRelease.tests.json
+-rw-r--r-- 1 runner docker 14369 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiSchemas.tests.json
+-rw-r--r-- 1 runner docker  1272 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiTag.tests.json
+-rw-r--r-- 1 runner docker  1485 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiVersionSet.tests.json
+-rw-r--r-- 1 runner docker  2132 Dec 23 20:23 Microsoft.ApiManagement.ServiceApis.tests.json
+-rw-r--r-- 1 runner docker  2769 Dec 23 20:23 Microsoft.ApiManagement.ServiceAuthorizationServer.tests.json
+-rw-r--r-- 1 runner docker  2728 Dec 23 20:23 Microsoft.ApiManagement.ServiceBackend.tests.json
+-rw-r--r-- 1 runner docker  1736 Dec 23 20:23 Microsoft.ApiManagement.ServiceCaches.tests.json
+-rw-r--r-- 1 runner docker  1543 Dec 23 20:23 Microsoft.ApiManagement.ServiceCertificate.tests.json
+-rw-r--r-- 1 runner docker  3220 Dec 23 20:23 Microsoft.ApiManagement.ServiceDiagnostic.tests.json
+-rw-r--r-- 1 runner docker  1325 Dec 23 20:23 Microsoft.ApiManagement.ServiceGroups.tests.json
+-rw-r--r-- 1 runner docker  1488 Dec 23 20:23 Microsoft.ApiManagement.ServiceIdentityProvider.tests.json
+-rw-r--r-- 1 runner docker  2331 Dec 23 20:23 Microsoft.ApiManagement.ServiceLogger.tests.json
+-rw-r--r-- 1 runner docker  3226 Dec 23 20:23 Microsoft.ApiManagement.ServiceNotification.tests.json
+-rw-r--r-- 1 runner docker  1541 Dec 23 20:23 Microsoft.ApiManagement.ServiceProducts.tests.json
+-rw-r--r-- 1 runner docker  1543 Dec 23 20:23 Microsoft.ApiManagement.ServiceProperties.tests.json
+-rw-r--r-- 1 runner docker  2336 Dec 23 20:23 Microsoft.ApiManagement.ServiceSubscription.tests.json
+-rw-r--r-- 1 runner docker  1301 Dec 23 20:23 Microsoft.ApiManagement.ServiceTag.tests.json
+-rw-r--r-- 1 runner docker  1567 Dec 23 20:23 Microsoft.ApiManagement.ServiceTagDescription.tests.json
+-rw-r--r-- 1 runner docker  1942 Dec 23 20:23 Microsoft.ApiManagement.ServiceUsers.tests.json
+-rw-r--r-- 1 runner docker  3866 Dec 23 20:23 Microsoft.Authorization.PolicyAssignments.tests.json
+-rw-r--r-- 1 runner docker  6456 Dec 23 20:23 Microsoft.Authorization.PolicyDefinitions.tests.json
+-rw-r--r-- 1 runner docker  3831 Dec 23 20:23 Microsoft.Authorization.PolicySetDefinitions.tests.json
+-rw-r--r-- 1 runner docker 18601 Dec 23 20:23 policyDefinition.tests.json
+
+./azure-resource-manager-schemas/tests/2019-01-21:
+total 8
+-rw-r--r-- 1 runner docker 5731 Dec 23 20:23 Microsoft.Kusto.tests.json
+
+./azure-resource-manager-schemas/tests/2019-02-01:
+total 56
+-rw-r--r-- 1 runner docker 3348 Dec 23 20:23 Microsoft.Network.AppGwWebApplicationFirewallPolicies.tests.json
+-rw-r--r-- 1 runner docker  486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 6338 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker 1036 Dec 23 20:23 Microsoft.Network.NatGateway.tests.json
+-rw-r--r-- 1 runner docker 5724 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker 5436 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 2603 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker 2052 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker 6884 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker 3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+
+./azure-resource-manager-schemas/tests/2019-02-01-preview:
+total 4
+-rw-r--r-- 1 runner docker 2824 Dec 23 20:23 Microsoft.AppConfiguration.tests.json
+
+./azure-resource-manager-schemas/tests/2019-03-01:
+total 68
+-rw-r--r-- 1 runner docker  1810 Dec 23 20:23 Microsoft.Compute.Galleries.tests.json
+-rw-r--r-- 1 runner docker 60609 Dec 23 20:23 Microsoft.Compute.tests.json
+-rw-r--r-- 1 runner docker  2272 Dec 23 20:23 Microsoft.Network.FrontDoorWebApplicationFirewall.tests.json
+
+./azure-resource-manager-schemas/tests/2019-04-01:
+total 88
+-rw-r--r-- 1 runner docker  3348 Dec 23 20:23 Microsoft.Network.AppGwWebApplicationFirewallPolicies.tests.json
+-rw-r--r-- 1 runner docker   486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  1654 Dec 23 20:23 Microsoft.Network.FrontDoor.tests.json
+-rw-r--r-- 1 runner docker  6338 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker  1036 Dec 23 20:23 Microsoft.Network.NatGateway.tests.json
+-rw-r--r-- 1 runner docker  5724 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker  5436 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  2603 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker  2052 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker  6884 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker  3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+-rw-r--r-- 1 runner docker 11259 Dec 23 20:23 Microsoft.Storage.tests.json
+-rw-r--r-- 1 runner docker 15714 Dec 23 20:23 Microsoft.VMwareCloudSimple.tests.json
+
+./azure-resource-manager-schemas/tests/2019-05-01:
+total 24
+-rw-r--r-- 1 runner docker 18223 Dec 23 20:23 Microsoft.NetApp.tests.json
+-rw-r--r-- 1 runner docker  1654 Dec 23 20:23 Microsoft.Network.FrontDoor.tests.json
+
+./azure-resource-manager-schemas/tests/2019-05-15:
+total 8
+-rw-r--r-- 1 runner docker 5730 Dec 23 20:23 Microsoft.Kusto.tests.json
+
+./azure-resource-manager-schemas/tests/2019-06-01:
+total 152
+-rw-r--r-- 1 runner docker  3866 Dec 23 20:23 Microsoft.Authorization.PolicyAssignments.tests.json
+-rw-r--r-- 1 runner docker  6599 Dec 23 20:23 Microsoft.Authorization.PolicyDefinitions.tests.json
+-rw-r--r-- 1 runner docker  3831 Dec 23 20:23 Microsoft.Authorization.PolicySetDefinitions.tests.json
+-rw-r--r-- 1 runner docker  1943 Dec 23 20:23 Microsoft.ContainerService.tests.json
+-rw-r--r-- 1 runner docker 22925 Dec 23 20:23 Microsoft.EventGrid.tests.json
+-rw-r--r-- 1 runner docker  1321 Dec 23 20:23 Microsoft.ManagedServices.tests.json
+-rw-r--r-- 1 runner docker  3348 Dec 23 20:23 Microsoft.Network.AppGwWebApplicationFirewallPolicies.tests.json
+-rw-r--r-- 1 runner docker   486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  6338 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker  1036 Dec 23 20:23 Microsoft.Network.NatGateway.tests.json
+-rw-r--r-- 1 runner docker  5724 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker  5436 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  2603 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker  2052 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker  7513 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker  3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+-rw-r--r-- 1 runner docker 23817 Dec 23 20:23 Microsoft.Storage.tests.json
+-rw-r--r-- 1 runner docker 22546 Dec 23 20:23 policyDefinition.tests.json
+
+./azure-resource-manager-schemas/tests/2019-07-01:
+total 120
+-rw-r--r-- 1 runner docker 64715 Dec 23 20:23 Microsoft.Compute.tests.json
+-rw-r--r-- 1 runner docker  3354 Dec 23 20:23 Microsoft.Network.AppGwWebApplicationFirewallPolicies.tests.json
+-rw-r--r-- 1 runner docker   486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  6348 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker  1038 Dec 23 20:23 Microsoft.Network.NatGateway.tests.json
+-rw-r--r-- 1 runner docker  5738 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker  5448 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  2611 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker  2058 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker  7529 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker  3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+
+./azure-resource-manager-schemas/tests/2019-08-01-preview:
+total 20
+-rw-r--r-- 1 runner docker 2268 Dec 23 20:23 Microsoft.Peering.Direct.tests.json
+-rw-r--r-- 1 runner docker 1804 Dec 23 20:23 Microsoft.Peering.Exchange.tests.json
+-rw-r--r-- 1 runner docker  669 Dec 23 20:23 Microsoft.Peering.PeerAsn.tests.json
+-rw-r--r-- 1 runner docker  757 Dec 23 20:23 Microsoft.Peering.PeeringService.Prefix.tests.json
+-rw-r--r-- 1 runner docker  580 Dec 23 20:23 Microsoft.Peering.PeeringService.tests.json
+
+./azure-resource-manager-schemas/tests/2018-03-31:
+total 4
+-rw-r--r-- 1 runner docker 1520 Dec 23 20:23 Microsoft.ContainerService.tests.json
+
+./azure-resource-manager-schemas/tests/2018-04-01:
+total 116
+-rw-r--r-- 1 runner docker  1335 Dec 23 20:23 Microsoft.Compute.tests.json
+-rw-r--r-- 1 runner docker  1968 Dec 23 20:23 Microsoft.ContainerInstance.tests.json
+-rw-r--r-- 1 runner docker 54332 Dec 23 20:23 Microsoft.Devices.tests.json
+-rw-r--r-- 1 runner docker   492 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  6457 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker  5956 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker  5524 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  2667 Dec 23 20:23 Microsoft.Network.PublicIpAddress.tests.json
+-rw-r--r-- 1 runner docker  2083 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker  6963 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker  3275 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+-rw-r--r-- 1 runner docker  1956 Dec 23 20:23 Microsoft.Network.tests.json
+
+./azure-resource-manager-schemas/tests/2018-05-01:
+total 100
+-rw-r--r-- 1 runner docker 21110 Dec 23 20:23 Microsoft.BatchAI.Cluster.tests.json
+-rw-r--r-- 1 runner docker 11552 Dec 23 20:23 Microsoft.BatchAI.FileServer.tests.json
+-rw-r--r-- 1 runner docker 14699 Dec 23 20:23 Microsoft.BatchAI.Job.tests.json
+-rw-r--r-- 1 runner docker  4927 Dec 23 20:23 Microsoft.Maps.tests.json
+-rw-r--r-- 1 runner docker  8120 Dec 23 20:23 Microsoft.Network.Dns.tests.json
+-rw-r--r-- 1 runner docker  2235 Dec 23 20:23 Microsoft.Resources.tests.json
+-rw-r--r-- 1 runner docker  3866 Dec 23 20:23 policyAssignment.tests.json
+-rw-r--r-- 1 runner docker 17878 Dec 23 20:23 policyDefinition.tests.json
+-rw-r--r-- 1 runner docker  3831 Dec 23 20:23 policySetDefinition.tests.json
+
+./azure-resource-manager-schemas/tests/2018-06-01:
+total 120
+-rw-r--r-- 1 runner docker  1810 Dec 23 20:23 Microsoft.Compute.Galleries.tests.json
+-rw-r--r-- 1 runner docker 57073 Dec 23 20:23 Microsoft.Compute.tests.json
+-rw-r--r-- 1 runner docker  9267 Dec 23 20:23 Microsoft.DBforMariaDB.tests.json
+-rw-r--r-- 1 runner docker   486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  6450 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker  5819 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker  5512 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  2631 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker  2080 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker  6288 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker  3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+
+./azure-resource-manager-schemas/tests/2018-06-01-preview:
+total 124
+-rw-r--r-- 1 runner docker  4666 Dec 23 20:23 Microsoft.ApiManagement.Service.tests.json
+-rw-r--r-- 1 runner docker  3289 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiDiagnostic.tests.json
+-rw-r--r-- 1 runner docker  4796 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiOperations.tests.json
+-rw-r--r-- 1 runner docker  1800 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiRelease.tests.json
+-rw-r--r-- 1 runner docker 14393 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiSchemas.tests.json
+-rw-r--r-- 1 runner docker  1296 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiTag.tests.json
+-rw-r--r-- 1 runner docker  2156 Dec 23 20:23 Microsoft.ApiManagement.ServiceApis.tests.json
+-rw-r--r-- 1 runner docker  2793 Dec 23 20:23 Microsoft.ApiManagement.ServiceAuthorizationServer.tests.json
+-rw-r--r-- 1 runner docker  2752 Dec 23 20:23 Microsoft.ApiManagement.ServiceBackend.tests.json
+-rw-r--r-- 1 runner docker  1567 Dec 23 20:23 Microsoft.ApiManagement.ServiceCertificate.tests.json
+-rw-r--r-- 1 runner docker  3244 Dec 23 20:23 Microsoft.ApiManagement.ServiceDiagnostic.tests.json
+-rw-r--r-- 1 runner docker  1349 Dec 23 20:23 Microsoft.ApiManagement.ServiceGroups.tests.json
+-rw-r--r-- 1 runner docker  1512 Dec 23 20:23 Microsoft.ApiManagement.ServiceIdentityProvider.tests.json
+-rw-r--r-- 1 runner docker  2371 Dec 23 20:23 Microsoft.ApiManagement.ServiceLogger.tests.json
+-rw-r--r-- 1 runner docker  3250 Dec 23 20:23 Microsoft.ApiManagement.ServiceNotification.tests.json
+-rw-r--r-- 1 runner docker  1565 Dec 23 20:23 Microsoft.ApiManagement.ServiceProducts.tests.json
+-rw-r--r-- 1 runner docker  1567 Dec 23 20:23 Microsoft.ApiManagement.ServiceProperties.tests.json
+-rw-r--r-- 1 runner docker  2360 Dec 23 20:23 Microsoft.ApiManagement.ServiceSubscription.tests.json
+-rw-r--r-- 1 runner docker  1325 Dec 23 20:23 Microsoft.ApiManagement.ServiceTag.tests.json
+-rw-r--r-- 1 runner docker  1591 Dec 23 20:23 Microsoft.ApiManagement.ServiceTagDescription.tests.json
+-rw-r--r-- 1 runner docker  1966 Dec 23 20:23 Microsoft.ApiManagement.ServiceUsers.tests.json
+-rw-r--r-- 1 runner docker  5574 Dec 23 20:23 Microsoft.HDInsight.tests.json
+-rw-r--r-- 1 runner docker  1353 Dec 23 20:23 Microsoft.ManagedServices.tests.json
+-rw-r--r-- 1 runner docker  5663 Dec 23 20:23 Microsoft.Sql.tests.json
+
+./azure-resource-manager-schemas/tests/2018-06-30:
+total 4
+-rw-r--r-- 1 runner docker 1317 Dec 23 20:23 Microsoft.Automation.tests.json
+
+./azure-resource-manager-schemas/tests/2018-07-01:
+total 88
+-rw-r--r-- 1 runner docker 25992 Dec 23 20:23 Microsoft.Media.tests.json
+-rw-r--r-- 1 runner docker   486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  6450 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker  5819 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker  5512 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  2631 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker  2080 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker  6288 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker  3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+-rw-r--r-- 1 runner docker  9436 Dec 23 20:23 Microsoft.Storage.tests.json
+
+./azure-resource-manager-schemas/tests/2018-08-01:
+total 52
+-rw-r--r-- 1 runner docker  486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 1644 Dec 23 20:23 Microsoft.Network.FrontDoor.tests.json
+-rw-r--r-- 1 runner docker 6338 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker 5724 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker 5436 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 2603 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker 2052 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker 6885 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker 3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+
+./azure-resource-manager-schemas/tests/2018-08-15-preview:
+total 12
+-rw-r--r-- 1 runner docker 11310 Dec 23 20:23 Microsoft.TimeSeriesInsights.tests.json
+
+./azure-resource-manager-schemas/tests/2018-08-20-preview:
+total 12
+-rw-r--r-- 1 runner docker 12078 Dec 23 20:23 Microsoft.HealthcareApis.tests.json
+
+./azure-resource-manager-schemas/tests/2018-09-01:
+total 36
+-rw-r--r-- 1 runner docker 22147 Dec 23 20:23 Microsoft.ContainerRegistry.tests.json
+-rw-r--r-- 1 runner docker  2942 Dec 23 20:23 Microsoft.IoTCentral.tests.json
+-rw-r--r-- 1 runner docker  7726 Dec 23 20:23 Microsoft.Network.PrivateDns.tests.json
+
+./azure-resource-manager-schemas/tests/2018-09-01-preview:
+total 4
+-rw-r--r-- 1 runner docker 2237 Dec 23 20:23 Microsoft.BareMetal.tests.json
+
+./azure-resource-manager-schemas/tests/2018-09-07-preview:
+total 8
+-rw-r--r-- 1 runner docker 4152 Dec 23 20:23 Microsoft.Kusto.tests.json
+
+./azure-resource-manager-schemas/tests/2018-10-01:
+total 108
+-rw-r--r-- 1 runner docker 55757 Dec 23 20:23 Microsoft.Compute.tests.json
+-rw-r--r-- 1 runner docker   486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  6338 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker  5724 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker  5436 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  2603 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker  2052 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker  6885 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker  3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+-rw-r--r-- 1 runner docker  1407 Dec 23 20:23 Microsoft.SignalRService.tests.json
+
+./azure-resource-manager-schemas/tests/2018-11-01:
+total 60
+-rw-r--r-- 1 runner docker   486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  6338 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker  5724 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker  5436 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  2603 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker  2052 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker  6885 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker  3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+-rw-r--r-- 1 runner docker 11259 Dec 23 20:23 Microsoft.Storage.tests.json
+
+./azure-resource-manager-schemas/tests/2017-09-01:
+total 84
+-rw-r--r-- 1 runner docker 6337 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker 5723 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker 5435 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 2602 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker 2051 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker 6885 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker 3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+-rw-r--r-- 1 runner docker 1295 Dec 23 20:23 Microsoft.Authorization.tests.json
+-rw-r--r-- 1 runner docker 1307 Dec 23 20:23 Microsoft.Batch.Application.tests.json
+-rw-r--r-- 1 runner docker  618 Dec 23 20:23 Microsoft.Batch.BatchAccount.tests.json
+-rw-r--r-- 1 runner docker 2897 Dec 23 20:23 Microsoft.Batch.Certificate.tests.json
+-rw-r--r-- 1 runner docker 8947 Dec 23 20:23 Microsoft.Batch.Pool.tests.json
+-rw-r--r-- 1 runner docker  486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 8120 Dec 23 20:23 Microsoft.Network.Dns.tests.json
+
+./azure-resource-manager-schemas/tests/2017-09-07-privatepreview:
+total 8
+-rw-r--r-- 1 runner docker 4243 Dec 23 20:23 Microsoft.Kusto.tests.json
+
+./azure-resource-manager-schemas/tests/2017-10-01:
+total 92
+-rw-r--r-- 1 runner docker 1682 Dec 23 20:23 Microsoft.Cache.Redis.tests.json
+-rw-r--r-- 1 runner docker  462 Dec 23 20:23 Microsoft.Cache.Redis_firewallRules.tests.json
+-rw-r--r-- 1 runner docker  612 Dec 23 20:23 Microsoft.Cache.Redis_linkedServers.tests.json
+-rw-r--r-- 1 runner docker  591 Dec 23 20:23 Microsoft.Cache.Redis_patchSchedules.tests.json
+-rw-r--r-- 1 runner docker 4709 Dec 23 20:23 Microsoft.ContainerRegistry.tests.json
+-rw-r--r-- 1 runner docker  486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 8120 Dec 23 20:23 Microsoft.Network.Dns.tests.json
+-rw-r--r-- 1 runner docker 6337 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker 5589 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker 5324 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 2357 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker 2051 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker 6640 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker 3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+-rw-r--r-- 1 runner docker 4527 Dec 23 20:23 Microsoft.PowerBIDedicated.tests.json
+-rw-r--r-- 1 runner docker 3136 Dec 23 20:23 Microsoft.Storage.tests.json
+
+./azure-resource-manager-schemas/tests/2017-10-01-preview:
+total 4
+-rw-r--r-- 1 runner docker 1389 Dec 23 20:23 Microsoft.Sql.tests.json
+
+./azure-resource-manager-schemas/tests/2017-11-01:
+total 48
+-rw-r--r-- 1 runner docker  486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 6337 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker 5723 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker 5435 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 2602 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker 2051 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker 6885 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker 3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+
+./azure-resource-manager-schemas/tests/2017-11-15:
+total 24
+-rw-r--r-- 1 runner docker 9537 Dec 23 20:23 Microsoft.Devices.tests.json
+-rw-r--r-- 1 runner docker 9636 Dec 23 20:23 Microsoft.TimeSeriesInsights.tests.json
+
+./azure-resource-manager-schemas/tests/2017-11-15-preview:
+total 4
+-rw-r--r-- 1 runner docker 1287 Dec 23 20:23 Microsoft.DataMigrations.tests.json
+
+./azure-resource-manager-schemas/tests/2017-11-15-privatepreview:
+total 4
+-rw-r--r-- 1 runner docker 1315 Dec 23 20:23 Microsoft.DataMigrations.tests.json
+
+./azure-resource-manager-schemas/tests/2017-12-01:
+total 76
+-rw-r--r-- 1 runner docker 52582 Dec 23 20:23 Microsoft.Compute.tests.json
+-rw-r--r-- 1 runner docker  9231 Dec 23 20:23 Microsoft.DBforMySQL.tests.json
+-rw-r--r-- 1 runner docker  9320 Dec 23 20:23 Microsoft.DBforPostgreSQL.tests.json
+
+./azure-resource-manager-schemas/tests/2017-12-01-preview:
+total 16
+-rw-r--r-- 1 runner docker 5834 Dec 23 20:23 Microsoft.DBforMySQL.tests.json
+-rw-r--r-- 1 runner docker 5894 Dec 23 20:23 Microsoft.DBforPostgreSQL.tests.json
+
+./azure-resource-manager-schemas/tests/2018-01-01:
+total 164
+-rw-r--r-- 1 runner docker  4578 Dec 23 20:23 Microsoft.ApiManagement.Service.tests.json
+-rw-r--r-- 1 runner docker  4772 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiOperations.tests.json
+-rw-r--r-- 1 runner docker  1776 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiRelease.tests.json
+-rw-r--r-- 1 runner docker 14369 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiSchemas.tests.json
+-rw-r--r-- 1 runner docker  1272 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiTag.tests.json
+-rw-r--r-- 1 runner docker  2132 Dec 23 20:23 Microsoft.ApiManagement.ServiceApis.tests.json
+-rw-r--r-- 1 runner docker  2769 Dec 23 20:23 Microsoft.ApiManagement.ServiceAuthorizationServer.tests.json
+-rw-r--r-- 1 runner docker  2728 Dec 23 20:23 Microsoft.ApiManagement.ServiceBackend.tests.json
+-rw-r--r-- 1 runner docker  1543 Dec 23 20:23 Microsoft.ApiManagement.ServiceCertificate.tests.json
+-rw-r--r-- 1 runner docker  1284 Dec 23 20:23 Microsoft.ApiManagement.ServiceDiagnostic.tests.json
+-rw-r--r-- 1 runner docker  1708 Dec 23 20:23 Microsoft.ApiManagement.ServiceDiagnosticLogger.tests.json
+-rw-r--r-- 1 runner docker  1325 Dec 23 20:23 Microsoft.ApiManagement.ServiceGroups.tests.json
+-rw-r--r-- 1 runner docker  1488 Dec 23 20:23 Microsoft.ApiManagement.ServiceIdentityProvider.tests.json
+-rw-r--r-- 1 runner docker  2331 Dec 23 20:23 Microsoft.ApiManagement.ServiceLogger.tests.json
+-rw-r--r-- 1 runner docker  3226 Dec 23 20:23 Microsoft.ApiManagement.ServiceNotification.tests.json
+-rw-r--r-- 1 runner docker  1541 Dec 23 20:23 Microsoft.ApiManagement.ServiceProducts.tests.json
+-rw-r--r-- 1 runner docker  1543 Dec 23 20:23 Microsoft.ApiManagement.ServiceProperties.tests.json
+-rw-r--r-- 1 runner docker  2342 Dec 23 20:23 Microsoft.ApiManagement.ServiceSubscription.tests.json
+-rw-r--r-- 1 runner docker  1301 Dec 23 20:23 Microsoft.ApiManagement.ServiceTag.tests.json
+-rw-r--r-- 1 runner docker  1567 Dec 23 20:23 Microsoft.ApiManagement.ServiceTagDescription.tests.json
+-rw-r--r-- 1 runner docker  1942 Dec 23 20:23 Microsoft.ApiManagement.ServiceUsers.tests.json
+-rw-r--r-- 1 runner docker  9011 Dec 23 20:23 Microsoft.EventGrid.tests.json
+-rw-r--r-- 1 runner docker   486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  6337 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker  5723 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker  5435 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  2602 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker  2051 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker  6885 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker  3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+
+./azure-resource-manager-schemas/tests/2018-01-01-preview:
+total 8
+-rw-r--r-- 1 runner docker 5795 Dec 23 20:23 Microsoft.EventHub.tests.json
+
+./azure-resource-manager-schemas/tests/2018-01-10:
+total 12
+-rw-r--r-- 1 runner docker 9339 Dec 23 20:23 Microsoft.RecoveryServices.tests.json
+
+./azure-resource-manager-schemas/tests/2018-01-15:
+total 4
+-rw-r--r-- 1 runner docker 2529 Dec 23 20:23 Microsoft.Automation.tests.json
+
+./azure-resource-manager-schemas/tests/2018-01-22:
+total 56
+-rw-r--r-- 1 runner docker 54332 Dec 23 20:23 Microsoft.Devices.tests.json
+
+./azure-resource-manager-schemas/tests/2018-01-31:
+total 4
+-rw-r--r-- 1 runner docker 1797 Dec 23 20:23 Microsoft.Consumption.tests.json
+
+./azure-resource-manager-schemas/tests/2018-02-01:
+total 68
+-rw-r--r-- 1 runner docker  486 Dec 23 20:23 Microsoft.Network.ApplicationSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 6337 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker 5723 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker 5435 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 2602 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker 2051 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker 6885 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker 3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+-rw-r--r-- 1 runner docker 8818 Dec 23 20:23 Microsoft.ServiceFabric.tests.json
+-rw-r--r-- 1 runner docker 5301 Dec 23 20:23 Microsoft.Storage.tests.json
+
+./azure-resource-manager-schemas/tests/2018-02-01-preview:
+total 20
+-rw-r--r-- 1 runner docker 16780 Dec 23 20:23 Microsoft.ContainerRegistry.tests.json
+
+./azure-resource-manager-schemas/tests/2018-03-01:
+total 60
+-rw-r--r-- 1 runner docker  3831 Dec 23 20:23 policySetDefinition.tests.json
+-rw-r--r-- 1 runner docker 21537 Dec 23 20:23 Microsoft.BatchAI.Cluster.tests.json
+-rw-r--r-- 1 runner docker 11721 Dec 23 20:23 Microsoft.BatchAI.FileServer.tests.json
+-rw-r--r-- 1 runner docker 14427 Dec 23 20:23 Microsoft.BatchAI.Job.tests.json
+-rw-r--r-- 1 runner docker  3476 Dec 23 20:23 policyAssignment.tests.json
+
+./azure-resource-manager-schemas/tests/2018-03-01-preview:
+total 20
+-rw-r--r-- 1 runner docker 5574 Dec 23 20:23 Microsoft.HDInsight.tests.json
+-rw-r--r-- 1 runner docker  686 Dec 23 20:23 Microsoft.MachineLearningServices.tests.json
+-rw-r--r-- 1 runner docker 6991 Dec 23 20:23 Microsoft.Storage.tests.json
+
+./azure-resource-manager-schemas/tests/2016-11-01:
+total 56
+-rw-r--r-- 1 runner docker 6982 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker 6206 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 2826 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker 2409 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker 7504 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker 5735 Dec 23 20:23 Microsoft.DataLakeAnalytics.tests.json
+-rw-r--r-- 1 runner docker 3627 Dec 23 20:23 Microsoft.DataLakeStore.tests.json
+-rw-r--r-- 1 runner docker  551 Dec 23 20:23 Microsoft.ImportExport.Jobs.tests.json
+-rw-r--r-- 1 runner docker 7744 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+
+./azure-resource-manager-schemas/tests/2016-12-01:
+total 52
+-rw-r--r-- 1 runner docker 7744 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker 6982 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker 6206 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 2826 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker 2409 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker 7504 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker 2824 Dec 23 20:23 Microsoft.RecoveryServices.tests.json
+-rw-r--r-- 1 runner docker 6856 Dec 23 20:23 policyDefinition.tests.json
+
+./azure-resource-manager-schemas/tests/2017-01-01:
+total 4
+-rw-r--r-- 1 runner docker 1402 Dec 23 20:23 Microsoft.AAD.DomainServices.tests.json
+
+./azure-resource-manager-schemas/tests/2017-03-01:
+total 160
+-rw-r--r-- 1 runner docker  4578 Dec 23 20:23 Microsoft.ApiManagement.Service.tests.json
+-rw-r--r-- 1 runner docker  4772 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiOperations.tests.json
+-rw-r--r-- 1 runner docker  1776 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiRelease.tests.json
+-rw-r--r-- 1 runner docker 14369 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiSchemas.tests.json
+-rw-r--r-- 1 runner docker  1272 Dec 23 20:23 Microsoft.ApiManagement.ServiceApiTag.tests.json
+-rw-r--r-- 1 runner docker  2132 Dec 23 20:23 Microsoft.ApiManagement.ServiceApis.tests.json
+-rw-r--r-- 1 runner docker  2769 Dec 23 20:23 Microsoft.ApiManagement.ServiceAuthorizationServer.tests.json
+-rw-r--r-- 1 runner docker  2728 Dec 23 20:23 Microsoft.ApiManagement.ServiceBackend.tests.json
+-rw-r--r-- 1 runner docker  1543 Dec 23 20:23 Microsoft.ApiManagement.ServiceCertificate.tests.json
+-rw-r--r-- 1 runner docker  1284 Dec 23 20:23 Microsoft.ApiManagement.ServiceDiagnostic.tests.json
+-rw-r--r-- 1 runner docker  1708 Dec 23 20:23 Microsoft.ApiManagement.ServiceDiagnosticLogger.tests.json
+-rw-r--r-- 1 runner docker  1325 Dec 23 20:23 Microsoft.ApiManagement.ServiceGroups.tests.json
+-rw-r--r-- 1 runner docker  1488 Dec 23 20:23 Microsoft.ApiManagement.ServiceIdentityProvider.tests.json
+-rw-r--r-- 1 runner docker  2331 Dec 23 20:23 Microsoft.ApiManagement.ServiceLogger.tests.json
+-rw-r--r-- 1 runner docker  3226 Dec 23 20:23 Microsoft.ApiManagement.ServiceNotification.tests.json
+-rw-r--r-- 1 runner docker  1541 Dec 23 20:23 Microsoft.ApiManagement.ServiceProducts.tests.json
+-rw-r--r-- 1 runner docker  1543 Dec 23 20:23 Microsoft.ApiManagement.ServiceProperties.tests.json
+-rw-r--r-- 1 runner docker  2342 Dec 23 20:23 Microsoft.ApiManagement.ServiceSubscription.tests.json
+-rw-r--r-- 1 runner docker  1301 Dec 23 20:23 Microsoft.ApiManagement.ServiceTag.tests.json
+-rw-r--r-- 1 runner docker  1567 Dec 23 20:23 Microsoft.ApiManagement.ServiceTagDescription.tests.json
+-rw-r--r-- 1 runner docker  1942 Dec 23 20:23 Microsoft.ApiManagement.ServiceUsers.tests.json
+-rw-r--r-- 1 runner docker  3113 Dec 23 20:23 Microsoft.ContainerRegistry.tests.json
+-rw-r--r-- 1 runner docker  7744 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker  6982 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker  6206 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  2826 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker  2409 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker  7504 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker  9979 Dec 23 20:23 Microsoft.Network.tests.json
+
+./azure-resource-manager-schemas/tests/2017-03-01-preview:
+total 32
+-rw-r--r-- 1 runner docker 29551 Dec 23 20:23 Microsoft.Sql.tests.json
+
+./azure-resource-manager-schemas/tests/2017-03-30:
+total 48
+-rw-r--r-- 1 runner docker 49060 Dec 23 20:23 Microsoft.Compute.tests.json
+
+./azure-resource-manager-schemas/tests/2017-03-31:
+total 4
+-rw-r--r-- 1 runner docker 680 Dec 23 20:23 Microsoft.Advisor.Suppression.json
+
+./azure-resource-manager-schemas/tests/2017-04-01:
+total 40
+-rw-r--r-- 1 runner docker  9525 Dec 23 20:23 Microsoft.EventHub.tests.json
+-rw-r--r-- 1 runner docker  3188 Dec 23 20:23 Microsoft.NotificationHubs.Tests.json
+-rw-r--r-- 1 runner docker  5920 Dec 23 20:23 Microsoft.Relay.tests.json
+-rw-r--r-- 1 runner docker 15167 Dec 23 20:23 Microsoft.ServiceBus.tests.json
+
+./azure-resource-manager-schemas/tests/2017-04-19:
+total 8
+-rw-r--r-- 1 runner docker 547 Dec 23 20:23 Microsoft.Advisor.Configuration.json
+-rw-r--r-- 1 runner docker 680 Dec 23 20:23 Microsoft.Advisor.Suppression.json
+
+./azure-resource-manager-schemas/tests/2017-05-01:
+total 12
+-rw-r--r-- 1 runner docker 10871 Dec 23 20:23 Microsoft.Network.tests.json
+
+./azure-resource-manager-schemas/tests/2017-05-01-preview:
+total 4
+-rw-r--r-- 1 runner docker 1910 Dec 23 20:23 Microsoft.MachineLearningExperimentation.tests.json
+
+./azure-resource-manager-schemas/tests/2017-05-10:
+total 4
+-rw-r--r-- 1 runner docker 803 Dec 23 20:23 Microsoft.Resources.tests.json
+
+./azure-resource-manager-schemas/tests/2017-05-15-preview:
+total 4
+-rw-r--r-- 1 runner docker 3463 Dec 23 20:23 Microsoft.Automation.tests.json
+
+./azure-resource-manager-schemas/tests/2017-06-01:
+total 76
+-rw-r--r-- 1 runner docker  1402 Dec 23 20:23 Microsoft.AAD.DomainServices.tests.json
+-rw-r--r-- 1 runner docker  1609 Dec 23 20:23 Microsoft.AzureStack.Registration.tests.json
+-rw-r--r-- 1 runner docker  6337 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker  5721 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker  5429 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  2593 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker  2051 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker  6915 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker  3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+-rw-r--r-- 1 runner docker 10099 Dec 23 20:23 Microsoft.Network.tests.json
+-rw-r--r-- 1 runner docker  7577 Dec 23 20:23 Microsoft.StorSimple.tests.json
+-rw-r--r-- 1 runner docker  1906 Dec 23 20:23 Microsoft.Storage.tests.json
+
+./azure-resource-manager-schemas/tests/2017-06-01-preview:
+total 8
+-rw-r--r-- 1 runner docker 4853 Dec 23 20:23 Microsoft.ContainerRegistry.tests.json
+
+./azure-resource-manager-schemas/tests/2017-07-01:
+total 68
+-rw-r--r-- 1 runner docker  1019 Dec 23 20:23 Microsoft.ContainerService.tests.json
+-rw-r--r-- 1 runner docker 55892 Dec 23 20:23 Microsoft.Devices.tests.json
+-rw-r--r-- 1 runner docker  1633 Dec 23 20:23 Microsoft.Logic.tests.json
+-rw-r--r-- 1 runner docker  1001 Dec 23 20:23 Microsoft.RecoveryServices.tests.json
+
+./azure-resource-manager-schemas/tests/2017-07-01-preview:
+total 20
+-rw-r--r-- 1 runner docker 17207 Dec 23 20:23 Microsoft.ServiceFabric.tests.json
+
+./azure-resource-manager-schemas/tests/2017-08-01:
+total 56
+-rw-r--r-- 1 runner docker 9304 Dec 23 20:23 Microsoft.AnalysisServices.tests.json
+-rw-r--r-- 1 runner docker 6337 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker 5723 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker 5435 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 2602 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker 2051 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker 6885 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker 3205 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+
+./azure-resource-manager-schemas/tests/2017-08-01-preview:
+total 24
+-rw-r--r-- 1 runner docker  2537 Dec 23 20:23 Microsoft.Genomics.tests.json
+-rw-r--r-- 1 runner docker 20353 Dec 23 20:23 Microsoft.Security.tests.json
+
+./azure-resource-manager-schemas/tests/2017-08-15:
+total 20
+-rw-r--r-- 1 runner docker 18062 Dec 23 20:23 Microsoft.NetApp.tests.json
+
+./azure-resource-manager-schemas/tests/2017-08-21-preview:
+total 12
+-rw-r--r-- 1 runner docker 9649 Dec 23 20:23 Microsoft.Devices.tests.json
+
+./azure-resource-manager-schemas/tests/2016-03-01:
+total 164
+-rw-r--r-- 1 runner docker 16814 Dec 23 20:23 Microsoft.StreamAnalytics.StreamingJobs.Function.tests.json
+-rw-r--r-- 1 runner docker 35021 Dec 23 20:23 Microsoft.StreamAnalytics.StreamingJobs.Input.tests.json
+-rw-r--r-- 1 runner docker 62171 Dec 23 20:23 Microsoft.StreamAnalytics.StreamingJobs.Output.tests.json
+-rw-r--r-- 1 runner docker  3826 Dec 23 20:23 Microsoft.StreamAnalytics.StreamingJobs.Transformation.tests.json
+-rw-r--r-- 1 runner docker 22908 Dec 23 20:23 Microsoft.StreamAnalytics.StreamingJobs.tests.json
+-rw-r--r-- 1 runner docker   925 Dec 23 20:23 Microsoft.Web.tests.json
+-rw-r--r-- 1 runner docker  8431 Dec 23 20:23 Microsoft.ServiceFabric.tests.json
+
+./azure-resource-manager-schemas/tests/2016-03-30:
+total 52
+-rw-r--r-- 1 runner docker 1288 Dec 23 20:23 Microsoft.ContainerService.tests.json
+-rw-r--r-- 1 runner docker  845 Dec 23 20:23 Microsoft.DataCatalog.tests.json
+-rw-r--r-- 1 runner docker 6457 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker 5957 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker 5524 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 2668 Dec 23 20:23 Microsoft.Network.PublicIpAddress.tests.json
+-rw-r--r-- 1 runner docker 2083 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker 5677 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker 3255 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+
+./azure-resource-manager-schemas/tests/2016-04-01:
+total 8
+-rw-r--r-- 1 runner docker  566 Dec 23 20:23 Microsoft.MachineLearning.tests.json
+-rw-r--r-- 1 runner docker 1203 Dec 23 20:23 Microsoft.Network.tests.json
+
+./azure-resource-manager-schemas/tests/2016-04-30-preview:
+total 44
+-rw-r--r-- 1 runner docker 43996 Dec 23 20:23 Microsoft.Compute.tests.json
+
+./azure-resource-manager-schemas/tests/2016-05-01-preview:
+total 16
+-rw-r--r-- 1 runner docker 14416 Dec 23 20:23 Microsoft.MachineLearning.tests.json
+
+./azure-resource-manager-schemas/tests/2016-05-15:
+total 16
+-rw-r--r-- 1 runner docker 13985 Dec 23 20:23 Microsoft.DevTestLab.tests.json
+
+./azure-resource-manager-schemas/tests/2016-05-16:
+total 4
+-rw-r--r-- 1 runner docker 3279 Dec 23 20:23 Microsoft.AnalysisServices.tests.json
+
+./azure-resource-manager-schemas/tests/2016-06-01:
+total 72
+-rw-r--r-- 1 runner docker 15695 Dec 23 20:23 Microsoft.Logic.tests.json
+-rw-r--r-- 1 runner docker  7744 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker  6982 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker  6206 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  2826 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker  2409 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker  7504 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker  3056 Dec 23 20:23 Microsoft.RecoveryServices.tests.json
+-rw-r--r-- 1 runner docker  1851 Dec 23 20:23 Microsoft.Web.ConnectionGateways.tests.json
+-rw-r--r-- 1 runner docker  1778 Dec 23 20:23 Microsoft.Web.Connections.tests.json
+-rw-r--r-- 1 runner docker  2365 Dec 23 20:23 Microsoft.Web.CustomApis.tests.json
+
+./azure-resource-manager-schemas/tests/2016-06-27-preview:
+total 4
+-rw-r--r-- 1 runner docker 2941 Dec 23 20:23 Microsoft.ContainerRegistry.tests.json
+
+./azure-resource-manager-schemas/tests/2016-07-01:
+total 40
+-rw-r--r-- 1 runner docker 7744 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker 6982 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker 6206 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 2826 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker 2409 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker 7504 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+
+./azure-resource-manager-schemas/tests/2016-07-07:
+total 4
+-rw-r--r-- 1 runner docker 2125 Dec 23 20:23 Microsoft.ApiManagement.tests.json
+
+./azure-resource-manager-schemas/tests/2016-07-12-preview:
+total 4
+-rw-r--r-- 1 runner docker 696 Dec 23 20:23 Microsoft.Advisor.Suppression.json
+
+./azure-resource-manager-schemas/tests/2016-08-01:
+total 60
+-rw-r--r-- 1 runner docker  7744 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker  6982 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker  6206 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  2826 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker  2409 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker  7504 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker 18423 Dec 23 20:23 Microsoft.Web.tests.json
+
+./azure-resource-manager-schemas/tests/2016-09-01:
+total 68
+-rw-r--r-- 1 runner docker  445 Dec 23 20:23 Microsoft.Authorization.tests.json
+-rw-r--r-- 1 runner docker 7744 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker 6982 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker 6206 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 2826 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker 2409 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker 7504 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker  730 Dec 23 20:23 Microsoft.Resources.tests.json
+-rw-r--r-- 1 runner docker 8597 Dec 23 20:23 Microsoft.ServiceFabric.tests.json
+-rw-r--r-- 1 runner docker 4459 Dec 23 20:23 Microsoft.Web.tests.json
+
+./azure-resource-manager-schemas/tests/2016-09-01-preview:
+total 4
+-rw-r--r-- 1 runner docker 2244 Dec 23 20:23 Microsoft.Solutions.tests.json
+
+./azure-resource-manager-schemas/tests/2016-10-01:
+total 64
+-rw-r--r-- 1 runner docker  4209 Dec 23 20:23 Microsoft.KeyVault.tests.json
+-rw-r--r-- 1 runner docker  1633 Dec 23 20:23 Microsoft.Logic.tests.json
+-rw-r--r-- 1 runner docker  7744 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker  6982 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker  6206 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  2826 Dec 23 20:23 Microsoft.Network.PublicIp.tests.json
+-rw-r--r-- 1 runner docker  2409 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker  7504 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker 11288 Dec 23 20:23 Microsoft.StorSimple.tests.json
+
+./azure-resource-manager-schemas/schemas/common:
+total 956
+-rw-r--r-- 1 runner docker 964444 Dec 23 20:23 autogeneratedResources.json
+-rw-r--r-- 1 runner docker   6633 Dec 23 20:23 definitions.json
+-rw-r--r-- 1 runner docker    438 Dec 23 20:23 manuallyAddedResources.json
+
+./azure-resource-manager-schemas/schemas/viewdefinition:
+total 4
+drwxr-xr-x 2 runner docker 4096 Dec 23 20:23 0.0.1-preview
+
+./azure-resource-manager-schemas/schemas/viewdefinition/0.0.1-preview:
+total 16
+-rw-r--r-- 1 runner docker 15955 Dec 23 20:23 ViewDefinition.json
+
+./azure-resource-manager-schemas/tests/2014-04-01:
+total 28
+-rw-r--r-- 1 runner docker 27748 Dec 23 20:23 Microsoft.Sql.tests.json
+
+./azure-resource-manager-schemas/tests/2014-08-01-preview:
+total 4
+-rw-r--r-- 1 runner docker 731 Dec 23 20:23 Microsoft.Scheduler.tests.json
+
+./azure-resource-manager-schemas/tests/2015-01-01:
+total 24
+-rw-r--r-- 1 runner docker 8615 Dec 23 20:23 Sendgrid.Email.tests.json
+-rw-r--r-- 1 runner docker 4453 Dec 23 20:23 deploymentParameters.tests.json
+-rw-r--r-- 1 runner docker 2140 Dec 23 20:23 deploymentTemplate.tests.json
+
+./azure-resource-manager-schemas/tests/2015-03-20:
+total 4
+-rw-r--r-- 1 runner docker 1708 Dec 23 20:23 Microsoft.OperationalInsights.tests.json
+
+./azure-resource-manager-schemas/tests/2015-04-01:
+total 4
+-rw-r--r-- 1 runner docker 2904 Dec 23 20:23 Microsoft.DomainRegistration.tests.json
+
+./azure-resource-manager-schemas/tests/2015-04-08:
+total 12
+-rw-r--r-- 1 runner docker 9715 Dec 23 20:23 Microsoft.DocumentDB.tests.json
+
+./azure-resource-manager-schemas/tests/2015-05-01-preview:
+total 60
+-rw-r--r-- 1 runner docker  6537 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker  6069 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker  5620 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker  2732 Dec 23 20:23 Microsoft.Network.PublicIpAddress.tests.json
+-rw-r--r-- 1 runner docker  2131 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker  5789 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker  3208 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+-rw-r--r-- 1 runner docker 12813 Dec 23 20:23 Microsoft.Sql.tests.json
+
+./azure-resource-manager-schemas/tests/2015-05-04-preview:
+total 4
+-rw-r--r-- 1 runner docker 1235 Dec 23 20:23 Microsoft.Network.tests.json
+
+./azure-resource-manager-schemas/tests/2015-05-21-preview:
+total 4
+-rw-r--r-- 1 runner docker 1050 Dec 23 20:23 Microsoft.DevTestLab.tests.json
+
+./azure-resource-manager-schemas/tests/2015-06-01-preview:
+total 4
+-rw-r--r-- 1 runner docker 3585 Dec 23 20:23 Microsoft.Security.tests.json
+
+./azure-resource-manager-schemas/tests/2015-06-15:
+total 44
+-rw-r--r-- 1 runner docker 6457 Dec 23 20:23 Microsoft.Network.LoadBalancer.tests.json
+-rw-r--r-- 1 runner docker 5957 Dec 23 20:23 Microsoft.Network.NetworkInterface.tests.json
+-rw-r--r-- 1 runner docker 5524 Dec 23 20:23 Microsoft.Network.NetworkSecurityGroup.tests.json
+-rw-r--r-- 1 runner docker 2668 Dec 23 20:23 Microsoft.Network.PublicIpAddress.tests.json
+-rw-r--r-- 1 runner docker 2083 Dec 23 20:23 Microsoft.Network.RouteTable.tests.json
+-rw-r--r-- 1 runner docker 5677 Dec 23 20:23 Microsoft.Network.VirtualNetwork.tests.json
+-rw-r--r-- 1 runner docker 3255 Dec 23 20:23 Microsoft.Network.VirtualNetworkGateway.tests.json
+
+./azure-resource-manager-schemas/tests/2015-08-01:
+total 64
+-rw-r--r-- 1 runner docker  3051 Dec 23 20:23 Microsoft.CertificateRegistration.tests.json
+-rw-r--r-- 1 runner docker 37192 Dec 23 20:23 Microsoft.Compute.tests.json
+-rw-r--r-- 1 runner docker  3360 Dec 23 20:23 Microsoft.EventHub.tests.json
+-rw-r--r-- 1 runner docker  4292 Dec 23 20:23 Microsoft.ServiceBus.tests.json
+-rw-r--r-- 1 runner docker  1820 Dec 23 20:23 Microsoft.Storage.tests.json
+-rw-r--r-- 1 runner docker  1246 Dec 23 20:23 Microsoft.Web.tests.json
+
+./azure-resource-manager-schemas/tests/2015-08-19:
+total 8
+-rw-r--r-- 1 runner docker 4723 Dec 23 20:23 Microsoft.Search.tests.json
+
+./azure-resource-manager-schemas/tests/2015-08-31-preview:
+total 4
+-rw-r--r-- 1 runner docker 1236 Dec 23 20:23 Microsoft.ManagedIdentity.tests.json
+
+./azure-resource-manager-schemas/tests/2015-10-01:
+total 8
+-rw-r--r-- 1 runner docker 6112 Dec 23 20:23 Microsoft.Media.tests.json
+
+./azure-resource-manager-schemas/tests/2015-10-01-preview:
+total 8
+-rw-r--r-- 1 runner docker 2216 Dec 23 20:23 Microsoft.DataLakeAnalytics.tests.json
+-rw-r--r-- 1 runner docker 2295 Dec 23 20:23 Microsoft.DataLakeStore.tests.json
+
+./azure-resource-manager-schemas/tests/2015-10-31:
+total 16
+-rw-r--r-- 1 runner docker 12508 Dec 23 20:23 Microsoft.Automation.tests.json
+
+./azure-resource-manager-schemas/tests/2015-11-01:
+total 12
+-rw-r--r-- 1 runner docker 9807 Dec 23 20:23 Microsoft.Network.tests.json
+
+./azure-resource-manager-schemas/tests/2015-11-01-preview:
+total 8
+-rw-r--r-- 1 runner docker 1974 Dec 23 20:23 Microsoft.OperationalInsights.tests.json
+-rw-r--r-- 1 runner docker 4013 Dec 23 20:23 Microsoft.OperationsManagement.tests.json
+
+./azure-resource-manager-schemas/tests/2015-12-01:
+total 8
+-rw-r--r-- 1 runner docker 6465 Dec 23 20:23 Microsoft.Batch.tests.json
+
+./azure-resource-manager-schemas/tests/2016-01-29:
+total 12
+-rw-r--r-- 1 runner docker 10722 Dec 23 20:23 Microsoft.PowerBI.tests.json
+
+./azure-resource-manager-schemas/tests/2016-02-01:
+total 4
+-rw-r--r-- 1 runner docker 712 Dec 23 20:23 Microsoft.Resources.tests.json
+
+./azure-resource-manager-schemas/tests/2016-02-03:
+total 44
+-rw-r--r-- 1 runner docker 41340 Dec 23 20:23 Microsoft.Devices.tests.json
+
+./azure-resource-manager-schemas/schemas/2021-11-01:
+total 152
+-rw-r--r-- 1 runner docker 30840 Dec 23 20:23 Microsoft.AzureArcData.json
+-rw-r--r-- 1 runner docker 50165 Dec 23 20:23 Microsoft.EventHub.json
+-rw-r--r-- 1 runner docker 67386 Dec 23 20:23 Microsoft.ServiceBus.json
+
+./azure-resource-manager-schemas/schemas/2021-11-10-preview:
+total 8
+-rw-r--r-- 1 runner docker 5331 Dec 23 20:23 Microsoft.VideoIndexer.json
+
+./azure-resource-manager-schemas/schemas/2021-11-15:
+total 8
+-rw-r--r-- 1 runner docker 4292 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+
+./azure-resource-manager-schemas/schemas/2021-11-15-preview:
+total 40
+-rw-r--r-- 1 runner docker 36939 Dec 23 20:23 Microsoft.LabServices.json
+
+./azure-resource-manager-schemas/schemas/2021-12-01:
+total 172
+-rw-r--r-- 1 runner docker 65641 Dec 23 20:23 Microsoft.AVS.json
+-rw-r--r-- 1 runner docker 17355 Dec 23 20:23 Microsoft.EdgeOrder.json
+-rw-r--r-- 1 runner docker 83096 Dec 23 20:23 Microsoft.EventGrid.json
+
+./azure-resource-manager-schemas/schemas/2021-12-01-preview:
+total 64
+-rw-r--r-- 1 runner docker 43786 Dec 23 20:23 Microsoft.DataProtection.json
+-rw-r--r-- 1 runner docker  3140 Dec 23 20:23 Microsoft.LoadTestService.json
+-rw-r--r-- 1 runner docker 13069 Dec 23 20:23 Microsoft.Maps.json
+
+./azure-resource-manager-schemas/schemas/2022-01-01-preview:
+total 148
+-rw-r--r-- 1 runner docker 117984 Dec 23 20:23 Microsoft.AppPlatform.json
+-rw-r--r-- 1 runner docker  30377 Dec 23 20:23 Microsoft.KubernetesConfiguration.json
+
+./azure-resource-manager-schemas/schemas/2021-10-01:
+total 596
+-rw-r--r-- 1 runner docker   7773 Dec 23 20:23 Microsoft.Billing.json
+-rw-r--r-- 1 runner docker  33530 Dec 23 20:23 Microsoft.CognitiveServices.json
+-rw-r--r-- 1 runner docker  13504 Dec 23 20:23 Microsoft.Consumption.json
+-rw-r--r-- 1 runner docker 121684 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker  36359 Dec 23 20:23 Microsoft.CostManagement.json
+-rw-r--r-- 1 runner docker   4464 Dec 23 20:23 Microsoft.Kubernetes.json
+-rw-r--r-- 1 runner docker   8491 Dec 23 20:23 Microsoft.PolicyInsights.json
+-rw-r--r-- 1 runner docker 129980 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+-rw-r--r-- 1 runner docker 133768 Dec 23 20:23 Microsoft.RecoveryServices.SiteRecovery.json
+-rw-r--r-- 1 runner docker  29525 Dec 23 20:23 Microsoft.SignalRService.WebPubSub.json
+-rw-r--r-- 1 runner docker  30221 Dec 23 20:23 Microsoft.SignalRService.json
+-rw-r--r-- 1 runner docker   6153 Dec 23 20:23 Microsoft.Subscription.json
+-rw-r--r-- 1 runner docker  27660 Dec 23 20:23 Microsoft.VirtualMachineImages.json
+
+./azure-resource-manager-schemas/schemas/2021-10-06-preview:
+total 8
+-rw-r--r-- 1 runner docker 4249 Dec 23 20:23 Microsoft.HybridConnectivity.json
+
+./azure-resource-manager-schemas/schemas/2021-10-15:
+total 224
+-rw-r--r-- 1 runner docker  19671 Dec 23 20:23 Microsoft.Devices.Provisioning.json
+-rw-r--r-- 1 runner docker 207957 Dec 23 20:23 Microsoft.DocumentDB.json
+
+./azure-resource-manager-schemas/schemas/2021-10-15-preview:
+total 264
+-rw-r--r-- 1 runner docker 268844 Dec 23 20:23 Microsoft.DocumentDB.json
+
+./azure-resource-manager-schemas/schemas/2021-10-18-preview:
+total 8
+-rw-r--r-- 1 runner docker 5331 Dec 23 20:23 Microsoft.VideoIndexer.json
+
+./azure-resource-manager-schemas/schemas/2021-10-27-preview:
+total 8
+-rw-r--r-- 1 runner docker 5331 Dec 23 20:23 Microsoft.VideoIndexer.json
+
+./azure-resource-manager-schemas/schemas/2021-10-31-preview:
+total 8
+-rw-r--r-- 1 runner docker 4884 Dec 23 20:23 Microsoft.ResourceConnector.json
+
+./azure-resource-manager-schemas/schemas/2021-11-01-preview:
+total 156
+-rw-r--r-- 1 runner docker   9355 Dec 23 20:23 Microsoft.AutonomousDevelopmentPlatform.json
+-rw-r--r-- 1 runner docker  28369 Dec 23 20:23 Microsoft.KubernetesConfiguration.json
+-rw-r--r-- 1 runner docker 107795 Dec 23 20:23 Microsoft.ServiceFabric.json
+-rw-r--r-- 1 runner docker   6402 Dec 23 20:23 Microsoft.ServiceLinker.json
+
+./azure-resource-manager-schemas/schemas/2021-08-01:
+total 908
+-rw-r--r-- 1 runner docker 125462 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+-rw-r--r-- 1 runner docker 133768 Dec 23 20:23 Microsoft.RecoveryServices.SiteRecovery.json
+-rw-r--r-- 1 runner docker  18117 Dec 23 20:23 Microsoft.RecoveryServices.json
+-rw-r--r-- 1 runner docker  11694 Dec 23 20:23 Microsoft.StoragePool.json
+-rw-r--r-- 1 runner docker 252282 Dec 23 20:23 Microsoft.ApiManagement.json
+-rw-r--r-- 1 runner docker  30045 Dec 23 20:23 Microsoft.AzureArcData.json
+-rw-r--r-- 1 runner docker  17752 Dec 23 20:23 Microsoft.Cache.Enterprise.json
+-rw-r--r-- 1 runner docker 116735 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker  69099 Dec 23 20:23 Microsoft.DataShare.json
+-rw-r--r-- 1 runner docker   6421 Dec 23 20:23 Microsoft.Insights.Application.json
+-rw-r--r-- 1 runner docker  15495 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker  36664 Dec 23 20:23 Microsoft.Migrate.ResourceMover.json
+-rw-r--r-- 1 runner docker  74148 Dec 23 20:23 Microsoft.NetApp.json
+
+./azure-resource-manager-schemas/schemas/2021-08-08-preview:
+total 16
+-rw-r--r-- 1 runner docker 14321 Dec 23 20:23 Microsoft.AlertsManagement.json
+
+./azure-resource-manager-schemas/schemas/2021-08-15:
+total 8
+-rw-r--r-- 1 runner docker 5775 Dec 23 20:23 Microsoft.ExtendedLocation.json
+
+./azure-resource-manager-schemas/schemas/2021-08-24:
+total 8
+-rw-r--r-- 1 runner docker 6990 Dec 23 20:23 Microsoft.HealthBot.json
+
+./azure-resource-manager-schemas/schemas/2021-08-27:
+total 64
+-rw-r--r-- 1 runner docker 62856 Dec 23 20:23 Microsoft.Kusto.json
+
+./azure-resource-manager-schemas/schemas/2021-09-01:
+total 276
+-rw-r--r-- 1 runner docker  11056 Dec 23 20:23 Microsoft.AzureStackHCI.json
+-rw-r--r-- 1 runner docker  38475 Dec 23 20:23 Microsoft.ContainerInstance.json
+-rw-r--r-- 1 runner docker  33608 Dec 23 20:23 Microsoft.ContainerRegistry.json
+-rw-r--r-- 1 runner docker 119406 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker  19955 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker  12349 Dec 23 20:23 Microsoft.KubernetesConfiguration.json
+-rw-r--r-- 1 runner docker  30983 Dec 23 20:23 Microsoft.StorageCache.json
+
+./azure-resource-manager-schemas/schemas/2021-09-01-preview:
+total 484
+-rw-r--r-- 1 runner docker  54118 Dec 23 20:23 Microsoft.AppPlatform.json
+-rw-r--r-- 1 runner docker   6971 Dec 23 20:23 Microsoft.Confluent.json
+-rw-r--r-- 1 runner docker  15704 Dec 23 20:23 Microsoft.Elastic.json
+-rw-r--r-- 1 runner docker  17516 Dec 23 20:23 Microsoft.Maintenance.json
+-rw-r--r-- 1 runner docker 117371 Dec 23 20:23 Microsoft.ProviderHub.json
+-rw-r--r-- 1 runner docker  14633 Dec 23 20:23 Microsoft.RedHatOpenShift.json
+-rw-r--r-- 1 runner docker 193637 Dec 23 20:23 Microsoft.SecurityInsights.json
+-rw-r--r-- 1 runner docker  26708 Dec 23 20:23 Microsoft.SignalRService.WebPubSub.json
+-rw-r--r-- 1 runner docker  30226 Dec 23 20:23 Microsoft.SignalRService.json
+
+./azure-resource-manager-schemas/schemas/2021-09-03-preview:
+total 64
+-rw-r--r-- 1 runner docker 65087 Dec 23 20:23 Microsoft.DesktopVirtualization.json
+
+./azure-resource-manager-schemas/schemas/2021-09-07-preview:
+total 8
+-rw-r--r-- 1 runner docker 6474 Dec 23 20:23 Microsoft.PlayFab.json
+
+./azure-resource-manager-schemas/schemas/2021-09-09:
+total 96
+-rw-r--r-- 1 runner docker 96692 Dec 23 20:23 uiFormDefinition.schema.json
+
+./azure-resource-manager-schemas/schemas/2021-09-15-preview:
+total 20
+-rw-r--r-- 1 runner docker 16585 Dec 23 20:23 Microsoft.Chaos.json
+
+./azure-resource-manager-schemas/schemas/2021-10-01-preview:
+total 216
+-rw-r--r-- 1 runner docker 111273 Dec 23 20:23 Microsoft.StreamAnalytics.json
+-rw-r--r-- 1 runner docker  45420 Dec 23 20:23 Microsoft.DataProtection.json
+-rw-r--r-- 1 runner docker  15834 Dec 23 20:23 Microsoft.Elastic.json
+-rw-r--r-- 1 runner docker  36939 Dec 23 20:23 Microsoft.LabServices.json
+
+./azure-resource-manager-schemas/schemas/2021-07-01:
+total 1024
+-rw-r--r-- 1 runner docker  59052 Dec 23 20:23 Microsoft.Devices.json
+-rw-r--r-- 1 runner docker   3532 Dec 23 20:23 Microsoft.Features.json
+-rw-r--r-- 1 runner docker  67171 Dec 23 20:23 Microsoft.MachineLearningServices.json
+-rw-r--r-- 1 runner docker   9073 Dec 23 20:23 Microsoft.Purview.json
+-rw-r--r-- 1 runner docker 125462 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+-rw-r--r-- 1 runner docker 131958 Dec 23 20:23 Microsoft.RecoveryServices.SiteRecovery.json
+-rw-r--r-- 1 runner docker  18117 Dec 23 20:23 Microsoft.RecoveryServices.json
+-rw-r--r-- 1 runner docker   3884 Dec 23 20:23 Microsoft.Security.json
+-rw-r--r-- 1 runner docker  27517 Dec 23 20:23 Microsoft.Solutions.solutions.json
+-rw-r--r-- 1 runner docker   6724 Dec 23 20:23 Microsoft.Capacity.json
+-rw-r--r-- 1 runner docker  59873 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 313964 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker  38071 Dec 23 20:23 Microsoft.ContainerInstance.json
+-rw-r--r-- 1 runner docker 110750 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker  43730 Dec 23 20:23 Microsoft.DataProtection.json
+
+./azure-resource-manager-schemas/schemas/2021-07-02:
+total 60
+-rw-r--r-- 1 runner docker 59457 Dec 23 20:23 Microsoft.Devices.json
+
+./azure-resource-manager-schemas/schemas/2021-07-02-preview:
+total 64
+-rw-r--r-- 1 runner docker 62376 Dec 23 20:23 Microsoft.Devices.json
+
+./azure-resource-manager-schemas/schemas/2021-07-12:
+total 52
+-rw-r--r-- 1 runner docker 49543 Dec 23 20:23 Microsoft.DesktopVirtualization.json
+
+./azure-resource-manager-schemas/schemas/2021-08-01-preview:
+total 128
+-rw-r--r-- 1 runner docker 74322 Dec 23 20:23 Microsoft.ContainerRegistry.json
+-rw-r--r-- 1 runner docker 40256 Dec 23 20:23 Microsoft.DataBox.json
+-rw-r--r-- 1 runner docker  8795 Dec 23 20:23 Microsoft.Security.json
+
+./azure-resource-manager-schemas/schemas/2021-06-10:
+total 8
+-rw-r--r-- 1 runner docker 5886 Dec 23 20:23 Microsoft.HealthBot.json
+
+./azure-resource-manager-schemas/schemas/2021-06-10-preview:
+total 24
+-rw-r--r-- 1 runner docker 22939 Dec 23 20:23 Microsoft.HybridCompute.json
+
+./azure-resource-manager-schemas/schemas/2021-06-15:
+total 188
+-rw-r--r-- 1 runner docker 188984 Dec 23 20:23 Microsoft.DocumentDB.json
+
+./azure-resource-manager-schemas/schemas/2021-06-15-preview:
+total 4
+-rw-r--r-- 1 runner docker 3413 Dec 23 20:23 Microsoft.FluidRelay.json
+
+./azure-resource-manager-schemas/schemas/2021-06-22:
+total 16
+-rw-r--r-- 1 runner docker 14762 Dec 23 20:23 Microsoft.Automation.json
+
+./azure-resource-manager-schemas/schemas/2021-06-30:
+total 144
+-rw-r--r-- 1 runner docker 145767 Dec 23 20:23 Microsoft.DataMigration.json
+
+./azure-resource-manager-schemas/schemas/2021-06-30-preview:
+total 36
+-rw-r--r-- 1 runner docker 35638 Dec 23 20:23 Microsoft.TimeSeriesInsights.json
+
+./azure-resource-manager-schemas/schemas/2021-07-01-preview:
+total 500
+-rw-r--r-- 1 runner docker  22745 Dec 23 20:23 Microsoft.Authorization.Authz.json
+-rw-r--r-- 1 runner docker  25698 Dec 23 20:23 Microsoft.AzureArcData.json
+-rw-r--r-- 1 runner docker  61971 Dec 23 20:23 Microsoft.Devices.json
+-rw-r--r-- 1 runner docker 242785 Dec 23 20:23 Microsoft.DocumentDB.json
+-rw-r--r-- 1 runner docker  14162 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker  11310 Dec 23 20:23 Microsoft.Maps.json
+-rw-r--r-- 1 runner docker  17838 Dec 23 20:23 Microsoft.Security.json
+-rw-r--r-- 1 runner docker  97423 Dec 23 20:23 Microsoft.ServiceFabric.json
+
+./azure-resource-manager-schemas/schemas/2021-06-01:
+total 1464
+-rw-r--r-- 1 runner docker 191528 Dec 23 20:23 Microsoft.Synapse.json
+-rw-r--r-- 1 runner docker  53666 Dec 23 20:23 Microsoft.AVS.json
+-rw-r--r-- 1 runner docker  20812 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker  91037 Dec 23 20:23 Microsoft.Batch.json
+-rw-r--r-- 1 runner docker  30066 Dec 23 20:23 Microsoft.Cache.json
+-rw-r--r-- 1 runner docker 209713 Dec 23 20:23 Microsoft.Cdn.json
+-rw-r--r-- 1 runner docker  19732 Dec 23 20:23 Microsoft.DBforPostgreSQL.json
+-rw-r--r-- 1 runner docker  99964 Dec 23 20:23 Microsoft.DataBoxEdge.json
+-rw-r--r-- 1 runner docker  58357 Dec 23 20:23 Microsoft.HDInsight.json
+-rw-r--r-- 1 runner docker   5008 Dec 23 20:23 Microsoft.IotCentral.json
+-rw-r--r-- 1 runner docker  21829 Dec 23 20:23 Microsoft.Marketplace.json
+-rw-r--r-- 1 runner docker  64725 Dec 23 20:23 Microsoft.NetApp.json
+-rw-r--r-- 1 runner docker  22054 Dec 23 20:23 Microsoft.OperationalInsights.json
+-rw-r--r-- 1 runner docker  30007 Dec 23 20:23 Microsoft.Peering.json
+-rw-r--r-- 1 runner docker 119565 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+-rw-r--r-- 1 runner docker 131958 Dec 23 20:23 Microsoft.RecoveryServices.SiteRecovery.json
+-rw-r--r-- 1 runner docker  18117 Dec 23 20:23 Microsoft.RecoveryServices.json
+-rw-r--r-- 1 runner docker  26496 Dec 23 20:23 Microsoft.Security.json
+-rw-r--r-- 1 runner docker  98035 Dec 23 20:23 Microsoft.ServiceFabric.json
+-rw-r--r-- 1 runner docker 138939 Dec 23 20:23 Microsoft.Storage.json
+
+./azure-resource-manager-schemas/schemas/2021-06-01-preview:
+total 1076
+-rw-r--r-- 1 runner docker  67456 Dec 23 20:23 Microsoft.ServiceBus.json
+-rw-r--r-- 1 runner docker  26219 Dec 23 20:23 Microsoft.SignalRService.WebPubSub.json
+-rw-r--r-- 1 runner docker  30226 Dec 23 20:23 Microsoft.SignalRService.json
+-rw-r--r-- 1 runner docker 237526 Dec 23 20:23 Microsoft.Synapse.json
+-rw-r--r-- 1 runner docker  44622 Dec 23 20:23 Microsoft.AppPlatform.json
+-rw-r--r-- 1 runner docker  13553 Dec 23 20:23 Microsoft.Attestation.json
+-rw-r--r-- 1 runner docker  24514 Dec 23 20:23 Microsoft.AzureArcData.json
+-rw-r--r-- 1 runner docker  73805 Dec 23 20:23 Microsoft.ContainerRegistry.json
+-rw-r--r-- 1 runner docker  17285 Dec 23 20:23 Microsoft.DBforPostgreSQL.json
+-rw-r--r-- 1 runner docker 100130 Dec 23 20:23 Microsoft.DataBoxEdge.json
+-rw-r--r-- 1 runner docker  41271 Dec 23 20:23 Microsoft.DataProtection.json
+-rw-r--r-- 1 runner docker 104896 Dec 23 20:23 Microsoft.EventGrid.json
+-rw-r--r-- 1 runner docker  45993 Dec 23 20:23 Microsoft.EventHub.json
+-rw-r--r-- 1 runner docker  56518 Dec 23 20:23 Microsoft.HealthcareApis.json
+-rw-r--r-- 1 runner docker  67151 Dec 23 20:23 Microsoft.KeyVault.json
+-rw-r--r-- 1 runner docker 116784 Dec 23 20:23 Microsoft.ProviderHub.json
+
+./azure-resource-manager-schemas/schemas/2021-05-01:
+total 548
+-rw-r--r-- 1 runner docker 105862 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker  17926 Dec 23 20:23 Microsoft.DBforMySQL.json
+-rw-r--r-- 1 runner docker  36721 Dec 23 20:23 Microsoft.DataBox.json
+-rw-r--r-- 1 runner docker  40305 Dec 23 20:23 Microsoft.HybridNetwork.json
+-rw-r--r-- 1 runner docker   9397 Dec 23 20:23 Microsoft.Maintenance.json
+-rw-r--r-- 1 runner docker  10481 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker  90881 Dec 23 20:23 Microsoft.ServiceFabric.json
+-rw-r--r-- 1 runner docker  30508 Dec 23 20:23 Microsoft.StorageCache.json
+-rw-r--r-- 1 runner docker 186412 Dec 23 20:23 Microsoft.Synapse.json
+-rw-r--r-- 1 runner docker  12550 Dec 23 20:23 Microsoft.Consumption.json
+
+./azure-resource-manager-schemas/schemas/2021-05-13-preview:
+total 8
+-rw-r--r-- 1 runner docker 5307 Dec 23 20:23 Microsoft.ConfidentialLedger.json
+
+./azure-resource-manager-schemas/schemas/2021-05-15:
+total 180
+-rw-r--r-- 1 runner docker 183655 Dec 23 20:23 Microsoft.DocumentDB.json
+
+./azure-resource-manager-schemas/schemas/2021-05-17-preview:
+total 24
+-rw-r--r-- 1 runner docker 20502 Dec 23 20:23 Microsoft.HybridCompute.json
+
+./azure-resource-manager-schemas/schemas/2021-05-20:
+total 20
+-rw-r--r-- 1 runner docker 20446 Dec 23 20:23 Microsoft.HybridCompute.json
+
+./azure-resource-manager-schemas/schemas/2021-04-01:
+total 1040
+-rw-r--r-- 1 runner docker 102755 Dec 23 20:23 Microsoft.MachineLearningServices.json
+-rw-r--r-- 1 runner docker   8221 Dec 23 20:23 Microsoft.Management.json
+-rw-r--r-- 1 runner docker  64627 Dec 23 20:23 Microsoft.NetApp.json
+-rw-r--r-- 1 runner docker 123536 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+-rw-r--r-- 1 runner docker 131881 Dec 23 20:23 Microsoft.RecoveryServices.SiteRecovery.json
+-rw-r--r-- 1 runner docker  18117 Dec 23 20:23 Microsoft.RecoveryServices.json
+-rw-r--r-- 1 runner docker  21081 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker  35735 Dec 23 20:23 Microsoft.SecurityInsights.json
+-rw-r--r-- 1 runner docker 132680 Dec 23 20:23 Microsoft.Storage.json
+-rw-r--r-- 1 runner docker   7283 Dec 23 20:23 Microsoft.AlertsManagement.json
+-rw-r--r-- 1 runner docker  59873 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 305327 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker  24448 Dec 23 20:23 Microsoft.Insights.json
+
+./azure-resource-manager-schemas/schemas/2021-04-04-preview:
+total 20
+-rw-r--r-- 1 runner docker 16772 Dec 23 20:23 Microsoft.Orbital.json
+
+./azure-resource-manager-schemas/schemas/2021-04-15:
+total 180
+-rw-r--r-- 1 runner docker 182718 Dec 23 20:23 Microsoft.DocumentDB.json
+
+./azure-resource-manager-schemas/schemas/2021-04-22-preview:
+total 24
+-rw-r--r-- 1 runner docker 20502 Dec 23 20:23 Microsoft.HybridCompute.json
+
+./azure-resource-manager-schemas/schemas/2021-04-30:
+total 24
+-rw-r--r-- 1 runner docker 24256 Dec 23 20:23 Microsoft.CognitiveServices.json
+
+./azure-resource-manager-schemas/schemas/2021-04-30-preview:
+total 12
+-rw-r--r-- 1 runner docker 8486 Dec 23 20:23 Microsoft.Automanage.json
+
+./azure-resource-manager-schemas/schemas/2021-05-01-preview:
+total 548
+-rw-r--r-- 1 runner docker  61700 Dec 23 20:23 Microsoft.BotService.json
+-rw-r--r-- 1 runner docker  18858 Dec 23 20:23 Microsoft.DBforMySQL.json
+-rw-r--r-- 1 runner docker  45853 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker  15556 Dec 23 20:23 Microsoft.KubernetesConfiguration.json
+-rw-r--r-- 1 runner docker  96012 Dec 23 20:23 Microsoft.ProviderHub.json
+-rw-r--r-- 1 runner docker 308550 Dec 23 20:23 Microsoft.Sql.json
+
+./azure-resource-manager-schemas/schemas/2021-03-15:
+total 188
+-rw-r--r-- 1 runner docker 174333 Dec 23 20:23 Microsoft.DocumentDB.json
+-rw-r--r-- 1 runner docker   3300 Dec 23 20:23 Microsoft.Quota.json
+-rw-r--r-- 1 runner docker   9702 Dec 23 20:23 Microsoft.DelegatedNetwork.json
+
+./azure-resource-manager-schemas/schemas/2021-03-25-preview:
+total 80
+-rw-r--r-- 1 runner docker 20502 Dec 23 20:23 Microsoft.HybridCompute.json
+-rw-r--r-- 1 runner docker 54423 Dec 23 20:23 Microsoft.M365SecurityAndCompliance.json
+
+./azure-resource-manager-schemas/schemas/2021-03-31:
+total 56
+-rw-r--r-- 1 runner docker 56619 Dec 23 20:23 Microsoft.Devices.json
+
+./azure-resource-manager-schemas/schemas/2021-03-31-preview:
+total 44
+-rw-r--r-- 1 runner docker 41931 Dec 23 20:23 Microsoft.TimeSeriesInsights.json
+
+./azure-resource-manager-schemas/schemas/2021-04-01-preview:
+total 1032
+-rw-r--r-- 1 runner docker 253044 Dec 23 20:23 Microsoft.ApiManagement.json
+-rw-r--r-- 1 runner docker  34189 Dec 23 20:23 Microsoft.Databricks.json
+-rw-r--r-- 1 runner docker  58521 Dec 23 20:23 Microsoft.DesktopVirtualization.json
+-rw-r--r-- 1 runner docker 220222 Dec 23 20:23 Microsoft.DocumentDB.json
+-rw-r--r-- 1 runner docker  65258 Dec 23 20:23 Microsoft.KeyVault.json
+-rw-r--r-- 1 runner docker   5160 Dec 23 20:23 Microsoft.Kubernetes.json
+-rw-r--r-- 1 runner docker  17534 Dec 23 20:23 Microsoft.Maintenance.json
+-rw-r--r-- 1 runner docker  61608 Dec 23 20:23 Microsoft.NetApp.json
+-rw-r--r-- 1 runner docker  26936 Dec 23 20:23 Microsoft.Search.json
+-rw-r--r-- 1 runner docker  26666 Dec 23 20:23 Microsoft.SignalRService.WebPubSub.json
+-rw-r--r-- 1 runner docker  28982 Dec 23 20:23 Microsoft.SignalRService.json
+-rw-r--r-- 1 runner docker   9902 Dec 23 20:23 Microsoft.StoragePool.json
+-rw-r--r-- 1 runner docker 219653 Dec 23 20:23 Microsoft.Synapse.json
+
+./azure-resource-manager-schemas/schemas/2021-03-01:
+total 1100
+-rw-r--r-- 1 runner docker  15120 Dec 23 20:23 Microsoft.AAD.json
+-rw-r--r-- 1 runner docker  56326 Dec 23 20:23 Microsoft.BotService.json
+-rw-r--r-- 1 runner docker  17752 Dec 23 20:23 Microsoft.Cache.Enterprise.json
+-rw-r--r-- 1 runner docker  59873 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 268918 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker  37902 Dec 23 20:23 Microsoft.ContainerInstance.json
+-rw-r--r-- 1 runner docker  96736 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker  36721 Dec 23 20:23 Microsoft.DataBox.json
+-rw-r--r-- 1 runner docker  20776 Dec 23 20:23 Microsoft.Datadog.json
+-rw-r--r-- 1 runner docker   4464 Dec 23 20:23 Microsoft.Kubernetes.json
+-rw-r--r-- 1 runner docker   7280 Dec 23 20:23 Microsoft.KubernetesConfiguration.json
+-rw-r--r-- 1 runner docker 119495 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+-rw-r--r-- 1 runner docker 119946 Dec 23 20:23 Microsoft.RecoveryServices.SiteRecovery.json
+-rw-r--r-- 1 runner docker  17219 Dec 23 20:23 Microsoft.RecoveryServices.json
+-rw-r--r-- 1 runner docker  31187 Dec 23 20:23 Microsoft.StorageCache.json
+-rw-r--r-- 1 runner docker 184126 Dec 23 20:23 Microsoft.Synapse.json
+
+./azure-resource-manager-schemas/schemas/2021-03-01-preview:
+total 640
+-rw-r--r-- 1 runner docker 224661 Dec 23 20:23 Microsoft.MachineLearningServices.json
+-rw-r--r-- 1 runner docker  15936 Dec 23 20:23 Microsoft.MixedReality.json
+-rw-r--r-- 1 runner docker  10521 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker 134154 Dec 23 20:23 Microsoft.SecurityInsights.json
+-rw-r--r-- 1 runner docker  17622 Dec 23 20:23 Microsoft.AppConfiguration.json
+-rw-r--r-- 1 runner docker  16509 Dec 23 20:23 Microsoft.Authorization.Authz.json
+-rw-r--r-- 1 runner docker   6971 Dec 23 20:23 Microsoft.Confluent.json
+-rw-r--r-- 1 runner docker 216264 Dec 23 20:23 Microsoft.DocumentDB.json
+
+./azure-resource-manager-schemas/schemas/2021-03-03-preview:
+total 60
+-rw-r--r-- 1 runner docker 59418 Dec 23 20:23 Microsoft.Devices.json
+
+./azure-resource-manager-schemas/schemas/2021-03-08:
+total 68
+-rw-r--r-- 1 runner docker 11585 Dec 23 20:23 Microsoft.Insights.Application.json
+-rw-r--r-- 1 runner docker 54139 Dec 23 20:23 Microsoft.SecurityAndCompliance.json
+
+./azure-resource-manager-schemas/schemas/2021-03-09-preview:
+total 52
+-rw-r--r-- 1 runner docker 49615 Dec 23 20:23 Microsoft.DesktopVirtualization.json
+
+./azure-resource-manager-schemas/schemas/2021-03-12-preview:
+total 4
+-rw-r--r-- 1 runner docker 2532 Dec 23 20:23 Microsoft.FluidRelay.json
+
+./azure-resource-manager-schemas/schemas/2021-03-15-preview:
+total 16
+-rw-r--r-- 1 runner docker 4910 Dec 23 20:23 Microsoft.ExtendedLocation.json
+-rw-r--r-- 1 runner docker 4254 Dec 23 20:23 Microsoft.Quota.json
+
+./azure-resource-manager-schemas/schemas/2021-02-01:
+total 928
+-rw-r--r-- 1 runner docker 101437 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker 101424 Dec 23 20:23 Microsoft.DataBoxEdge.json
+-rw-r--r-- 1 runner docker  13071 Dec 23 20:23 Microsoft.DomainRegistration.json
+-rw-r--r-- 1 runner docker   7813 Dec 23 20:23 Microsoft.Maps.json
+-rw-r--r-- 1 runner docker  61015 Dec 23 20:23 Microsoft.NetApp.json
+-rw-r--r-- 1 runner docker 119495 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+-rw-r--r-- 1 runner docker 125193 Dec 23 20:23 Microsoft.Storage.json
+-rw-r--r-- 1 runner docker 396496 Dec 23 20:23 Microsoft.Web.json
+-rw-r--r-- 1 runner docker   8792 Dec 23 20:23 Microsoft.CertificateRegistration.json
+
+./azure-resource-manager-schemas/schemas/2021-02-10:
+total 272
+-rw-r--r-- 1 runner docker 119495 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+-rw-r--r-- 1 runner docker 131881 Dec 23 20:23 Microsoft.RecoveryServices.SiteRecovery.json
+-rw-r--r-- 1 runner docker  17219 Dec 23 20:23 Microsoft.RecoveryServices.json
+
+./azure-resource-manager-schemas/schemas/2021-01-01:
+total 1104
+-rw-r--r-- 1 runner docker 123128 Dec 23 20:23 Microsoft.Storage.json
+-rw-r--r-- 1 runner docker 389878 Dec 23 20:23 Microsoft.Web.json
+-rw-r--r-- 1 runner docker  86723 Dec 23 20:23 Microsoft.Batch.json
+-rw-r--r-- 1 runner docker   8792 Dec 23 20:23 Microsoft.CertificateRegistration.json
+-rw-r--r-- 1 runner docker  15844 Dec 23 20:23 Microsoft.CostManagement.json
+-rw-r--r-- 1 runner docker  39037 Dec 23 20:23 Microsoft.DataProtection.json
+-rw-r--r-- 1 runner docker  13071 Dec 23 20:23 Microsoft.DomainRegistration.json
+-rw-r--r-- 1 runner docker  19138 Dec 23 20:23 Microsoft.ImportExport.json
+-rw-r--r-- 1 runner docker  53125 Dec 23 20:23 Microsoft.Kusto.json
+-rw-r--r-- 1 runner docker 100962 Dec 23 20:23 Microsoft.MachineLearningServices.json
+-rw-r--r-- 1 runner docker   3312 Dec 23 20:23 Microsoft.MarketplaceOrdering.json
+-rw-r--r-- 1 runner docker  32210 Dec 23 20:23 Microsoft.Migrate.ResourceMover.json
+-rw-r--r-- 1 runner docker  12135 Dec 23 20:23 Microsoft.MixedReality.json
+-rw-r--r-- 1 runner docker  27770 Dec 23 20:23 Microsoft.Peering.json
+-rw-r--r-- 1 runner docker   6120 Dec 23 20:23 Microsoft.PolicyInsights.json
+-rw-r--r-- 1 runner docker  12173 Dec 23 20:23 Microsoft.PowerBIDedicated.json
+-rw-r--r-- 1 runner docker 113161 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+-rw-r--r-- 1 runner docker  17219 Dec 23 20:23 Microsoft.RecoveryServices.json
+-rw-r--r-- 1 runner docker  21081 Dec 23 20:23 Microsoft.Resources.json
+
+./azure-resource-manager-schemas/schemas/2021-01-11:
+total 72
+-rw-r--r-- 1 runner docker 20538 Dec 23 20:23 Microsoft.HealthcareApis.json
+-rw-r--r-- 1 runner docker 47553 Dec 23 20:23 Microsoft.SecurityAndCompliance.json
+
+./azure-resource-manager-schemas/schemas/2021-01-14-preview:
+total 52
+-rw-r--r-- 1 runner docker 49943 Dec 23 20:23 Microsoft.DesktopVirtualization.json
+
+./azure-resource-manager-schemas/schemas/2021-01-15:
+total 584
+-rw-r--r-- 1 runner docker   8792 Dec 23 20:23 Microsoft.CertificateRegistration.json
+-rw-r--r-- 1 runner docker 174015 Dec 23 20:23 Microsoft.DocumentDB.json
+-rw-r--r-- 1 runner docker  13071 Dec 23 20:23 Microsoft.DomainRegistration.json
+-rw-r--r-- 1 runner docker 392748 Dec 23 20:23 Microsoft.Web.json
+
+./azure-resource-manager-schemas/schemas/2021-01-15-preview:
+total 4
+-rw-r--r-- 1 runner docker 1113 Dec 23 20:23 Microsoft.Security.json
+
+./azure-resource-manager-schemas/schemas/2021-01-25:
+total 16
+-rw-r--r-- 1 runner docker 13324 Dec 23 20:23 Microsoft.GuestConfiguration.json
+
+./azure-resource-manager-schemas/schemas/2021-01-28-preview:
+total 20
+-rw-r--r-- 1 runner docker 19844 Dec 23 20:23 Microsoft.HybridCompute.json
+
+./azure-resource-manager-schemas/schemas/2021-02-01-preview:
+total 708
+-rw-r--r-- 1 runner docker   7410 Dec 23 20:23 Microsoft.AutonomousDevelopmentPlatform.json
+-rw-r--r-- 1 runner docker  19318 Dec 23 20:23 Microsoft.Cache.Enterprise.json
+-rw-r--r-- 1 runner docker  87526 Dec 23 20:23 Microsoft.DataBoxEdge.json
+-rw-r--r-- 1 runner docker  39085 Dec 23 20:23 Microsoft.DataProtection.json
+-rw-r--r-- 1 runner docker  49943 Dec 23 20:23 Microsoft.DesktopVirtualization.json
+-rw-r--r-- 1 runner docker  57607 Dec 23 20:23 Microsoft.Devices.json
+-rw-r--r-- 1 runner docker   3446 Dec 23 20:23 Microsoft.Dynamics365Fraudprotection.json
+-rw-r--r-- 1 runner docker  15511 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker   9054 Dec 23 20:23 Microsoft.IoTSecurity.json
+-rw-r--r-- 1 runner docker 120612 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+-rw-r--r-- 1 runner docker 292414 Dec 23 20:23 Microsoft.Sql.json
+
+./azure-resource-manager-schemas/schemas/2021-01-01-preview:
+total 488
+-rw-r--r-- 1 runner docker  40251 Dec 23 20:23 Microsoft.AVS.json
+-rw-r--r-- 1 runner docker 241051 Dec 23 20:23 Microsoft.ApiManagement.json
+-rw-r--r-- 1 runner docker   3396 Dec 23 20:23 Microsoft.Authorization.Authz.json
+-rw-r--r-- 1 runner docker   9642 Dec 23 20:23 Microsoft.AzureStackHCI.json
+-rw-r--r-- 1 runner docker  42251 Dec 23 20:23 Microsoft.EventHub.json
+-rw-r--r-- 1 runner docker  63436 Dec 23 20:23 Microsoft.ServiceBus.json
+-rw-r--r-- 1 runner docker  88459 Dec 23 20:23 Microsoft.ServiceFabric.json
+
+./azure-resource-manager-schemas/schemas/2020-12-01:
+total 1544
+-rw-r--r-- 1 runner docker  59873 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 261974 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker 100441 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker  85451 Dec 23 20:23 Microsoft.DataBoxEdge.json
+-rw-r--r-- 1 runner docker  16531 Dec 23 20:23 Microsoft.DigitalTwins.json
+-rw-r--r-- 1 runner docker  13071 Dec 23 20:23 Microsoft.DomainRegistration.json
+-rw-r--r-- 1 runner docker   5532 Dec 23 20:23 Microsoft.Marketplace.json
+-rw-r--r-- 1 runner docker  60547 Dec 23 20:23 Microsoft.NetApp.json
+-rw-r--r-- 1 runner docker 113161 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+-rw-r--r-- 1 runner docker 183635 Dec 23 20:23 Microsoft.Synapse.json
+-rw-r--r-- 1 runner docker 382617 Dec 23 20:23 Microsoft.Web.json
+-rw-r--r-- 1 runner docker 236231 Dec 23 20:23 Microsoft.ApiManagement.json
+-rw-r--r-- 1 runner docker  27995 Dec 23 20:23 Microsoft.Cache.json
+-rw-r--r-- 1 runner docker   8792 Dec 23 20:23 Microsoft.CertificateRegistration.json
+
+./azure-resource-manager-schemas/schemas/2020-12-08:
+total 4
+-rw-r--r-- 1 runner docker 3766 Dec 23 20:23 Microsoft.HealthBot.json
+
+./azure-resource-manager-schemas/schemas/2020-12-08-preview:
+total 8
+-rw-r--r-- 1 runner docker 5129 Dec 23 20:23 Microsoft.HealthBot.json
+
+./azure-resource-manager-schemas/schemas/2020-12-16-preview:
+total 32
+-rw-r--r-- 1 runner docker 30395 Dec 23 20:23 Microsoft.TestBase.json
+
+./azure-resource-manager-schemas/schemas/2020-11-01:
+total 848
+-rw-r--r-- 1 runner docker  37902 Dec 23 20:23 Microsoft.ContainerInstance.json
+-rw-r--r-- 1 runner docker  92458 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker  36721 Dec 23 20:23 Microsoft.DataBox.json
+-rw-r--r-- 1 runner docker  60055 Dec 23 20:23 Microsoft.NetApp.json
+-rw-r--r-- 1 runner docker  21557 Dec 23 20:23 Microsoft.Network.FrontDoor.json
+-rw-r--r-- 1 runner docker 606496 Dec 23 20:23 Microsoft.Network.json
+
+./azure-resource-manager-schemas/schemas/2020-11-02-preview:
+total 28
+-rw-r--r-- 1 runner docker 26652 Dec 23 20:23 Microsoft.DesktopVirtualization.json
+
+./azure-resource-manager-schemas/schemas/2020-11-05-preview:
+total 4
+-rw-r--r-- 1 runner docker 1721 Dec 23 20:23 Microsoft.DBforPostgreSQL.json
+
+./azure-resource-manager-schemas/schemas/2020-11-10-preview:
+total 40
+-rw-r--r-- 1 runner docker 37219 Dec 23 20:23 Microsoft.DesktopVirtualization.json
+
+./azure-resource-manager-schemas/schemas/2020-11-20:
+total 100
+-rw-r--r-- 1 runner docker  5774 Dec 23 20:23 Microsoft.Insights.Application.json
+-rw-r--r-- 1 runner docker 92696 Dec 23 20:23 Microsoft.ProviderHub.json
+
+./azure-resource-manager-schemas/schemas/2020-12-01-preview:
+total 148
+-rw-r--r-- 1 runner docker  5464 Dec 23 20:23 Microsoft.ConfidentialLedger.json
+-rw-r--r-- 1 runner docker 15362 Dec 23 20:23 Microsoft.CostManagement.json
+-rw-r--r-- 1 runner docker 17379 Dec 23 20:23 Microsoft.EdgeOrder.json
+-rw-r--r-- 1 runner docker  8302 Dec 23 20:23 Microsoft.Purview.json
+-rw-r--r-- 1 runner docker 93612 Dec 23 20:23 Microsoft.ServiceFabric.json
+
+./azure-resource-manager-schemas/schemas/2020-10-01:
+total 768
+-rw-r--r-- 1 runner docker   8221 Dec 23 20:23 Microsoft.Management.json
+-rw-r--r-- 1 runner docker  18897 Dec 23 20:23 Microsoft.OperationalInsights.json
+-rw-r--r-- 1 runner docker  27332 Dec 23 20:23 Microsoft.Peering.json
+-rw-r--r-- 1 runner docker 113161 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+-rw-r--r-- 1 runner docker  17219 Dec 23 20:23 Microsoft.RecoveryServices.json
+-rw-r--r-- 1 runner docker  34444 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker  30185 Dec 23 20:23 Microsoft.StorageCache.json
+-rw-r--r-- 1 runner docker 412856 Dec 23 20:23 Microsoft.Web.json
+-rw-r--r-- 1 runner docker  12858 Dec 23 20:23 policyDefinition.json
+-rw-r--r-- 1 runner docker  13016 Dec 23 20:23 Microsoft.Attestation.json
+-rw-r--r-- 1 runner docker   2819 Dec 23 20:23 Microsoft.AzureStackHCI.json
+-rw-r--r-- 1 runner docker  11833 Dec 23 20:23 Microsoft.CertificateRegistration.json
+-rw-r--r-- 1 runner docker  16042 Dec 23 20:23 Microsoft.DomainRegistration.json
+-rw-r--r-- 1 runner docker  10141 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker  25685 Dec 23 20:23 Microsoft.Logz.json
+
+./azure-resource-manager-schemas/schemas/2020-10-05-preview:
+total 16
+-rw-r--r-- 1 runner docker 12743 Dec 23 20:23 Microsoft.Insights.Application.json
+
+./azure-resource-manager-schemas/schemas/2020-10-15-preview:
+total 96
+-rw-r--r-- 1 runner docker 96969 Dec 23 20:23 Microsoft.EventGrid.json
+
+./azure-resource-manager-schemas/schemas/2020-10-19-preview:
+total 28
+-rw-r--r-- 1 runner docker 26295 Dec 23 20:23 Microsoft.DesktopVirtualization.json
+
+./azure-resource-manager-schemas/schemas/2020-10-20:
+total 20
+-rw-r--r-- 1 runner docker  5091 Dec 23 20:23 Microsoft.HealthBot.json
+-rw-r--r-- 1 runner docker 11321 Dec 23 20:23 Microsoft.Insights.Application.json
+
+./azure-resource-manager-schemas/schemas/2020-10-20-preview:
+total 8
+-rw-r--r-- 1 runner docker 5107 Dec 23 20:23 Microsoft.HealthBot.json
+
+./azure-resource-manager-schemas/schemas/2020-10-25:
+total 4
+-rw-r--r-- 1 runner docker 3582 Dec 23 20:23 Microsoft.Capacity.json
+
+./azure-resource-manager-schemas/schemas/2020-10-30-preview:
+total 20
+-rw-r--r-- 1 runner docker 20106 Dec 23 20:23 Microsoft.PowerPlatform.json
+
+./azure-resource-manager-schemas/schemas/2020-10-31:
+total 8
+-rw-r--r-- 1 runner docker 8159 Dec 23 20:23 Microsoft.DigitalTwins.json
+
+./azure-resource-manager-schemas/schemas/2020-11-01-preview:
+total 396
+-rw-r--r-- 1 runner docker 285192 Dec 23 20:23 Microsoft.Sql.json
+-rw-r--r-- 1 runner docker  40759 Dec 23 20:23 Microsoft.AppPlatform.json
+-rw-r--r-- 1 runner docker   2591 Dec 23 20:23 Microsoft.Billing.json
+-rw-r--r-- 1 runner docker  72835 Dec 23 20:23 Microsoft.ContainerRegistry.json
+
+./azure-resource-manager-schemas/schemas/2020-09-01:
+total 1200
+-rw-r--r-- 1 runner docker 412487 Dec 23 20:23 Microsoft.Web.json
+-rw-r--r-- 1 runner docker  12791 Dec 23 20:23 policyDefinition.json
+-rw-r--r-- 1 runner docker  19672 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker  79514 Dec 23 20:23 Microsoft.Batch.json
+-rw-r--r-- 1 runner docker 181150 Dec 23 20:23 Microsoft.Cdn.json
+-rw-r--r-- 1 runner docker  11833 Dec 23 20:23 Microsoft.CertificateRegistration.json
+-rw-r--r-- 1 runner docker  71679 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker  85403 Dec 23 20:23 Microsoft.DataBoxEdge.json
+-rw-r--r-- 1 runner docker  63271 Dec 23 20:23 Microsoft.DataShare.json
+-rw-r--r-- 1 runner docker 166421 Dec 23 20:23 Microsoft.DocumentDB.json
+-rw-r--r-- 1 runner docker  16042 Dec 23 20:23 Microsoft.DomainRegistration.json
+-rw-r--r-- 1 runner docker  58658 Dec 23 20:23 Microsoft.NetApp.json
+-rw-r--r-- 1 runner docker  23113 Dec 23 20:23 Microsoft.StorageSync.json
+-rw-r--r-- 1 runner docker   2684 Dec 23 20:23 Microsoft.Subscription.json
+
+./azure-resource-manager-schemas/schemas/2020-09-18:
+total 48
+-rw-r--r-- 1 runner docker 46322 Dec 23 20:23 Microsoft.Kusto.json
+
+./azure-resource-manager-schemas/schemas/2020-09-21-preview:
+total 28
+-rw-r--r-- 1 runner docker 25264 Dec 23 20:23 Microsoft.DesktopVirtualization.json
+
+./azure-resource-manager-schemas/schemas/2020-09-30:
+total 136
+-rw-r--r-- 1 runner docker 45770 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 88543 Dec 23 20:23 Microsoft.Compute.json
+
+./azure-resource-manager-schemas/schemas/2020-10-01-preview:
+total 296
+-rw-r--r-- 1 runner docker 17778 Dec 23 20:23 Microsoft.Authorization.Authz.json
+-rw-r--r-- 1 runner docker 15329 Dec 23 20:23 Microsoft.Cache.Enterprise.json
+-rw-r--r-- 1 runner docker  6573 Dec 23 20:23 Microsoft.Capacity.json
+-rw-r--r-- 1 runner docker 45778 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 20749 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker 73296 Dec 23 20:23 Microsoft.ConnectedVMwarevSphere.json
+-rw-r--r-- 1 runner docker 72132 Dec 23 20:23 Microsoft.DataShare.json
+-rw-r--r-- 1 runner docker  5823 Dec 23 20:23 Microsoft.KubernetesConfiguration.json
+-rw-r--r-- 1 runner docker 25765 Dec 23 20:23 Microsoft.Logz.json
+
+./azure-resource-manager-schemas/schemas/2020-09-01-preview:
+total 240
+-rw-r--r-- 1 runner docker   2591 Dec 23 20:23 Microsoft.Billing.json
+-rw-r--r-- 1 runner docker  85595 Dec 23 20:23 Microsoft.DataBoxEdge.json
+-rw-r--r-- 1 runner docker  22161 Dec 23 20:23 Microsoft.Devices.Provisioning.json
+-rw-r--r-- 1 runner docker 113802 Dec 23 20:23 Microsoft.MachineLearningServices.json
+-rw-r--r-- 1 runner docker  12935 Dec 23 20:23 Microsoft.Portal.json
+
+./azure-resource-manager-schemas/schemas/2020-07-13-preview:
+total 12
+-rw-r--r-- 1 runner docker 9776 Dec 23 20:23 Microsoft.DevOps.json
+
+./azure-resource-manager-schemas/schemas/2020-07-17-preview:
+total 36
+-rw-r--r-- 1 runner docker 35888 Dec 23 20:23 Microsoft.AVS.json
+
+./azure-resource-manager-schemas/schemas/2020-07-30-preview:
+total 16
+-rw-r--r-- 1 runner docker 13610 Dec 23 20:23 Microsoft.HybridCompute.json
+
+./azure-resource-manager-schemas/schemas/2020-08-01:
+total 848
+-rw-r--r-- 1 runner docker  50058 Dec 23 20:23 Microsoft.Devices.json
+-rw-r--r-- 1 runner docker  19138 Dec 23 20:23 Microsoft.ImportExport.json
+-rw-r--r-- 1 runner docker  47223 Dec 23 20:23 Microsoft.MachineLearningServices.json
+-rw-r--r-- 1 runner docker  57173 Dec 23 20:23 Microsoft.NetApp.json
+-rw-r--r-- 1 runner docker 600730 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  42578 Dec 23 20:23 Microsoft.OperationalInsights.json
+-rw-r--r-- 1 runner docker  18199 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker  19825 Dec 23 20:23 Microsoft.Search.json
+
+./azure-resource-manager-schemas/schemas/2020-08-01-preview:
+total 416
+-rw-r--r-- 1 runner docker   3097 Dec 23 20:23 Microsoft.Authorization.Authz.json
+-rw-r--r-- 1 runner docker  19873 Dec 23 20:23 Microsoft.Search.json
+-rw-r--r-- 1 runner docker 278313 Dec 23 20:23 Microsoft.Sql.json
+-rw-r--r-- 1 runner docker 119867 Dec 23 20:23 Microsoft.Storage.json
+
+./azure-resource-manager-schemas/schemas/2020-08-02:
+total 12
+-rw-r--r-- 1 runner docker 10805 Dec 23 20:23 Microsoft.HybridCompute.json
+
+./azure-resource-manager-schemas/schemas/2020-08-04-preview:
+total 12
+-rw-r--r-- 1 runner docker 8855 Dec 23 20:23 Microsoft.AlertsManagement.json
+
+./azure-resource-manager-schemas/schemas/2020-08-08-preview:
+total 8
+-rw-r--r-- 1 runner docker 7977 Dec 23 20:23 Microsoft.DelegatedNetwork.json
+
+./azure-resource-manager-schemas/schemas/2020-08-15-preview:
+total 24
+-rw-r--r-- 1 runner docker 22789 Dec 23 20:23 Microsoft.HybridCompute.json
+
+./azure-resource-manager-schemas/schemas/2020-08-20:
+total 8
+-rw-r--r-- 1 runner docker 4931 Dec 23 20:23 Microsoft.Communication.json
+
+./azure-resource-manager-schemas/schemas/2020-08-20-preview:
+total 4
+-rw-r--r-- 1 runner docker 2445 Dec 23 20:23 Microsoft.Communication.json
+
+./azure-resource-manager-schemas/schemas/2020-08-21-preview:
+total 28
+-rw-r--r-- 1 runner docker 27469 Dec 23 20:23 Microsoft.Solutions.resourcesolutions.json
+
+./azure-resource-manager-schemas/schemas/2020-08-31:
+total 52
+-rw-r--r-- 1 runner docker 52820 Dec 23 20:23 Microsoft.Devices.json
+
+./azure-resource-manager-schemas/schemas/2020-08-31-preview:
+total 56
+-rw-r--r-- 1 runner docker 57037 Dec 23 20:23 Microsoft.Devices.json
+
+./azure-resource-manager-schemas/schemas/2020-06-01:
+total 1528
+-rw-r--r-- 1 runner docker 574955 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker   7712 Dec 23 20:23 Microsoft.PowerBI.json
+-rw-r--r-- 1 runner docker  19412 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker 347586 Dec 23 20:23 Microsoft.Web.json
+-rw-r--r-- 1 runner docker  11776 Dec 23 20:23 Microsoft.AppConfiguration.json
+-rw-r--r-- 1 runner docker  27441 Dec 23 20:23 Microsoft.Cache.json
+-rw-r--r-- 1 runner docker   8862 Dec 23 20:23 Microsoft.CertificateRegistration.json
+-rw-r--r-- 1 runner docker  59873 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 209313 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker  69422 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker  32903 Dec 23 20:23 Microsoft.CostManagement.json
+-rw-r--r-- 1 runner docker  13071 Dec 23 20:23 Microsoft.DomainRegistration.json
+-rw-r--r-- 1 runner docker  55962 Dec 23 20:23 Microsoft.EventGrid.json
+-rw-r--r-- 1 runner docker  44887 Dec 23 20:23 Microsoft.MachineLearningServices.json
+-rw-r--r-- 1 runner docker  56483 Dec 23 20:23 Microsoft.NetApp.json
+
+./azure-resource-manager-schemas/schemas/2020-06-02:
+total 52
+-rw-r--r-- 1 runner docker 49718 Dec 23 20:23 Microsoft.BotService.json
+
+./azure-resource-manager-schemas/schemas/2020-06-14:
+total 48
+-rw-r--r-- 1 runner docker 45478 Dec 23 20:23 Microsoft.Kusto.json
+
+./azure-resource-manager-schemas/schemas/2020-06-15:
+total 52
+-rw-r--r-- 1 runner docker 50058 Dec 23 20:23 Microsoft.Devices.json
+
+./azure-resource-manager-schemas/schemas/2020-06-25:
+total 16
+-rw-r--r-- 1 runner docker 13324 Dec 23 20:23 Microsoft.GuestConfiguration.json
+
+./azure-resource-manager-schemas/schemas/2020-06-30:
+total 80
+-rw-r--r-- 1 runner docker 45770 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 32015 Dec 23 20:23 Microsoft.Compute.json
+
+./azure-resource-manager-schemas/schemas/2020-06-30-preview:
+total 12
+-rw-r--r-- 1 runner docker 11045 Dec 23 20:23 Microsoft.Automanage.json
+
+./azure-resource-manager-schemas/schemas/2020-07-01:
+total 184
+-rw-r--r-- 1 runner docker 38922 Dec 23 20:23 Microsoft.AppPlatform.json
+-rw-r--r-- 1 runner docker 69702 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker 15672 Dec 23 20:23 Microsoft.Elastic.json
+-rw-r--r-- 1 runner docker 57173 Dec 23 20:23 Microsoft.NetApp.json
+
+./azure-resource-manager-schemas/schemas/2020-07-01-preview:
+total 132
+-rw-r--r-- 1 runner docker  1905 Dec 23 20:23 Microsoft.Aadiam.json
+-rw-r--r-- 1 runner docker 15108 Dec 23 20:23 Microsoft.AppConfiguration.json
+-rw-r--r-- 1 runner docker  3481 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker  6088 Dec 23 20:23 Microsoft.AutonomousDevelopmentPlatform.json
+-rw-r--r-- 1 runner docker 21600 Dec 23 20:23 Microsoft.DBforMySQL.json
+-rw-r--r-- 1 runner docker 15704 Dec 23 20:23 Microsoft.Elastic.json
+-rw-r--r-- 1 runner docker 15029 Dec 23 20:23 Microsoft.KubernetesConfiguration.json
+-rw-r--r-- 1 runner docker  9468 Dec 23 20:23 Microsoft.Maintenance.json
+-rw-r--r-- 1 runner docker  1883 Dec 23 20:23 Microsoft.Security.json
+-rw-r--r-- 1 runner docker 25257 Dec 23 20:23 Microsoft.SignalRService.json
+
+./azure-resource-manager-schemas/schemas/2020-07-07:
+total 20
+-rw-r--r-- 1 runner docker 18650 Dec 23 20:23 Microsoft.OffAzure.json
+
+./azure-resource-manager-schemas/schemas/2020-07-10-preview:
+total 56
+-rw-r--r-- 1 runner docker 54275 Dec 23 20:23 Microsoft.Devices.json
+
+./azure-resource-manager-schemas/schemas/2020-06-01-preview:
+total 436
+-rw-r--r-- 1 runner docker 236999 Dec 23 20:23 Microsoft.ApiManagement.json
+-rw-r--r-- 1 runner docker   9660 Dec 23 20:23 Microsoft.AzureStack.json
+-rw-r--r-- 1 runner docker 196334 Dec 23 20:23 Microsoft.DocumentDB.json
+
+./azure-resource-manager-schemas/schemas/2020-04-01:
+total 992
+-rw-r--r-- 1 runner docker 530304 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  27332 Dec 23 20:23 Microsoft.Peering.json
+-rw-r--r-- 1 runner docker  14173 Dec 23 20:23 Microsoft.Support.json
+-rw-r--r-- 1 runner docker  63300 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker  32356 Dec 23 20:23 Microsoft.DataBox.json
+-rw-r--r-- 1 runner docker  48702 Dec 23 20:23 Microsoft.Devices.json
+-rw-r--r-- 1 runner docker 163860 Dec 23 20:23 Microsoft.DocumentDB.json
+-rw-r--r-- 1 runner docker  41964 Dec 23 20:23 Microsoft.MachineLearningServices.json
+-rw-r--r-- 1 runner docker   6195 Dec 23 20:23 Microsoft.Maintenance.json
+-rw-r--r-- 1 runner docker  66189 Dec 23 20:23 Microsoft.Network.FrontDoor.json
+
+./azure-resource-manager-schemas/schemas/2020-04-06-preview:
+total 12
+-rw-r--r-- 1 runner docker 8440 Dec 23 20:23 Microsoft.MixedReality.json
+
+./azure-resource-manager-schemas/schemas/2020-04-15:
+total 132
+-rw-r--r-- 1 runner docker 132427 Dec 23 20:23 Microsoft.Cdn.json
+
+./azure-resource-manager-schemas/schemas/2020-04-30:
+total 12
+-rw-r--r-- 1 runner docker 11838 Dec 23 20:23 Microsoft.RedHatOpenShift.json
+
+./azure-resource-manager-schemas/schemas/2020-05-01:
+total 904
+-rw-r--r-- 1 runner docker   8230 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker  79382 Dec 23 20:23 Microsoft.Batch.json
+-rw-r--r-- 1 runner docker  20138 Dec 23 20:23 Microsoft.Billing.json
+-rw-r--r-- 1 runner docker  45770 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker  30325 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker   8221 Dec 23 20:23 Microsoft.Management.json
+-rw-r--r-- 1 runner docker   6525 Dec 23 20:23 Microsoft.Migrate.Migrate.json
+-rw-r--r-- 1 runner docker   6517 Dec 23 20:23 Microsoft.Migrate.json
+-rw-r--r-- 1 runner docker   8421 Dec 23 20:23 Microsoft.MixedReality.json
+-rw-r--r-- 1 runner docker  54865 Dec 23 20:23 Microsoft.NetApp.json
+-rw-r--r-- 1 runner docker  47254 Dec 23 20:23 Microsoft.Network.FrontDoor.json
+-rw-r--r-- 1 runner docker 556043 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  21317 Dec 23 20:23 Microsoft.SignalRService.json
+
+./azure-resource-manager-schemas/schemas/2020-05-01-preview:
+total 188
+-rw-r--r-- 1 runner docker   2277 Dec 23 20:23 Microsoft.AzureActiveDirectory.json
+-rw-r--r-- 1 runner docker  57371 Dec 23 20:23 Microsoft.DataBoxEdge.json
+-rw-r--r-- 1 runner docker  12590 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker 109612 Dec 23 20:23 Microsoft.MachineLearningServices.json
+
+./azure-resource-manager-schemas/schemas/2020-05-12-preview:
+total 8
+-rw-r--r-- 1 runner docker 5686 Dec 23 20:23 Microsoft.AgFoodPlatform.json
+
+./azure-resource-manager-schemas/schemas/2020-05-15:
+total 36
+-rw-r--r-- 1 runner docker 35574 Dec 23 20:23 Microsoft.TimeSeriesInsights.json
+
+./azure-resource-manager-schemas/schemas/2020-05-15-preview:
+total 88
+-rw-r--r-- 1 runner docker 88692 Dec 23 20:23 Microsoft.MachineLearningServices.json
+
+./azure-resource-manager-schemas/schemas/2020-03-01:
+total 1204
+-rw-r--r-- 1 runner docker  19245 Dec 23 20:23 Microsoft.Devices.Provisioning.json
+-rw-r--r-- 1 runner docker  48702 Dec 23 20:23 Microsoft.Devices.json
+-rw-r--r-- 1 runner docker 158452 Dec 23 20:23 Microsoft.DocumentDB.json
+-rw-r--r-- 1 runner docker  40719 Dec 23 20:23 Microsoft.MachineLearningServices.json
+-rw-r--r-- 1 runner docker  26878 Dec 23 20:23 Microsoft.NetApp.json
+-rw-r--r-- 1 runner docker 507705 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  88223 Dec 23 20:23 Microsoft.ServiceFabric.json
+-rw-r--r-- 1 runner docker  17455 Dec 23 20:23 Microsoft.StorageCache.json
+-rw-r--r-- 1 runner docker  22608 Dec 23 20:23 Microsoft.StorageSync.json
+-rw-r--r-- 1 runner docker 104429 Dec 23 20:23 Microsoft.StreamAnalytics.json
+-rw-r--r-- 1 runner docker   9057 Dec 23 20:23 Microsoft.Aadiam.json
+-rw-r--r-- 1 runner docker  18441 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker  77210 Dec 23 20:23 Microsoft.Batch.json
+-rw-r--r-- 1 runner docker   6831 Dec 23 20:23 Microsoft.Confluent.json
+-rw-r--r-- 1 runner docker  62060 Dec 23 20:23 Microsoft.ContainerService.json
+
+./azure-resource-manager-schemas/schemas/2020-03-13:
+total 16
+-rw-r--r-- 1 runner docker 15157 Dec 23 20:23 Microsoft.Search.json
+
+./azure-resource-manager-schemas/schemas/2020-03-15:
+total 12
+-rw-r--r-- 1 runner docker 10471 Dec 23 20:23 Microsoft.HealthcareApis.json
+
+./azure-resource-manager-schemas/schemas/2020-03-15-preview:
+total 16
+-rw-r--r-- 1 runner docker 13101 Dec 23 20:23 Microsoft.StoragePool.json
+
+./azure-resource-manager-schemas/schemas/2020-03-20:
+total 16
+-rw-r--r-- 1 runner docker 14593 Dec 23 20:23 Microsoft.AVS.json
+
+./azure-resource-manager-schemas/schemas/2020-03-30:
+total 20
+-rw-r--r-- 1 runner docker 17370 Dec 23 20:23 Microsoft.HealthcareApis.json
+
+./azure-resource-manager-schemas/schemas/2020-04-01-preview:
+total 152
+-rw-r--r-- 1 runner docker  3662 Dec 23 20:23 Microsoft.Authorization.Authz.json
+-rw-r--r-- 1 runner docker  6481 Dec 23 20:23 Microsoft.ChangeAnalysis.json
+-rw-r--r-- 1 runner docker 84717 Dec 23 20:23 Microsoft.EventGrid.json
+-rw-r--r-- 1 runner docker 47289 Dec 23 20:23 Microsoft.KeyVault.json
+-rw-r--r-- 1 runner docker  6953 Dec 23 20:23 Microsoft.Synapse.json
+
+./azure-resource-manager-schemas/schemas/2020-02-14:
+total 28
+-rw-r--r-- 1 runner docker 24736 Dec 23 20:23 Microsoft.VirtualMachineImages.json
+
+./azure-resource-manager-schemas/schemas/2020-02-15:
+total 48
+-rw-r--r-- 1 runner docker 45550 Dec 23 20:23 Microsoft.Kusto.json
+
+./azure-resource-manager-schemas/schemas/2020-02-18-preview:
+total 44
+-rw-r--r-- 1 runner docker 43403 Dec 23 20:23 Microsoft.MachineLearningServices.json
+
+./azure-resource-manager-schemas/schemas/2020-03-01-preview:
+total 128
+-rw-r--r-- 1 runner docker  2592 Dec 23 20:23 Microsoft.Aadiam.json
+-rw-r--r-- 1 runner docker  3445 Dec 23 20:23 Microsoft.Authorization.Authz.json
+-rw-r--r-- 1 runner docker  2835 Dec 23 20:23 Microsoft.AzureStackHCI.json
+-rw-r--r-- 1 runner docker  6857 Dec 23 20:23 Microsoft.Confluent.json
+-rw-r--r-- 1 runner docker  7917 Dec 23 20:23 Microsoft.CostManagement.json
+-rw-r--r-- 1 runner docker 27749 Dec 23 20:23 Microsoft.DeviceUpdate.json
+-rw-r--r-- 1 runner docker  9178 Dec 23 20:23 Microsoft.DigitalTwins.json
+-rw-r--r-- 1 runner docker  2022 Dec 23 20:23 Microsoft.Insights.Application.json
+-rw-r--r-- 1 runner docker 41818 Dec 23 20:23 Microsoft.OperationalInsights.json
+-rw-r--r-- 1 runner docker  9541 Dec 23 20:23 Microsoft.StreamAnalytics.json
+
+./azure-resource-manager-schemas/schemas/2019-12-31:
+total 104
+-rw-r--r-- 1 runner docker 105211 Dec 23 20:23 Microsoft.Cdn.json
+
+./azure-resource-manager-schemas/schemas/2020-01-01:
+total 304
+-rw-r--r-- 1 runner docker 14156 Dec 23 20:23 Microsoft.AAD.json
+-rw-r--r-- 1 runner docker  7625 Dec 23 20:23 Microsoft.Advisor.json
+-rw-r--r-- 1 runner docker 56263 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker  2025 Dec 23 20:23 Microsoft.DBforMySQL.json
+-rw-r--r-- 1 runner docker  2055 Dec 23 20:23 Microsoft.DBforPostgreSQL.json
+-rw-r--r-- 1 runner docker 12232 Dec 23 20:23 Microsoft.Devices.Provisioning.json
+-rw-r--r-- 1 runner docker 37108 Dec 23 20:23 Microsoft.MachineLearningServices.json
+-rw-r--r-- 1 runner docker  9787 Dec 23 20:23 Microsoft.Marketplace.json
+-rw-r--r-- 1 runner docker 46038 Dec 23 20:23 Microsoft.Network.FrontDoor.json
+-rw-r--r-- 1 runner docker 14311 Dec 23 20:23 Microsoft.OffAzure.json
+-rw-r--r-- 1 runner docker 36001 Dec 23 20:23 Microsoft.Security.json
+-rw-r--r-- 1 runner docker 49810 Dec 23 20:23 Microsoft.SecurityInsights.json
+
+./azure-resource-manager-schemas/schemas/2020-01-01-preview:
+total 164
+-rw-r--r-- 1 runner docker 44971 Dec 23 20:23 Microsoft.EventGrid.json
+-rw-r--r-- 1 runner docker 38685 Dec 23 20:23 Microsoft.HybridNetwork.json
+-rw-r--r-- 1 runner docker  3966 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker  6065 Dec 23 20:23 Microsoft.Kubernetes.json
+-rw-r--r-- 1 runner docker 27382 Dec 23 20:23 Microsoft.Peering.json
+-rw-r--r-- 1 runner docker  9877 Dec 23 20:23 Microsoft.Security.json
+-rw-r--r-- 1 runner docker 27536 Dec 23 20:23 Microsoft.ServiceFabric.json
+
+./azure-resource-manager-schemas/schemas/2020-01-13-preview:
+total 76
+-rw-r--r-- 1 runner docker 76838 Dec 23 20:23 Microsoft.Automation.json
+
+./azure-resource-manager-schemas/schemas/2020-02-01:
+total 100
+-rw-r--r-- 1 runner docker 59090 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker  8221 Dec 23 20:23 Microsoft.Management.json
+-rw-r--r-- 1 runner docker 26856 Dec 23 20:23 Microsoft.NetApp.json
+
+./azure-resource-manager-schemas/schemas/2020-02-01-preview:
+total 36
+-rw-r--r-- 1 runner docker 20832 Dec 23 20:23 Microsoft.Datadog.json
+-rw-r--r-- 1 runner docker  8577 Dec 23 20:23 Microsoft.Maps.json
+
+./azure-resource-manager-schemas/schemas/2020-02-02:
+total 36
+-rw-r--r-- 1 runner docker  8216 Dec 23 20:23 Microsoft.Insights.Application.json
+-rw-r--r-- 1 runner docker  4730 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+-rw-r--r-- 1 runner docker 14924 Dec 23 20:23 Microsoft.RecoveryServices.json
+
+./azure-resource-manager-schemas/schemas/2020-02-02-preview:
+total 276
+-rw-r--r-- 1 runner docker   7900 Dec 23 20:23 Microsoft.Insights.Application.json
+-rw-r--r-- 1 runner docker 273149 Dec 23 20:23 Microsoft.Sql.json
+
+./azure-resource-manager-schemas/schemas/2020-02-07-preview:
+total 8
+-rw-r--r-- 1 runner docker 6034 Dec 23 20:23 Microsoft.HanaOnAzure.json
+
+./azure-resource-manager-schemas/schemas/2020-02-14-preview:
+total 16
+-rw-r--r-- 1 runner docker 15834 Dec 23 20:23 Microsoft.DBforPostgreSQL.json
+
+./azure-resource-manager-schemas/schemas/2019-11-01:
+total 812
+-rw-r--r-- 1 runner docker  59878 Dec 23 20:23 Microsoft.DataShare.json
+-rw-r--r-- 1 runner docker  27053 Dec 23 20:23 Microsoft.MachineLearningServices.json
+-rw-r--r-- 1 runner docker   4627 Dec 23 20:23 Microsoft.Management.json
+-rw-r--r-- 1 runner docker  25604 Dec 23 20:23 Microsoft.NetApp.json
+-rw-r--r-- 1 runner docker   9723 Dec 23 20:23 Microsoft.Network.FrontDoor.json
+-rw-r--r-- 1 runner docker 479531 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  11862 Dec 23 20:23 Microsoft.StorageCache.json
+-rw-r--r-- 1 runner docker  45770 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker  26971 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker  12580 Dec 23 20:23 Microsoft.Consumption.json
+-rw-r--r-- 1 runner docker  56086 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker  41962 Dec 23 20:23 Microsoft.CostManagement.json
+
+./azure-resource-manager-schemas/schemas/2019-11-04:
+total 40
+-rw-r--r-- 1 runner docker 38602 Dec 23 20:23 Microsoft.Devices.json
+
+./azure-resource-manager-schemas/schemas/2019-11-04-preview:
+total 8
+-rw-r--r-- 1 runner docker 4981 Dec 23 20:23 Microsoft.Quantum.json
+
+./azure-resource-manager-schemas/schemas/2019-11-09:
+total 44
+-rw-r--r-- 1 runner docker 43256 Dec 23 20:23 Microsoft.Kusto.json
+
+./azure-resource-manager-schemas/schemas/2019-12-01:
+total 1032
+-rw-r--r-- 1 runner docker 218764 Dec 23 20:23 Microsoft.ApiManagement.json
+-rw-r--r-- 1 runner docker  59873 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 236559 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker  36762 Dec 23 20:23 Microsoft.ContainerInstance.json
+-rw-r--r-- 1 runner docker 494496 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker   2119 Dec 23 20:23 Microsoft.SoftwarePlan.json
+
+./azure-resource-manager-schemas/schemas/2019-12-01-preview:
+total 264
+-rw-r--r-- 1 runner docker 216268 Dec 23 20:23 Microsoft.ApiManagement.json
+-rw-r--r-- 1 runner docker  52652 Dec 23 20:23 Microsoft.ContainerRegistry.json
+
+./azure-resource-manager-schemas/schemas/2019-12-02-preview:
+total 8
+-rw-r--r-- 1 runner docker 5577 Dec 23 20:23 Microsoft.MixedReality.json
+
+./azure-resource-manager-schemas/schemas/2019-12-10-preview:
+total 20
+-rw-r--r-- 1 runner docker 16927 Dec 23 20:23 Microsoft.DesktopVirtualization.json
+
+./azure-resource-manager-schemas/schemas/2019-12-12:
+total 172
+-rw-r--r-- 1 runner docker  13862 Dec 23 20:23 Microsoft.HybridCompute.json
+-rw-r--r-- 1 runner docker 158047 Dec 23 20:23 Microsoft.DocumentDB.json
+
+./azure-resource-manager-schemas/schemas/2019-10-01:
+total 256
+-rw-r--r-- 1 runner docker  4989 Dec 23 20:23 Microsoft.AppConfiguration.json
+-rw-r--r-- 1 runner docker 13474 Dec 23 20:23 Microsoft.Consumption.json
+-rw-r--r-- 1 runner docker 51516 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker 17924 Dec 23 20:23 Microsoft.CostManagement.json
+-rw-r--r-- 1 runner docker  3336 Dec 23 20:23 Microsoft.MachineLearning.json
+-rw-r--r-- 1 runner docker 35970 Dec 23 20:23 Microsoft.Migrate.Migrate.json
+-rw-r--r-- 1 runner docker 35962 Dec 23 20:23 Microsoft.Migrate.json
+-rw-r--r-- 1 runner docker 24704 Dec 23 20:23 Microsoft.NetApp.json
+-rw-r--r-- 1 runner docker 19647 Dec 23 20:23 Microsoft.Network.FrontDoor.json
+-rw-r--r-- 1 runner docker 19101 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker 15134 Dec 23 20:23 Microsoft.StorageSync.json
+
+./azure-resource-manager-schemas/schemas/2019-10-01-preview:
+total 92
+-rw-r--r-- 1 runner docker 32242 Dec 23 20:23 Microsoft.Migrate.ResourceMover.json
+-rw-r--r-- 1 runner docker 16563 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker 15300 Dec 23 20:23 Microsoft.Search.json
+-rw-r--r-- 1 runner docker  2675 Dec 23 20:23 Microsoft.Subscription.json
+-rw-r--r-- 1 runner docker 19707 Dec 23 20:23 Microsoft.Billing.json
+
+./azure-resource-manager-schemas/schemas/2019-10-17-preview:
+total 20
+-rw-r--r-- 1 runner docker 5790 Dec 23 20:23 Microsoft.Insights.Application.json
+-rw-r--r-- 1 runner docker 8922 Dec 23 20:23 Microsoft.Insights.json
+
+./azure-resource-manager-schemas/schemas/2019-10-27-preview:
+total 20
+-rw-r--r-- 1 runner docker 17004 Dec 23 20:23 Microsoft.ContainerService.json
+
+./azure-resource-manager-schemas/schemas/2019-11-01-preview:
+total 192
+-rw-r--r-- 1 runner docker 11808 Dec 23 20:23 Microsoft.AppConfiguration.json
+-rw-r--r-- 1 runner docker 24769 Dec 23 20:23 Microsoft.DataLakeAnalytics.json
+-rw-r--r-- 1 runner docker 35244 Dec 23 20:23 Microsoft.DeploymentManager.json
+-rw-r--r-- 1 runner docker 19543 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker  4469 Dec 23 20:23 Microsoft.KubernetesConfiguration.json
+-rw-r--r-- 1 runner docker 88303 Dec 23 20:23 Microsoft.ServiceFabric.json
+
+./azure-resource-manager-schemas/schemas/2019-08-01:
+total 1228
+-rw-r--r-- 1 runner docker  56240 Dec 23 20:23 Microsoft.DataBoxEdge.json
+-rw-r--r-- 1 runner docker 155070 Dec 23 20:23 Microsoft.DocumentDB.json
+-rw-r--r-- 1 runner docker  13071 Dec 23 20:23 Microsoft.DomainRegistration.json
+-rw-r--r-- 1 runner docker  25539 Dec 23 20:23 Microsoft.NetApp.json
+-rw-r--r-- 1 runner docker 435485 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  15481 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker  26725 Dec 23 20:23 Microsoft.Security.json
+-rw-r--r-- 1 runner docker 291339 Dec 23 20:23 Microsoft.Web.json
+-rw-r--r-- 1 runner docker   1724 Dec 23 20:23 managementGroupDeploymentParameters.json
+-rw-r--r-- 1 runner docker  30597 Dec 23 20:23 managementGroupDeploymentTemplate.json
+-rw-r--r-- 1 runner docker   1697 Dec 23 20:23 tenantDeploymentParameters.json
+-rw-r--r-- 1 runner docker  37667 Dec 23 20:23 tenantDeploymentTemplate.json
+-rw-r--r-- 1 runner docker  72933 Dec 23 20:23 Microsoft.Batch.json
+-rw-r--r-- 1 runner docker   8862 Dec 23 20:23 Microsoft.CertificateRegistration.json
+-rw-r--r-- 1 runner docker  51516 Dec 23 20:23 Microsoft.ContainerService.json
+
+./azure-resource-manager-schemas/schemas/2019-08-02-preview:
+total 12
+-rw-r--r-- 1 runner docker 12240 Dec 23 20:23 Microsoft.HybridCompute.json
+
+./azure-resource-manager-schemas/schemas/2019-08-09-preview:
+total 12
+-rw-r--r-- 1 runner docker 10125 Dec 23 20:23 Microsoft.VMwareVirtustream.json
+
+./azure-resource-manager-schemas/schemas/2019-09-01:
+total 552
+-rw-r--r-- 1 runner docker  18441 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker  17924 Dec 23 20:23 Microsoft.CostManagement.json
+-rw-r--r-- 1 runner docker  17744 Dec 23 20:23 Microsoft.DataBox.json
+-rw-r--r-- 1 runner docker  40838 Dec 23 20:23 Microsoft.KeyVault.json
+-rw-r--r-- 1 runner docker 446754 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  11811 Dec 23 20:23 policyDefinition.json
+
+./azure-resource-manager-schemas/schemas/2019-09-01-preview:
+total 32
+-rw-r--r-- 1 runner docker  7707 Dec 23 20:23 Microsoft.OperationalInsights.json
+-rw-r--r-- 1 runner docker 21423 Dec 23 20:23 Microsoft.Peering.json
+
+./azure-resource-manager-schemas/schemas/2019-09-07:
+total 32
+-rw-r--r-- 1 runner docker 30982 Dec 23 20:23 Microsoft.Kusto.json
+
+./azure-resource-manager-schemas/schemas/2019-09-16:
+total 12
+-rw-r--r-- 1 runner docker 10315 Dec 23 20:23 Microsoft.HealthcareApis.json
+
+./azure-resource-manager-schemas/schemas/2019-09-16-preview:
+total 4
+-rw-r--r-- 1 runner docker 4031 Dec 23 20:23 Microsoft.WindowsESU.json
+
+./azure-resource-manager-schemas/schemas/2019-09-24-preview:
+total 20
+-rw-r--r-- 1 runner docker 16927 Dec 23 20:23 Microsoft.DesktopVirtualization.json
+
+./azure-resource-manager-schemas/schemas/2019-09-30-preview:
+total 20
+-rw-r--r-- 1 runner docker 16396 Dec 23 20:23 Microsoft.ContainerService.json
+
+./azure-resource-manager-schemas/schemas/2019-06-01:
+total 888
+-rw-r--r-- 1 runner docker  45956 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker  30467 Dec 23 20:23 Microsoft.EventGrid.json
+-rw-r--r-- 1 runner docker  14006 Dec 23 20:23 Microsoft.HybridData.json
+-rw-r--r-- 1 runner docker  18100 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker  25739 Dec 23 20:23 Microsoft.MachineLearningServices.json
+-rw-r--r-- 1 runner docker   5772 Dec 23 20:23 Microsoft.ManagedServices.json
+-rw-r--r-- 1 runner docker  19297 Dec 23 20:23 Microsoft.NetApp.json
+-rw-r--r-- 1 runner docker 423820 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker 116009 Dec 23 20:23 Microsoft.Storage.json
+-rw-r--r-- 1 runner docker  15134 Dec 23 20:23 Microsoft.StorageSync.json
+-rw-r--r-- 1 runner docker   3003 Dec 23 20:23 Microsoft.WindowsIoT.json
+-rw-r--r-- 1 runner docker   9972 Dec 23 20:23 policyDefinition.json
+-rw-r--r-- 1 runner docker   8621 Dec 23 20:23 Microsoft.AlertsManagement.json
+-rw-r--r-- 1 runner docker  13064 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker 111211 Dec 23 20:23 Microsoft.Automation.json
+-rw-r--r-- 1 runner docker   9792 Dec 23 20:23 Microsoft.Consumption.json
+
+./azure-resource-manager-schemas/schemas/2019-06-15:
+total 180
+-rw-r--r-- 1 runner docker 104183 Dec 23 20:23 Microsoft.Cdn.json
+-rw-r--r-- 1 runner docker  76302 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+
+./azure-resource-manager-schemas/schemas/2019-06-15-preview:
+total 104
+-rw-r--r-- 1 runner docker 103290 Dec 23 20:23 Microsoft.Cdn.json
+
+./azure-resource-manager-schemas/schemas/2019-07-01:
+total 872
+-rw-r--r-- 1 runner docker  19028 Dec 23 20:23 Microsoft.Cache.json
+-rw-r--r-- 1 runner docker  59873 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 255401 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker  48918 Dec 23 20:23 Microsoft.DataBoxEdge.json
+-rw-r--r-- 1 runner docker  19270 Dec 23 20:23 Microsoft.NetApp.json
+-rw-r--r-- 1 runner docker 427482 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker   6478 Dec 23 20:23 Microsoft.PolicyInsights.json
+-rw-r--r-- 1 runner docker  15441 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker  27281 Dec 23 20:23 Microsoft.Solutions.resourcesolutions.json
+
+./azure-resource-manager-schemas/schemas/2019-07-01-preview:
+total 52
+-rw-r--r-- 1 runner docker  8524 Dec 23 20:23 Microsoft.DevOps.json
+-rw-r--r-- 1 runner docker 39681 Dec 23 20:23 Microsoft.Devices.json
+
+./azure-resource-manager-schemas/schemas/2019-07-19-preview:
+total 12
+-rw-r--r-- 1 runner docker 9033 Dec 23 20:23 Microsoft.Capacity.json
+
+./azure-resource-manager-schemas/schemas/2019-07-24-preview:
+total 8
+-rw-r--r-- 1 runner docker 5655 Dec 23 20:23 Microsoft.AzureData.json
+
+./azure-resource-manager-schemas/schemas/2019-08-01-preview:
+total 56
+-rw-r--r-- 1 runner docker  3414 Dec 23 20:23 Microsoft.DocumentDB.json
+-rw-r--r-- 1 runner docker 13054 Dec 23 20:23 Microsoft.OperationalInsights.json
+-rw-r--r-- 1 runner docker 23120 Dec 23 20:23 Microsoft.Peering.json
+-rw-r--r-- 1 runner docker 11861 Dec 23 20:23 Microsoft.StorageCache.json
+
+./azure-resource-manager-schemas/schemas/2019-05-01:
+total 136
+-rw-r--r-- 1 runner docker 21297 Dec 23 20:23 Microsoft.NetApp.json
+-rw-r--r-- 1 runner docker 32050 Dec 23 20:23 Microsoft.Network.FrontDoor.json
+-rw-r--r-- 1 runner docker 12422 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker 10476 Dec 23 20:23 Microsoft.Consumption.json
+-rw-r--r-- 1 runner docker 23012 Dec 23 20:23 Microsoft.ContainerRegistry.json
+-rw-r--r-- 1 runner docker 24831 Dec 23 20:23 Microsoft.MachineLearningServices.json
+
+./azure-resource-manager-schemas/schemas/2019-05-05-preview:
+total 16
+-rw-r--r-- 1 runner docker 12519 Dec 23 20:23 Microsoft.AlertsManagement.json
+
+./azure-resource-manager-schemas/schemas/2019-05-10:
+total 16
+-rw-r--r-- 1 runner docker 12422 Dec 23 20:23 Microsoft.Resources.json
+
+./azure-resource-manager-schemas/schemas/2019-05-13:
+total 68
+-rw-r--r-- 1 runner docker 69119 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+
+./azure-resource-manager-schemas/schemas/2019-05-15:
+total 24
+-rw-r--r-- 1 runner docker 22943 Dec 23 20:23 Microsoft.Kusto.json
+
+./azure-resource-manager-schemas/schemas/2019-06-01-preview:
+total 396
+-rw-r--r-- 1 runner docker  50126 Dec 23 20:23 Microsoft.ContainerRegistry.json
+-rw-r--r-- 1 runner docker  16097 Dec 23 20:23 Microsoft.ManagedNetwork.json
+-rw-r--r-- 1 runner docker  10264 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker  85373 Dec 23 20:23 Microsoft.ServiceFabric.json
+-rw-r--r-- 1 runner docker   2135 Dec 23 20:23 Microsoft.SoftwarePlan.json
+-rw-r--r-- 1 runner docker  46959 Dec 23 20:23 Microsoft.Sql.json
+-rw-r--r-- 1 runner docker 182796 Dec 23 20:23 Microsoft.Synapse.json
+
+./azure-resource-manager-schemas/schemas/2019-04-15:
+total 84
+-rw-r--r-- 1 runner docker 83105 Dec 23 20:23 Microsoft.Cdn.json
+
+./azure-resource-manager-schemas/schemas/2019-04-30:
+total 16
+-rw-r--r-- 1 runner docker 15243 Dec 23 20:23 Microsoft.ContainerService.json
+
+./azure-resource-manager-schemas/schemas/2019-05-01-preview:
+total 96
+-rw-r--r-- 1 runner docker 35420 Dec 23 20:23 Microsoft.AppPlatform.json
+-rw-r--r-- 1 runner docker  9709 Dec 23 20:23 Microsoft.Consumption.json
+-rw-r--r-- 1 runner docker  9028 Dec 23 20:23 Microsoft.ContainerRegistry.json
+-rw-r--r-- 1 runner docker 14082 Dec 23 20:23 Microsoft.Support.json
+-rw-r--r-- 1 runner docker 19866 Dec 23 20:23 Microsoft.VirtualMachineImages.json
+
+./azure-resource-manager-schemas/schemas/2019-03-01:
+total 500
+-rw-r--r-- 1 runner docker 236805 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker  48544 Dec 23 20:23 Microsoft.DataBoxEdge.json
+-rw-r--r-- 1 runner docker  17318 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker  16456 Dec 23 20:23 Microsoft.Network.FrontDoor.json
+-rw-r--r-- 1 runner docker  10752 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker  81936 Dec 23 20:23 Microsoft.ServiceFabric.json
+-rw-r--r-- 1 runner docker  15134 Dec 23 20:23 Microsoft.StorageSync.json
+-rw-r--r-- 1 runner docker   8044 Dec 23 20:23 Microsoft.AlertsManagement.json
+-rw-r--r-- 1 runner docker  59873 Dec 23 20:23 Microsoft.Compute.Extensions.json
+
+./azure-resource-manager-schemas/schemas/2019-03-18-preview:
+total 4
+-rw-r--r-- 1 runner docker 3326 Dec 23 20:23 Microsoft.HybridCompute.json
+
+./azure-resource-manager-schemas/schemas/2019-03-22:
+total 40
+-rw-r--r-- 1 runner docker 37037 Dec 23 20:23 Microsoft.Devices.json
+
+./azure-resource-manager-schemas/schemas/2019-03-22-preview:
+total 40
+-rw-r--r-- 1 runner docker 39595 Dec 23 20:23 Microsoft.Devices.json
+
+./azure-resource-manager-schemas/schemas/2019-04-01:
+total 880
+-rw-r--r-- 1 runner docker 218056 Dec 23 20:23 deploymentTemplate.json
+-rw-r--r-- 1 runner docker  65561 Dec 23 20:23 Microsoft.Batch.json
+-rw-r--r-- 1 runner docker   6923 Dec 23 20:23 Microsoft.Capacity.json
+-rw-r--r-- 1 runner docker  29122 Dec 23 20:23 Microsoft.ContainerRegistry.json
+-rw-r--r-- 1 runner docker  42574 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker   4024 Dec 23 20:23 Microsoft.DevSpaces.json
+-rw-r--r-- 1 runner docker  30520 Dec 23 20:23 Microsoft.Network.FrontDoor.json
+-rw-r--r-- 1 runner docker 393363 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  59678 Dec 23 20:23 Microsoft.Storage.json
+-rw-r--r-- 1 runner docker  21932 Dec 23 20:23 Microsoft.VMwareCloudSimple.json
+-rw-r--r-- 1 runner docker   1679 Dec 23 20:23 deploymentParameters.json
+
+./azure-resource-manager-schemas/schemas/2019-04-01-preview:
+total 40
+-rw-r--r-- 1 runner docker  9709 Dec 23 20:23 Microsoft.Consumption.json
+-rw-r--r-- 1 runner docker 28009 Dec 23 20:23 Microsoft.CostManagement.json
+
+./azure-resource-manager-schemas/schemas/2018-12-03:
+total 8
+-rw-r--r-- 1 runner docker 4260 Dec 23 20:23 Microsoft.EnterpriseKnowledgeGraph.json
+
+./azure-resource-manager-schemas/schemas/2018-12-20:
+total 8
+-rw-r--r-- 1 runner docker 4292 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+
+./azure-resource-manager-schemas/schemas/2019-01-01:
+total 284
+-rw-r--r-- 1 runner docker 201062 Dec 23 20:23 Microsoft.ApiManagement.json
+-rw-r--r-- 1 runner docker  12574 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker   9792 Dec 23 20:23 Microsoft.Consumption.json
+-rw-r--r-- 1 runner docker  18867 Dec 23 20:23 Microsoft.CostManagement.json
+-rw-r--r-- 1 runner docker  15602 Dec 23 20:23 Microsoft.EventGrid.json
+-rw-r--r-- 1 runner docker   4213 Dec 23 20:23 Microsoft.Security.json
+-rw-r--r-- 1 runner docker   8828 Dec 23 20:23 policyDefinition.json
+
+./azure-resource-manager-schemas/schemas/2019-01-01-preview:
+total 188
+-rw-r--r-- 1 runner docker   4900 Dec 23 20:23 Microsoft.AzureActiveDirectory.json
+-rw-r--r-- 1 runner docker   3945 Dec 23 20:23 Microsoft.DevSpaces.json
+-rw-r--r-- 1 runner docker   9175 Dec 23 20:23 Microsoft.Portal.json
+-rw-r--r-- 1 runner docker  28334 Dec 23 20:23 Microsoft.Security.json
+-rw-r--r-- 1 runner docker 136268 Dec 23 20:23 Microsoft.SecurityInsights.json
+
+./azure-resource-manager-schemas/schemas/2019-01-21:
+total 16
+-rw-r--r-- 1 runner docker 14958 Dec 23 20:23 Microsoft.Kusto.json
+
+./azure-resource-manager-schemas/schemas/2019-01-23-preview:
+total 20
+-rw-r--r-- 1 runner docker 16790 Dec 23 20:23 Microsoft.DesktopVirtualization.json
+
+./azure-resource-manager-schemas/schemas/2019-02-01:
+total 472
+-rw-r--r-- 1 runner docker  38500 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker 424366 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  15028 Dec 23 20:23 Microsoft.StorageSync.json
+
+./azure-resource-manager-schemas/schemas/2019-02-01-preview:
+total 60
+-rw-r--r-- 1 runner docker  2469 Dec 23 20:23 Microsoft.AppConfiguration.json
+-rw-r--r-- 1 runner docker 40332 Dec 23 20:23 Microsoft.EventGrid.json
+-rw-r--r-- 1 runner docker 13633 Dec 23 20:23 Microsoft.VirtualMachineImages.json
+
+./azure-resource-manager-schemas/schemas/2019-02-28-preview:
+total 4
+-rw-r--r-- 1 runner docker 3292 Dec 23 20:23 Microsoft.MixedReality.json
+
+./azure-resource-manager-schemas/schemas/2019-03-01-hybrid:
+total 188
+-rw-r--r-- 1 runner docker   1687 Dec 23 20:23 deploymentParameters.json
+-rw-r--r-- 1 runner docker 187180 Dec 23 20:23 deploymentTemplate.json
+
+./azure-resource-manager-schemas/schemas/2019-03-01-preview:
+total 92
+-rw-r--r-- 1 runner docker 10054 Dec 23 20:23 Microsoft.CostManagement.json
+-rw-r--r-- 1 runner docker 81544 Dec 23 20:23 Microsoft.ServiceFabric.json
+
+./azure-resource-manager-schemas/schemas/2018-10-01:
+total 672
+-rw-r--r-- 1 runner docker 391616 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker   8314 Dec 23 20:23 Microsoft.SignalRService.json
+-rw-r--r-- 1 runner docker  15038 Dec 23 20:23 Microsoft.StorageSync.json
+-rw-r--r-- 1 runner docker  59873 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 158658 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker  10876 Dec 23 20:23 Microsoft.Consumption.json
+-rw-r--r-- 1 runner docker  32451 Dec 23 20:23 Microsoft.ContainerInstance.json
+
+./azure-resource-manager-schemas/schemas/2018-10-15:
+total 28
+-rw-r--r-- 1 runner docker 27180 Dec 23 20:23 Microsoft.LabServices.json
+
+./azure-resource-manager-schemas/schemas/2018-10-31-preview:
+total 8
+-rw-r--r-- 1 runner docker 5512 Dec 23 20:23 Microsoft.HardwareSecurityModules.json
+
+./azure-resource-manager-schemas/schemas/2018-11-01:
+total 656
+-rw-r--r-- 1 runner docker 397414 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  36208 Dec 23 20:23 Microsoft.Storage.json
+-rw-r--r-- 1 runner docker 232711 Dec 23 20:23 Microsoft.Web.json
+
+./azure-resource-manager-schemas/schemas/2018-11-01-preview:
+total 108
+-rw-r--r-- 1 runner docker 13494 Dec 23 20:23 Microsoft.Billing.json
+-rw-r--r-- 1 runner docker 32082 Dec 23 20:23 Microsoft.Blueprint.json
+-rw-r--r-- 1 runner docker 59853 Dec 23 20:23 Microsoft.DataShare.json
+
+./azure-resource-manager-schemas/schemas/2018-11-19:
+total 28
+-rw-r--r-- 1 runner docker 24831 Dec 23 20:23 Microsoft.MachineLearningServices.json
+
+./azure-resource-manager-schemas/schemas/2018-11-20:
+total 12
+-rw-r--r-- 1 runner docker 10321 Dec 23 20:23 Microsoft.GuestConfiguration.json
+
+./azure-resource-manager-schemas/schemas/2018-11-30:
+total 4
+-rw-r--r-- 1 runner docker 1477 Dec 23 20:23 Microsoft.ManagedIdentity.json
+
+./azure-resource-manager-schemas/schemas/2018-12-01:
+total 468
+-rw-r--r-- 1 runner docker 412071 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  64388 Dec 23 20:23 Microsoft.Batch.json
+
+./azure-resource-manager-schemas/schemas/2018-12-01-preview:
+total 40
+-rw-r--r-- 1 runner docker 39222 Dec 23 20:23 Microsoft.Devices.json
+
+./azure-resource-manager-schemas/schemas/2018-08-01:
+total 468
+-rw-r--r-- 1 runner docker  40030 Dec 23 20:23 Microsoft.Network.FrontDoor.json
+-rw-r--r-- 1 runner docker 436950 Dec 23 20:23 Microsoft.Network.json
+
+./azure-resource-manager-schemas/schemas/2018-08-15-preview:
+total 32
+-rw-r--r-- 1 runner docker 32642 Dec 23 20:23 Microsoft.TimeSeriesInsights.json
+
+./azure-resource-manager-schemas/schemas/2018-08-20-preview:
+total 12
+-rw-r--r-- 1 runner docker 9651 Dec 23 20:23 Microsoft.HealthcareApis.json
+
+./azure-resource-manager-schemas/schemas/2018-08-31:
+total 12
+-rw-r--r-- 1 runner docker 10876 Dec 23 20:23 Microsoft.Consumption.json
+
+./azure-resource-manager-schemas/schemas/2018-08-31-preview:
+total 4
+-rw-r--r-- 1 runner docker 1079 Dec 23 20:23 Microsoft.WorkloadMonitor.json
+
+./azure-resource-manager-schemas/schemas/2018-09-01:
+total 116
+-rw-r--r-- 1 runner docker 27337 Dec 23 20:23 Microsoft.ContainerInstance.json
+-rw-r--r-- 1 runner docker 24899 Dec 23 20:23 Microsoft.ContainerRegistry.json
+-rw-r--r-- 1 runner docker 14984 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker  3639 Dec 23 20:23 Microsoft.IotCentral.json
+-rw-r--r-- 1 runner docker 37472 Dec 23 20:23 Microsoft.Network.json
+
+./azure-resource-manager-schemas/schemas/2018-09-01-preview:
+total 156
+-rw-r--r-- 1 runner docker  7548 Dec 23 20:23 Microsoft.Attestation.json
+-rw-r--r-- 1 runner docker  2911 Dec 23 20:23 Microsoft.Authorization.Authz.json
+-rw-r--r-- 1 runner docker  2612 Dec 23 20:23 Microsoft.BareMetal.json
+-rw-r--r-- 1 runner docker  9267 Dec 23 20:23 Microsoft.CustomProviders.json
+-rw-r--r-- 1 runner docker 25512 Dec 23 20:23 Microsoft.DeploymentManager.json
+-rw-r--r-- 1 runner docker  5598 Dec 23 20:23 Microsoft.EngagementFabric.json
+-rw-r--r-- 1 runner docker 15151 Dec 23 20:23 Microsoft.Migrate.MigrateProjects.json
+-rw-r--r-- 1 runner docker 15135 Dec 23 20:23 Microsoft.Migrate.json
+-rw-r--r-- 1 runner docker  2513 Dec 23 20:23 Microsoft.ResourceGraph.json
+-rw-r--r-- 1 runner docker 54413 Dec 23 20:23 Microsoft.ServiceFabricMesh.json
+
+./azure-resource-manager-schemas/schemas/2018-09-07-preview:
+total 16
+-rw-r--r-- 1 runner docker 12854 Dec 23 20:23 Microsoft.Kusto.json
+
+./azure-resource-manager-schemas/schemas/2018-09-15:
+total 128
+-rw-r--r-- 1 runner docker 128728 Dec 23 20:23 Microsoft.DevTestLab.json
+
+./azure-resource-manager-schemas/schemas/2018-09-15-preview:
+total 40
+-rw-r--r-- 1 runner docker 37117 Dec 23 20:23 Microsoft.EventGrid.json
+
+./azure-resource-manager-schemas/schemas/2018-09-30:
+total 68
+-rw-r--r-- 1 runner docker 45770 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 18967 Dec 23 20:23 Microsoft.Compute.json
+
+./azure-resource-manager-schemas/schemas/2018-09-30-preview:
+total 16
+-rw-r--r-- 1 runner docker 15574 Dec 23 20:23 Microsoft.ContainerService.json
+
+./azure-resource-manager-schemas/schemas/2018-10-01-preview:
+total 8
+-rw-r--r-- 1 runner docker 7448 Dec 23 20:23 Microsoft.Portal.json
+
+./azure-resource-manager-schemas/schemas/2018-06-01:
+total 1600
+-rw-r--r-- 1 runner docker 295783 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker   2161 Dec 23 20:23 Microsoft.Security.json
+-rw-r--r-- 1 runner docker  13447 Dec 23 20:23 Microsoft.Solutions.resourcesolutions.json
+-rw-r--r-- 1 runner docker  59873 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 195183 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker  25708 Dec 23 20:23 Microsoft.ContainerInstance.json
+-rw-r--r-- 1 runner docker  31397 Dec 23 20:23 Microsoft.DBforMariaDB.json
+-rw-r--r-- 1 runner docker   2868 Dec 23 20:23 Microsoft.DBforMySQL.json
+-rw-r--r-- 1 runner docker   2893 Dec 23 20:23 Microsoft.DBforPostgreSQL.json
+-rw-r--r-- 1 runner docker 989026 Dec 23 20:23 Microsoft.DataFactory.json
+
+./azure-resource-manager-schemas/schemas/2018-06-17-preview:
+total 4
+-rw-r--r-- 1 runner docker 3697 Dec 23 20:23 Microsoft.Insights.Application.json
+
+./azure-resource-manager-schemas/schemas/2018-06-30:
+total 32
+-rw-r--r-- 1 runner docker 15795 Dec 23 20:23 Microsoft.Automation.json
+-rw-r--r-- 1 runner docker 12861 Dec 23 20:23 Microsoft.Consumption.json
+
+./azure-resource-manager-schemas/schemas/2018-06-30-preview:
+total 8
+-rw-r--r-- 1 runner docker 8073 Dec 23 20:23 Microsoft.GuestConfiguration.json
+
+./azure-resource-manager-schemas/schemas/2018-07-01:
+total 544
+-rw-r--r-- 1 runner docker 186902 Dec 23 20:23 Microsoft.Media.json
+-rw-r--r-- 1 runner docker 313281 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  34392 Dec 23 20:23 Microsoft.Storage.json
+-rw-r--r-- 1 runner docker  14480 Dec 23 20:23 Microsoft.StorageSync.json
+
+./azure-resource-manager-schemas/schemas/2018-07-01-preview:
+total 40
+-rw-r--r-- 1 runner docker  7738 Dec 23 20:23 Microsoft.PolicyInsights.json
+-rw-r--r-- 1 runner docker 30915 Dec 23 20:23 Microsoft.ServiceFabricMesh.json
+
+./azure-resource-manager-schemas/schemas/2018-07-10:
+total 120
+-rw-r--r-- 1 runner docker 119946 Dec 23 20:23 Microsoft.RecoveryServices.SiteRecovery.json
+
+./azure-resource-manager-schemas/schemas/2018-07-12:
+total 48
+-rw-r--r-- 1 runner docker 49112 Dec 23 20:23 Microsoft.BotService.json
+
+./azure-resource-manager-schemas/schemas/2018-07-15-preview:
+total 136
+-rw-r--r-- 1 runner docker 138121 Dec 23 20:23 Microsoft.DataMigration.json
+
+./azure-resource-manager-schemas/schemas/2018-08-01-preview:
+total 48
+-rw-r--r-- 1 runner docker 23521 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker 21433 Dec 23 20:23 Microsoft.CostManagement.json
+
+./azure-resource-manager-schemas/schemas/2018-06-01-preview:
+total 372
+-rw-r--r-- 1 runner docker 202757 Dec 23 20:23 Microsoft.ApiManagement.json
+-rw-r--r-- 1 runner docker   9470 Dec 23 20:23 Microsoft.Blockchain.json
+-rw-r--r-- 1 runner docker  27186 Dec 23 20:23 Microsoft.DBforMariaDB.json
+-rw-r--r-- 1 runner docker   4133 Dec 23 20:23 Microsoft.DevSpaces.json
+-rw-r--r-- 1 runner docker  49252 Dec 23 20:23 Microsoft.HDInsight.json
+-rw-r--r-- 1 runner docker  10158 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker   6008 Dec 23 20:23 Microsoft.Maintenance.json
+-rw-r--r-- 1 runner docker   5796 Dec 23 20:23 Microsoft.ManagedServices.json
+-rw-r--r-- 1 runner docker  44002 Dec 23 20:23 Microsoft.Sql.json
+
+./azure-resource-manager-schemas/schemas/2018-03-15-preview:
+total 36
+-rw-r--r-- 1 runner docker 36602 Dec 23 20:23 Microsoft.DataMigration.json
+
+./azure-resource-manager-schemas/schemas/2018-03-31:
+total 40
+-rw-r--r-- 1 runner docker 12867 Dec 23 20:23 Microsoft.Consumption.json
+-rw-r--r-- 1 runner docker 22310 Dec 23 20:23 Microsoft.ContainerService.json
+
+./azure-resource-manager-schemas/schemas/2018-03-31-preview:
+total 40
+-rw-r--r-- 1 runner docker 38217 Dec 23 20:23 Microsoft.DataMigration.json
+
+./azure-resource-manager-schemas/schemas/2018-04-01:
+total 616
+-rw-r--r-- 1 runner docker  59873 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 163350 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker  19270 Dec 23 20:23 Microsoft.ContainerInstance.json
+-rw-r--r-- 1 runner docker  24592 Dec 23 20:23 Microsoft.Databricks.json
+-rw-r--r-- 1 runner docker  38441 Dec 23 20:23 Microsoft.Devices.json
+-rw-r--r-- 1 runner docker 311425 Dec 23 20:23 Microsoft.Network.json
+
+./azure-resource-manager-schemas/schemas/2018-04-02:
+total 24
+-rw-r--r-- 1 runner docker 23370 Dec 23 20:23 Microsoft.StorageSync.json
+
+./azure-resource-manager-schemas/schemas/2018-04-16:
+total 16
+-rw-r--r-- 1 runner docker 15764 Dec 23 20:23 Microsoft.Insights.json
+
+./azure-resource-manager-schemas/schemas/2018-04-19:
+total 88
+-rw-r--r-- 1 runner docker 88336 Dec 23 20:23 Microsoft.DataMigration.json
+
+./azure-resource-manager-schemas/schemas/2018-05-01:
+total 220
+-rw-r--r-- 1 runner docker 12901 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker 67897 Dec 23 20:23 Microsoft.BatchAI.json
+-rw-r--r-- 1 runner docker  2362 Dec 23 20:23 Microsoft.Maps.json
+-rw-r--r-- 1 runner docker 37162 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker 10752 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker  1944 Dec 23 20:23 Microsoft.SerialConsole.json
+-rw-r--r-- 1 runner docker  7392 Dec 23 20:23 policyDefinition.json
+-rw-r--r-- 1 runner docker  1715 Dec 23 20:23 subscriptionDeploymentParameters.json
+-rw-r--r-- 1 runner docker 63790 Dec 23 20:23 subscriptionDeploymentTemplate.json
+
+./azure-resource-manager-schemas/schemas/2018-05-01-preview:
+total 68
+-rw-r--r-- 1 runner docker 16058 Dec 23 20:23 Microsoft.Authorization.Authz.json
+-rw-r--r-- 1 runner docker 24108 Dec 23 20:23 Microsoft.EventGrid.json
+-rw-r--r-- 1 runner docker 26565 Dec 23 20:23 Microsoft.Insights.Application.json
+
+./azure-resource-manager-schemas/schemas/2018-05-31:
+total 20
+-rw-r--r-- 1 runner docker 18019 Dec 23 20:23 Microsoft.CostManagement.json
+
+./azure-resource-manager-schemas/schemas/2018-02-01:
+total 620
+-rw-r--r-- 1 runner docker  23771 Dec 23 20:23 Microsoft.Storage.json
+-rw-r--r-- 1 runner docker 272562 Dec 23 20:23 Microsoft.Web.json
+-rw-r--r-- 1 runner docker   8862 Dec 23 20:23 Microsoft.CertificateRegistration.json
+-rw-r--r-- 1 runner docker  13071 Dec 23 20:23 Microsoft.DomainRegistration.json
+-rw-r--r-- 1 runner docker    934 Dec 23 20:23 Microsoft.ManagementPartner.json
+-rw-r--r-- 1 runner docker 253188 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker   7419 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker  39804 Dec 23 20:23 Microsoft.ServiceFabric.json
+
+./azure-resource-manager-schemas/schemas/2018-02-02:
+total 40
+-rw-r--r-- 1 runner docker 16861 Dec 23 20:23 Microsoft.Migrate.Migrate.json
+-rw-r--r-- 1 runner docker 16853 Dec 23 20:23 Microsoft.Migrate.json
+
+./azure-resource-manager-schemas/schemas/2018-02-14:
+total 32
+-rw-r--r-- 1 runner docker 31031 Dec 23 20:23 Microsoft.KeyVault.json
+
+./azure-resource-manager-schemas/schemas/2018-02-14-preview:
+total 28
+-rw-r--r-- 1 runner docker 25859 Dec 23 20:23 Microsoft.KeyVault.json
+
+./azure-resource-manager-schemas/schemas/2018-02-16-preview:
+total 4
+-rw-r--r-- 1 runner docker 2880 Dec 23 20:23 Microsoft.WindowsIoT.json
+
+./azure-resource-manager-schemas/schemas/2018-03-01:
+total 128
+-rw-r--r-- 1 runner docker 34632 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker  1310 Dec 23 20:23 Microsoft.Addons.json
+-rw-r--r-- 1 runner docker 11846 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker 54034 Dec 23 20:23 Microsoft.BatchAI.json
+-rw-r--r-- 1 runner docker 18663 Dec 23 20:23 Microsoft.Cache.json
+
+./azure-resource-manager-schemas/schemas/2018-03-01-preview:
+total 64
+-rw-r--r-- 1 runner docker 19388 Dec 23 20:23 Microsoft.MachineLearningServices.json
+-rw-r--r-- 1 runner docker  4659 Dec 23 20:23 Microsoft.Management.json
+-rw-r--r-- 1 runner docker  4757 Dec 23 20:23 Microsoft.SignalRService.json
+-rw-r--r-- 1 runner docker 27388 Dec 23 20:23 Microsoft.Storage.json
+
+./azure-resource-manager-schemas/schemas/2018-01-01:
+total 456
+-rw-r--r-- 1 runner docker 197772 Dec 23 20:23 Microsoft.ApiManagement.json
+-rw-r--r-- 1 runner docker  15085 Dec 23 20:23 Microsoft.DataBox.json
+-rw-r--r-- 1 runner docker   8886 Dec 23 20:23 Microsoft.EventGrid.json
+-rw-r--r-- 1 runner docker 236978 Dec 23 20:23 Microsoft.Network.json
+
+./azure-resource-manager-schemas/schemas/2018-01-10:
+total 176
+-rw-r--r-- 1 runner docker 85962 Dec 23 20:23 Microsoft.RecoveryServices.SiteRecovery.json
+-rw-r--r-- 1 runner docker 93763 Dec 23 20:23 Microsoft.RecoveryServices.json
+
+./azure-resource-manager-schemas/schemas/2018-01-15:
+total 12
+-rw-r--r-- 1 runner docker 8554 Dec 23 20:23 Microsoft.Automation.json
+
+./azure-resource-manager-schemas/schemas/2018-01-20-preview:
+total 8
+-rw-r--r-- 1 runner docker 4483 Dec 23 20:23 Microsoft.GuestConfiguration.json
+
+./azure-resource-manager-schemas/schemas/2018-01-22:
+total 52
+-rw-r--r-- 1 runner docker 10398 Dec 23 20:23 Microsoft.Devices.Provisioning.json
+-rw-r--r-- 1 runner docker 38321 Dec 23 20:23 Microsoft.Devices.json
+
+./azure-resource-manager-schemas/schemas/2018-01-31:
+total 12
+-rw-r--r-- 1 runner docker 10255 Dec 23 20:23 Microsoft.Consumption.json
+
+./azure-resource-manager-schemas/schemas/2018-02-01-preview:
+total 48
+-rw-r--r-- 1 runner docker 19286 Dec 23 20:23 Microsoft.ContainerInstance.json
+-rw-r--r-- 1 runner docker 15838 Dec 23 20:23 Microsoft.ContainerRegistry.json
+-rw-r--r-- 1 runner docker  9524 Dec 23 20:23 Microsoft.VirtualMachineImages.json
+
+./azure-resource-manager-schemas/schemas/2017-10-01:
+total 332
+-rw-r--r-- 1 runner docker  18143 Dec 23 20:23 Microsoft.Cache.json
+-rw-r--r-- 1 runner docker  18773 Dec 23 20:23 Microsoft.ContainerRegistry.json
+-rw-r--r-- 1 runner docker   3212 Dec 23 20:23 Microsoft.Insights.Application.json
+-rw-r--r-- 1 runner docker 262178 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker   4946 Dec 23 20:23 Microsoft.PowerBIDedicated.json
+-rw-r--r-- 1 runner docker  17224 Dec 23 20:23 Microsoft.Storage.json
+
+./azure-resource-manager-schemas/schemas/2017-10-01-preview:
+total 60
+-rw-r--r-- 1 runner docker  2323 Dec 23 20:23 Microsoft.Authorization.Authz.json
+-rw-r--r-- 1 runner docker 17557 Dec 23 20:23 Microsoft.ContainerInstance.json
+-rw-r--r-- 1 runner docker 36734 Dec 23 20:23 Microsoft.Sql.json
+
+./azure-resource-manager-schemas/schemas/2017-10-12:
+total 28
+-rw-r--r-- 1 runner docker 28303 Dec 23 20:23 Microsoft.Cdn.json
+
+./azure-resource-manager-schemas/schemas/2017-11-01:
+total 232
+-rw-r--r-- 1 runner docker 236233 Dec 23 20:23 Microsoft.Network.json
+
+./azure-resource-manager-schemas/schemas/2017-11-01-preview:
+total 8
+-rw-r--r-- 1 runner docker 2840 Dec 23 20:23 Microsoft.Management.json
+-rw-r--r-- 1 runner docker 2067 Dec 23 20:23 Microsoft.Subscription.json
+
+./azure-resource-manager-schemas/schemas/2017-11-03-preview:
+total 8
+-rw-r--r-- 1 runner docker 7595 Dec 23 20:23 Microsoft.HanaOnAzure.json
+
+./azure-resource-manager-schemas/schemas/2017-11-11-preview:
+total 24
+-rw-r--r-- 1 runner docker 24152 Dec 23 20:23 Microsoft.Blueprint.json
+
+./azure-resource-manager-schemas/schemas/2017-11-15:
+total 36
+-rw-r--r-- 1 runner docker 10400 Dec 23 20:23 Microsoft.Devices.Provisioning.json
+-rw-r--r-- 1 runner docker 24247 Dec 23 20:23 Microsoft.TimeSeriesInsights.json
+
+./azure-resource-manager-schemas/schemas/2017-11-15-preview:
+total 28
+-rw-r--r-- 1 runner docker 27076 Dec 23 20:23 Microsoft.DataMigration.json
+
+./azure-resource-manager-schemas/schemas/2017-11-15-privatepreview:
+total 76
+-rw-r--r-- 1 runner docker 74697 Dec 23 20:23 Microsoft.DataMigration.json
+
+./azure-resource-manager-schemas/schemas/2017-12-01:
+total 320
+-rw-r--r-- 1 runner docker  43756 Dec 23 20:23 Microsoft.BotService.json
+-rw-r--r-- 1 runner docker  59873 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 144332 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker  33221 Dec 23 20:23 Microsoft.DBforMySQL.json
+-rw-r--r-- 1 runner docker  33354 Dec 23 20:23 Microsoft.DBforPostgreSQL.json
+
+./azure-resource-manager-schemas/schemas/2017-12-01-preview:
+total 84
+-rw-r--r-- 1 runner docker 19183 Dec 23 20:23 Microsoft.ContainerInstance.json
+-rw-r--r-- 1 runner docker 31196 Dec 23 20:23 Microsoft.DBforMySQL.json
+-rw-r--r-- 1 runner docker 31380 Dec 23 20:23 Microsoft.DBforPostgreSQL.json
+
+./azure-resource-manager-schemas/schemas/2017-12-30-preview:
+total 8
+-rw-r--r-- 1 runner docker 6986 Dec 23 20:23 Microsoft.Consumption.json
+
+./azure-resource-manager-schemas/schemas/2018-01-01-preview:
+total 148
+-rw-r--r-- 1 runner docker  6417 Dec 23 20:23 Microsoft.Authorization.Authz.json
+-rw-r--r-- 1 runner docker 48332 Dec 23 20:23 Microsoft.EventHub.json
+-rw-r--r-- 1 runner docker  4659 Dec 23 20:23 Microsoft.Management.json
+-rw-r--r-- 1 runner docker 13735 Dec 23 20:23 Microsoft.Relay.json
+-rw-r--r-- 1 runner docker 66468 Dec 23 20:23 Microsoft.ServiceBus.json
+
+./azure-resource-manager-schemas/schemas/2017-08-01:
+total 232
+-rw-r--r-- 1 runner docker   9576 Dec 23 20:23 Microsoft.AnalysisServices.json
+-rw-r--r-- 1 runner docker 222999 Dec 23 20:23 Microsoft.Network.json
+
+./azure-resource-manager-schemas/schemas/2017-08-01-preview:
+total 88
+-rw-r--r-- 1 runner docker 16941 Dec 23 20:23 Microsoft.ContainerInstance.json
+-rw-r--r-- 1 runner docker  1930 Dec 23 20:23 Microsoft.Genomics.json
+-rw-r--r-- 1 runner docker 18637 Dec 23 20:23 Microsoft.MachineLearningCompute.json
+-rw-r--r-- 1 runner docker 43949 Dec 23 20:23 Microsoft.Security.json
+
+./azure-resource-manager-schemas/schemas/2017-08-15:
+total 20
+-rw-r--r-- 1 runner docker 18197 Dec 23 20:23 Microsoft.NetApp.json
+
+./azure-resource-manager-schemas/schemas/2017-08-21-preview:
+total 12
+-rw-r--r-- 1 runner docker 9807 Dec 23 20:23 Microsoft.Devices.Provisioning.json
+
+./azure-resource-manager-schemas/schemas/2017-08-31:
+total 20
+-rw-r--r-- 1 runner docker 17195 Dec 23 20:23 Microsoft.ContainerService.json
+
+./azure-resource-manager-schemas/schemas/2017-09-01:
+total 340
+-rw-r--r-- 1 runner docker   4925 Dec 23 20:23 Microsoft.Authorization.json
+-rw-r--r-- 1 runner docker  56714 Dec 23 20:23 Microsoft.Batch.json
+-rw-r--r-- 1 runner docker 263096 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  13596 Dec 23 20:23 Microsoft.Solutions.resourcesolutions.json
+
+./azure-resource-manager-schemas/schemas/2017-09-01-preview:
+total 432
+-rw-r--r-- 1 runner docker  47004 Dec 23 20:23 Microsoft.BatchAI.json
+-rw-r--r-- 1 runner docker 393095 Dec 23 20:23 Microsoft.DataFactory.json
+
+./azure-resource-manager-schemas/schemas/2017-09-07-privatepreview:
+total 8
+-rw-r--r-- 1 runner docker 4314 Dec 23 20:23 Microsoft.Kusto.json
+
+./azure-resource-manager-schemas/schemas/2017-09-15-preview:
+total 12
+-rw-r--r-- 1 runner docker 8915 Dec 23 20:23 Microsoft.EventGrid.json
+
+./azure-resource-manager-schemas/schemas/2017-06-01:
+total 304
+-rw-r--r-- 1 runner docker  13503 Dec 23 20:23 Microsoft.AAD.json
+-rw-r--r-- 1 runner docker   5002 Dec 23 20:23 Microsoft.AzureStack.json
+-rw-r--r-- 1 runner docker 213252 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  48320 Dec 23 20:23 Microsoft.StorSimple.8000.json
+-rw-r--r-- 1 runner docker  17195 Dec 23 20:23 Microsoft.Storage.json
+
+./azure-resource-manager-schemas/schemas/2017-06-05-preview:
+total 20
+-rw-r--r-- 1 runner docker 19803 Dec 23 20:23 Microsoft.StorageSync.json
+
+./azure-resource-manager-schemas/schemas/2017-06-15-preview:
+total 8
+-rw-r--r-- 1 runner docker 7552 Dec 23 20:23 Microsoft.EventGrid.json
+
+./azure-resource-manager-schemas/schemas/2017-07-01:
+total 100
+-rw-r--r-- 1 runner docker 31566 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker 38504 Dec 23 20:23 Microsoft.Devices.json
+-rw-r--r-- 1 runner docker  4865 Dec 23 20:23 Microsoft.Logic.json
+-rw-r--r-- 1 runner docker  6655 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+-rw-r--r-- 1 runner docker 10973 Dec 23 20:23 Microsoft.RecoveryServices.json
+
+./azure-resource-manager-schemas/schemas/2017-07-01-preview:
+total 68
+-rw-r--r-- 1 runner docker 66842 Dec 23 20:23 Microsoft.ServiceFabric.json
+
+./azure-resource-manager-schemas/schemas/2017-07-14:
+total 8
+-rw-r--r-- 1 runner docker 6205 Dec 23 20:23 Microsoft.AnalysisServices.json
+
+./azure-resource-manager-schemas/schemas/2017-03-01:
+total 244
+-rw-r--r-- 1 runner docker 194517 Dec 23 20:23 Microsoft.ApiManagement.json
+-rw-r--r-- 1 runner docker   4566 Dec 23 20:23 Microsoft.ContainerRegistry.json
+-rw-r--r-- 1 runner docker  41342 Dec 23 20:23 Microsoft.Network.json
+
+./azure-resource-manager-schemas/schemas/2017-03-01-preview:
+total 156
+-rw-r--r-- 1 runner docker 111059 Dec 23 20:23 Microsoft.Sql.json
+-rw-r--r-- 1 runner docker  34149 Dec 23 20:23 Microsoft.SqlVirtualMachine.json
+-rw-r--r-- 1 runner docker   7094 Dec 23 20:23 Microsoft.Insights.json
+
+./azure-resource-manager-schemas/schemas/2017-03-30:
+total 200
+-rw-r--r-- 1 runner docker  59873 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 139960 Dec 23 20:23 Microsoft.Compute.json
+
+./azure-resource-manager-schemas/schemas/2017-03-31:
+total 4
+-rw-r--r-- 1 runner docker 1679 Dec 23 20:23 Microsoft.Advisor.json
+
+./azure-resource-manager-schemas/schemas/2017-04-01:
+total 168
+-rw-r--r-- 1 runner docker  5504 Dec 23 20:23 Microsoft.Aadiam.json
+-rw-r--r-- 1 runner docker  6266 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker 30783 Dec 23 20:23 Microsoft.EventHub.json
+-rw-r--r-- 1 runner docker 17111 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker 26975 Dec 23 20:23 Microsoft.NotificationHubs.json
+-rw-r--r-- 1 runner docker 18025 Dec 23 20:23 Microsoft.Relay.json
+-rw-r--r-- 1 runner docker 52544 Dec 23 20:23 Microsoft.ServiceBus.json
+
+./azure-resource-manager-schemas/schemas/2017-04-01-preview:
+total 116
+-rw-r--r-- 1 runner docker   5520 Dec 23 20:23 Microsoft.Aadiam.json
+-rw-r--r-- 1 runner docker 109081 Dec 23 20:23 Microsoft.StreamAnalytics.json
+
+./azure-resource-manager-schemas/schemas/2017-04-02:
+total 20
+-rw-r--r-- 1 runner docker 18214 Dec 23 20:23 Microsoft.Cdn.json
+
+./azure-resource-manager-schemas/schemas/2017-04-18:
+total 24
+-rw-r--r-- 1 runner docker 22104 Dec 23 20:23 Microsoft.CognitiveServices.json
+
+./azure-resource-manager-schemas/schemas/2017-04-19:
+total 8
+-rw-r--r-- 1 runner docker 5268 Dec 23 20:23 Microsoft.Advisor.json
+
+./azure-resource-manager-schemas/schemas/2017-05-01:
+total 28
+-rw-r--r-- 1 runner docker  9206 Dec 23 20:23 Microsoft.Batch.json
+-rw-r--r-- 1 runner docker 13720 Dec 23 20:23 Microsoft.Network.json
+
+./azure-resource-manager-schemas/schemas/2017-05-01-preview:
+total 28
+-rw-r--r-- 1 runner docker 11047 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker 14217 Dec 23 20:23 Microsoft.MachineLearningExperimentation.json
+
+./azure-resource-manager-schemas/schemas/2017-05-10:
+total 8
+-rw-r--r-- 1 runner docker 6277 Dec 23 20:23 Microsoft.Resources.json
+
+./azure-resource-manager-schemas/schemas/2017-05-15:
+total 4
+-rw-r--r-- 1 runner docker 1310 Dec 23 20:23 Microsoft.Addons.json
+
+./azure-resource-manager-schemas/schemas/2017-05-15-preview:
+total 32
+-rw-r--r-- 1 runner docker 32404 Dec 23 20:23 Microsoft.Automation.json
+
+./azure-resource-manager-schemas/schemas/2017-06-01-preview:
+total 44
+-rw-r--r-- 1 runner docker 17620 Dec 23 20:23 Microsoft.MachineLearningCompute.json
+-rw-r--r-- 1 runner docker  7870 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker 15283 Dec 23 20:23 Microsoft.ContainerRegistry.json
+
+./azure-resource-manager-schemas/schemas/2016-11-01:
+total 104
+-rw-r--r-- 1 runner docker 24689 Dec 23 20:23 Microsoft.DataLakeAnalytics.json
+-rw-r--r-- 1 runner docker 20844 Dec 23 20:23 Microsoft.DataLakeStore.json
+-rw-r--r-- 1 runner docker 19136 Dec 23 20:23 Microsoft.ImportExport.json
+-rw-r--r-- 1 runner docker 29964 Dec 23 20:23 Microsoft.Network.json
+
+./azure-resource-manager-schemas/schemas/2016-12-01:
+total 224
+-rw-r--r-- 1 runner docker   6113 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker  29964 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  30687 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+-rw-r--r-- 1 runner docker 134818 Dec 23 20:23 Microsoft.RecoveryServices.json
+-rw-r--r-- 1 runner docker   9444 Dec 23 20:23 Microsoft.Storage.json
+-rw-r--r-- 1 runner docker   6900 Dec 23 20:23 policyDefinition.json
+
+./azure-resource-manager-schemas/schemas/2017-01-01:
+total 60
+-rw-r--r-- 1 runner docker  8483 Dec 23 20:23 Microsoft.AAD.json
+-rw-r--r-- 1 runner docker  9194 Dec 23 20:23 Microsoft.Batch.json
+-rw-r--r-- 1 runner docker 33041 Dec 23 20:23 Microsoft.MachineLearning.json
+
+./azure-resource-manager-schemas/schemas/2017-01-01-preview:
+total 4
+-rw-r--r-- 1 runner docker 2378 Dec 23 20:23 Microsoft.Maps.json
+
+./azure-resource-manager-schemas/schemas/2017-01-19:
+total 32
+-rw-r--r-- 1 runner docker 32646 Dec 23 20:23 Microsoft.Devices.json
+
+./azure-resource-manager-schemas/schemas/2017-01-31:
+total 16
+-rw-r--r-- 1 runner docker 15392 Dec 23 20:23 Microsoft.ContainerService.json
+
+./azure-resource-manager-schemas/schemas/2017-02-01:
+total 20
+-rw-r--r-- 1 runner docker 17474 Dec 23 20:23 Microsoft.Cache.json
+
+./azure-resource-manager-schemas/schemas/2017-02-28-preview:
+total 24
+-rw-r--r-- 1 runner docker 21235 Dec 23 20:23 Microsoft.TimeSeriesInsights.json
+
+./azure-resource-manager-schemas/schemas/2016-09-01:
+total 112
+-rw-r--r-- 1 runner docker  6266 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker  7320 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker 29964 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  6081 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker 24403 Dec 23 20:23 Microsoft.ServiceFabric.json
+-rw-r--r-- 1 runner docker 31871 Dec 23 20:23 Microsoft.Web.json
+
+./azure-resource-manager-schemas/schemas/2016-09-01-preview:
+total 16
+-rw-r--r-- 1 runner docker 12666 Dec 23 20:23 Microsoft.Solutions.resourcesolutions.json
+
+./azure-resource-manager-schemas/schemas/2016-09-30:
+total 16
+-rw-r--r-- 1 runner docker 15392 Dec 23 20:23 Microsoft.ContainerService.json
+
+./azure-resource-manager-schemas/schemas/2016-10-01:
+total 108
+-rw-r--r-- 1 runner docker 22645 Dec 23 20:23 Microsoft.KeyVault.json
+-rw-r--r-- 1 runner docker  4865 Dec 23 20:23 Microsoft.Logic.json
+-rw-r--r-- 1 runner docker 29964 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker 43636 Dec 23 20:23 Microsoft.StorSimple.1200.json
+
+./azure-resource-manager-schemas/schemas/2016-10-02:
+total 20
+-rw-r--r-- 1 runner docker 17543 Dec 23 20:23 Microsoft.Cdn.json
+
+./azure-resource-manager-schemas/schemas/2016-10-10:
+total 108
+-rw-r--r-- 1 runner docker 107324 Dec 23 20:23 Microsoft.ApiManagement.json
+
+./azure-resource-manager-schemas/schemas/2016-06-01:
+total 160
+-rw-r--r-- 1 runner docker 10929 Dec 23 20:23 Microsoft.RecoveryServices.json
+-rw-r--r-- 1 runner docker  7561 Dec 23 20:23 Microsoft.RecoveryServices.legacy.json
+-rw-r--r-- 1 runner docker 22777 Dec 23 20:23 Microsoft.Web.json
+-rw-r--r-- 1 runner docker 14006 Dec 23 20:23 Microsoft.HybridData.json
+-rw-r--r-- 1 runner docker 30166 Dec 23 20:23 Microsoft.Logic.json
+-rw-r--r-- 1 runner docker 29964 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker 36561 Dec 23 20:23 Microsoft.RecoveryServices.Backup.json
+
+./azure-resource-manager-schemas/schemas/2016-06-27-preview:
+total 4
+-rw-r--r-- 1 runner docker 3487 Dec 23 20:23 Microsoft.ContainerRegistry.json
+
+./azure-resource-manager-schemas/schemas/2016-07-01:
+total 60
+-rw-r--r-- 1 runner docker 29964 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker 18283 Dec 23 20:23 Microsoft.Relay.json
+-rw-r--r-- 1 runner docker  4521 Dec 23 20:23 Microsoft.Resources.json
+
+./azure-resource-manager-schemas/schemas/2016-07-07:
+total 92
+-rw-r--r-- 1 runner docker 91039 Dec 23 20:23 Microsoft.ApiManagement.json
+
+./azure-resource-manager-schemas/schemas/2016-07-12-preview:
+total 4
+-rw-r--r-- 1 runner docker 1771 Dec 23 20:23 Microsoft.Advisor.json
+
+./azure-resource-manager-schemas/schemas/2016-08-01:
+total 244
+-rw-r--r-- 1 runner docker  29964 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker 213304 Dec 23 20:23 Microsoft.Web.json
+
+./azure-resource-manager-schemas/schemas/2016-08-10:
+total 68
+-rw-r--r-- 1 runner docker 67140 Dec 23 20:23 Microsoft.RecoveryServices.SiteRecovery.json
+
+./azure-resource-manager-schemas/schemas/2016-03-30:
+total 328
+-rw-r--r-- 1 runner docker  53090 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker  93482 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker  12639 Dec 23 20:23 Microsoft.ContainerService.json
+-rw-r--r-- 1 runner docker   4705 Dec 23 20:23 Microsoft.DataCatalog.json
+-rw-r--r-- 1 runner docker 161798 Dec 23 20:23 Microsoft.Network.json
+
+./azure-resource-manager-schemas/schemas/2016-03-31:
+total 80
+-rw-r--r-- 1 runner docker 81584 Dec 23 20:23 Microsoft.DocumentDB.json
+
+./azure-resource-manager-schemas/schemas/2016-04-01:
+total 64
+-rw-r--r-- 1 runner docker  4140 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker 14266 Dec 23 20:23 Microsoft.Cache.json
+-rw-r--r-- 1 runner docker  2670 Dec 23 20:23 Microsoft.MachineLearning.json
+-rw-r--r-- 1 runner docker 35902 Dec 23 20:23 Microsoft.Network.json
+
+./azure-resource-manager-schemas/schemas/2016-04-02:
+total 20
+-rw-r--r-- 1 runner docker 16618 Dec 23 20:23 Microsoft.Cdn.json
+
+./azure-resource-manager-schemas/schemas/2016-04-30-preview:
+total 176
+-rw-r--r-- 1 runner docker  53386 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker 122396 Dec 23 20:23 Microsoft.Compute.json
+
+./azure-resource-manager-schemas/schemas/2016-05-01:
+total 12
+-rw-r--r-- 1 runner docker 8659 Dec 23 20:23 Microsoft.Storage.json
+
+./azure-resource-manager-schemas/schemas/2016-05-01-preview:
+total 36
+-rw-r--r-- 1 runner docker 33879 Dec 23 20:23 Microsoft.MachineLearning.json
+
+./azure-resource-manager-schemas/schemas/2016-05-15:
+total 120
+-rw-r--r-- 1 runner docker 121254 Dec 23 20:23 Microsoft.DevTestLab.json
+
+./azure-resource-manager-schemas/schemas/2016-05-16:
+total 8
+-rw-r--r-- 1 runner docker 6006 Dec 23 20:23 Microsoft.AnalysisServices.json
+
+./azure-resource-manager-schemas/schemas/2016-01-01:
+total 48
+-rw-r--r-- 1 runner docker  2099 Dec 23 20:23 Microsoft.AzureStack.json
+-rw-r--r-- 1 runner docker 28984 Dec 23 20:23 Microsoft.Scheduler.json
+-rw-r--r-- 1 runner docker  8505 Dec 23 20:23 Microsoft.Storage.json
+
+./azure-resource-manager-schemas/schemas/2016-01-29:
+total 4
+-rw-r--r-- 1 runner docker 2558 Dec 23 20:23 Microsoft.PowerBI.json
+
+./azure-resource-manager-schemas/schemas/2016-02-01:
+total 8
+-rw-r--r-- 1 runner docker 4521 Dec 23 20:23 Microsoft.Resources.json
+
+./azure-resource-manager-schemas/schemas/2016-02-01-preview:
+total 8
+-rw-r--r-- 1 runner docker 4948 Dec 23 20:23 Microsoft.CognitiveServices.json
+
+./azure-resource-manager-schemas/schemas/2016-02-03:
+total 20
+-rw-r--r-- 1 runner docker 19260 Dec 23 20:23 Microsoft.Devices.json
+
+./azure-resource-manager-schemas/schemas/2016-03-01:
+total 188
+-rw-r--r-- 1 runner docker 21814 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker 28635 Dec 23 20:23 Microsoft.NotificationHubs.json
+-rw-r--r-- 1 runner docker 31152 Dec 23 20:23 Microsoft.Scheduler.json
+-rw-r--r-- 1 runner docker 16919 Dec 23 20:23 Microsoft.ServiceFabric.json
+-rw-r--r-- 1 runner docker 75420 Dec 23 20:23 Microsoft.StreamAnalytics.json
+-rw-r--r-- 1 runner docker  7409 Dec 23 20:23 Microsoft.Web.json
+
+./azure-resource-manager-schemas/schemas/2016-03-19:
+total 80
+-rw-r--r-- 1 runner docker 81584 Dec 23 20:23 Microsoft.DocumentDB.json
+
+./azure-resource-manager-schemas/schemas/2015-10-01:
+total 4
+-rw-r--r-- 1 runner docker 2620 Dec 23 20:23 Microsoft.Media.json
+
+./azure-resource-manager-schemas/schemas/2015-10-01-preview:
+total 52
+-rw-r--r-- 1 runner docker  8719 Dec 23 20:23 Microsoft.DataLakeStore.json
+-rw-r--r-- 1 runner docker  3935 Dec 23 20:23 policyDefinition.json
+-rw-r--r-- 1 runner docker  4164 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker 24636 Dec 23 20:23 Microsoft.DataLakeAnalytics.json
+
+./azure-resource-manager-schemas/schemas/2015-10-31:
+total 84
+-rw-r--r-- 1 runner docker 82419 Dec 23 20:23 Microsoft.Automation.json
+
+./azure-resource-manager-schemas/schemas/2015-11-01:
+total 16
+-rw-r--r-- 1 runner docker 11092 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  3912 Dec 23 20:23 Microsoft.Resources.json
+
+./azure-resource-manager-schemas/schemas/2015-11-01-preview:
+total 20
+-rw-r--r-- 1 runner docker 11491 Dec 23 20:23 Microsoft.OperationalInsights.json
+-rw-r--r-- 1 runner docker  7127 Dec 23 20:23 Microsoft.OperationsManagement.json
+
+./azure-resource-manager-schemas/schemas/2015-11-06:
+total 80
+-rw-r--r-- 1 runner docker 81584 Dec 23 20:23 Microsoft.DocumentDB.json
+
+./azure-resource-manager-schemas/schemas/2015-12-01:
+total 8
+-rw-r--r-- 1 runner docker 7550 Dec 23 20:23 Microsoft.Batch.json
+
+./azure-resource-manager-schemas/schemas/2015-08-01:
+total 448
+-rw-r--r-- 1 runner docker   6813 Dec 23 20:23 Microsoft.Cache.json
+-rw-r--r-- 1 runner docker   8862 Dec 23 20:23 Microsoft.CertificateRegistration.json
+-rw-r--r-- 1 runner docker  70361 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker  18762 Dec 23 20:23 Microsoft.EventHub.json
+-rw-r--r-- 1 runner docker  37596 Dec 23 20:23 Microsoft.ServiceBus.json
+-rw-r--r-- 1 runner docker   1112 Dec 23 20:23 Microsoft.Storage.json
+-rw-r--r-- 1 runner docker 296294 Dec 23 20:23 Microsoft.Web.json
+
+./azure-resource-manager-schemas/schemas/2015-08-19:
+total 8
+-rw-r--r-- 1 runner docker 7267 Dec 23 20:23 Microsoft.Search.json
+
+./azure-resource-manager-schemas/schemas/2015-08-31-preview:
+total 4
+-rw-r--r-- 1 runner docker 1493 Dec 23 20:23 Microsoft.ManagedIdentity.json
+
+./azure-resource-manager-schemas/schemas/2015-06-01:
+total 40
+-rw-r--r-- 1 runner docker 16999 Dec 23 20:23 Microsoft.Cdn.json
+-rw-r--r-- 1 runner docker  1002 Dec 23 20:23 Microsoft.KeyVault.Secrets.json
+-rw-r--r-- 1 runner docker 11124 Dec 23 20:23 Microsoft.KeyVault.json
+-rw-r--r-- 1 runner docker  3169 Dec 23 20:23 Microsoft.MarketplaceOrdering.json
+
+./azure-resource-manager-schemas/schemas/2015-06-01-preview:
+total 24
+-rw-r--r-- 1 runner docker 20704 Dec 23 20:23 Microsoft.Security.json
+
+./azure-resource-manager-schemas/schemas/2015-06-15:
+total 304
+-rw-r--r-- 1 runner docker  53090 Dec 23 20:23 Microsoft.Compute.Extensions.json
+-rw-r--r-- 1 runner docker  90743 Dec 23 20:23 Microsoft.Compute.json
+-rw-r--r-- 1 runner docker 157141 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker   3492 Dec 23 20:23 Microsoft.Storage.json
+
+./azure-resource-manager-schemas/schemas/2015-07-01:
+total 16
+-rw-r--r-- 1 runner docker 5239 Dec 23 20:23 Microsoft.Authorization.Authz.json
+-rw-r--r-- 1 runner docker 7121 Dec 23 20:23 Microsoft.Insights.json
+
+./azure-resource-manager-schemas/schemas/2015-08-01-preview:
+total 44
+-rw-r--r-- 1 runner docker 34794 Dec 23 20:23 Microsoft.Web.json
+-rw-r--r-- 1 runner docker  7448 Dec 23 20:23 Microsoft.Portal.json
+
+./azure-resource-manager-schemas/schemas/2015-04-08:
+total 80
+-rw-r--r-- 1 runner docker 81584 Dec 23 20:23 Microsoft.DocumentDB.json
+
+./azure-resource-manager-schemas/schemas/2015-05-01:
+total 56
+-rw-r--r-- 1 runner docker 56786 Dec 23 20:23 Microsoft.Insights.Application.json
+
+./azure-resource-manager-schemas/schemas/2015-05-01-preview:
+total 188
+-rw-r--r-- 1 runner docker 129436 Dec 23 20:23 Microsoft.Network.json
+-rw-r--r-- 1 runner docker  54358 Dec 23 20:23 Microsoft.Sql.json
+-rw-r--r-- 1 runner docker   2572 Dec 23 20:23 Microsoft.Storage.json
+
+./azure-resource-manager-schemas/schemas/2015-05-04-preview:
+total 32
+-rw-r--r-- 1 runner docker 31266 Dec 23 20:23 Microsoft.Network.json
+
+./azure-resource-manager-schemas/schemas/2015-05-21-preview:
+total 52
+-rw-r--r-- 1 runner docker 52754 Dec 23 20:23 Microsoft.DevTestLab.json
+
+./azure-resource-manager-schemas/schemas/2014-09-01:
+total 48
+-rw-r--r-- 1 runner docker 18762 Dec 23 20:23 Microsoft.EventHub.json
+-rw-r--r-- 1 runner docker 24981 Dec 23 20:23 Microsoft.NotificationHubs.json
+
+./azure-resource-manager-schemas/schemas/2014-10-01-preview:
+total 4
+-rw-r--r-- 1 runner docker 2374 Dec 23 20:23 Microsoft.Authorization.json
+
+./azure-resource-manager-schemas/schemas/2015-01-01:
+total 508
+-rw-r--r-- 1 runner docker   3988 Dec 23 20:23 Microsoft.Authorization.Resources.json
+-rw-r--r-- 1 runner docker   6585 Dec 23 20:23 Microsoft.Resources.json
+-rw-r--r-- 1 runner docker   3874 Dec 23 20:23 Sendgrid.Email.json
+-rw-r--r-- 1 runner docker   1679 Dec 23 20:23 deploymentParameters.json
+-rw-r--r-- 1 runner docker 498854 Dec 23 20:23 deploymentTemplate.json
+
+./azure-resource-manager-schemas/schemas/2015-01-14-preview:
+total 24
+-rw-r--r-- 1 runner docker 23014 Dec 23 20:23 Microsoft.Intune.json
+
+./azure-resource-manager-schemas/schemas/2015-02-01-preview:
+total 8
+-rw-r--r-- 1 runner docker 5041 Dec 23 20:23 Microsoft.Logic.json
+
+./azure-resource-manager-schemas/schemas/2015-02-28:
+total 4
+-rw-r--r-- 1 runner docker 3959 Dec 23 20:23 Microsoft.Search.json
+
+./azure-resource-manager-schemas/schemas/2015-03-01-preview:
+total 52
+-rw-r--r-- 1 runner docker 49220 Dec 23 20:23 Microsoft.HDInsight.json
+
+./azure-resource-manager-schemas/schemas/2015-03-20:
+total 8
+-rw-r--r-- 1 runner docker 6991 Dec 23 20:23 Microsoft.OperationalInsights.json
+
+./azure-resource-manager-schemas/schemas/2015-04-01:
+total 128
+-rw-r--r-- 1 runner docker 28715 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker 81584 Dec 23 20:23 Microsoft.DocumentDB.json
+-rw-r--r-- 1 runner docker 13071 Dec 23 20:23 Microsoft.DomainRegistration.json
+
+./azure-resource-manager-schemas/schemas/2014-04-01:
+total 160
+-rw-r--r-- 1 runner docker 45517 Dec 23 20:23 Microsoft.Insights.json
+-rw-r--r-- 1 runner docker 81975 Dec 23 20:23 Microsoft.Sql.json
+-rw-r--r-- 1 runner docker 25051 Dec 23 20:23 Microsoft.Insights.ManuallyAuthored.json
+
+./azure-resource-manager-schemas/schemas/2014-08-01-preview:
+total 32
+-rw-r--r-- 1 runner docker 29016 Dec 23 20:23 Microsoft.Scheduler.json
+
+./azure-resource-manager-schemas/schemas/2014-04-01-preview:
+total 484
+-rw-r--r-- 1 runner docker   1382 Dec 23 20:23 deploymentParameters.json
+-rw-r--r-- 1 runner docker 468568 Dec 23 20:23 deploymentTemplate.json
+-rw-r--r-- 1 runner docker   4756 Dec 23 20:23 Microsoft.Cache.json
+-rw-r--r-- 1 runner docker  10890 Dec 23 20:23 Microsoft.VisualStudio.json
+
+./azure-resource-manager-schemas/generator/processors:
+total 132
+-rw-r--r-- 1 runner docker  2093 Dec 23 20:23 Microsoft.Authorization.ts
+-rw-r--r-- 1 runner docker 82894 Dec 23 20:23 Microsoft.Compute.ts
+-rw-r--r-- 1 runner docker  1397 Dec 23 20:23 Microsoft.CostManagement.ts
+-rw-r--r-- 1 runner docker   653 Dec 23 20:23 Microsoft.Insights.Application.ts
+-rw-r--r-- 1 runner docker  4665 Dec 23 20:23 Microsoft.Kusto.ts
+-rw-r--r-- 1 runner docker   361 Dec 23 20:23 Microsoft.MachineLearning.ts
+-rw-r--r-- 1 runner docker   373 Dec 23 20:23 Microsoft.MachineLearningServices.ts
+-rw-r--r-- 1 runner docker   362 Dec 23 20:23 Microsoft.ProviderHub.ts
+-rw-r--r-- 1 runner docker  2835 Dec 23 20:23 Microsoft.Resources.ts
+-rw-r--r-- 1 runner docker   366 Dec 23 20:23 Microsoft.SecurityInsights.ts
+-rw-r--r-- 1 runner docker   905 Dec 23 20:23 Microsoft.Storage.ts
+-rw-r--r-- 1 runner docker   302 Dec 23 20:23 helpers.ts
+
+./azure-resource-manager-schemas/generator/resources:
+total 4
+-rw-r--r-- 1 runner docker 492 Dec 23 20:23 autogeneratedResources_template.json
+
+./azure-resource-manager-schemas/schemas/0.0.1-preview:
+total 40
+-rw-r--r-- 1 runner docker 14844 Dec 23 20:23 CreateUIDefinition.CommonControl.json
+-rw-r--r-- 1 runner docker  2603 Dec 23 20:23 CreateUIDefinition.MultiVm.json
+-rw-r--r-- 1 runner docker 16506 Dec 23 20:23 CreateUIDefinition.ProviderControl.json
+
+./azure-resource-manager-schemas/schemas/0.1.0-preview:
+total 40
+-rw-r--r-- 1 runner docker 14833 Dec 23 20:23 CreateUIDefinition.CommonControl.json
+-rw-r--r-- 1 runner docker  2600 Dec 23 20:23 CreateUIDefinition.MultiVm.json
+-rw-r--r-- 1 runner docker 16507 Dec 23 20:23 CreateUIDefinition.ProviderControl.json
+
+./azure-resource-manager-schemas/schemas/0.1.1-preview:
+total 40
+-rw-r--r-- 1 runner docker 15183 Dec 23 20:23 CreateUIDefinition.CommonControl.json
+-rw-r--r-- 1 runner docker  2603 Dec 23 20:23 CreateUIDefinition.MultiVm.json
+-rw-r--r-- 1 runner docker 16507 Dec 23 20:23 CreateUIDefinition.ProviderControl.json
+
+./azure-resource-manager-schemas/schemas/0.1.2-preview:
+total 56
+-rw-r--r-- 1 runner docker 25435 Dec 23 20:23 CreateUIDefinition.CommonControl.json
+-rw-r--r-- 1 runner docker  5070 Dec 23 20:23 CreateUIDefinition.MultiVm.json
+-rw-r--r-- 1 runner docker 18615 Dec 23 20:23 CreateUIDefinition.ProviderControl.json
+
+./azure-resource-manager-schemas/generator/cmd:
+total 36
+-rw-r--r-- 1 runner docker  370 Dec 23 20:23 clean.ts
+-rw-r--r-- 1 runner docker 1029 Dec 23 20:23 findbasepath.ts
+-rw-r--r-- 1 runner docker 6436 Dec 23 20:23 generateall.ts
+-rw-r--r-- 1 runner docker 2431 Dec 23 20:23 generateonboardedreport.ts
+-rw-r--r-- 1 runner docker 2298 Dec 23 20:23 generatesingle.ts
+-rw-r--r-- 1 runner docker 1652 Dec 23 20:23 listbasepaths.ts
+-rw-r--r-- 1 runner docker 4871 Dec 23 20:23 listresources.ts
