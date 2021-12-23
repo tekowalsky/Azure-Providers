@@ -14,7 +14,7 @@ jobs:
           path: ./terraform-plugin-sdk
           fetch-depth: 0
           
-      - name: SetupSchemaDir
+      - name: Copy HashiCorp Files
         run: |
           if [ -d ./schemas ]; then
             if [ -d ./schemas/terraform-plugin-sdk ]; then
@@ -26,7 +26,7 @@ jobs:
             mkdir ./schemas
             mkdir ./schemas/terraform-plugin-sdk
           fi
-          ls -lr ./terraform-plugin-sdk > ./schemas/terraform-plugin-sdk.txt
+          ls -ltR ./terraform-plugin-sdk/**/* > ./schemas/terraform-plugin-sdk.files.txt
           cp -rf ./terraform-plugin-sdk ./schemas/terraform-plugin-sdk
 
       - name: Checkout My Repo
@@ -36,33 +36,32 @@ jobs:
           path: ./myrepo
           fetch-depth: 0
           
-      - name: MakeMerged
+      - name: Make My HashiCorp Schema Dir
         run: |
-          src='./schemas/terraform-plugin-sdk'
-          dest='./myrepo/schemas-terraform-plugin-sdk'
-          if [ -d "$dest" ]; then
-            echo "Found $dest"
+          cd ./myrepo
+          if [ -d ./schemas-terraform-plugin-sdk ]; then
+            echo "Found ./myrepo/schemas-terraform-plugin-sdk"
           else
-            mkdir "$dest"
+            mkdir ./schemas-terraform-plugin-sdk
           fi
-          cp -f "$src"'.txt' './myrepo'
-          for fn in "$src"/*'.json' ; do
-            cp -u "$fn" "$dest"
-          for dir in "$src"/* ; do
-            for fn in "$dir"/*'.json' ; do
-              cp -u "$fn" "$dest"
+          cp -f ../schemas/terraform-plugin-sdk.files.txt .
+          for fn in ../schemas/terraform-plugin-sdk/*.json ; do
+            cp -u $fn ./schemas-terraform-plugin-sdk
+          for dir in ../schemas/terraform-plugin-sdk/* ; do
+            for fn in $dir/*.json ; do
+              cp -u $fn ./schemas-terraform-plugin-sdk
             done
           done
-          # cp -ur ./schemas-preview ./myrepo
+          # cp -ur ./schemas-preview .
         continue-on-error: true
 
-      - name: CommitAndPush
+      - name: Commit And Push HashiCorp Schema Dir
         run: |
-          cd './myrepo'
+          cd ./myrepo
           date > ./hashi-updated.txt
           git config user.name getHashiSchemas-Workflow
           git config user.email github-actions@github.com
-          git add './hashi-updated.txt'
-          git add './schemas-terraform-plugin-sdk'
+          git add ./hashi-updated.txt
+          git add ./schemas-terraform-plugin-sdk
           git commit -m "Commit by getHashiSchemas workflow"
           git push
