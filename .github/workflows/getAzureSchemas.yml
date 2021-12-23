@@ -26,7 +26,7 @@ jobs:
           mkdir ./viewdefinition
           cd ..
           for dir in ./azure-resource-manager-schemas/schemas/20* ; do
-            if [ "$dir" == "./azure-resource-manager-schemas/schemas/*preview" ]; then
+            if [ "$dir" == "*preview" ]; then
               cp -ur "$dir"/. ./az/schemas-preview/
             else
               cp -ur "$dir"/. ./az/schemas/
