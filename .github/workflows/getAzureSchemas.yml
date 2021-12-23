@@ -25,10 +25,8 @@ jobs:
           for dir in ./azure-resource-manager-schemas/schemas/20* ; do
             if [ "$dir" -ne "*preview" ]; then
               cp -urf $dir/*.json ./schemas
-              cp -urf $dir/**/*.json ./schemas
             else
               cp -urf $dir/*.json ./schemas-preview
-              cp -urf $dir/**/*.json ./schemas-preview
             fi
           done
           ls -ltR ./azure-resource-manager-schemas/**/* > ./azure-resource-manager-schema.files.txt
