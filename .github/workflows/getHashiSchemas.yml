@@ -1,0 +1,61 @@
+name: Update Hashicorp Schema Lists
+on:
+  workflow_dispatch:
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout HashiCorp Plugin SDK Repo
+        uses: actions/checkout@v2.4.0
+        with:
+          repository: hashicorp/terraform-plugin-sdk
+          path: ./terraform-plugin-sdk
+          fetch-depth: 0
+          
+      - name: SetupSchemaDir
+        run: |
+          ls -l ./terraform-plugin-sdk
+          if [ -d ./schemas ]; then
+            if [ -d ./schemas/terraform-plugin-sdk ]; then
+              echo "Found ./schemas/terraform-plugin-sdk"
+            else
+              mkdir ./schemas/terraform-plugin-sdk
+            fi
+          else
+            mkdir ./schemas
+            mkdir ./schemas/terraform-plugin-sdk
+          fi
+          cp -rf ./terraform-plugin-sdk ./schemas/terraform-plugin-sdk
+
+      - name: Checkout My Repo
+        uses: actions/checkout@v2.4.0
+        with:
+          repository: tekowalsky/Azure-Providers
+          path: ./myrepo
+          
+      - name: MakeMerged
+        run: |
+          if [ -d ./myrepo/schemas-terraform-plugin-sdk ]; then
+            echo "Found ./myrepo/schemas-terraform-plugin-sdk"
+          else
+            mkdir ./myrepo/schemas-terraform-plugin-sdk
+          fi
+          for dir in ./schemas/terraform-plugin-sdk/* ; do
+            for fn in $dir/*.json ; do
+              cp -u $fn ./myrepo/schemas-terraform-plugin-sdk
+            done
+          done
+          cp -ur ./schemas-preview ./myrepo
+        continue-on-error
+
+      - name: CommitAndPush
+        run: |
+          cd ./myrepo
+          date > generated.txt
+          git config user.name getHashiSchemas-Workflow
+          git config user.email github-actions@github.com
+          git add ./schemas-terraform-plugin-sdk
+          git commit -m "generated"
+          git push
