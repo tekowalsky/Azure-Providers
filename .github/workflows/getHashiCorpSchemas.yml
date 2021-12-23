@@ -19,9 +19,11 @@ jobs:
       - name: Copy HashiCorp Files
         run: |
           if [ -d ./schemas ]; then
+            rm -rf ./schemas
             cd ./schemas
             if [ -d ./terraform-plugin-sdk ]; then
               echo "Found ./schemas/terraform-plugin-sdk"
+              rm -rf ./terraform-plugin-sdk
             else
               mkdir ./terraform-plugin-sdk
             fi
@@ -33,7 +35,8 @@ jobs:
           cp -rf ../terraform-plugin-sdk/. ./terraform-plugin-sdk/
           ls -ltR ../terraform-plugin-sdk/* > ./terraform-plugin-sdk.files.txt
           ls -ltR ../terraform-plugin-sdk/**/* >> ./terraform-plugin-sdk.files.txt
-          ls -ltR ../gi* >> ./terraform-plugin-sdk.files.txt
+          ls -ltR ../.git >> ./terraform-plugin-sdk.files.txt
+          ls -ltR ../.github >> ./terraform-plugin-sdk.files.txt
         continue-on-error: true
 
       - name: Checkout My Repo
@@ -59,23 +62,16 @@ jobs:
             cd ./terraform
             mkdir ./terraform-plugin-sdk
           fi
-          cp -f ../../schemas/terraform-plugin-sdk.files.txt ./
-          cp -urf ../../schemas/terraform-plugin-sdk/. ./terraform-plugin-sdk/
-          # for dir in ../schemas/terraform-plugin-sdk/* ; do
-          #  for fn in $dir/*.json ; do
-          #    cp -u $fn ./schemas-terraform-plugin-sdk
-          #  done
-          # done
-          # cp -ur ./schemas-preview .
+          cp -f ../../schemas/terraform-plugin-sdk.files.txt .
+          cp -ru ../../schemas/terraform-plugin-sdk/. ./terraform-plugin-sdk/
         continue-on-error: true
 
       - name: Commit And Push HashiCorp Schema Dir
         run: |
-          cd ./myrepo/terraform
-          date > ./hashi-updated.txt
+          cd ./myrepo
+          date > ./terraform/hashi-updated.txt
           git config user.name getHashiSchemas-Workflow
           git config user.email github-actions@github.com
-          git add ./hashi-updated.txt
-          git add ./terraform-plugin-sdk
+          git add ./terraform
           git commit -m "Commit by getHashiSchemas workflow"
           git push
