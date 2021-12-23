@@ -16,7 +16,6 @@ jobs:
           
       - name: SetupSchemaDir
         run: |
-          ls -l ./terraform-plugin-sdk
           if [ -d ./schemas ]; then
             if [ -d ./schemas/terraform-plugin-sdk ]; then
               echo "Found ./schemas/terraform-plugin-sdk"
@@ -27,6 +26,7 @@ jobs:
             mkdir ./schemas
             mkdir ./schemas/terraform-plugin-sdk
           fi
+          ls -lr ./terraform-plugin-sdk > ./schemas/terraform-plugin-sdk.txt
           cp -rf ./terraform-plugin-sdk ./schemas/terraform-plugin-sdk
 
       - name: Checkout My Repo
@@ -34,28 +34,35 @@ jobs:
         with:
           repository: tekowalsky/Azure-Providers
           path: ./myrepo
+          fetch-depth: 0
           
       - name: MakeMerged
         run: |
-          if [ -d ./myrepo/schemas-terraform-plugin-sdk ]; then
-            echo "Found ./myrepo/schemas-terraform-plugin-sdk"
+          src='./schemas/terraform-plugin-sdk'
+          dest='./myrepo/schemas-terraform-plugin-sdk'
+          if [ -d "$dest" ]; then
+            echo "Found $dest"
           else
-            mkdir ./myrepo/schemas-terraform-plugin-sdk
+            mkdir "$dest"
           fi
-          for dir in ./schemas/terraform-plugin-sdk/* ; do
-            for fn in $dir/*.json ; do
-              cp -u $fn ./myrepo/schemas-terraform-plugin-sdk
+          cp -f "$src"'.txt' './myrepo'
+          for fn in "$src"/*'.json' ; do
+            cp -u "$fn" "$dest"
+          for dir in "$src"/* ; do
+            for fn in "$dir"/*'.json' ; do
+              cp -u "$fn" "$dest"
             done
           done
-          cp -ur ./schemas-preview ./myrepo
+          # cp -ur ./schemas-preview ./myrepo
         continue-on-error: true
 
       - name: CommitAndPush
         run: |
-          cd ./myrepo
-          date > generated.txt
+          cd './myrepo'
+          date > ./hashi-updated.txt
           git config user.name getHashiSchemas-Workflow
           git config user.email github-actions@github.com
-          git add ./schemas-terraform-plugin-sdk
-          git commit -m "generated"
+          git add './hashi-updated.txt'
+          git add './schemas-terraform-plugin-sdk'
+          git commit -m "Commit by getHashiSchemas workflow"
           git push
