@@ -18,25 +18,23 @@ jobs:
           
       - name: Copy ARM Schema Files
         run: |
+          mkdir ./az
+          cd ./az
           mkdir ./schemas
           mkdir ./schemas-preview
           mkdir ./common
           mkdir ./viewdefinition
+          cd ..
           for dir in ./azure-resource-manager-schemas/schemas/20* ; do
             if [ "$dir" == "./azure-resource-manager-schemas/schemas/*preview" ]; then
-              cd ./schemas-preview
-              cp -ur $dir/*.json .
+              cp -ur "$dir"/. ./az/schemas-preview/
             else
-              cd ./schemas
-              cp -ur $dir/*.json .
+              cp -ur "$dir"/. ./az/schemas/
             fi
-            cd ..
           done
-          ls -ltR ./azure-resource-manager-schemas/**/* > ./azure-resource-manager-schema.files.txt
-          cd ./common
-          cp -ur ../azure-resource-manager-schemas/schemas/common/* .
-          cd ../viewdefinition
-          cp -ur ../azure-resource-manager-schemas/schemas/viewdefinition/* .
+          ls -ltR ./azure-resource-manager-schemas/**/* > ./az/arm-schema.files.txt
+          cp -r ./azure-resource-manager-schemas/schemas/common/. ./az/common/
+          cp -r ./azure-resource-manager-schemas/schemas/viewdefinition/* ./az/viewdefinition/
         continue-on-error: true
 
       - name: Checkout My Repo
@@ -56,11 +54,11 @@ jobs:
             mkdir ./azure
           fi
           cd ./azure
-          cp -f ../../azure-resource-manager-schema.files.txt .
-          cp -ur ../../schemas .
-          cp -ur ../../schemas-preview .
-          cp -ur ../../common .
-          cp -ur ../../viewdefinition .
+          cp -f ../../az/arm-schema.files.txt ./
+          cp -ur ../../az/schemas/. ./schemas/
+          cp -ur ../../az/schemas-preview/. ./schemas-preview/
+          cp -ur ../../az/common/. ./common/
+          cp -ur ../../az/viewdefinition/. ./viewdefinition/
 
       - name: Commit And Push ARM Schema Files
         run: |
