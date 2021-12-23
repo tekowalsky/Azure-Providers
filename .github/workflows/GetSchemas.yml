@@ -17,7 +17,12 @@ jobs:
       - name: SetupSchemaDir
         run: |
           mkdir ./schemas
+          mkdir ./schemas-preview
           cp -rf ./azure-resource-manager-schemas/schemas/20* ./schemas
+          cp -rf ./azure-resource-manager-schemas/schemas/20*-preview ./schemas-preview
+          cp -rf ./azure-resource-manager-schemas/schemas/20*-privatepreview ./schemas-preview
+          cp -rf ./azure-resource-manager-schemas/schemas/viewdefinition/0.0.1-preview ./schemas-preview
+          cp -rf ./azure-resource-manager-schemas/schemas/common ./schemas
           rm -rf ./schemas/*-preview
           rm -rf ./schemas/*-privatepreview
 
@@ -29,16 +34,17 @@ jobs:
           
       - name: MakeMerged
         run: |
-          if [ -d ./myrepo/merged ]; then
-            echo "Found ./myrepo/merged"
+          if [ -d ./myrepo/schemas-merged ]; then
+            echo "Found ./myrepo/schemas-merged"
           else
-            mkdir ./myrepo/merged
+            mkdir ./myrepo/schemas-merged
           fi
           for dir in ./schemas/* ; do
             for fn in $dir/*.json ; do
-              cp -u $fn ./myrepo/merged
+              cp -u $fn ./myrepo/schemas-merged
             done
           done
+          cp -ur ./schemas-preview ./myrepo
 
       - name: CommitAndPush
         run: |
@@ -46,6 +52,7 @@ jobs:
           date > generated.txt
           git config user.name GetSchemas-Workflow
           git config user.email github-actions@github.com
-          git add ./merged
+          git add ./schemas-merged
+          git add ./schemas-preview
           git commit -m "generated"
           git push
