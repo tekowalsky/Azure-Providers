@@ -8,50 +8,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create dir for TF Plugin SDK Repo
-        run: |
-          mkdir ./tf
-          mkdir ./tf/sdk
-          
+
       - name: Checkout HashiCorp Plugin SDK Repo
         uses: actions/checkout@v2.4.0
         with:
           repository: hashicorp/terraform-plugin-sdk
-          path: ./tf
+          path: /home/runner/work/terraform-plugin-sdk
           fetch-depth: 0
           
       - name: Copy HashiCorp Files
         run: |
+          cd /home/runner/work/
           ls -l
           if [ -d ./schemas ]; then
             cd ./schemas
-            if [ -d ./terraform-plugin-sdk ]; then
-              echo "Found ./schemas/terraform-plugin-sdk"
-            else
-              mkdir ./terraform-plugin-sdk
-            fi
           else
             mkdir ./schemas
             cd ./schemas
-            mkdir ./terraform-plugin-sdk
           fi
-          cp -rf ../tf/. ./terraform-plugin-sdk/
-          ls -ltR ../tf/* > ./terraform-plugin-sdk.files.txt
-          ls -ltR ../tf/**/* >> ./terraform-plugin-sdk.files.txt
-          ls -ltR ../.git >> ./terraform-plugin-sdk.files.txt
-          ls -ltR ../.github >> ./terraform-plugin-sdk.files.txt
+          cp -rf ../terraform-plugin-sdk ./
         continue-on-error: true
 
       - name: Checkout My Repo
         uses: actions/checkout@v2.4.0
         with:
           repository: tekowalsky/Azure-Providers
-          path: ./myrepo
+          path: /home/runner/work/myrepo
           fetch-depth: 0
           
       - name: Make My HashiCorp Schema Dir
         run: |
-          cd ./myrepo
+          cd /home/runner/work/myrepo
+          ls -l
           if [ -d ./terraform ]; then
             cd ./terraform
             if [ -d ./terraform-plugin-sdk ]; then
