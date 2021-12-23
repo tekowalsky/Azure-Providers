@@ -9,51 +9,32 @@ jobs:
 
     steps:
 
-      - name: Checkout HashiCorp Plugin SDK Repo
-        uses: actions/checkout@v2.4.0
-        with:
-          repository: hashicorp/terraform-plugin-sdk
-          path: /home/runner/work/terraform-plugin-sdk
-          fetch-depth: 0
-          
-      - name: Copy HashiCorp Files
-        run: |
-          cd /home/runner/work/
-          ls -l
-          if [ -d ./schemas ]; then
-            cd ./schemas
-          else
-            mkdir ./schemas
-            cd ./schemas
-          fi
-          cp -rf ../terraform-plugin-sdk ./
-        continue-on-error: true
 
       - name: Checkout My Repo
         uses: actions/checkout@v2.4.0
         with:
           repository: tekowalsky/Azure-Providers
-          path: /home/runner/work/myrepo
+          path: ./myrepo
+          fetch-depth: 0
+
+      - name: Checkout HashiCorp Plugin SDK Repo
+        uses: actions/checkout@v2.4.0
+        with:
+          repository: hashicorp/terraform-plugin-sdk
+          path: ./terraform-plugin-sdk
           fetch-depth: 0
           
-      - name: Make My HashiCorp Schema Dir
+      - name: Copy HashiCorp Files
         run: |
-          cd /home/runner/work/myrepo
+          cd ./myrepo
           ls -l
           if [ -d ./terraform ]; then
             cd ./terraform
-            if [ -d ./terraform-plugin-sdk ]; then
-              echo "Found ./myrepo/terraform/terraform-plugin-sdk"
-            else
-              mkdir ./terraform-plugin-sdk
-            fi
           else
             mkdir ./terraform
             cd ./terraform
-            mkdir ./terraform-plugin-sdk
           fi
-          cp -f ../../schemas/terraform-plugin-sdk.files.txt .
-          cp -ru ../../schemas/terraform-plugin-sdk/. ./terraform-plugin-sdk/
+          cp -ru ../../terraform-plugin-sdk .
         continue-on-error: true
 
       - name: Commit And Push HashiCorp Schema Dir
