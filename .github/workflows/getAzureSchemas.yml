@@ -37,6 +37,7 @@ jobs:
           # cp -urf ./azure-resource-manager-schemas/schemas/20*/*.json ./schemas
           # rm -rf ./schemas/*-preview
           # rm -rf ./schemas/*-privatepreview
+        continue-on-error: true
 
       - name: Checkout My Repo
         uses: actions/checkout@v2.4.0
