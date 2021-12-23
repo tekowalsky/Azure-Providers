@@ -1,20 +1,21 @@
-name: Update Azure Schema List
+name: Azure Schema List
 on:
   workflow_dispatch:
 
 jobs:
-  checkout:
+  Update:
+    name: Update Azure Schema List
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout ARM Schemas
         uses: actions/checkout@v2.4.0
         with:
           repository: Azure/azure-resource-manager-schemas
           path: ./azure-resource-manager-schemas
           fetch-depth: 0
           
-      - name: SetupSchemaDir
+      - name: Copy ARM Schema Files
         run: |
           mkdir ./schemas
           mkdir ./schemas-preview
@@ -32,7 +33,7 @@ jobs:
           repository: tekowalsky/Azure-Providers
           path: ./myrepo
           
-      - name: MakeMerged
+      - name: Consolidate Latest ARM Schema Version Files
         run: |
           if [ -d ./myrepo/schemas-merged ]; then
             echo "Found ./myrepo/schemas-merged"
@@ -46,13 +47,14 @@ jobs:
           done
           cp -ur ./schemas-preview ./myrepo
 
-      - name: CommitAndPush
+      - name: Commit And Push ARM Schema Files
         run: |
           cd ./myrepo
-          date > generated.txt
+          date > ./updatedARMschema.txt
           git config user.name GetSchemas-Workflow
           git config user.email github-actions@github.com
           git add ./schemas-merged
           git add ./schemas-preview
-          git commit -m "generated"
+          git add ./updatedARMschema.txt
+          git commit -m "ARM Schema List updated by getAzureSchema workflow"
           git push
