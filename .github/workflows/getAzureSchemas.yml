@@ -54,7 +54,6 @@ jobs:
             mkdir ./azure
           fi
           cd ./azure
-          cp -f ../../az/arm-schema.files.txt ./
           cp -ur ../../az/schemas/. ./schemas/
           cp -ur ../../az/schemaspreview/. ./schemaspreview/
           cp -ur ../../az/common/. ./common/
