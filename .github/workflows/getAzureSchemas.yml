@@ -21,7 +21,7 @@ jobs:
           mkdir ./az
           cd ./az
           mkdir ./schemas
-          mkdir ./schemas-preview
+          mkdir ./schemaspreview
           mkdir ./common
           mkdir ./viewdefinition
           cd ..
@@ -29,10 +29,10 @@ jobs:
             cp -ur $dir/. ./az/schemas/
           done
           for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]-preview' ; do
-            cp -ur $dir/. ./az/schemas-preview/
+            cp -ur $dir/. './az/schemaspreview/'
           done
           for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]-privatepreview' ; do
-            cp -ur $dir/. ./az/schemas-preview/
+            cp -ur $dir/. './az/schemaspreview/'
           done
           cp -r ./azure-resource-manager-schemas/schemas/common/. ./az/common/
           cp -r ./azure-resource-manager-schemas/schemas/viewdefinition/. ./az/viewdefinition/
@@ -56,10 +56,10 @@ jobs:
           cd ./azure
           cp -f ../../az/arm-schema.files.txt ./
           cp -ur ../../az/schemas/. ./schemas/
-          cp -ur ../../az/schemas-preview/. ./schemas-preview/
+          cp -ur ../../az/schemaspreview/. ./schemaspreview/
           cp -ur ../../az/common/. ./common/
           cp -ur ../../az/viewdefinition/. ./viewdefinition/
-
+          
       - name: Commit And Push ARM Schema Files
         run: |
           cd ./myrepo
