@@ -16,17 +16,17 @@ jobs:
           path: ./myrepo
           fetch-depth: 0
 
-      - name: Break Git Cache Link
-        run: |
-          git rm --cached terraform/terraform-plugin-sdk
-        continue-on-error: true
-
       - name: Checkout HashiCorp Plugin SDK Repo
         uses: actions/checkout@v2.4.0
         with:
           repository: hashicorp/terraform-plugin-sdk
           path: ./terraform-plugin-sdk
           fetch-depth: 0
+          
+      - name: Break Git Cache Link
+        run: |
+          git rm --cached terraform/terraform-plugin-sdk
+        continue-on-error: true
           
       - name: Copy HashiCorp Files
         run: |
