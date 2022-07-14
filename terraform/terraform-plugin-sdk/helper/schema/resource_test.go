@@ -412,7 +412,9 @@ func TestResourceApply_destroyPartial(t *testing.T) {
 	}
 
 	r.Delete = func(d *ResourceData, m interface{}) error {
-		d.Set("foo", 42)
+		if err := d.Set("foo", 42); err != nil {
+			return fmt.Errorf("unexpected Set error: %s", err)
+		}
 		return fmt.Errorf("some error")
 	}
 
@@ -459,7 +461,9 @@ func TestResourceApply_update(t *testing.T) {
 	}
 
 	r.Update = func(d *ResourceData, m interface{}) error {
-		d.Set("foo", 42)
+		if err := d.Set("foo", 42); err != nil {
+			return fmt.Errorf("unexpected Set error: %s", err)
+		}
 		return nil
 	}
 
@@ -550,16 +554,22 @@ func TestResourceApply_isNewResource(t *testing.T) {
 		},
 	}
 
-	updateFunc := func(d *ResourceData, m interface{}) error {
-		d.Set("foo", "updated")
+	updateFunc := func(d *ResourceData, _ interface{}) error {
+		if err := d.Set("foo", "updated"); err != nil {
+			return fmt.Errorf("unexpected Set error: %s", err)
+		}
 		if d.IsNewResource() {
-			d.Set("foo", "new-resource")
+			if err := d.Set("foo", "new-resource"); err != nil {
+				return fmt.Errorf("unexpected Set error: %s", err)
+			}
 		}
 		return nil
 	}
 	r.Create = func(d *ResourceData, m interface{}) error {
 		d.SetId("foo")
-		d.Set("foo", "created")
+		if err := d.Set("foo", "created"); err != nil {
+			return fmt.Errorf("unexpected Set error: %s", err)
+		}
 		return updateFunc(d, m)
 	}
 	r.Update = updateFunc
@@ -1117,6 +1127,53 @@ func TestResourceRefresh(t *testing.T) {
 		Attributes: map[string]string{
 			"id":  "bar",
 			"foo": "13",
+		},
+		Meta: map[string]interface{}{
+			"schema_version": "2",
+		},
+	}
+
+	actual, diags := r.RefreshWithoutUpgrade(context.Background(), s, 42)
+	if diags.HasError() {
+		t.Fatalf("err: %s", diagutils.ErrorDiags(diags))
+	}
+
+	if !reflect.DeepEqual(actual, expected) {
+		t.Fatalf("bad: %#v", actual)
+	}
+}
+
+func TestResourceRefresh_DiffSuppressOnRefresh(t *testing.T) {
+	r := &Resource{
+		SchemaVersion: 2,
+		Schema: map[string]*Schema{
+			"foo": {
+				Type:     TypeString,
+				Optional: true,
+				DiffSuppressFunc: func(key, oldV, newV string, d *ResourceData) bool {
+					return true
+				},
+				DiffSuppressOnRefresh: true,
+			},
+		},
+	}
+
+	r.Read = func(d *ResourceData, m interface{}) error {
+		return d.Set("foo", "howdy")
+	}
+
+	s := &terraform.InstanceState{
+		ID: "bar",
+		Attributes: map[string]string{
+			"foo": "hello",
+		},
+	}
+
+	expected := &terraform.InstanceState{
+		ID: "bar",
+		Attributes: map[string]string{
+			"id":  "bar",
+			"foo": "hello", // new value was suppressed
 		},
 		Meta: map[string]interface{}{
 			"schema_version": "2",

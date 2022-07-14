@@ -8,6 +8,8 @@ import (
 )
 
 func TestComputedIf(t *testing.T) {
+	t.Parallel()
+
 	t.Run("true", func(t *testing.T) {
 		var condCalls int
 		var gotOld, gotNew string
@@ -31,9 +33,9 @@ func TestComputedIf(t *testing.T) {
 				// updated.
 
 				condCalls++
-				old, new := d.GetChange("foo")
-				gotOld = old.(string)
-				gotNew = new.(string)
+				oldValue, newValue := d.GetChange("foo")
+				gotOld = oldValue.(string)
+				gotNew = newValue.(string)
 
 				return true
 			}),
@@ -69,6 +71,24 @@ func TestComputedIf(t *testing.T) {
 			t.Error("Attribute 'comp' is not marked as NewComputed")
 		}
 	})
+	t.Run("true-non-existent-attribute", func(t *testing.T) {
+		provider := testProvider(
+			map[string]*schema.Schema{},
+			ComputedIf("non-existent", func(_ context.Context, d *schema.ResourceDiff, meta interface{}) bool {
+				return true
+			}),
+		)
+
+		_, err := testDiff(
+			provider,
+			map[string]string{},
+			map[string]string{},
+		)
+
+		if err != nil {
+			t.Fatalf("unexpected error: %s", err)
+		}
+	})
 	t.Run("false", func(t *testing.T) {
 		var condCalls int
 		var gotOld, gotNew string
@@ -86,9 +106,9 @@ func TestComputedIf(t *testing.T) {
 			},
 			ComputedIf("comp", func(_ context.Context, d *schema.ResourceDiff, meta interface{}) bool {
 				condCalls++
-				old, new := d.GetChange("foo")
-				gotOld = old.(string)
-				gotNew = new.(string)
+				oldValue, newValue := d.GetChange("foo")
+				gotOld = oldValue.(string)
+				gotNew = newValue.(string)
 
 				return false
 			}),
@@ -122,6 +142,24 @@ func TestComputedIf(t *testing.T) {
 
 		if diff.Attributes["comp"] != nil && diff.Attributes["comp"].NewComputed {
 			t.Error("Attribute 'foo' is marked as NewComputed, but should not be")
+		}
+	})
+	t.Run("false-non-existent-attribute", func(t *testing.T) {
+		provider := testProvider(
+			map[string]*schema.Schema{},
+			ComputedIf("non-existent", func(_ context.Context, d *schema.ResourceDiff, meta interface{}) bool {
+				return false
+			}),
+		)
+
+		_, err := testDiff(
+			provider,
+			map[string]string{},
+			map[string]string{},
+		)
+
+		if err != nil {
+			t.Fatalf("unexpected error: %s", err)
 		}
 	})
 }

@@ -1,8 +1,114 @@
-# 2.10.2 (Unreleased)
+# 2.18.0 (July 5, 2022)
+
+ENHANCEMENTS:
+
+* helper/resource: Added `TF_ACC_LOG`, `TF_LOG_CORE`, and `TF_LOG_PROVIDER` environment variable handling for Terraform versions 0.15 and later ([#993](https://github.com/hashicorp/terraform-plugin-sdk/issues/993))
+* helper/schema: Added sdk.proto logger request duration and response diagnostics logging ([#996](https://github.com/hashicorp/terraform-plugin-sdk/issues/996))
+
+BUG FIXES:
+
+* helper/resource: Ensured errors are always logged. ([#983](https://github.com/hashicorp/terraform-plugin-sdk/issues/983))
+
+# 2.17.0 (May 31, 2022)
 
 NOTES:
 
-* helper/schema: Started using terraform-plugin-log to write some SDK-level logs. Very few logs use this functionality now, but in the future, the environment variable `TF_LOG_SDK_HELPER_SCHEMA` will be able to set the log level for the SDK separately from the provider.
+* helper/resource: Provider references or external installation can now be handled at either the `TestCase` or `TestStep` level. Using the `TestStep` handling, advanced use cases are now enabled such as state upgrade acceptance testing. ([#972](https://github.com/hashicorp/terraform-plugin-sdk/issues/972))
+
+ENHANCEMENTS:
+
+* helper/resource: Added `TestStep` type `ExternalProviders`, `ProtoV5ProviderFactories`, `ProtoV6ProviderFactories`, and `ProviderFactories` fields ([#972](https://github.com/hashicorp/terraform-plugin-sdk/issues/972))
+
+BUG FIXES:
+
+* helper/resource: Removed extraneous `terraform state show` command when not using the `TestStep` type `Taint` field ([#972](https://github.com/hashicorp/terraform-plugin-sdk/issues/972))
+
+# 2.16.0 (May 10, 2022)
+
+ENHANCEMENTS:
+* helper/resource: Added error logging before failing tests, so errors are visible in test output and any separate log file ([#958](https://github.com/hashicorp/terraform-plugin-sdk/issues/958))
+
+BUG FIXES:
+* helper/resource: Updated version of [hc-install](github.com/hashicorp/hc-install) in response to change in HashiCorp Release API [sending back a different `Content-Type` header](https://github.com/hashicorp/hc-install/issues/56). This was causing failures when the SDK attempted to install Terraform. ([#960](https://github.com/hashicorp/terraform-plugin-sdk/issues/960))
+
+# 2.15.0 (May 4, 2022)
+
+FEATURES:
+
+* helper/resource: New `TestCheckResourceAttrWith` test helper, that simplifies checking of attribute values via custom functions ([#950](https://github.com/hashicorp/terraform-plugin-sdk/issues/950))
+
+ENHANCEMENTS:
+
+* helper/schema: Propagated `tf_data_source_type`, `tf_req_id`, `tf_resource_type`, and `tf_rpc` fields in log entries ([#955](https://github.com/hashicorp/terraform-plugin-sdk/issues/955))
+
+BUG FIXES:
+
+* helper/resource: Prevented `Unable to create logging subsystem with AdditionalLocationOffset due to missing root logger options` warning logs during acceptance testing ([#955](https://github.com/hashicorp/terraform-plugin-sdk/issues/955))
+
+# 2.14.0 (April 14, 2022)
+
+NOTES:
+
+* This Go module has been updated to Go 1.17 per the [Go support policy](https://golang.org/doc/devel/release.html#policy). Any consumers building on earlier Go versions may experience errors. ([#934](https://github.com/hashicorp/terraform-plugin-sdk/issues/934))
+
+BUG FIXES:
+
+* helper/resource: Ensured Terraform CLI logs are written to `TF_LOG_PATH_MASK` environment variable value when both `TF_ACC_LOG_PATH` and `TF_LOG_PATH_MASK` are set ([#938](https://github.com/hashicorp/terraform-plugin-sdk/issues/938))
+* helper/resource: Ensured `@caller` in SDK logging entries accurately reflected calling code location ([#939](https://github.com/hashicorp/terraform-plugin-sdk/issues/939))
+* helper/resource: Prevented regression since 2.13.0 with the removal of environment variables, including `TF_VAR_*`, when calling Terraform CLI commands ([#937](https://github.com/hashicorp/terraform-plugin-sdk/issues/937))
+* helper/schema: Ensured `@caller` in SDK logging entries accurately reflected calling code location ([#939](https://github.com/hashicorp/terraform-plugin-sdk/issues/939))
+* helper/schema: Prevented missing SDK logging entries and confusing provider.stdio TRACE logging entries ([#936](https://github.com/hashicorp/terraform-plugin-sdk/issues/936))
+
+# 2.13.0 (March 31, 2022)
+
+NOTES:
+
+* helper/resource: False positive checks of list, map, and set attributes with `TestCheckNoResourceAttr` and `TestCheckResourceAttrSet` will now return an error to explain how to accurately check those types of attributes. Some previously passing tests will now fail until the check is correctly updated. ([#920](https://github.com/hashicorp/terraform-plugin-sdk/issues/920))
+* helper/schema: Any returned non-`nil` `error` with an `Error()` method that returns an empty string (`""`), will now return an error diagnostic with an `"Empty Error String"` summary instead of a panic. Enabling Terraform logging at the `WARN` level (e.g. `TF_LOG=WARN terraform apply`) can help locate the problematic error by searching for the `detected empty error string` log message. ([#914](https://github.com/hashicorp/terraform-plugin-sdk/issues/914))
+
+ENHANCEMENTS:
+
+* helper/resource: Added error when errantly checking list, map, or set attributes in `TestCheckNoResourceAttr`, `TestCheckResourceAttr`, and `TestCheckResourceAttrSet` ([#920](https://github.com/hashicorp/terraform-plugin-sdk/issues/920))
+* helper/resource: Execute Terraform CLI commands during acceptance testing with `CHECKPOINT_DISABLE=1` set, removing extraneous calls to checkpoint.hashicorp.com to check for latest Terraform CLI version ([#913](https://github.com/hashicorp/terraform-plugin-sdk/issues/913))
+
+BUG FIXES:
+
+* helper/schema: Allowed `Schema` with `TypeInt` to accept `string` values from `DefaultFunc`, such as `EnvDefaultFunc` ([#841](https://github.com/hashicorp/terraform-plugin-sdk/pull/841)) ([#841](https://github.com/hashicorp/terraform-plugin-sdk/issues/841))
+* helper/schema: Prevented panics during `error` to diagnostic conversion for a non-`nil` error with an `Error()` method that returns an empty string (`""`) ([#914](https://github.com/hashicorp/terraform-plugin-sdk/issues/914))
+* helper/validation: Prevented panics with `ToDiagFunc()` function when used inside `Schema` type `Elem` field, such as validating `TypeList` elements ([#915](https://github.com/hashicorp/terraform-plugin-sdk/issues/915))
+
+# 2.12.0 (March 17, 2022)
+
+ENHANCEMENTS:
+
+* helper/resource: Support JSON in `TestStep` type `Config` field ([#722](https://github.com/hashicorp/terraform-plugin-sdk/issues/722))
+
+BUG FIXES:
+
+* customdiff: Prevented unexpected non-existent key errors in `ComputedIf`, `ForceNewIf`, and `ForceNewIfChange` since 2.11.0, using a warning log for backwards compatibility instead ([#909](https://github.com/hashicorp/terraform-plugin-sdk/issues/909))
+
+# 2.11.0 (March 11, 2022)
+
+NOTES:
+
+* The underlying `terraform-plugin-log` dependency has been updated to v0.3.0, which includes a breaking change in the optional additional fields parameter of logging function calls to ensure correctness and catch coding errors during compilation. Any early adopter provider logging which calls those functions may require updates. ([#900](https://github.com/hashicorp/terraform-plugin-sdk/issues/900))
+* helper/resource: The new terraform-plugin-log `sdk.helper_resource` logger inherits the `TF_LOG`, `TF_LOG_PATH_MASK`, and `TF_ACC_LOG_PATH` environment variable settings, similar to the prior logging. The `TF_LOG_SDK_HELPER_RESOURCE` environment variable can be used to separately control the new logger level. ([#891](https://github.com/hashicorp/terraform-plugin-sdk/issues/891))
+* helper/schema: Started using terraform-plugin-log to write some SDK-level logs. Very few logs use this functionality now, but in the future, the environment variable `TF_LOG_SDK_HELPER_SCHEMA` will be able to set the log level for the SDK separately from the provider. ([#837](https://github.com/hashicorp/terraform-plugin-sdk/issues/837))
+* helper/schema: The `Schema` type `DiffSuppressOnRefresh` field opts in to using `DiffSuppressFunc` to detect normalization changes during refresh, using the same rules as for planning. This can prevent normalization cascading downstream and producing confusing changes in other resources, and will avoid reporting "Values changed outside of Terraform" for normalization-only situations. This is a desirable behavior for most attributes that have `DiffSuppressFunc` and so would ideally be on by default, but it is opt-in for backward compatibility reasons. ([#882](https://github.com/hashicorp/terraform-plugin-sdk/issues/882))
+* plugin: The `Debug` function has been deprecated in preference of setting the `Debug` field in the `ServeOpts` passed into the `Serve` function. ([#857](https://github.com/hashicorp/terraform-plugin-sdk/issues/857))
+
+ENHANCEMENTS:
+
+* helper/resource: Added more visible logging for test steps skipped via the `TestStep` type `SkipFunc` field. ([#889](https://github.com/hashicorp/terraform-plugin-sdk/issues/889))
+* helper/resource: Added terraform-plugin-log `sdk.helper_resource` logger and extensive `TRACE` log entries ([#891](https://github.com/hashicorp/terraform-plugin-sdk/issues/891))
+* helper/schema: Added the `DiffSuppressOnRefresh` field to the `Schema` type ([#882](https://github.com/hashicorp/terraform-plugin-sdk/issues/882))
+* plugin: Added support for writing protocol data to disk by setting `TF_LOG_SDK_PROTO_DATA_DIR` environment variable ([#857](https://github.com/hashicorp/terraform-plugin-sdk/issues/857))
+* plugin: Increased maximum gRPC send and receive message size limit to 256MB ([#857](https://github.com/hashicorp/terraform-plugin-sdk/issues/857))
+
+BUG FIXES:
+
+* helper/resource: Removed extraneous Terraform CLI `show` command each `TestStep` unless using `TestCase.IDRefreshName` ([#892](https://github.com/hashicorp/terraform-plugin-sdk/issues/892))
+* plugin: Prevent potential process leak on Windows platforms ([#856](https://github.com/hashicorp/terraform-plugin-sdk/issues/856))
 
 # 2.10.1 (December 17, 2021)
 

@@ -2086,7 +2086,7 @@ func TestValidateNulls(t *testing.T) {
 		},
 	} {
 		t.Run(strconv.Itoa(i), func(t *testing.T) {
-			d := validateConfigNulls(tc.Cfg, nil)
+			d := validateConfigNulls(context.Background(), tc.Cfg, nil)
 			diags := convert.ProtoToDiags(d)
 			switch {
 			case tc.Err:
@@ -2319,7 +2319,11 @@ func TestStopContext_stop(t *testing.T) {
 				}
 				close(doneCh)
 			}()
-			server.StopProvider(context.Background(), &tfprotov5.StopProviderRequest{})
+
+			if _, err := server.StopProvider(context.Background(), &tfprotov5.StopProviderRequest{}); err != nil {
+				t.Fatalf("unexpected StopProvider error: %s", err)
+			}
+
 			select {
 			case <-doneCh:
 			case err := <-errCh:
@@ -2437,7 +2441,11 @@ func TestStopContext_stopReset(t *testing.T) {
 				}
 				close(d)
 			}(doneCh)
-			server.StopProvider(context.Background(), &tfprotov5.StopProviderRequest{})
+
+			if _, err := server.StopProvider(context.Background(), &tfprotov5.StopProviderRequest{}); err != nil {
+				t.Fatalf("unexpected StopProvider error: %s", err)
+			}
+
 			select {
 			case <-doneCh:
 			case err := <-errCh:
@@ -2461,7 +2469,11 @@ func TestStopContext_stopReset(t *testing.T) {
 				}
 				close(d)
 			}(doneCh)
-			server.StopProvider(context.Background(), &tfprotov5.StopProviderRequest{})
+
+			if _, err := server.StopProvider(context.Background(), &tfprotov5.StopProviderRequest{}); err != nil {
+				t.Fatalf("unexpected StopProvider error: %s", err)
+			}
+
 			select {
 			case <-doneCh:
 			case err := <-errCh:
