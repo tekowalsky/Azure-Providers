@@ -1,21 +1,33 @@
-name: Azure Schema List
+name: Update Schema Lists
 on:
   workflow_dispatch:
 
 jobs:
   Update:
-    name: Update Azure Schema List
+    name: Update Schema Lists
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout ARM Schemas
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3
         with:
           repository: Azure/azure-resource-manager-schemas
           path: ./azure-resource-manager-schemas
           fetch-depth: 0
           submodules: true
+
+      - name: Checkout HashiCorp Plugin SDK Repo
+        uses: actions/checkout@v3
+        with:
+          repository: hashicorp/terraform-plugin-sdk
+          path: ./terraform-plugin-sdk
+          fetch-depth: 0
           
+      - name: Break Git Cache Link
+        run: |
+          git rm --cached terraform/terraform-plugin-sdk
+        continue-on-error: true
+
       - name: Copy ARM Schema Files
         run: |
           mkdir ./az
@@ -39,13 +51,15 @@ jobs:
         continue-on-error: true
 
       - name: Checkout My Repo
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3
         with:
           repository: tekowalsky/Azure-Providers
           path: ./myrepo
+          token: ${{ secrets.GH_PAT }}
+          ref: schemas
           fetch-depth: 0
 
-      - name: Consolidate Latest ARM Schema Version Files
+      - name: Copy and consolidate Latest ARM Schema Version Files
         run: |
           cd ./myrepo
           if [ -d ./azure ]; then
@@ -58,13 +72,30 @@ jobs:
           cp -ur ../../az/schemaspreview/. ./schemaspreview/
           cp -ur ../../az/common/. ./common/
           cp -ur ../../az/viewdefinition/. ./viewdefinition/
+          cd ..
           
-      - name: Commit And Push ARM Schema Files
+      - name: Copy HashiCorp Files
         run: |
           cd ./myrepo
-          date > ./azure/updatedARMschema.txt
+          ls -l
+          if [ -d ./terraform ]; then
+            cd ./terraform
+          else
+            mkdir ./terraform
+            cd ./terraform
+          fi
+          cp -ru ../../terraform-plugin-sdk .
+          cd ..
+        continue-on-error: true
+
+      - name: Commit ARM and Hashicorp Schema Files
+        run: |
+          cd ./myrepo
+          date > ./azure/ARMschemaDate.txt
+          date > ./terraform/hashi-updated.txt
           git config user.name GetSchemas-Workflow
           git config user.email github-actions@github.com
           git add ./azure
-          git commit -m "ARM Schema List updated by getAzureSchema workflow"
+          git add ./terraform
+          git commit -m "Schema Lists updated by getSchemas workflow"
           git push
