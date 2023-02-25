@@ -30,6 +30,7 @@ jobs:
           repository: hashicorp/terraform-plugin-sdk
           path: ./terraform-plugin-sdk
           fetch-depth: 0
+          submodules: true
 
       - name: Clear old data
         run: |
@@ -37,6 +38,7 @@ jobs:
             git rm -r --cached az
             rm -rf ./az
           fi
+          cp ./myrepo/README.md ./
           cd ./myrepo
           if [ -d ./azure ]; then
             git rm -r --cached azure
@@ -51,6 +53,9 @@ jobs:
             rm -rf ./github
           fi
           rm -rf ./*
+          rm -rf ./*.*
+          cp ../README.md ./
+          rm -rf ../README.md
           cd ..
         continue-on-error: true
 
