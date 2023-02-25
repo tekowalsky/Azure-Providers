@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout ARM Schemas
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2.4.0
         with:
           repository: Azure/azure-resource-manager-schemas
           path: ./azure-resource-manager-schemas
@@ -39,7 +39,7 @@ jobs:
         continue-on-error: true
 
       - name: Checkout My Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2.4.0
         with:
           repository: tekowalsky/Azure-Providers
           path: ./myrepo
