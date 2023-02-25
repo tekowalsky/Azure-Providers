@@ -37,6 +37,7 @@ jobs:
             git rm --cached az
             rm -rf ./az
           fi
+          cp ./myrepo/README.md ./
           cd ./myrepo
           if [ -d ./azure ]; then
             git rm --cached azure
@@ -51,6 +52,9 @@ jobs:
             rm -rf ./github
           fi
           rm -rf ./*
+          rm -rf ./*.*
+          cp ../README.md ./
+          rm -rf ../README.md
           cd ..
         continue-on-error: true
 
