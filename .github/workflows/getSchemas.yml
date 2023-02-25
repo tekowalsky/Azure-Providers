@@ -13,6 +13,7 @@ jobs:
         with:
           repository: tekowalsky/Azure-Providers
           path: ./myrepo
+          ref: schemas
           fetch-depth: 0
 
       - name: Checkout ARM Schemas
