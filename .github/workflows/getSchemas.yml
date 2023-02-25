@@ -55,7 +55,6 @@ jobs:
         with:
           repository: tekowalsky/Azure-Providers
           path: ./myrepo
-          token: ${{ secrets.GH_PAT }}
           ref: schemas
           fetch-depth: 0
 
