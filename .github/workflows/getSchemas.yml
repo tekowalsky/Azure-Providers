@@ -30,6 +30,7 @@ jobs:
           repository: hashicorp/terraform-plugin-sdk
           path: ./terraform-plugin-sdk
           fetch-depth: 0
+          submodules: true
 
       - name: Clear old data
         run: |
