@@ -48,7 +48,8 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "SKU of the dedicated HSM"
         },
         "tags": {
           "oneOf": [
@@ -175,7 +176,13 @@
             {
               "type": "string",
               "enum": [
-                "SafeNet Luna Network HSM A790"
+                "SafeNet Luna Network HSM A790",
+                "payShield10K_LMK1_CPS60",
+                "payShield10K_LMK1_CPS250",
+                "payShield10K_LMK1_CPS2500",
+                "payShield10K_LMK2_CPS60",
+                "payShield10K_LMK2_CPS250",
+                "payShield10K_LMK2_CPS2500"
               ]
             },
             {
@@ -184,7 +191,8 @@
           ],
           "description": "SKU of the dedicated HSM."
         }
-      }
+      },
+      "description": "SKU of the dedicated HSM"
     }
   }
 }

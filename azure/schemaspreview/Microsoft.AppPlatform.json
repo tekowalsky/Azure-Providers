@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2019-05-01-preview/Microsoft.AppPlatform.json#",
+  "id": "https://schema.management.azure.com/schemas/2020-11-01-preview/Microsoft.AppPlatform.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.AppPlatform",
   "description": "Microsoft AppPlatform Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-05-01-preview"
+            "2020-11-01-preview"
           ]
         },
         "location": {
@@ -36,6 +36,12 @@
           "type": "array",
           "items": {
             "oneOf": [
+              {
+                "$ref": "#/definitions/Spring_configServers_childResource"
+              },
+              {
+                "$ref": "#/definitions/Spring_monitoringSettings_childResource"
+              },
               {
                 "$ref": "#/definitions/Spring_apps_childResource"
               },
@@ -92,7 +98,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-05-01-preview"
+            "2020-11-01-preview"
           ]
         },
         "identity": {
@@ -162,7 +168,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-05-01-preview"
+            "2020-11-01-preview"
           ]
         },
         "name": {
@@ -201,7 +207,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-05-01-preview"
+            "2020-11-01-preview"
           ]
         },
         "name": {
@@ -251,7 +257,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-05-01-preview"
+            "2020-11-01-preview"
           ]
         },
         "name": {
@@ -290,7 +296,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-05-01-preview"
+            "2020-11-01-preview"
           ]
         },
         "name": {
@@ -322,15 +328,124 @@
         "type"
       ],
       "description": "Microsoft.AppPlatform/Spring/certificates"
+    },
+    "Spring_configServers": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2020-11-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^.*/default$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ConfigServerProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Config server git properties payload"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.AppPlatform/Spring/configServers"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.AppPlatform/Spring/configServers"
+    },
+    "Spring_monitoringSettings": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2020-11-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^.*/default$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MonitoringSettingProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Monitoring Setting properties payload"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.AppPlatform/Spring/monitoringSettings"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.AppPlatform/Spring/monitoringSettings"
     }
   },
   "definitions": {
+    "ApplicationInsightsAgentVersions": {
+      "type": "object",
+      "properties": {},
+      "description": "Application Insights agent versions properties payload"
+    },
     "AppResourceProperties": {
       "type": "object",
       "properties": {
         "activeDeploymentName": {
           "type": "string",
           "description": "Name of the active deployment of the App"
+        },
+        "enableEndToEndTLS": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicate if end to end TLS is enabled."
         },
         "fqdn": {
           "type": "string",
@@ -439,17 +554,6 @@
     "ClusterResourceProperties": {
       "type": "object",
       "properties": {
-        "configServerProperties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/ConfigServerProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Config server git properties payload"
-        },
         "networkProfile": {
           "oneOf": [
             {
@@ -460,17 +564,6 @@
             }
           ],
           "description": "Service network profile payload"
-        },
-        "trace": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/TraceProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Trace properties payload"
         }
       },
       "description": "Service properties payload"
@@ -668,18 +761,6 @@
           ],
           "description": "Collection of environment variables"
         },
-        "instanceCount": {
-          "oneOf": [
-            {
-              "type": "integer",
-              "default": "1"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Instance count, basic tier should be in range (1, 25), standard tier should be in range (1, 500)"
-        },
         "jvmOptions": {
           "type": "string",
           "description": "JVM parameter"
@@ -818,10 +899,12 @@
       "type": "object",
       "properties": {
         "principalId": {
-          "type": "string"
+          "type": "string",
+          "description": "Principal Id"
         },
         "tenantId": {
-          "type": "string"
+          "type": "string",
+          "description": "Tenant Id"
         },
         "type": {
           "oneOf": [
@@ -837,10 +920,67 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "Type of the managed identity."
         }
       },
       "description": "Managed identity properties retrieved from ARM request headers."
+    },
+    "MonitoringSettingProperties": {
+      "type": "object",
+      "properties": {
+        "appInsightsAgentVersions": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApplicationInsightsAgentVersions"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Application Insights agent versions properties payload"
+        },
+        "appInsightsInstrumentationKey": {
+          "type": "string",
+          "description": "Target application insight instrumentation key, null or whitespace include empty will disable monitoringSettings"
+        },
+        "appInsightsSamplingRate": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates the sampling rate of application insight agent, should be in range [0.0, 100.0]"
+        },
+        "error": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Error"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The error code compose of code and message."
+        },
+        "traceEnabled": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates whether enable the trace functionality, which will be deprecated since api version 2020-11-01-preview. Please leverage appInsightsInstrumentationKey to indicate if monitoringSettings enabled or not"
+        }
+      },
+      "description": "Monitoring Setting properties payload"
     },
     "NetworkProfile": {
       "type": "object",
@@ -924,7 +1064,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-05-01-preview"
+            "2020-11-01-preview"
           ]
         },
         "name": {
@@ -963,7 +1103,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-05-01-preview"
+            "2020-11-01-preview"
           ]
         },
         "identity": {
@@ -1017,7 +1157,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-05-01-preview"
+            "2020-11-01-preview"
           ]
         },
         "name": {
@@ -1067,7 +1207,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-05-01-preview"
+            "2020-11-01-preview"
           ]
         },
         "name": {
@@ -1106,7 +1246,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-05-01-preview"
+            "2020-11-01-preview"
           ]
         },
         "name": {
@@ -1139,6 +1279,88 @@
       ],
       "description": "Microsoft.AppPlatform/Spring/certificates"
     },
+    "Spring_configServers_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2020-11-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "default"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ConfigServerProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Config server git properties payload"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "configServers"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.AppPlatform/Spring/configServers"
+    },
+    "Spring_monitoringSettings_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2020-11-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "default"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MonitoringSettingProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Monitoring Setting properties payload"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "monitoringSettings"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.AppPlatform/Spring/monitoringSettings"
+    },
     "TemporaryDisk": {
       "type": "object",
       "properties": {
@@ -1162,38 +1384,6 @@
         }
       },
       "description": "Temporary disk payload"
-    },
-    "TraceProperties": {
-      "type": "object",
-      "properties": {
-        "appInsightInstrumentationKey": {
-          "type": "string",
-          "description": "Target application insight instrumentation key"
-        },
-        "enabled": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Indicates whether enable the tracing functionality"
-        },
-        "error": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/Error"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The error code compose of code and message."
-        }
-      },
-      "description": "Trace properties payload"
     },
     "UserSourceInfo": {
       "type": "object",

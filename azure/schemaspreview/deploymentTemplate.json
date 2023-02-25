@@ -1194,10 +1194,10 @@
                   "$ref": "https://schema.management.azure.com/schemas/2018-06-30/Microsoft.Automation.json#/resourceDefinitions/automationAccounts_runbooks"
                 },
                 {
-                  "$ref": "https://schema.management.azure.com/schemas/2015-10-01/Microsoft.Media.json#/resourceDefinitions/mediaServices"
+                  "$ref": "https://schema.management.azure.com/schemas/2015-10-01/Microsoft.Media.json#/resourceDefinitions/mediaservices"
                 },
                 {
-                  "$ref": "https://schema.management.azure.com/schemas/2018-07-01/Microsoft.Media.json#/resourceDefinitions/mediaServices"
+                  "$ref": "https://schema.management.azure.com/schemas/2018-07-01/Microsoft.Media.json#/resourceDefinitions/mediaservices"
                 },
                 {
                   "$ref": "https://schema.management.azure.com/schemas/2018-07-01/Microsoft.Media.json#/resourceDefinitions/mediaServices_accountFilters"
@@ -1210,15 +1210,6 @@
                 },
                 {
                   "$ref": "https://schema.management.azure.com/schemas/2018-07-01/Microsoft.Media.json#/resourceDefinitions/mediaServices_contentKeyPolicies"
-                },
-                {
-                  "$ref": "https://schema.management.azure.com/schemas/2018-07-01/Microsoft.Media.json#/resourceDefinitions/mediaServices_liveEvents"
-                },
-                {
-                  "$ref": "https://schema.management.azure.com/schemas/2018-07-01/Microsoft.Media.json#/resourceDefinitions/mediaServices_liveEvents_liveOutputs"
-                },
-                {
-                  "$ref": "https://schema.management.azure.com/schemas/2018-07-01/Microsoft.Media.json#/resourceDefinitions/mediaServices_streamingEndpoints"
                 },
                 {
                   "$ref": "https://schema.management.azure.com/schemas/2018-07-01/Microsoft.Media.json#/resourceDefinitions/mediaServices_streamingLocators"
@@ -5995,18 +5986,6 @@
                 },
                 {
                   "$ref": "https://schema.management.azure.com/schemas/2019-06-01/Microsoft.EventGrid.json#/unknown_resourceDefinitions/eventSubscriptions"
-                },
-                {
-                  "$ref": "https://schema.management.azure.com/schemas/2019-05-01-preview/Microsoft.AppPlatform.json#/resourceDefinitions/Spring"
-                },
-                {
-                  "$ref": "https://schema.management.azure.com/schemas/2019-05-01-preview/Microsoft.AppPlatform.json#/resourceDefinitions/Spring_apps"
-                },
-                {
-                  "$ref": "https://schema.management.azure.com/schemas/2019-05-01-preview/Microsoft.AppPlatform.json#/resourceDefinitions/Spring_apps_bindings"
-                },
-                {
-                  "$ref": "https://schema.management.azure.com/schemas/2019-05-01-preview/Microsoft.AppPlatform.json#/resourceDefinitions/Spring_apps_deployments"
                 },
                 {
                   "$ref": "https://schema.management.azure.com/schemas/2019-07-01/Microsoft.Compute.json#/resourceDefinitions/availabilitySets"
