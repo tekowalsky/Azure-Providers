@@ -353,20 +353,20 @@ func expectedForValues(create, read, update, del, def int) map[string]interface{
 	return ex
 }
 
-func expectedConfigForValues(createMin, readMin, updateMin, deleteMin, def int) map[string]interface{} {
+func expectedConfigForValues(create, read, update, delete, def int) map[string]interface{} {
 	ex := make(map[string]interface{}, 0)
 
-	if createMin != 0 {
-		ex["create"] = fmt.Sprintf("%dm", createMin)
+	if create != 0 {
+		ex["create"] = fmt.Sprintf("%dm", create)
 	}
-	if readMin != 0 {
-		ex["read"] = fmt.Sprintf("%dm", readMin)
+	if read != 0 {
+		ex["read"] = fmt.Sprintf("%dm", read)
 	}
-	if updateMin != 0 {
-		ex["update"] = fmt.Sprintf("%dm", updateMin)
+	if update != 0 {
+		ex["update"] = fmt.Sprintf("%dm", update)
 	}
-	if deleteMin != 0 {
-		ex["delete"] = fmt.Sprintf("%dm", deleteMin)
+	if delete != 0 {
+		ex["delete"] = fmt.Sprintf("%dm", delete)
 	}
 
 	if def != 0 {

@@ -3236,9 +3236,7 @@ func TestShimSchemaMap_Diff(t *testing.T) {
 
 			CustomizeDiff: func(_ context.Context, d *ResourceDiff, meta interface{}) error {
 				if d.HasChange("etag") {
-					if err := d.SetNewComputed("version_id"); err != nil {
-						return fmt.Errorf("unexpected SetNewComputed error: %w", err)
-					}
+					d.SetNewComputed("version_id")
 				}
 				return nil
 			},
@@ -3343,7 +3341,7 @@ func TestShimSchemaMap_Diff(t *testing.T) {
 				"stream_enabled":   false,
 				"stream_view_type": "",
 			},
-			CustomizeDiff: func(_ context.Context, diff *ResourceDiff, _ interface{}) error {
+			CustomizeDiff: func(_ context.Context, diff *ResourceDiff, v interface{}) error {
 				v, ok := diff.GetOk("unrelated_set")
 				if ok {
 					return fmt.Errorf("Didn't expect unrelated_set: %#v", v)

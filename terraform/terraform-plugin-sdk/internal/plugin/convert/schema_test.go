@@ -1,7 +1,6 @@
 package convert
 
 import (
-	"context"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
@@ -187,7 +186,7 @@ func TestConvertSchemaBlocks(t *testing.T) {
 
 	for name, tc := range tests {
 		t.Run(name, func(t *testing.T) {
-			converted := ProtoToConfigSchema(context.Background(), tc.Block)
+			converted := ProtoToConfigSchema(tc.Block)
 			if !cmp.Equal(converted, tc.Want, typeComparer, valueComparer, equateEmpty) {
 				t.Fatal(cmp.Diff(converted, tc.Want, typeComparer, valueComparer, equateEmpty))
 			}
@@ -363,7 +362,7 @@ func TestConvertProtoSchemaBlocks(t *testing.T) {
 
 	for name, tc := range tests {
 		t.Run(name, func(t *testing.T) {
-			converted := ConfigSchemaToProto(context.Background(), tc.Block)
+			converted := ConfigSchemaToProto(tc.Block)
 			if !cmp.Equal(converted, tc.Want, typeComparer, equateEmpty) {
 				t.Fatal(cmp.Diff(converted, tc.Want, typeComparer, equateEmpty))
 			}

@@ -12,7 +12,6 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/google/go-cmp/cmp"
 	"github.com/hashicorp/go-cty/cty"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/internal/configs/hcl2shim"
@@ -26,7 +25,9 @@ func TestEnvDefaultFunc(t *testing.T) {
 	defer os.Unsetenv(key)
 
 	f := EnvDefaultFunc(key, "42")
-	t.Setenv(key, "foo")
+	if err := os.Setenv(key, "foo"); err != nil {
+		t.Fatalf("err: %s", err)
+	}
 
 	actual, err := f()
 	if err != nil {
@@ -62,7 +63,9 @@ func TestMultiEnvDefaultFunc(t *testing.T) {
 
 	// Test that the first key is returned first
 	f := MultiEnvDefaultFunc(keys, "42")
-	t.Setenv(keys[0], "foo")
+	if err := os.Setenv(keys[0], "foo"); err != nil {
+		t.Fatalf("err: %s", err)
+	}
 
 	actual, err := f()
 	if err != nil {
@@ -78,7 +81,9 @@ func TestMultiEnvDefaultFunc(t *testing.T) {
 
 	// Test that the second key is returned if the first one is empty
 	f = MultiEnvDefaultFunc(keys, "42")
-	t.Setenv(keys[1], "foo")
+	if err := os.Setenv(keys[1], "foo"); err != nil {
+		t.Fatalf("err: %s", err)
+	}
 
 	actual, err = f()
 	if err != nil {
@@ -2940,9 +2945,7 @@ func TestSchemaMap_Diff(t *testing.T) {
 
 			CustomizeDiff: func(_ context.Context, d *ResourceDiff, meta interface{}) error {
 				if d.HasChange("etag") {
-					if err := d.SetNewComputed("version_id"); err != nil {
-						return fmt.Errorf("unexpected SetNewComputed error: %w", err)
-					}
+					d.SetNewComputed("version_id")
 				}
 				return nil
 			},
@@ -2983,10 +2986,7 @@ func TestSchemaMap_Diff(t *testing.T) {
 			Config: map[string]interface{}{},
 
 			CustomizeDiff: func(_ context.Context, d *ResourceDiff, meta interface{}) error {
-				if err := d.SetNewComputed("foo"); err != nil {
-					return fmt.Errorf("unexpected SetNewComputed error: %w", err)
-				}
-
+				d.SetNewComputed("foo")
 				return nil
 			},
 
@@ -3083,7 +3083,7 @@ func TestSchemaMap_Diff(t *testing.T) {
 				"stream_enabled":   false,
 				"stream_view_type": "",
 			},
-			CustomizeDiff: func(_ context.Context, diff *ResourceDiff, _ interface{}) error {
+			CustomizeDiff: func(_ context.Context, diff *ResourceDiff, v interface{}) error {
 				v, ok := diff.GetOk("unrelated_set")
 				if ok {
 					return fmt.Errorf("Didn't expect unrelated_set: %#v", v)
@@ -4788,33 +4788,10 @@ func TestSchemaMap_InternalValidate(t *testing.T) {
 				"string": {
 					Type:             TypeString,
 					Computed:         true,
-					DiffSuppressFunc: func(k, oldValue, newValue string, d *ResourceData) bool { return false },
+					DiffSuppressFunc: func(k, old, new string, d *ResourceData) bool { return false },
 				},
 			},
 			true,
-		},
-
-		"DiffSuppressOnRefresh without DiffSuppressFunc": {
-			map[string]*Schema{
-				"string": {
-					Type:                  TypeString,
-					Optional:              true,
-					DiffSuppressOnRefresh: true,
-				},
-			},
-			true,
-		},
-
-		"DiffSuppressOnRefresh with DiffSuppressFunc": {
-			map[string]*Schema{
-				"string": {
-					Type:                  TypeString,
-					Optional:              true,
-					DiffSuppressFunc:      func(k, oldValue, newValue string, d *ResourceData) bool { return false },
-					DiffSuppressOnRefresh: true,
-				},
-			},
-			false,
 		},
 
 		"Computed-only with ExactlyOneOf": {
@@ -5077,7 +5054,7 @@ func TestSchemaMap_DiffSuppress(t *testing.T) {
 				"availability_zone": {
 					Type:     TypeString,
 					Optional: true,
-					DiffSuppressFunc: func(k, oldValue, newValue string, d *ResourceData) bool {
+					DiffSuppressFunc: func(k, old, new string, d *ResourceData) bool {
 						// Always suppress any diff
 						return true
 					},
@@ -5100,7 +5077,7 @@ func TestSchemaMap_DiffSuppress(t *testing.T) {
 				"availability_zone": {
 					Type:     TypeString,
 					Optional: true,
-					DiffSuppressFunc: func(k, oldValue, newValue string, d *ResourceData) bool {
+					DiffSuppressFunc: func(k, old, new string, d *ResourceData) bool {
 						// Always suppress any diff
 						return false
 					},
@@ -5131,7 +5108,7 @@ func TestSchemaMap_DiffSuppress(t *testing.T) {
 					Type:     TypeString,
 					Optional: true,
 					Default:  "foo",
-					DiffSuppressFunc: func(k, oldValue, newValue string, d *ResourceData) bool {
+					DiffSuppressFunc: func(k, old, new string, d *ResourceData) bool {
 						return true
 					},
 				},
@@ -5152,7 +5129,7 @@ func TestSchemaMap_DiffSuppress(t *testing.T) {
 					Type:     TypeString,
 					Optional: true,
 					Default:  "foo",
-					DiffSuppressFunc: func(k, oldValue, newValue string, d *ResourceData) bool {
+					DiffSuppressFunc: func(k, old, new string, d *ResourceData) bool {
 						return false
 					},
 				},
@@ -5331,214 +5308,6 @@ func TestSchemaMap_DiffSuppress(t *testing.T) {
 
 			if !reflect.DeepEqual(tc.ExpectedDiff, d) {
 				t.Fatalf("#%q:\n\nexpected:\n%#v\n\ngot:\n%#v", tn, tc.ExpectedDiff, d)
-			}
-		})
-	}
-}
-
-func TestSchema_DiffSuppressOnRefresh(t *testing.T) {
-	cases := map[string]struct {
-		Schema     schemaMap
-		PriorState map[string]string
-		SetKey     string
-		SetVal     interface{}
-		WantState  map[string]string
-	}{
-		"no suppress func string": {
-			Schema: schemaMap{
-				"v": {
-					Type:     TypeString,
-					Optional: true,
-				},
-			},
-			PriorState: map[string]string{
-				"v": "hello",
-			},
-			SetKey: "v",
-			SetVal: "howdy",
-			WantState: map[string]string{
-				"v": "howdy", // set was honored
-			},
-		},
-		"suppress func string but not always": {
-			Schema: schemaMap{
-				"v": {
-					Type:     TypeString,
-					Optional: true,
-					DiffSuppressFunc: func(key, oldV, newV string, d *ResourceData) bool {
-						return true
-					},
-				},
-			},
-			PriorState: map[string]string{
-				"v": "hello",
-			},
-			SetKey: "v",
-			SetVal: "howdy",
-			WantState: map[string]string{
-				"v": "howdy", // set was honored
-			},
-		},
-		"suppress func string always": {
-			Schema: schemaMap{
-				"v": {
-					Type:     TypeString,
-					Optional: true,
-					DiffSuppressFunc: func(key, oldV, newV string, d *ResourceData) bool {
-						return true
-					},
-					DiffSuppressOnRefresh: true,
-				},
-			},
-			PriorState: map[string]string{
-				"v": "hello",
-			},
-			SetKey: "v",
-			SetVal: "howdy",
-			WantState: map[string]string{
-				"v": "hello", // set was ignored
-			},
-		},
-		"suppress func string always no prior": {
-			Schema: schemaMap{
-				"v": {
-					Type:     TypeString,
-					Optional: true,
-					DiffSuppressFunc: func(key, oldV, newV string, d *ResourceData) bool {
-						return true
-					},
-					DiffSuppressOnRefresh: true,
-				},
-			},
-			PriorState: map[string]string{},
-			SetKey:     "v",
-			SetVal:     "howdy",
-			WantState: map[string]string{
-				"v": "howdy", // set was honored
-			},
-		},
-		"suppress func nested string but not always": {
-			Schema: schemaMap{
-				"v": {
-					Type:     TypeList,
-					Optional: true,
-					Elem: &Resource{
-						Schema: map[string]*Schema{
-							"w": {
-								Type: TypeString,
-								DiffSuppressFunc: func(key, oldV, newV string, d *ResourceData) bool {
-									return true
-								},
-							},
-						},
-					},
-				},
-			},
-			PriorState: map[string]string{
-				"v.#":   "1",
-				"v.0.w": "hello",
-			},
-			SetKey: "v",
-			SetVal: []map[string]interface{}{{"w": "howdy"}},
-			WantState: map[string]string{
-				"v.#":   "1",
-				"v.0.w": "howdy", // set was honored
-			},
-		},
-		"suppress func nested string always": {
-			Schema: schemaMap{
-				"v": {
-					Type:     TypeList,
-					Optional: true,
-					Elem: &Resource{
-						Schema: map[string]*Schema{
-							"w": {
-								Type: TypeString,
-								DiffSuppressFunc: func(key, oldV, newV string, d *ResourceData) bool {
-									return true
-								},
-								DiffSuppressOnRefresh: true,
-							},
-						},
-					},
-				},
-				"unrelated": {
-					Type:     TypeString,
-					Optional: true,
-				},
-			},
-			PriorState: map[string]string{
-				"v.#":       "1",
-				"v.0.w":     "hello",
-				"unrelated": "hi",
-			},
-			SetKey: "v",
-			SetVal: []map[string]interface{}{{"w": "howdy"}},
-			WantState: map[string]string{
-				"v.#":       "1",
-				"v.0.w":     "hello", // set was ignored
-				"unrelated": "hi",
-			},
-		},
-		"suppress func nested string always no prior": {
-			Schema: schemaMap{
-				"v": {
-					Type:     TypeList,
-					Optional: true,
-					Elem: &Resource{
-						Schema: map[string]*Schema{
-							"w": {
-								Type: TypeString,
-								DiffSuppressFunc: func(key, oldV, newV string, d *ResourceData) bool {
-									return true
-								},
-								DiffSuppressOnRefresh: true,
-							},
-						},
-					},
-				},
-			},
-			PriorState: map[string]string{
-				"v.#": "0",
-			},
-			SetKey: "v",
-			SetVal: []map[string]interface{}{{"w": "howdy"}},
-			WantState: map[string]string{
-				"v.#":   "1",
-				"v.0.w": "howdy", // set was honored
-			},
-		},
-	}
-
-	for tn, tc := range cases {
-		t.Run(tn, func(t *testing.T) {
-			schema := tc.Schema
-			priorState := &terraform.InstanceState{
-				Attributes: tc.PriorState,
-			}
-
-			d, err := schema.Data(priorState, nil)
-			if err != nil {
-				t.Fatalf("failed to create ResourceData: %s", err)
-			}
-
-			d.SetId("-") // just to make d.State think this object exists
-
-			err = d.Set(tc.SetKey, tc.SetVal)
-			if err != nil {
-				t.Fatalf("failed to Set: %s", err)
-			}
-
-			newState := d.State()
-			schema.handleDiffSuppressOnRefresh(context.Background(), priorState, newState)
-			var newStateAttrs map[string]string
-			if newState != nil {
-				newStateAttrs = newState.Attributes
-				delete(newStateAttrs, "id")
-			}
-
-			if diff := cmp.Diff(tc.WantState, newStateAttrs); diff != "" {
-				t.Errorf("wrong result state\n%s", diff)
 			}
 		})
 	}
@@ -6737,33 +6506,6 @@ func TestSchemaMap_Validate(t *testing.T) {
 				},
 			},
 			Err: true,
-		},
-		"bool with DefaultFunc that returns str": {
-			Schema: map[string]*Schema{
-				"bool_field": {
-					Type:        TypeBool,
-					Optional:    true,
-					DefaultFunc: func() (interface{}, error) { return "true", nil },
-				},
-			},
-		},
-		"float with DefaultFunc that returns str": {
-			Schema: map[string]*Schema{
-				"float_field": {
-					Type:        TypeFloat,
-					Optional:    true,
-					DefaultFunc: func() (interface{}, error) { return "1.23", nil },
-				},
-			},
-		},
-		"int with DefaultFunc that returns str": {
-			Schema: map[string]*Schema{
-				"int_field": {
-					Type:        TypeInt,
-					Optional:    true,
-					DefaultFunc: func() (interface{}, error) { return "1", nil },
-				},
-			},
 		},
 	}
 
@@ -8468,19 +8210,25 @@ func TestValidateAtLeastOneOfAttributes(t *testing.T) {
 }
 
 func TestPanicOnErrorDefaultsFalse(t *testing.T) {
-	t.Setenv("TF_ACC", "")
+	oldEnv := os.Getenv("TF_ACC")
 
+	os.Setenv("TF_ACC", "")
 	if schemaMap(nil).panicOnError() {
 		t.Fatalf("panicOnError should be false when TF_ACC is empty")
 	}
+
+	os.Setenv("TF_ACC", oldEnv)
 }
 
 func TestPanicOnErrorTF_ACCSet(t *testing.T) {
-	t.Setenv("TF_ACC", "1")
+	oldEnv := os.Getenv("TF_ACC")
 
+	os.Setenv("TF_ACC", "1")
 	if !schemaMap(nil).panicOnError() {
 		t.Fatalf("panicOnError should be true when TF_ACC is not empty")
 	}
+
+	os.Setenv("TF_ACC", oldEnv)
 }
 
 func TestValidateRequiredWithAttributes(t *testing.T) {

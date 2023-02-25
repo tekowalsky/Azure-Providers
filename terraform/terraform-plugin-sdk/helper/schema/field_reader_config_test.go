@@ -536,6 +536,5 @@ func TestConfigFieldReader_computedComplexSet(t *testing.T) {
 }
 
 func testConfig(t *testing.T, raw map[string]interface{}) *terraform.ResourceConfig {
-	t.Helper()
 	return terraform.NewResourceConfigRaw(raw)
 }

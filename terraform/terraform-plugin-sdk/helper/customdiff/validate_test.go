@@ -19,10 +19,10 @@ func TestValidateChange(t *testing.T) {
 				Optional: true,
 			},
 		},
-		ValidateChange("foo", func(_ context.Context, oldValue, newValue, meta interface{}) error {
+		ValidateChange("foo", func(_ context.Context, old, new, meta interface{}) error {
 			called = true
-			gotOld = oldValue.(string)
-			gotNew = newValue.(string)
+			gotOld = old.(string)
+			gotNew = new.(string)
 			return errors.New("bad")
 		}),
 	)

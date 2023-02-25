@@ -1,7 +1,6 @@
 package schema
 
 import (
-	"context"
 	"fmt"
 	"reflect"
 	"sort"
@@ -39,7 +38,7 @@ type resourceDiffTestCase struct {
 }
 
 // testDiffCases produces a list of test cases for use with SetNew and SetDiff.
-func testDiffCases(t *testing.T, computed bool) []resourceDiffTestCase {
+func testDiffCases(t *testing.T, oldPrefix string, oldOffset int, computed bool) []resourceDiffTestCase {
 	return []resourceDiffTestCase{
 		{
 			Name: "basic primitive diff",
@@ -635,7 +634,7 @@ func testDiffCases(t *testing.T, computed bool) []resourceDiffTestCase {
 }
 
 func TestSetNew(t *testing.T) {
-	testCases := testDiffCases(t, false)
+	testCases := testDiffCases(t, "", 0, false)
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
 			m := schemaMap(tc.Schema)
@@ -650,7 +649,7 @@ func TestSetNew(t *testing.T) {
 				return
 			}
 			for _, k := range d.UpdatedKeys() {
-				if err := m.diff(context.Background(), k, m[k], tc.Diff, d, false); err != nil {
+				if err := m.diff(k, m[k], tc.Diff, d, false); err != nil {
 					t.Fatalf("bad: %s", err)
 				}
 			}
@@ -662,7 +661,7 @@ func TestSetNew(t *testing.T) {
 }
 
 func TestSetNewComputed(t *testing.T) {
-	testCases := testDiffCases(t, true)
+	testCases := testDiffCases(t, "", 0, true)
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
 			m := schemaMap(tc.Schema)
@@ -677,7 +676,7 @@ func TestSetNewComputed(t *testing.T) {
 				return
 			}
 			for _, k := range d.UpdatedKeys() {
-				if err := m.diff(context.Background(), k, m[k], tc.Diff, d, false); err != nil {
+				if err := m.diff(k, m[k], tc.Diff, d, false); err != nil {
 					t.Fatalf("bad: %s", err)
 				}
 			}
@@ -946,7 +945,7 @@ func TestForceNew(t *testing.T) {
 				return
 			}
 			for _, k := range d.UpdatedKeys() {
-				if err := m.diff(context.Background(), k, m[k], tc.Diff, d, false); err != nil {
+				if err := m.diff(k, m[k], tc.Diff, d, false); err != nil {
 					t.Fatalf("bad: %s", err)
 				}
 			}
@@ -1195,7 +1194,7 @@ func TestClear(t *testing.T) {
 				return
 			}
 			for _, k := range d.UpdatedKeys() {
-				if err := m.diff(context.Background(), k, m[k], tc.Diff, d, false); err != nil {
+				if err := m.diff(k, m[k], tc.Diff, d, false); err != nil {
 					t.Fatalf("bad: %s", err)
 				}
 			}
@@ -1437,7 +1436,7 @@ func TestGetChangedKeysPrefix(t *testing.T) {
 			keys := d.GetChangedKeysPrefix(tc.Key)
 
 			for _, k := range d.UpdatedKeys() {
-				if err := m.diff(context.Background(), k, m[k], tc.Diff, d, false); err != nil {
+				if err := m.diff(k, m[k], tc.Diff, d, false); err != nil {
 					t.Fatalf("bad: %s", err)
 				}
 			}
@@ -1854,10 +1853,7 @@ func TestResourceDiffGetOkExistsSetNew(t *testing.T) {
 	}
 
 	d := newResourceDiff(tc.Schema, testConfig(t, map[string]interface{}{}), tc.State, tc.Diff)
-
-	if err := d.SetNew(tc.Key, tc.Value); err != nil {
-		t.Fatalf("unexpected SetNew error: %s", err)
-	}
+	d.SetNew(tc.Key, tc.Value)
 
 	v, ok := d.GetOkExists(tc.Key)
 	if s, ok := v.(*Set); ok {
@@ -1905,10 +1901,7 @@ func TestResourceDiffGetOkExistsSetNewComputed(t *testing.T) {
 	}
 
 	d := newResourceDiff(tc.Schema, testConfig(t, map[string]interface{}{}), tc.State, tc.Diff)
-
-	if err := d.SetNewComputed(tc.Key); err != nil {
-		t.Fatalf("unexpected SetNewComputed error: %s", err)
-	}
+	d.SetNewComputed(tc.Key)
 
 	_, ok := d.GetOkExists(tc.Key)
 
@@ -2149,10 +2142,7 @@ func TestResourceDiffNewValueKnownSetNew(t *testing.T) {
 	}
 
 	d := newResourceDiff(tc.Schema, tc.Config, tc.State, tc.Diff)
-
-	if err := d.SetNew(tc.Key, tc.Value); err != nil {
-		t.Fatalf("unexpected SetNew error: %s", err)
-	}
+	d.SetNew(tc.Key, tc.Value)
 
 	actual := d.NewValueKnown(tc.Key)
 	if tc.Expected != actual {
@@ -2189,117 +2179,10 @@ func TestResourceDiffNewValueKnownSetNewComputed(t *testing.T) {
 	}
 
 	d := newResourceDiff(tc.Schema, tc.Config, tc.State, tc.Diff)
-
-	if err := d.SetNewComputed(tc.Key); err != nil {
-		t.Fatalf("unexpected SetNewComputed error: %s", err)
-	}
+	d.SetNewComputed(tc.Key)
 
 	actual := d.NewValueKnown(tc.Key)
 	if tc.Expected != actual {
 		t.Fatalf("expected ok: %t, got: %t", tc.Expected, actual)
-	}
-}
-
-func TestResourceDiffHasChanges(t *testing.T) {
-	cases := []struct {
-		Schema map[string]*Schema
-		State  *terraform.InstanceState
-		Diff   *terraform.InstanceDiff
-		Keys   []string
-		Change bool
-	}{
-		// empty call d.HasChanges()
-		{
-			Schema: map[string]*Schema{},
-
-			State: nil,
-
-			Diff: &terraform.InstanceDiff{
-				Attributes: map[string]*terraform.ResourceAttrDiff{},
-			},
-
-			Keys: []string{},
-
-			Change: false,
-		},
-		// neither has change
-		{
-			Schema: map[string]*Schema{
-				"a": {
-					Type: TypeString,
-				},
-				"b": {
-					Type: TypeString,
-				},
-			},
-
-			State: &terraform.InstanceState{
-				Attributes: map[string]string{
-					"a": "foo",
-					"b": "foo",
-				},
-			},
-
-			Diff: &terraform.InstanceDiff{
-				Attributes: map[string]*terraform.ResourceAttrDiff{
-					"a": {
-						Old: "",
-						New: "foo",
-					},
-					"b": {
-						Old: "",
-						New: "foo",
-					},
-				},
-			},
-
-			Keys: []string{"a", "b"},
-
-			Change: false,
-		},
-		// one key has change
-		{
-			Schema: map[string]*Schema{
-				"a": {
-					Type: TypeString,
-				},
-				"b": {
-					Type: TypeString,
-				},
-			},
-
-			State: &terraform.InstanceState{
-				Attributes: map[string]string{
-					"a": "foo",
-					"b": "foo",
-				},
-			},
-
-			Diff: &terraform.InstanceDiff{
-				Attributes: map[string]*terraform.ResourceAttrDiff{
-					"a": {
-						Old: "",
-						New: "bar",
-					},
-					"b": {
-						Old: "",
-						New: "foo",
-					},
-				},
-			},
-
-			Keys: []string{"a", "b"},
-
-			Change: true,
-		},
-	}
-
-	for i, tc := range cases {
-		d := newResourceDiff(tc.Schema, testConfig(t, map[string]interface{}{}), tc.State, tc.Diff)
-
-		actual := d.HasChanges(tc.Keys...)
-		if actual != tc.Change {
-			t.Fatalf("Bad: %d %#v", i, actual)
-		}
 	}
 }
