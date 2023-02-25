@@ -32,9 +32,9 @@ jobs:
           fetch-depth: 0
           submodules: true
 
-      - name: Break git cache link
-        run: |
-          git rm --cached terraform-plugin-sdk
+      # - name: Break git cache link
+      #  run: |
+      #    git rm --cached terraform-plugin-sdk
 
       - name: Clear old data
         run: |
