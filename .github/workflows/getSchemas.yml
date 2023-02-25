@@ -31,7 +31,30 @@ jobs:
           path: ./terraform-plugin-sdk
           fetch-depth: 0
 
-      - name: Copy ARM Schema Files
+      - name: Clear old data
+        run: |
+          if [ -d ./az ]; then
+            git rm --cached az
+            rm -rf ./az
+          fi
+          cd ./myrepo
+          if [ -d ./azure ]; then
+            git rm --cached azure
+            rm -rf ./azure
+          fi
+          if [ -d ./terraform ]; then
+            git rm --cached terraform/terraform-plugin-sdk
+            rm -rf ./terraform
+          fi
+          if [ -d ./github ]; then
+            git rm --cached github
+            rm -rf ./github
+          fi
+          rm -rf ./*
+          cd ..
+        continue-on-error: true
+
+      - name: Collect ARM Schema Files
         run: |
           mkdir ./az
           cd ./az
@@ -53,32 +76,23 @@ jobs:
           cp -r ./azure-resource-manager-schemas/schemas/viewdefinition/. ./az/viewdefinition/
         continue-on-error: true
 
-      - name: Consolidate copy of ARM Schema Files
+      - name: Consolidate ARM Schema Files
         run: |
           cd ./myrepo
-          if [ -d ./azure ]; then
-            echo "Found ./azure"
-          else
-            mkdir ./azure
-          fi
+          mkdir ./azure
           cd ./azure
           cp -ur ../../az/schemas/. ./schemas/
           cp -ur ../../az/schemaspreview/. ./schemaspreview/
           cp -ur ../../az/common/. ./common/
           cp -ur ../../az/viewdefinition/. ./viewdefinition/
           cd ..
+        continue-on-error: true
 
       - name: Copy HashiCorp Files
         run: |
           cd ./myrepo
-          ls -l
-          if [ -d ./terraform ]; then
-            git rm --cached terraform/terraform-plugin-sdk
-            cd ./terraform
-          else
-            mkdir ./terraform
-            cd ./terraform
-          fi
+          mkdir ./terraform
+          cd ./terraform
           cp -ru ../../terraform-plugin-sdk .
           cd ..
         continue-on-error: true
@@ -87,7 +101,7 @@ jobs:
         run: |
           cd ./myrepo
           date > ./azure/ARMschemaDate.txt
-          date > ./terraform/hashi-updated.txt
+          date > ./terraform/hashiDate.txt
           git config user.name GetSchemas-Workflow
           git config user.email github-actions@github.com
           git add ./azure
