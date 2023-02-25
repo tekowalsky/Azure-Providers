@@ -55,7 +55,6 @@ jobs:
         with:
           repository: tekowalsky/Azure-Providers
           path: ./myrepo
-          ref: schemas
           fetch-depth: 0
 
       - name: Copy and consolidate Latest ARM Schema Version Files
