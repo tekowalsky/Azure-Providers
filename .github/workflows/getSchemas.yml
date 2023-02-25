@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: hashicorp/terraform-plugin-sdk
-          path: ./terraform-plugin-sdk
+          path: ./terraform/terraform-plugin-sdk
           fetch-depth: 0
           submodules: true
           
@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: hashicorp/terraform-provider-azurerm
-          path: ./terraform-provider-azurerm
+          path: ./terraform/terraform-provider-azurerm
           fetch-depth: 0
           submodules: true
           
@@ -44,15 +44,15 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: hashicorp/terraform-provider-tfe
-          path: ./terraform-provider-tfe
+          path: ./terraform/terraform-provider-tfe
           fetch-depth: 0
           submodules: true
 
       - name: Break Git Cache Links
         run: |
-          git rm --cached terraform-plugin-sdk
-          git rm --cached terraform-provider-azurerm
-          git rm --cached terraform-provider-tfe
+          git rm --cached terraform/terraform-plugin-sdk
+          git rm --cached terraform/terraform-provider-azurerm
+          git rm --cached terraform/terraform-provider-tfe
         continue-on-error: true
 
       - name: Clear old data
@@ -117,9 +117,9 @@ jobs:
           cd ./myrepo
           mkdir ./terraform
           cd ./terraform
-          cp -ru ../../terraform-plugin-sdk .
-          cp -ru ../../terraform-provider-azurerm .
-          cp -ru ../../terraform-provider-tfe .
+          cp -ru ../../terraform/terraform-plugin-sdk .
+          cp -ru ../../terraform/terraform-provider-azurerm .
+          cp -ru ../../terraform/terraform-provider-tfe .
           cd ..
         continue-on-error: true
 
