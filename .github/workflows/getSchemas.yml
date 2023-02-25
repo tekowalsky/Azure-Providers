@@ -30,20 +30,23 @@ jobs:
           repository: hashicorp/terraform-plugin-sdk
           path: ./terraform-plugin-sdk
           fetch-depth: 0
-
+          submodules: true
+          
       - name: Checkout HashiCorp Azurerm Provider Repo
         uses: actions/checkout@v3
         with:
           repository: hashicorp/terraform-provider-azurerm
           path: ./terraform-provider-azurerm
           fetch-depth: 0
-
+          submodules: true
+          
       - name: Checkout HashiCorp TFE Provider Repo
         uses: actions/checkout@v3
         with:
           repository: hashicorp/terraform-provider-tfe
           path: ./terraform-provider-tfe
           fetch-depth: 0
+          submodules: true
 
       - name: Break Git Cache Links
         run: |
