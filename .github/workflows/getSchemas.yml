@@ -1,4 +1,4 @@
-name: Update Schema List
+name: Update Schema Lists
 on:
   workflow_dispatch:
 
