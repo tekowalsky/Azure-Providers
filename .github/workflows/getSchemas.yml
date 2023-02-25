@@ -32,25 +32,24 @@ jobs:
           fetch-depth: 0
           submodules: true
 
-      - name: Clear old data
+      - name: Break git cache link
         run: |
           git rm --cached terraform/terraform-plugin-sdk
+
+      - name: Clear old data
+        run: |
           if [ -d ./az ]; then
-            git rm -r --cached az
             rm -rf ./az
           fi
           cp ./myrepo/README.md ./
           cd ./myrepo
           if [ -d ./azure ]; then
-            git rm -r --cached azure
             rm -rf ./azure
           fi
           if [ -d ./terraform ]; then
-            git rm -r --cached terraform/terraform-plugin-sdk
             rm -rf ./terraform
           fi
           if [ -d ./github ]; then
-            git rm -r --cached github
             rm -rf ./github
           fi
           rm -rf ./*
