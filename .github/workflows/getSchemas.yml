@@ -34,7 +34,7 @@ jobs:
 
       - name: Break git cache link
         run: |
-          git rm --cached terraform/terraform-plugin-sdk
+          git rm --cached terraform-plugin-sdk
 
       - name: Clear old data
         run: |
