@@ -8,6 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout My Repo
+        uses: actions/checkout@v3
+        with:
+          repository: tekowalsky/Azure-Providers
+          path: ./myrepo
+          fetch-depth: 0
+
       - name: Checkout ARM Schemas
         uses: actions/checkout@v3
         with:
@@ -22,11 +29,6 @@ jobs:
           repository: hashicorp/terraform-plugin-sdk
           path: ./terraform-plugin-sdk
           fetch-depth: 0
-          
-      - name: Break Git Cache Link
-        run: |
-          git rm --cached terraform/terraform-plugin-sdk
-        continue-on-error: true
 
       - name: Copy ARM Schema Files
         run: |
@@ -50,14 +52,7 @@ jobs:
           cp -r ./azure-resource-manager-schemas/schemas/viewdefinition/. ./az/viewdefinition/
         continue-on-error: true
 
-      - name: Checkout My Repo
-        uses: actions/checkout@v3
-        with:
-          repository: tekowalsky/Azure-Providers
-          path: ./myrepo
-          fetch-depth: 0
-
-      - name: Copy and consolidate Latest ARM Schema Version Files
+      - name: Consolidate copy of ARM Schema Files
         run: |
           cd ./myrepo
           if [ -d ./azure ]; then
@@ -71,12 +66,13 @@ jobs:
           cp -ur ../../az/common/. ./common/
           cp -ur ../../az/viewdefinition/. ./viewdefinition/
           cd ..
-          
+
       - name: Copy HashiCorp Files
         run: |
           cd ./myrepo
           ls -l
           if [ -d ./terraform ]; then
+            git rm --cached terraform/terraform-plugin-sdk
             cd ./terraform
           else
             mkdir ./terraform
