@@ -30,11 +30,27 @@ jobs:
           repository: hashicorp/terraform-plugin-sdk
           path: ./terraform-plugin-sdk
           fetch-depth: 0
-          submodules: true
 
-      # - name: Break git cache link
-      #  run: |
-      #    git rm --cached terraform-plugin-sdk
+      - name: Checkout HashiCorp Azurerm Provider Repo
+        uses: actions/checkout@v3
+        with:
+          repository: hashicorp/terraform-provider-azurerm
+          path: ./terraform-provider-azurerm
+          fetch-depth: 0
+
+      - name: Checkout HashiCorp TFE Provider Repo
+        uses: actions/checkout@v3
+        with:
+          repository: hashicorp/terraform-provider-tfe
+          path: ./terraform-provider-tfe
+          fetch-depth: 0
+
+      - name: Break Git Cache Links
+        run: |
+          git rm --cached terraform-plugin-sdk
+          git rm --cached terraform-provider-azurerm
+          git rm --cached terraform-provider-tfe
+        continue-on-error: true
 
       - name: Clear old data
         run: |
@@ -99,6 +115,8 @@ jobs:
           mkdir ./terraform
           cd ./terraform
           cp -ru ../../terraform-plugin-sdk .
+          cp -ru ../../terraform-provider-azurerm .
+          cp -ru ../../terraform-provider-tfe .
           cd ..
         continue-on-error: true
 
