@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-08-01/Microsoft.AzureArcData.json#",
+  "id": "https://schema.management.azure.com/schemas/2021-11-01/Microsoft.AzureArcData.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.AzureArcData",
   "description": "Microsoft AzureArcData Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-08-01"
+            "2021-11-01"
           ]
         },
         "extendedLocation": {
@@ -79,7 +79,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-08-01"
+            "2021-11-01"
           ]
         },
         "extendedLocation": {
@@ -160,7 +160,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-08-01"
+            "2021-11-01"
           ]
         },
         "location": {
@@ -290,6 +290,28 @@
             }
           ],
           "description": "Log analytics workspace id and primary key"
+        },
+        "logsDashboardCredential": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BasicLoginInformation"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Username and password for basic login authentication."
+        },
+        "metricsDashboardCredential": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BasicLoginInformation"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Username and password for basic login authentication."
         },
         "onPremiseProperty": {
           "oneOf": [
@@ -654,7 +676,8 @@
               "type": "string",
               "enum": [
                 "BasePrice",
-                "LicenseIncluded"
+                "LicenseIncluded",
+                "DisasterRecovery"
               ]
             },
             {

@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2018-11-30/Microsoft.ManagedIdentity.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-01-31/Microsoft.ManagedIdentity.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.ManagedIdentity",
   "description": "Microsoft ManagedIdentity Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-11-30"
+            "2023-01-31"
           ]
         },
         "location": {
@@ -20,6 +20,16 @@
         "name": {
           "type": "string",
           "description": "The name of the identity resource."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/userAssignedIdentities_federatedIdentityCredentials_childResource"
+              }
+            ]
+          }
         },
         "tags": {
           "oneOf": [
@@ -50,7 +60,136 @@
         "type"
       ],
       "description": "Microsoft.ManagedIdentity/userAssignedIdentities"
+    },
+    "userAssignedIdentities_federatedIdentityCredentials": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-01-31"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9-_]{2,119}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the federated identity credential resource."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FederatedIdentityCredentialProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties associated with a federated identity credential."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ManagedIdentity/userAssignedIdentities/federatedIdentityCredentials"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ManagedIdentity/userAssignedIdentities/federatedIdentityCredentials"
     }
   },
-  "definitions": {}
+  "definitions": {
+    "FederatedIdentityCredentialProperties": {
+      "type": "object",
+      "properties": {
+        "audiences": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of audiences that can appear in the issued token."
+        },
+        "issuer": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the issuer to be trusted."
+        },
+        "subject": {
+          "type": "string",
+          "description": "The identifier of the external identity."
+        }
+      },
+      "required": [
+        "audiences",
+        "issuer",
+        "subject"
+      ],
+      "description": "The properties associated with a federated identity credential."
+    },
+    "userAssignedIdentities_federatedIdentityCredentials_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-01-31"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9-_]{2,119}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the federated identity credential resource."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FederatedIdentityCredentialProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties associated with a federated identity credential."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "federatedIdentityCredentials"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ManagedIdentity/userAssignedIdentities/federatedIdentityCredentials"
+    }
+  }
 }

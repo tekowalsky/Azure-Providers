@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-11-01-preview/Microsoft.RecoveryServices.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-09-30-preview/Microsoft.RecoveryServices.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.RecoveryServices",
   "description": "Microsoft RecoveryServices Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-11-01-preview"
+            "2022-09-30-preview"
           ]
         },
         "etag": {
@@ -119,7 +119,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-11-01-preview"
+            "2022-09-30-preview"
           ]
         },
         "name": {
@@ -158,7 +158,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-11-01-preview"
+            "2022-09-30-preview"
           ]
         },
         "etag": {
@@ -204,6 +204,46 @@
     }
   },
   "definitions": {
+    "AzureMonitorAlertSettings": {
+      "type": "object",
+      "properties": {
+        "alertsForAllJobFailures": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        }
+      },
+      "description": "Settings for Azure Monitor based alerts"
+    },
+    "ClassicAlertSettings": {
+      "type": "object",
+      "properties": {
+        "alertsForCriticalOperations": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        }
+      },
+      "description": "Settings for classic alerts"
+    },
     "CmkKekIdentity": {
       "type": "object",
       "properties": {
@@ -276,6 +316,55 @@
       ],
       "description": "Identity for the resource."
     },
+    "ImmutabilitySettings": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Disabled",
+                "Unlocked",
+                "Locked"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        }
+      },
+      "description": "Immutability Settings of vault"
+    },
+    "MonitoringSettings": {
+      "type": "object",
+      "properties": {
+        "azureMonitorAlertSettings": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AzureMonitorAlertSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Settings for Azure Monitor based alerts"
+        },
+        "classicAlertSettings": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ClassicAlertSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Settings for classic alerts"
+        }
+      },
+      "description": "Monitoring Settings of the vault"
+    },
     "RawCertificateData": {
       "type": "object",
       "properties": {
@@ -312,6 +401,23 @@
       },
       "description": "Raw certificate data."
     },
+    "SecuritySettings": {
+      "type": "object",
+      "properties": {
+        "immutabilitySettings": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ImmutabilitySettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Immutability Settings of vault"
+        }
+      },
+      "description": "Security Settings of the vault"
+    },
     "Sku": {
       "type": "object",
       "properties": {
@@ -336,7 +442,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The Sku name."
+          "description": "Name of SKU is RS0 (Recovery Services 0th version) and the tier is standard tier. They do not have affect on backend storage redundancy or any other vault settings. To manage storage redundancy, use the backupstorageconfig."
         },
         "size": {
           "type": "string",
@@ -456,6 +562,17 @@
           ],
           "description": "Customer Managed Key details of the resource."
         },
+        "monitoringSettings": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MonitoringSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Monitoring Settings of the vault"
+        },
         "moveDetails": {
           "oneOf": [
             {
@@ -466,6 +583,43 @@
             }
           ],
           "description": "The details of the latest move operation performed on the Azure Resource"
+        },
+        "publicNetworkAccess": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "property to enable or disable resource provider inbound network traffic from public clients."
+        },
+        "redundancySettings": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/VaultPropertiesRedundancySettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The redundancy Settings of a Vault"
+        },
+        "securitySettings": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SecuritySettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Security Settings of the vault"
         },
         "upgradeDetails": {
           "oneOf": [
@@ -529,13 +683,18 @@
       "properties": {},
       "description": "The details of the latest move operation performed on the Azure Resource"
     },
+    "VaultPropertiesRedundancySettings": {
+      "type": "object",
+      "properties": {},
+      "description": "The redundancy Settings of a Vault"
+    },
     "vaults_certificates_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-11-01-preview"
+            "2022-09-30-preview"
           ]
         },
         "name": {
@@ -574,7 +733,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-11-01-preview"
+            "2022-09-30-preview"
           ]
         },
         "etag": {

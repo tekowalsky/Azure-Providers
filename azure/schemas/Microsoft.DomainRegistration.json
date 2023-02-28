@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2015-04-01/Microsoft.DomainRegistration.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-03-01/Microsoft.DomainRegistration.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.DomainRegistration",
   "description": "Microsoft DomainRegistration Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-04-01"
+            "2022-03-01"
           ]
         },
         "kind": {
@@ -42,6 +42,9 @@
             "oneOf": [
               {
                 "$ref": "#/definitions/domains_domainOwnershipIdentifiers_childResource"
+              },
+              {
+                "$ref": "#/definitions/domains_transferOut_childResource"
               }
             ]
           }
@@ -83,7 +86,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-04-01"
+            "2022-03-01"
           ]
         },
         "kind": {
@@ -119,6 +122,40 @@
         "type"
       ],
       "description": "Microsoft.DomainRegistration/domains/domainOwnershipIdentifiers"
+    },
+    "domains_transferOut": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-03-01"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^.*/transferOut$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DomainRegistration/domains/transferOut"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.DomainRegistration/domains/transferOut"
     }
   },
   "definitions": {
@@ -387,7 +424,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-04-01"
+            "2022-03-01"
           ]
         },
         "kind": {
@@ -423,6 +460,35 @@
         "type"
       ],
       "description": "Microsoft.DomainRegistration/domains/domainOwnershipIdentifiers"
+    },
+    "domains_transferOut_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-03-01"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "transferOut"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "transferOut"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.DomainRegistration/domains/transferOut"
     }
   }
 }

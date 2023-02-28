@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2015-03-01-preview/Microsoft.HDInsight.json#",
+  "id": "https://schema.management.azure.com/schemas/2018-06-01-preview/Microsoft.HDInsight.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.HDInsight",
   "description": "Microsoft HDInsight Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-03-01-preview"
+            "2018-06-01-preview"
           ]
         },
         "identity": {
@@ -92,7 +92,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-03-01-preview"
+            "2018-06-01-preview"
           ]
         },
         "etag": {
@@ -219,7 +219,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-03-01-preview"
+            "2018-06-01-preview"
           ]
         },
         "type": {
@@ -850,7 +850,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-03-01-preview"
+            "2018-06-01-preview"
           ]
         },
         "etag": {
@@ -967,7 +967,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-03-01-preview"
+            "2018-06-01-preview"
           ]
         },
         "type": {
@@ -998,7 +998,8 @@
         "enableComputeIsolation": {
           "oneOf": [
             {
-              "type": "boolean"
+              "type": "boolean",
+              "default": false
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"

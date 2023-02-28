@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2015-10-01-preview/Microsoft.DataLakeAnalytics.json#",
+  "id": "https://schema.management.azure.com/schemas/2019-11-01-preview/Microsoft.DataLakeAnalytics.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.DataLakeAnalytics",
   "description": "Microsoft DataLakeAnalytics Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-10-01-preview"
+            "2019-11-01-preview"
           ]
         },
         "location": {
@@ -19,7 +19,7 @@
         },
         "name": {
           "type": "string",
-          "description": "The name of the Data Lake Analytics account to retrieve."
+          "description": "The name of the Data Lake Analytics account."
         },
         "properties": {
           "oneOf": [
@@ -36,10 +36,10 @@
           "items": {
             "oneOf": [
               {
-                "$ref": "#/definitions/accounts_DataLakeStoreAccounts_childResource"
+                "$ref": "#/definitions/accounts_dataLakeStoreAccounts_childResource"
               },
               {
-                "$ref": "#/definitions/accounts_StorageAccounts_childResource"
+                "$ref": "#/definitions/accounts_storageAccounts_childResource"
               },
               {
                 "$ref": "#/definitions/accounts_computePolicies_childResource"
@@ -87,7 +87,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-10-01-preview"
+            "2019-11-01-preview"
           ]
         },
         "name": {
@@ -120,13 +120,13 @@
       ],
       "description": "Microsoft.DataLakeAnalytics/accounts/computePolicies"
     },
-    "accounts_DataLakeStoreAccounts": {
+    "accounts_dataLakeStoreAccounts": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-10-01-preview"
+            "2019-11-01-preview"
           ]
         },
         "name": {
@@ -147,7 +147,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.DataLakeAnalytics/accounts/DataLakeStoreAccounts"
+            "Microsoft.DataLakeAnalytics/accounts/dataLakeStoreAccounts"
           ]
         }
       },
@@ -157,7 +157,7 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.DataLakeAnalytics/accounts/DataLakeStoreAccounts"
+      "description": "Microsoft.DataLakeAnalytics/accounts/dataLakeStoreAccounts"
     },
     "accounts_firewallRules": {
       "type": "object",
@@ -165,7 +165,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-10-01-preview"
+            "2019-11-01-preview"
           ]
         },
         "name": {
@@ -198,13 +198,13 @@
       ],
       "description": "Microsoft.DataLakeAnalytics/accounts/firewallRules"
     },
-    "accounts_StorageAccounts": {
+    "accounts_storageAccounts": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-10-01-preview"
+            "2019-11-01-preview"
           ]
         },
         "name": {
@@ -214,7 +214,7 @@
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/StorageAccountProperties"
+              "$ref": "#/definitions/AddStorageAccountProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -225,7 +225,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.DataLakeAnalytics/accounts/StorageAccounts"
+            "Microsoft.DataLakeAnalytics/accounts/storageAccounts"
           ]
         }
       },
@@ -235,7 +235,7 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.DataLakeAnalytics/accounts/StorageAccounts"
+      "description": "Microsoft.DataLakeAnalytics/accounts/storageAccounts"
     }
   },
   "definitions": {
@@ -245,7 +245,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-10-01-preview"
+            "2019-11-01-preview"
           ]
         },
         "name": {
@@ -278,13 +278,13 @@
       ],
       "description": "Microsoft.DataLakeAnalytics/accounts/computePolicies"
     },
-    "accounts_DataLakeStoreAccounts_childResource": {
+    "accounts_dataLakeStoreAccounts_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-10-01-preview"
+            "2019-11-01-preview"
           ]
         },
         "name": {
@@ -305,7 +305,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "DataLakeStoreAccounts"
+            "dataLakeStoreAccounts"
           ]
         }
       },
@@ -315,7 +315,7 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.DataLakeAnalytics/accounts/DataLakeStoreAccounts"
+      "description": "Microsoft.DataLakeAnalytics/accounts/dataLakeStoreAccounts"
     },
     "accounts_firewallRules_childResource": {
       "type": "object",
@@ -323,7 +323,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-10-01-preview"
+            "2019-11-01-preview"
           ]
         },
         "name": {
@@ -356,13 +356,13 @@
       ],
       "description": "Microsoft.DataLakeAnalytics/accounts/firewallRules"
     },
-    "accounts_StorageAccounts_childResource": {
+    "accounts_storageAccounts_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-10-01-preview"
+            "2019-11-01-preview"
           ]
         },
         "name": {
@@ -372,7 +372,7 @@
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/StorageAccountProperties"
+              "$ref": "#/definitions/AddStorageAccountProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -383,7 +383,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "StorageAccounts"
+            "storageAccounts"
           ]
         }
       },
@@ -393,7 +393,7 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.DataLakeAnalytics/accounts/StorageAccounts"
+      "description": "Microsoft.DataLakeAnalytics/accounts/storageAccounts"
     },
     "AddDataLakeStoreProperties": {
       "type": "object",
@@ -429,6 +429,24 @@
       ],
       "description": "The parameters used to add a new Data Lake Store account while creating a new Data Lake Analytics account."
     },
+    "AddStorageAccountProperties": {
+      "type": "object",
+      "properties": {
+        "accessKey": {
+          "type": "string",
+          "description": "The access key associated with this Azure Storage account that will be used to connect to it."
+        },
+        "suffix": {
+          "type": "string",
+          "default": "azuredatalakestore.net",
+          "description": "The optional suffix for the storage account."
+        }
+      },
+      "required": [
+        "accessKey"
+      ],
+      "description": "The Azure Storage account properties to use when adding a new Azure Storage account."
+    },
     "AddStorageAccountWithAccountParameters": {
       "type": "object",
       "properties": {
@@ -439,7 +457,7 @@
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/StorageAccountProperties"
+              "$ref": "#/definitions/AddStorageAccountProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -561,7 +579,9 @@
         "maxDegreeOfParallelism": {
           "oneOf": [
             {
-              "type": "integer"
+              "type": "integer",
+              "minimum": 1,
+              "default": "30"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -586,7 +606,8 @@
           "oneOf": [
             {
               "type": "integer",
-              "default": "20"
+              "minimum": 1,
+              "default": "3"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -766,23 +787,6 @@
         "startIpAddress"
       ],
       "description": "The firewall rule properties to use when creating a new firewall rule."
-    },
-    "StorageAccountProperties": {
-      "type": "object",
-      "properties": {
-        "accessKey": {
-          "type": "string",
-          "description": "The access key associated with this Azure Storage account that will be used to connect to it."
-        },
-        "suffix": {
-          "type": "string",
-          "description": "The optional suffix for the storage account."
-        }
-      },
-      "required": [
-        "accessKey"
-      ],
-      "description": "The Azure Storage account properties to use when adding a new Azure Storage account."
     }
   }
 }

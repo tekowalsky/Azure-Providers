@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2020-01-01/Microsoft.OffAzure.json#",
+  "id": "https://schema.management.azure.com/schemas/2020-07-07/Microsoft.OffAzure.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.OffAzure",
   "description": "Microsoft OffAzure Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01"
+            "2020-07-07"
           ]
         },
         "eTag": {
@@ -84,7 +84,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01"
+            "2020-07-07"
           ]
         },
         "name": {
@@ -123,7 +123,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01"
+            "2020-07-07"
           ]
         },
         "name": {
@@ -156,13 +156,97 @@
       ],
       "description": "Microsoft.OffAzure/HyperVSites/hosts"
     },
+    "MasterSites": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2020-07-07"
+          ]
+        },
+        "eTag": {
+          "type": "string",
+          "description": "eTag for concurrency control."
+        },
+        "location": {
+          "type": "string",
+          "description": "Azure location in which Sites is created."
+        },
+        "name": {
+          "type": "string",
+          "description": "Site name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MasterSiteProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Class for site properties."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/masterSites_privateEndpointConnections_childResource"
+              }
+            ]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.OffAzure/MasterSites"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.OffAzure/MasterSites"
+    },
+    "masterSites_privateEndpointConnections": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2020-07-07"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Private link resource name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.OffAzure/masterSites/privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.OffAzure/masterSites/privateEndpointConnections"
+    },
     "VMwareSites": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01"
+            "2020-07-07"
           ]
         },
         "eTag": {
@@ -233,7 +317,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01"
+            "2020-07-07"
           ]
         },
         "name": {
@@ -316,7 +400,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01"
+            "2020-07-07"
           ]
         },
         "name": {
@@ -355,7 +439,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01"
+            "2020-07-07"
           ]
         },
         "name": {
@@ -387,6 +471,84 @@
         "type"
       ],
       "description": "Microsoft.OffAzure/HyperVSites/hosts"
+    },
+    "MasterSiteProperties": {
+      "type": "object",
+      "properties": {
+        "allowMultipleSites": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Value indicating whether multiple sites per site type are allowed."
+        },
+        "customerStorageAccountArmId": {
+          "type": "string",
+          "description": "Gets or sets a value for customer storage account ARM id."
+        },
+        "publicNetworkAccess": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "NotSpecified",
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the state of public network access."
+        },
+        "sites": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of sites that are a part of Master Site."
+        }
+      },
+      "description": "Class for site properties."
+    },
+    "masterSites_privateEndpointConnections_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2020-07-07"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Private link resource name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.OffAzure/masterSites/privateEndpointConnections"
     },
     "SiteAgentProperties": {
       "type": "object",
@@ -492,7 +654,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01"
+            "2020-07-07"
           ]
         },
         "name": {

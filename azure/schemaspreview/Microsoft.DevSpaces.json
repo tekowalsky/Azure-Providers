@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2018-06-01-preview/Microsoft.DevSpaces.json#",
+  "id": "https://schema.management.azure.com/schemas/2019-01-01-preview/Microsoft.DevSpaces.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.DevSpaces",
   "description": "Microsoft DevSpaces Resource Types",
@@ -28,7 +28,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2019-01-01-preview"
           ]
         },
         "tags": {
@@ -85,10 +85,6 @@
     "ControllerProperties": {
       "type": "object",
       "properties": {
-        "hostSuffix": {
-          "type": "string",
-          "description": "DNS suffix for public endpoints running in the Azure Dev Spaces Controller."
-        },
         "targetContainerHostResourceId": {
           "type": "string",
           "description": "Resource ID of the target container host"
@@ -99,7 +95,6 @@
         }
       },
       "required": [
-        "hostSuffix",
         "targetContainerHostResourceId",
         "targetContainerHostCredentialsBase64"
       ]

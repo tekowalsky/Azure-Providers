@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2018-01-01-preview/Microsoft.EventHub.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-10-01-preview/Microsoft.EventHub.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.EventHub",
   "description": "Microsoft EventHub Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "location": {
@@ -81,7 +81,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "identity": {
@@ -121,12 +121,6 @@
           "items": {
             "oneOf": [
               {
-                "$ref": "#/definitions/namespaces_ipfilterrules_childResource"
-              },
-              {
-                "$ref": "#/definitions/namespaces_virtualnetworkrules_childResource"
-              },
-              {
                 "$ref": "#/definitions/namespaces_networkRuleSets_childResource"
               },
               {
@@ -140,6 +134,12 @@
               },
               {
                 "$ref": "#/definitions/namespaces_eventhubs_childResource"
+              },
+              {
+                "$ref": "#/definitions/namespaces_schemagroups_childResource"
+              },
+              {
+                "$ref": "#/definitions/namespaces_applicationGroups_childResource"
               }
             ]
           }
@@ -185,13 +185,53 @@
       ],
       "description": "Microsoft.EventHub/namespaces"
     },
+    "namespaces_applicationGroups": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-10-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "The Application Group name "
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApplicationGroupProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.EventHub/namespaces/applicationGroups"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventHub/namespaces/applicationGroups"
+    },
     "namespaces_authorizationRules": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -231,7 +271,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -272,7 +312,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -326,7 +366,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -366,7 +406,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -401,53 +441,13 @@
       ],
       "description": "Microsoft.EventHub/namespaces/eventhubs/consumergroups"
     },
-    "namespaces_ipfilterrules": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2018-01-01-preview"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "minLength": 1,
-          "description": "The IP Filter Rule name."
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/IpFilterRuleProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Properties supplied to create or update IpFilterRules"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "Microsoft.EventHub/namespaces/ipfilterrules"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.EventHub/namespaces/ipfilterrules"
-    },
     "namespaces_networkRuleSets": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -493,7 +493,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -526,35 +526,35 @@
       ],
       "description": "Microsoft.EventHub/namespaces/privateEndpointConnections"
     },
-    "namespaces_virtualnetworkrules": {
+    "namespaces_schemagroups": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
           "type": "string",
           "minLength": 1,
-          "description": "The Virtual Network Rule name."
+          "maxLength": 256,
+          "description": "The Schema Group name "
         },
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/VirtualNetworkRuleProperties"
+              "$ref": "#/definitions/SchemaGroupProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "Properties supplied to create or update VirtualNetworkRules"
+          ]
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.EventHub/namespaces/virtualnetworkrules"
+            "Microsoft.EventHub/namespaces/schemagroups"
           ]
         }
       },
@@ -564,10 +564,65 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.EventHub/namespaces/virtualnetworkrules"
+      "description": "Microsoft.EventHub/namespaces/schemagroups"
     }
   },
   "definitions": {
+    "ApplicationGroupPolicy": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/ThrottlingPolicy"
+        }
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The Name of this policy"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "description": "Properties of the Application Group policy"
+    },
+    "ApplicationGroupProperties": {
+      "type": "object",
+      "properties": {
+        "clientAppGroupIdentifier": {
+          "type": "string",
+          "description": "The Unique identifier for application group.Supports SAS(SASKeyName=KeyName) or AAD(AADAppID=Guid)"
+        },
+        "isEnabled": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Determines if Application Group is allowed to create connection with namespace or not. Once the isEnabled is set to false, all the existing connections of application group gets dropped and no new connections will be allowed"
+        },
+        "policies": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ApplicationGroupPolicy"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of group policies that define the behavior of application group. The policies can support resource governance scenarios such as limiting ingress or egress traffic."
+        }
+      },
+      "required": [
+        "clientAppGroupIdentifier"
+      ]
+    },
     "ArmDisasterRecoveryProperties": {
       "type": "object",
       "properties": {
@@ -653,9 +708,7 @@
         "intervalInSeconds": {
           "oneOf": [
             {
-              "type": "integer",
-              "minimum": 60,
-              "maximum": 900
+              "type": "integer"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -666,9 +719,7 @@
         "sizeLimitInBytes": {
           "oneOf": [
             {
-              "type": "integer",
-              "minimum": 10485760,
-              "maximum": 524288000
+              "type": "integer"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -692,7 +743,19 @@
     },
     "ClusterProperties": {
       "type": "object",
-      "properties": {},
+      "properties": {
+        "supportsScaling": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A value that indicates whether Scaling is Supported."
+        }
+      },
       "description": "Event Hubs Cluster properties supplied in responses in List or Get operations."
     },
     "ClusterSku": {
@@ -799,6 +862,26 @@
           "type": "string",
           "description": "Blob container Name"
         },
+        "dataLakeAccountName": {
+          "type": "string",
+          "description": "The Azure Data Lake Store name for the captured events"
+        },
+        "dataLakeFolderPath": {
+          "type": "string",
+          "description": "The destination folder path for the captured events"
+        },
+        "dataLakeSubscriptionId": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Subscription Id of Azure Data Lake Store"
+        },
         "storageAccountResourceId": {
           "type": "string",
           "description": "Resource id of the storage account to be used to create the blobs"
@@ -809,9 +892,24 @@
     "EHNamespaceProperties": {
       "type": "object",
       "properties": {
+        "alternateName": {
+          "type": "string",
+          "description": "Alternate name specified when alias and namespace names are same."
+        },
         "clusterArmId": {
           "type": "string",
           "description": "Cluster ARM ID of the Namespace."
+        },
+        "disableLocalAuth": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "This property disables SAS authentication for the Event Hubs namespace."
         },
         "encryption": {
           "oneOf": [
@@ -849,15 +947,59 @@
         "maximumThroughputUnits": {
           "oneOf": [
             {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 20
+              "type": "integer"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
           "description": "Upper limit of throughput units when AutoInflate is enabled, value should be within 0 to 20 throughput units. ( '0' if AutoInflateEnabled = true)"
+        },
+        "minimumTlsVersion": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The minimum TLS version for the cluster to support, e.g. '1.2'."
+        },
+        "privateEndpointConnections": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PrivateEndpointConnection"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of private endpoint connections."
+        },
+        "publicNetworkAccess": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled",
+                "SecuredByPerimeter"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "This determines if traffic is allowed over public network. By default it is enabled."
         },
         "zoneRedundant": {
           "oneOf": [
@@ -903,6 +1045,17 @@
             }
           ],
           "description": "Properties of KeyVault"
+        },
+        "requireInfrastructureEncryption": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Enable Infrastructure Encryption (Double Encryption)"
         }
       },
       "description": "Properties to configure Encryption"
@@ -945,6 +1098,17 @@
           ],
           "description": "Number of partitions created for the Event Hub, allowed values are from 1 to 32 partitions."
         },
+        "retentionDescription": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RetentionDescription"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties to configure retention settings for the  eventhub"
+        },
         "status": {
           "oneOf": [
             {
@@ -973,63 +1137,54 @@
     "Identity": {
       "type": "object",
       "properties": {
-        "principalId": {
-          "type": "string",
-          "description": "ObjectId from the KeyVault"
-        },
-        "tenantId": {
-          "type": "string",
-          "description": "TenantId from the KeyVault"
-        },
         "type": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
-                "SystemAssigned"
+                "SystemAssigned",
+                "UserAssigned",
+                "SystemAssigned, UserAssigned",
+                "None"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Enumerates the possible value Identity type, which currently supports only 'SystemAssigned'."
+          "description": "Type of managed service identity."
+        },
+        "userAssignedIdentities": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/UserAssignedIdentity"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties for User Assigned Identities"
         }
       },
       "description": "Properties to configure Identity for Bring your Own Keys"
     },
-    "IpFilterRuleProperties": {
+    "KeyVaultProperties": {
       "type": "object",
       "properties": {
-        "action": {
+        "identity": {
           "oneOf": [
             {
-              "type": "string",
-              "enum": [
-                "Accept",
-                "Reject"
-              ]
+              "$ref": "#/definitions/UserAssignedIdentityProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "The IP Filter Action."
+          ]
         },
-        "filterName": {
-          "type": "string",
-          "description": "IP Filter name"
-        },
-        "ipMask": {
-          "type": "string",
-          "description": "IP Mask"
-        }
-      },
-      "description": "Properties supplied to create or update IpFilterRules"
-    },
-    "KeyVaultProperties": {
-      "type": "object",
-      "properties": {
         "keyName": {
           "type": "string",
           "description": "Name of the Key from KeyVault"
@@ -1045,13 +1200,53 @@
       },
       "description": "Properties to configure keyVault Properties"
     },
+    "namespaces_applicationGroups_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-10-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "The Application Group name "
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApplicationGroupProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "applicationGroups"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventHub/namespaces/applicationGroups"
+    },
     "namespaces_authorizationRules_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1091,7 +1286,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1132,7 +1327,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1172,7 +1367,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1213,7 +1408,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1248,53 +1443,13 @@
       ],
       "description": "Microsoft.EventHub/namespaces/eventhubs/consumergroups"
     },
-    "namespaces_ipfilterrules_childResource": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2018-01-01-preview"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "minLength": 1,
-          "description": "The IP Filter Rule name."
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/IpFilterRuleProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Properties supplied to create or update IpFilterRules"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "ipfilterrules"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.EventHub/namespaces/ipfilterrules"
-    },
     "namespaces_networkRuleSets_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1335,7 +1490,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1368,35 +1523,35 @@
       ],
       "description": "Microsoft.EventHub/namespaces/privateEndpointConnections"
     },
-    "namespaces_virtualnetworkrules_childResource": {
+    "namespaces_schemagroups_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
           "type": "string",
           "minLength": 1,
-          "description": "The Virtual Network Rule name."
+          "maxLength": 256,
+          "description": "The Schema Group name "
         },
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/VirtualNetworkRuleProperties"
+              "$ref": "#/definitions/SchemaGroupProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "Properties supplied to create or update VirtualNetworkRules"
+          ]
         },
         "type": {
           "type": "string",
           "enum": [
-            "virtualnetworkrules"
+            "schemagroups"
           ]
         }
       },
@@ -1406,7 +1561,7 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.EventHub/namespaces/virtualnetworkrules"
+      "description": "Microsoft.EventHub/namespaces/schemagroups"
     },
     "NetworkRuleSetProperties": {
       "type": "object",
@@ -1439,6 +1594,22 @@
             }
           ],
           "description": "List of IpRules"
+        },
+        "publicNetworkAccess": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled",
+                "SecuredByPerimeter"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "This determines if traffic is allowed over public network. By default it is enabled. If value is SecuredByPerimeter then Inbound and Outbound communication is controlled by the network security perimeter and profile's access rules."
         },
         "trustedServiceAccessEnabled": {
           "oneOf": [
@@ -1530,6 +1701,23 @@
       },
       "description": "PrivateEndpoint information."
     },
+    "PrivateEndpointConnection": {
+      "type": "object",
+      "properties": {
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the private endpoint connection resource."
+        }
+      },
+      "description": "Properties of the PrivateEndpointConnection."
+    },
     "PrivateEndpointConnectionProperties": {
       "type": "object",
       "properties": {
@@ -1577,6 +1765,98 @@
       },
       "description": "Properties of the private endpoint connection resource."
     },
+    "RetentionDescription": {
+      "type": "object",
+      "properties": {
+        "cleanupPolicy": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Delete",
+                "Compaction"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Enumerates the possible values for cleanup policy."
+        },
+        "retentionTimeInHours": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Number of hours to retain the events for this Event Hub. This value is only used when cleanupPolicy is Delete. If cleanupPolicy is Compaction the returned value of this property is Long.MaxValue "
+        },
+        "tombstoneRetentionTimeInHours": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Number of hours to retain the tombstone markers of a compacted Event Hub. This value is only used when cleanupPolicy is Compaction. Consumer must complete reading the tombstone marker within this specified amount of time if consumer begins from starting offset to ensure they get a valid snapshot for the specific key described by the tombstone marker within the compacted Event Hub"
+        }
+      },
+      "description": "Properties to configure retention settings for the  eventhub"
+    },
+    "SchemaGroupProperties": {
+      "type": "object",
+      "properties": {
+        "groupProperties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "dictionary object for SchemaGroup group properties"
+        },
+        "schemaCompatibility": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "Backward",
+                "Forward"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "schemaType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Unknown",
+                "Avro"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        }
+      }
+    },
     "Sku": {
       "type": "object",
       "properties": {
@@ -1590,7 +1870,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The Event Hubs throughput units, value should be 0 to 20 throughput units."
+          "description": "The Event Hubs throughput units for Basic or Standard tiers, where value should be 0 to 20 throughput units. The Event Hubs premium units for Premium tier, where value should be 0 to 10 premium units."
         },
         "name": {
           "oneOf": [
@@ -1598,7 +1878,8 @@
               "type": "string",
               "enum": [
                 "Basic",
-                "Standard"
+                "Standard",
+                "Premium"
               ]
             },
             {
@@ -1613,7 +1894,8 @@
               "type": "string",
               "enum": [
                 "Basic",
-                "Standard"
+                "Standard",
+                "Premium"
               ]
             },
             {
@@ -1638,15 +1920,64 @@
       },
       "description": "Properties supplied for Subnet"
     },
-    "VirtualNetworkRuleProperties": {
+    "ThrottlingPolicy": {
       "type": "object",
       "properties": {
-        "virtualNetworkSubnetId": {
+        "metricId": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "IncomingBytes",
+                "OutgoingBytes",
+                "IncomingMessages",
+                "OutgoingMessages"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metric Id on which the throttle limit should be set, MetricId can be discovered by hovering over Metric in the Metrics section of Event Hub Namespace inside Azure Portal."
+        },
+        "rateLimitThreshold": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The Threshold limit above which the application group will be throttled.Rate limit is always per second."
+        },
+        "type": {
           "type": "string",
-          "description": "ARM ID of Virtual Network Subnet"
+          "enum": [
+            "ThrottlingPolicy"
+          ]
         }
       },
-      "description": "Properties supplied to create or update VirtualNetworkRules"
+      "required": [
+        "metricId",
+        "rateLimitThreshold",
+        "type"
+      ],
+      "description": "Properties of the throttling policy"
+    },
+    "UserAssignedIdentity": {
+      "type": "object",
+      "properties": {},
+      "description": "Recognized Dictionary value."
+    },
+    "UserAssignedIdentityProperties": {
+      "type": "object",
+      "properties": {
+        "userAssignedIdentity": {
+          "type": "string",
+          "description": "ARM ID of user Identity selected for encryption"
+        }
+      }
     }
   }
 }

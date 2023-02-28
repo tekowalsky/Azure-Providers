@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-06-01-preview/Microsoft.OpenEnergyPlatform.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-04-04-preview/Microsoft.OpenEnergyPlatform.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.OpenEnergyPlatform",
   "description": "Microsoft OpenEnergyPlatform Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-06-01-preview"
+            "2022-04-04-preview"
           ]
         },
         "location": {

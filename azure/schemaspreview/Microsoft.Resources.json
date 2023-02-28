@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2019-06-01-preview/Microsoft.Resources.json#",
+  "id": "https://schema.management.azure.com/schemas/2021-03-01-preview/Microsoft.Resources.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Resources",
   "description": "Microsoft Resources Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-06-01-preview"
+            "2021-03-01-preview"
           ]
         },
         "location": {
@@ -89,7 +89,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-06-01-preview"
+            "2021-03-01-preview"
           ]
         },
         "location": {
@@ -154,23 +154,24 @@
     }
   },
   "definitions": {
-    "TemplateSpecArtifact": {
+    "LinkedTemplateArtifact": {
       "type": "object",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/TemplateSpecTemplateArtifact"
-        }
-      ],
       "properties": {
         "path": {
           "type": "string",
           "description": "A filesystem safe relative path of the artifact."
+        },
+        "template": {
+          "type": "object",
+          "properties": {},
+          "description": "The Azure Resource Manager template."
         }
       },
       "required": [
-        "path"
+        "path",
+        "template"
       ],
-      "description": "Represents a Template Spec artifact."
+      "description": "Represents a Template Spec artifact containing an embedded Azure Resource Manager template for use as a linked template."
     },
     "TemplateSpecProperties": {
       "type": "object",
@@ -184,6 +185,11 @@
           "type": "string",
           "maxLength": 64,
           "description": "Template Spec display name."
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {},
+          "description": "The Template Spec metadata. Metadata is an open-ended object and is typically a collection of key-value pairs."
         }
       },
       "description": "Template Spec properties."
@@ -194,7 +200,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-06-01-preview"
+            "2021-03-01-preview"
           ]
         },
         "location": {
@@ -257,53 +263,42 @@
       ],
       "description": "Microsoft.Resources/templateSpecs/versions"
     },
-    "TemplateSpecTemplateArtifact": {
-      "type": "object",
-      "properties": {
-        "kind": {
-          "type": "string",
-          "enum": [
-            "template"
-          ]
-        },
-        "template": {
-          "type": "object",
-          "properties": {},
-          "description": "The Azure Resource Manager template."
-        }
-      },
-      "required": [
-        "kind",
-        "template"
-      ],
-      "description": "Represents a Template Spec artifact containing an embedded Azure Resource Manager template."
-    },
     "TemplateSpecVersionProperties": {
       "type": "object",
       "properties": {
-        "artifacts": {
+        "description": {
+          "type": "string",
+          "maxLength": 4096,
+          "description": "Template Spec version description."
+        },
+        "linkedTemplates": {
           "oneOf": [
             {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/TemplateSpecArtifact"
+                "$ref": "#/definitions/LinkedTemplateArtifact"
               }
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "An array of Template Spec artifacts."
+          "description": "An array of linked template artifacts."
         },
-        "description": {
-          "type": "string",
-          "maxLength": 4096,
-          "description": "Template Spec version description."
-        },
-        "template": {
+        "mainTemplate": {
           "type": "object",
           "properties": {},
-          "description": "The Azure Resource Manager template content."
+          "description": "The main Azure Resource Manager template content."
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {},
+          "description": "The version metadata. Metadata is an open-ended object and is typically a collection of key-value pairs."
+        },
+        "uiFormDefinition": {
+          "type": "object",
+          "properties": {},
+          "description": "The Azure Resource Manager template UI definition content."
         }
       },
       "description": "Template Spec Version properties."
@@ -335,7 +330,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-06-01-preview"
+            "2021-03-01-preview"
           ]
         },
         "location": {

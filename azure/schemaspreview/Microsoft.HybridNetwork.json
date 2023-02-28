@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2020-01-01-preview/Microsoft.HybridNetwork.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-01-01-preview/Microsoft.HybridNetwork.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.HybridNetwork",
   "description": "Microsoft HybridNetwork Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "location": {
@@ -69,7 +69,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "etag": {
@@ -134,7 +134,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "name": {
@@ -173,7 +173,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "name": {
@@ -222,7 +222,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "name": {
@@ -271,12 +271,23 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "name": {
           "type": "string",
           "description": "Preview subscription ID."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PreviewSubscriptionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "PreviewSubscription properties"
         },
         "type": {
           "type": "string",
@@ -288,6 +299,7 @@
       "required": [
         "apiVersion",
         "name",
+        "properties",
         "type"
       ],
       "description": "Microsoft.HybridNetwork/vendors/vendorSkus/previewSubscriptions"
@@ -439,6 +451,11 @@
           "properties": {},
           "description": "The parameters for the managed application."
         },
+        "networkFunctionContainerConfigurations": {
+          "type": "object",
+          "properties": {},
+          "description": "The network function container configurations from the user."
+        },
         "networkFunctionUserConfigurations": {
           "oneOf": [
             {
@@ -455,11 +472,11 @@
         },
         "skuName": {
           "type": "string",
-          "description": "The sku name for the network function."
+          "description": "The sku name for the network function. Once set, it cannot be updated."
         },
         "vendorName": {
           "type": "string",
-          "description": "The vendor name for the network function."
+          "description": "The vendor name for the network function. Once set, it cannot be updated."
         }
       },
       "description": "Network function properties."
@@ -884,6 +901,11 @@
       },
       "description": "Specifies the operating system settings for the role instance."
     },
+    "PreviewSubscriptionProperties": {
+      "type": "object",
+      "properties": {},
+      "description": "PreviewSubscription properties"
+    },
     "SshConfiguration": {
       "type": "object",
       "properties": {
@@ -1054,6 +1076,22 @@
           ],
           "description": "The network function template."
         },
+        "networkFunctionType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Unknown",
+                "VirtualNetworkFunction",
+                "ContainerizedNetworkFunction"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The network function type."
+        },
         "preview": {
           "oneOf": [
             {
@@ -1091,7 +1129,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "name": {
@@ -1130,12 +1168,23 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "name": {
           "type": "string",
           "description": "Preview subscription ID."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PreviewSubscriptionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "PreviewSubscription properties"
         },
         "type": {
           "type": "string",
@@ -1147,6 +1196,7 @@
       "required": [
         "apiVersion",
         "name",
+        "properties",
         "type"
       ],
       "description": "Microsoft.HybridNetwork/vendors/vendorSkus/previewSubscriptions"

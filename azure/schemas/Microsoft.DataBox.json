@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2018-01-01/Microsoft.DataBox.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-12-01/Microsoft.DataBox.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.DataBox",
   "description": "Microsoft DataBox Resource Types",
@@ -10,8 +10,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01"
+            "2022-12-01"
           ]
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResourceIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Msi identity details of the resource"
         },
         "location": {
           "type": "string",
@@ -87,6 +98,102 @@
     }
   },
   "definitions": {
+    "AzureFileFilterDetails": {
+      "type": "object",
+      "properties": {
+        "filePathList": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of full path of the files to be transferred."
+        },
+        "filePrefixList": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Prefix list of the Azure files to be transferred."
+        },
+        "fileShareList": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of file shares to be transferred."
+        }
+      },
+      "description": "Filter details to transfer Azure files"
+    },
+    "BlobFilterDetails": {
+      "type": "object",
+      "properties": {
+        "blobPathList": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of full path of the blobs to be transferred."
+        },
+        "blobPrefixList": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Prefix list of the Azure blobs to be transferred."
+        },
+        "containerList": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of blob containers to be transferred."
+        }
+      },
+      "description": "Filter details to transfer Azure Blobs"
+    },
     "ContactDetails": {
       "type": "object",
       "properties": {
@@ -142,6 +249,106 @@
       ],
       "description": "Contact Details."
     },
+    "ContactInfo": {
+      "type": "object",
+      "properties": {
+        "contactName": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Contact name of the person."
+        },
+        "mobile": {
+          "type": "string",
+          "description": "Mobile number of the contact person."
+        },
+        "phone": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Phone number of the contact person."
+        },
+        "phoneExtension": {
+          "type": "string",
+          "description": "Phone extension number of the contact person."
+        }
+      },
+      "required": [
+        "contactName",
+        "phone"
+      ],
+      "description": "Contact Info."
+    },
+    "DataAccountDetails": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/ManagedDiskDetails"
+        },
+        {
+          "$ref": "#/definitions/StorageAccountDetails"
+        }
+      ],
+      "properties": {
+        "sharePassword": {
+          "type": "string",
+          "description": "Password for all the shares to be created on the device. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\\-$%^!+=;:_()]+"
+        }
+      },
+      "description": "Account details of the data to be transferred"
+    },
+    "DataBoxCustomerDiskJobDetails": {
+      "type": "object",
+      "properties": {
+        "enableManifestBackup": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Flag to indicate if disk manifest should be backed-up in the Storage Account."
+        },
+        "importDiskDetailsCollection": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/ImportDiskDetails"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Contains the map of disk serial number to the disk details for import jobs."
+        },
+        "jobDetailsType": {
+          "type": "string",
+          "enum": [
+            "DataBoxCustomerDisk"
+          ]
+        },
+        "returnToCustomerPackageDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PackageCarrierDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Package carrier details."
+        }
+      },
+      "required": [
+        "jobDetailsType",
+        "returnToCustomerPackageDetails"
+      ],
+      "description": "Customer disk job details."
+    },
     "DataBoxDiskJobDetails": {
       "type": "object",
       "properties": {
@@ -179,6 +386,10 @@
     "DataBoxHeavyJobDetails": {
       "type": "object",
       "properties": {
+        "devicePassword": {
+          "type": "string",
+          "description": "Set Device password for unlocking Databox Heavy. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\\-$%^!+=;:_()]+"
+        },
         "jobDetailsType": {
           "type": "string",
           "enum": [
@@ -189,11 +400,15 @@
       "required": [
         "jobDetailsType"
       ],
-      "description": "DataBoxHeavy Device Job Details"
+      "description": "Databox Heavy Device Job Details"
     },
     "DataBoxJobDetails": {
       "type": "object",
       "properties": {
+        "devicePassword": {
+          "type": "string",
+          "description": "Set Device password for unlocking Databox. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\\-$%^!+=;:_()]+"
+        },
         "jobDetailsType": {
           "type": "string",
           "enum": [
@@ -204,74 +419,201 @@
       "required": [
         "jobDetailsType"
       ],
-      "description": "DataBox Job Details"
+      "description": "Databox Job Details"
     },
-    "DestinationAccountDetails": {
-      "type": "object",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/DestinationManagedDiskDetails"
-        },
-        {
-          "$ref": "#/definitions/DestinationStorageAccountDetails"
-        }
-      ],
-      "properties": {
-        "accountId": {
-          "type": "string",
-          "description": "Arm Id of the destination where the data has to be moved."
-        }
-      },
-      "description": "Details of the destination of the data"
-    },
-    "DestinationManagedDiskDetails": {
+    "DataExportDetails": {
       "type": "object",
       "properties": {
-        "dataDestinationType": {
-          "type": "string",
-          "enum": [
-            "ManagedDisk"
-          ]
+        "accountDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DataAccountDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Account details of the data to be transferred"
         },
-        "resourceGroupId": {
-          "type": "string",
-          "description": "Destination Resource Group Id where the Compute disks should be created."
+        "logCollectionLevel": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Verbose"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Level of the logs to be collected."
         },
-        "stagingStorageAccountId": {
-          "type": "string",
-          "description": "Arm Id of the storage account that can be used to copy the vhd for staging."
-        }
-      },
-      "required": [
-        "dataDestinationType",
-        "resourceGroupId",
-        "stagingStorageAccountId"
-      ],
-      "description": "Details for the destination compute disks."
-    },
-    "DestinationStorageAccountDetails": {
-      "type": "object",
-      "properties": {
-        "dataDestinationType": {
-          "type": "string",
-          "enum": [
-            "StorageAccount"
-          ]
-        },
-        "storageAccountId": {
-          "type": "string",
-          "description": "Destination Storage Account Arm Id."
+        "transferConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TransferConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Configuration for defining the transfer of data."
         }
       },
       "required": [
-        "dataDestinationType",
-        "storageAccountId"
+        "accountDetails",
+        "transferConfiguration"
       ],
-      "description": "Details for the destination storage account."
+      "description": "Details of the data to be used for exporting data from azure."
+    },
+    "DataImportDetails": {
+      "type": "object",
+      "properties": {
+        "accountDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DataAccountDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Account details of the data to be transferred"
+        },
+        "logCollectionLevel": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Verbose"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Level of the logs to be collected."
+        }
+      },
+      "required": [
+        "accountDetails"
+      ],
+      "description": "Details of the data to be used for importing data to azure."
+    },
+    "EncryptionPreferences": {
+      "type": "object",
+      "properties": {
+        "doubleEncryption": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Defines secondary layer of software-based encryption enablement."
+        }
+      },
+      "description": "Preferences related to the Encryption."
+    },
+    "FilterFileDetails": {
+      "type": "object",
+      "properties": {
+        "filterFilePath": {
+          "type": "string",
+          "description": "Path of the file that contains the details of all items to transfer."
+        },
+        "filterFileType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "AzureBlob",
+                "AzureFile"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Type of the filter file."
+        }
+      },
+      "required": [
+        "filterFilePath",
+        "filterFileType"
+      ],
+      "description": "Details of the filter files to be used for data transfer."
+    },
+    "IdentityProperties": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Managed service identity type."
+        },
+        "userAssigned": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/UserAssignedProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "User assigned identity properties."
+        }
+      },
+      "description": "Managed identity properties."
+    },
+    "ImportDiskDetails": {
+      "type": "object",
+      "properties": {
+        "bitLockerKey": {
+          "type": "string",
+          "description": "BitLocker key used to encrypt the disk."
+        },
+        "manifestFile": {
+          "type": "string",
+          "description": "The relative path of the manifest file on the disk."
+        },
+        "manifestHash": {
+          "type": "string",
+          "description": "The Base16-encoded MD5 hash of the manifest file on the disk."
+        }
+      },
+      "required": [
+        "bitLockerKey",
+        "manifestFile",
+        "manifestHash"
+      ],
+      "description": "Import disk details"
+    },
+    "JobDeliveryInfo": {
+      "type": "object",
+      "properties": {
+        "scheduledDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Scheduled date time."
+        }
+      },
+      "description": "Additional delivery info."
     },
     "JobDetails": {
       "type": "object",
       "oneOf": [
+        {
+          "$ref": "#/definitions/DataBoxCustomerDiskJobDetails"
+        },
         {
           "$ref": "#/definitions/DataBoxDiskJobDetails"
         },
@@ -294,19 +636,33 @@
           ],
           "description": "Contact Details."
         },
-        "destinationAccountDetails": {
+        "dataExportDetails": {
           "oneOf": [
             {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/DestinationAccountDetails"
+                "$ref": "#/definitions/DataExportDetails"
               }
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Destination account details."
+          "description": "Details of the data to be exported from azure."
+        },
+        "dataImportDetails": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DataImportDetails"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Details of the data to be imported into azure."
         },
         "expectedDataSizeInTeraBytes": {
           "oneOf": [
@@ -319,6 +675,17 @@
           ],
           "description": "The expected size of the data, which needs to be transferred in this job, in terabytes."
         },
+        "keyEncryptionKey": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/KeyEncryptionKey"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Encryption key containing details about key to encrypt different keys."
+        },
         "preferences": {
           "oneOf": [
             {
@@ -329,6 +696,17 @@
             }
           ],
           "description": "Preferences related to the order"
+        },
+        "reverseShippingDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ReverseShippingDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Reverse Shipping Address and contact details for a job."
         },
         "shippingAddress": {
           "oneOf": [
@@ -343,15 +721,39 @@
         }
       },
       "required": [
-        "contactDetails",
-        "destinationAccountDetails",
-        "shippingAddress"
+        "contactDetails"
       ],
       "description": "Job details."
     },
     "JobProperties": {
       "type": "object",
       "properties": {
+        "deliveryInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/JobDeliveryInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Additional delivery info."
+        },
+        "deliveryType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "NonScheduled",
+                "Scheduled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Delivery type of Job."
+        },
         "details": {
           "oneOf": [
             {
@@ -362,9 +764,95 @@
             }
           ],
           "description": "Job details."
+        },
+        "transferType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "ImportToAzure",
+                "ExportFromAzure"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Type of the data transfer."
         }
       },
+      "required": [
+        "transferType"
+      ],
       "description": "Job Properties"
+    },
+    "KeyEncryptionKey": {
+      "type": "object",
+      "properties": {
+        "identityProperties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IdentityProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Managed identity properties."
+        },
+        "kekType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "MicrosoftManaged",
+                "CustomerManaged"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Type of encryption key used for key encryption."
+        },
+        "kekUrl": {
+          "type": "string",
+          "description": "Key encryption key. It is required in case of Customer managed KekType."
+        },
+        "kekVaultResourceID": {
+          "type": "string",
+          "description": "Kek vault resource id. It is required in case of Customer managed KekType."
+        }
+      },
+      "required": [
+        "kekType"
+      ],
+      "description": "Encryption key containing details about key to encrypt different keys."
+    },
+    "ManagedDiskDetails": {
+      "type": "object",
+      "properties": {
+        "dataAccountType": {
+          "type": "string",
+          "enum": [
+            "ManagedDisk"
+          ]
+        },
+        "resourceGroupId": {
+          "type": "string",
+          "description": "Resource Group Id of the compute disks."
+        },
+        "stagingStorageAccountId": {
+          "type": "string",
+          "description": "Resource Id of the storage account that can be used to copy the vhd for staging."
+        }
+      },
+      "required": [
+        "dataAccountType",
+        "resourceGroupId",
+        "stagingStorageAccountId"
+      ],
+      "description": "Details of the managed disks."
     },
     "NotificationPreference": {
       "type": "object",
@@ -391,7 +879,9 @@
                 "Delivered",
                 "PickedUp",
                 "AtAzureDC",
-                "DataCopy"
+                "DataCopy",
+                "Created",
+                "ShippedToCustomer"
               ]
             },
             {
@@ -407,9 +897,38 @@
       ],
       "description": "Notification preference for a job stage."
     },
+    "PackageCarrierDetails": {
+      "type": "object",
+      "properties": {
+        "carrierAccountNumber": {
+          "type": "string",
+          "description": "Carrier Account Number of customer for customer disk."
+        },
+        "carrierName": {
+          "type": "string",
+          "description": "Name of the carrier."
+        },
+        "trackingId": {
+          "type": "string",
+          "description": "Tracking Id of shipment."
+        }
+      },
+      "description": "Package carrier details."
+    },
     "Preferences": {
       "type": "object",
       "properties": {
+        "encryptionPreferences": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/EncryptionPreferences"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Preferences related to the Encryption."
+        },
         "preferredDataCenterRegion": {
           "oneOf": [
             {
@@ -421,10 +940,104 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "Preferred data center region."
+        },
+        "reverseTransportPreferences": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TransportPreferences"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Preferences related to the shipment logistics of the sku"
+        },
+        "storageAccountAccessTierPreferences": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Archive"
+                ]
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Preferences related to the Access Tier of storage accounts."
+        },
+        "transportPreferences": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TransportPreferences"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Preferences related to the shipment logistics of the sku"
         }
       },
       "description": "Preferences related to the order"
+    },
+    "ResourceIdentity": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "None",
+          "description": "Identity type"
+        },
+        "userAssignedIdentities": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/UserAssignedIdentity"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "User Assigned Identities"
+        }
+      },
+      "description": "Msi identity details of the resource"
+    },
+    "ReverseShippingDetails": {
+      "type": "object",
+      "properties": {
+        "contactDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ContactInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Contact Info."
+        },
+        "shippingAddress": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ShippingAddress"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Shipping address where customer wishes to receive the device."
+        }
+      },
+      "description": "Reverse Shipping Address and contact details for a job."
     },
     "ShippingAddress": {
       "type": "object",
@@ -484,7 +1097,6 @@
       },
       "required": [
         "country",
-        "postalCode",
         "streetAddress1"
       ],
       "description": "Shipping address where customer wishes to receive the device."
@@ -507,7 +1119,8 @@
               "enum": [
                 "DataBox",
                 "DataBoxDisk",
-                "DataBoxHeavy"
+                "DataBoxHeavy",
+                "DataBoxCustomerDisk"
               ]
             },
             {
@@ -521,6 +1134,251 @@
         "name"
       ],
       "description": "The Sku."
+    },
+    "StorageAccountDetails": {
+      "type": "object",
+      "properties": {
+        "dataAccountType": {
+          "type": "string",
+          "enum": [
+            "StorageAccount"
+          ]
+        },
+        "storageAccountId": {
+          "type": "string",
+          "description": "Storage Account Resource Id."
+        }
+      },
+      "required": [
+        "dataAccountType",
+        "storageAccountId"
+      ],
+      "description": "Details for the storage account."
+    },
+    "TransferAllDetails": {
+      "type": "object",
+      "properties": {
+        "dataAccountType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "StorageAccount",
+                "ManagedDisk"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Type of the account of data."
+        },
+        "transferAllBlobs": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "To indicate if all Azure blobs have to be transferred"
+        },
+        "transferAllFiles": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "To indicate if all Azure Files have to be transferred"
+        }
+      },
+      "required": [
+        "dataAccountType"
+      ],
+      "description": "Details to transfer all data."
+    },
+    "TransferConfiguration": {
+      "type": "object",
+      "properties": {
+        "transferAllDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TransferConfigurationTransferAllDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Map of filter type and the details to transfer all data. This field is required only if the TransferConfigurationType is given as TransferAll"
+        },
+        "transferConfigurationType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "TransferAll",
+                "TransferUsingFilter"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Type of the configuration for transfer."
+        },
+        "transferFilterDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TransferConfigurationTransferFilterDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Map of filter type and the details to filter. This field is required only if the TransferConfigurationType is given as TransferUsingFilter."
+        }
+      },
+      "required": [
+        "transferConfigurationType"
+      ],
+      "description": "Configuration for defining the transfer of data."
+    },
+    "TransferConfigurationTransferAllDetails": {
+      "type": "object",
+      "properties": {
+        "include": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TransferAllDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Details to transfer all data."
+        }
+      },
+      "description": "Map of filter type and the details to transfer all data. This field is required only if the TransferConfigurationType is given as TransferAll"
+    },
+    "TransferConfigurationTransferFilterDetails": {
+      "type": "object",
+      "properties": {
+        "include": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TransferFilterDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Details of the filtering the transfer of data."
+        }
+      },
+      "description": "Map of filter type and the details to filter. This field is required only if the TransferConfigurationType is given as TransferUsingFilter."
+    },
+    "TransferFilterDetails": {
+      "type": "object",
+      "properties": {
+        "azureFileFilterDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AzureFileFilterDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Filter details to transfer Azure files"
+        },
+        "blobFilterDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BlobFilterDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Filter details to transfer Azure Blobs"
+        },
+        "dataAccountType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "StorageAccount",
+                "ManagedDisk"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Type of the account of data."
+        },
+        "filterFileDetails": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FilterFileDetails"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Details of the filter files to be used for data transfer."
+        }
+      },
+      "required": [
+        "dataAccountType"
+      ],
+      "description": "Details of the filtering the transfer of data."
+    },
+    "TransportPreferences": {
+      "type": "object",
+      "properties": {
+        "preferredShipmentType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "CustomerManaged",
+                "MicrosoftManaged"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates Shipment Logistics type that the customer preferred."
+        }
+      },
+      "required": [
+        "preferredShipmentType"
+      ],
+      "description": "Preferences related to the shipment logistics of the sku"
+    },
+    "UserAssignedIdentity": {
+      "type": "object",
+      "properties": {},
+      "description": "Class defining User assigned identity details."
+    },
+    "UserAssignedProperties": {
+      "type": "object",
+      "properties": {
+        "resourceId": {
+          "type": "string",
+          "description": "Arm resource id for user assigned identity to be used to fetch MSI token."
+        }
+      },
+      "description": "User assigned identity properties."
     }
   }
 }

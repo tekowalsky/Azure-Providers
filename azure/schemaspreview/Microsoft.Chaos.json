@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-09-15-preview/Microsoft.Chaos.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-10-01-preview/Microsoft.Chaos.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Chaos",
   "description": "Microsoft Chaos Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-09-15-preview"
+            "2022-10-01-preview"
           ]
         },
         "identity": {
@@ -91,7 +91,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-09-15-preview"
+            "2022-10-01-preview"
           ]
         },
         "location": {
@@ -157,7 +157,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-09-15-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -404,6 +404,16 @@
       ],
       "description": "Model that represents the Experiment properties model."
     },
+    "Filter": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/SimpleFilter"
+        }
+      ],
+      "properties": {},
+      "description": "Model that represents available filter types that can be applied to a targets list."
+    },
     "KeyValuePair": {
       "type": "object",
       "properties": {
@@ -451,6 +461,17 @@
     "Selector": {
       "type": "object",
       "properties": {
+        "filter": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Filter"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Model that represents available filter types that can be applied to a targets list."
+        },
         "id": {
           "type": "string",
           "minLength": 1,
@@ -494,6 +515,52 @@
         "type"
       ],
       "description": "Model that represents a selector in the Experiment resource."
+    },
+    "SimpleFilter": {
+      "type": "object",
+      "properties": {
+        "parameters": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SimpleFilterParameters"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Model that represents the Simple filter parameters."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Simple"
+          ]
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "description": "Model that represents a simple target filter."
+    },
+    "SimpleFilterParameters": {
+      "type": "object",
+      "properties": {
+        "zones": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of Azure availability zones to filter targets by."
+        }
+      },
+      "description": "Model that represents the Simple filter parameters."
     },
     "Step": {
       "type": "object",
@@ -566,7 +633,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-09-15-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {

@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2018-04-19/Microsoft.DataMigration.json#",
+  "id": "https://schema.management.azure.com/schemas/2021-06-30/Microsoft.DataMigration.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.DataMigration",
   "description": "Microsoft DataMigration Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-04-19"
+            "2021-06-30"
           ]
         },
         "etag": {
@@ -38,12 +38,15 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Properties of the Data Migration service instance"
+          "description": "Properties of the Database Migration Service instance"
         },
         "resources": {
           "type": "array",
           "items": {
             "oneOf": [
+              {
+                "$ref": "#/definitions/services_serviceTasks_childResource"
+              },
               {
                 "$ref": "#/definitions/services_projects_childResource"
               }
@@ -98,7 +101,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-04-19"
+            "2021-06-30"
           ]
         },
         "location": {
@@ -126,6 +129,9 @@
             "oneOf": [
               {
                 "$ref": "#/definitions/services_projects_tasks_childResource"
+              },
+              {
+                "$ref": "#/definitions/services_projects_files_childResource"
               }
             ]
           }
@@ -161,13 +167,56 @@
       ],
       "description": "Microsoft.DataMigration/services/projects"
     },
+    "services_projects_files": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-06-30"
+          ]
+        },
+        "etag": {
+          "type": "string",
+          "description": "HTTP strong entity tag value. This is ignored if submitted."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the File"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProjectFileProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Base class for file properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DataMigration/services/projects/files"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DataMigration/services/projects/files"
+    },
     "services_projects_tasks": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-04-19"
+            "2021-06-30"
           ]
         },
         "etag": {
@@ -203,6 +252,49 @@
         "type"
       ],
       "description": "Microsoft.DataMigration/services/projects/tasks"
+    },
+    "services_serviceTasks": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-06-30"
+          ]
+        },
+        "etag": {
+          "type": "string",
+          "description": "HTTP strong entity tag value. This is ignored if submitted."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the Task"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProjectTaskProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Base class for all types of DMS task properties. If task is not supported by current client, this object is returned."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DataMigration/services/serviceTasks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DataMigration/services/serviceTasks"
     }
   },
   "definitions": {
@@ -242,14 +334,56 @@
       ],
       "description": "Blob container storage information."
     },
+    "CheckOCIDriverTaskInput": {
+      "type": "object",
+      "properties": {
+        "serverVersion": {
+          "type": "string",
+          "description": "Version of the source server to check against.  Optional."
+        }
+      },
+      "description": "Input for the service task to check for OCI drivers."
+    },
+    "CheckOCIDriverTaskProperties": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CheckOCIDriverTaskInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Input for the service task to check for OCI drivers."
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "Service.Check.OCI"
+          ]
+        }
+      },
+      "required": [
+        "taskType"
+      ],
+      "description": "Properties for the task that checks for OCI drivers."
+    },
     "ConnectionInfo": {
       "type": "object",
       "oneOf": [
+        {
+          "$ref": "#/definitions/MongoDbConnectionInfo"
+        },
         {
           "$ref": "#/definitions/SqlConnectionInfo"
         },
         {
           "$ref": "#/definitions/MySqlConnectionInfo"
+        },
+        {
+          "$ref": "#/definitions/OracleConnectionInfo"
         },
         {
           "$ref": "#/definitions/PostgreSqlConnectionInfo"
@@ -270,6 +404,32 @@
       },
       "description": "Defines the connection properties of a server"
     },
+    "ConnectToMongoDbTaskProperties": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MongoDbConnectionInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Describes a connection to a MongoDB data source"
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "Connect.MongoDb"
+          ]
+        }
+      },
+      "required": [
+        "taskType"
+      ],
+      "description": "Properties for the task that validates the connection to and provides information about a MongoDB server"
+    },
     "ConnectToSourceMySqlTaskInput": {
       "type": "object",
       "properties": {
@@ -289,6 +449,18 @@
             }
           ],
           "description": "Permission group for validations."
+        },
+        "isOfflineMigration": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Flag for whether or not the migration is offline"
         },
         "sourceConnectionInfo": {
           "oneOf": [
@@ -347,6 +519,52 @@
         "taskType"
       ],
       "description": "Properties for the task that validates MySQL database connection"
+    },
+    "ConnectToSourceOracleSyncTaskInput": {
+      "type": "object",
+      "properties": {
+        "sourceConnectionInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OracleConnectionInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Information for connecting to Oracle server"
+        }
+      },
+      "required": [
+        "sourceConnectionInfo"
+      ],
+      "description": "Input for the task that validates Oracle database connection"
+    },
+    "ConnectToSourceOracleSyncTaskProperties": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ConnectToSourceOracleSyncTaskInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Input for the task that validates Oracle database connection"
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "ConnectToSource.Oracle.Sync"
+          ]
+        }
+      },
+      "required": [
+        "taskType"
+      ],
+      "description": "Properties for the task that validates Oracle database connection"
     },
     "ConnectToSourcePostgreSqlSyncTaskInput": {
       "type": "object",
@@ -452,6 +670,18 @@
           ],
           "description": "Flag for whether to collect agent jobs from source server."
         },
+        "collectDatabases": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": true
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Flag for whether to collect databases from source server."
+        },
         "collectLogins": {
           "oneOf": [
             {
@@ -464,6 +694,18 @@
           ],
           "description": "Flag for whether to collect logins from source server."
         },
+        "collectTdeCertificateInfo": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Flag for whether to collect TDE Certificate names from source server."
+        },
         "sourceConnectionInfo": {
           "oneOf": [
             {
@@ -474,6 +716,18 @@
             }
           ],
           "description": "Information for connecting to SQL database server"
+        },
+        "validateSsisCatalogOnly": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Flag for whether to validate SSIS catalog is reachable on the source server."
         }
       },
       "required": [
@@ -510,6 +764,18 @@
     "ConnectToTargetAzureDbForMySqlTaskInput": {
       "type": "object",
       "properties": {
+        "isOfflineMigration": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Flag for whether or not the migration is offline"
+        },
         "sourceConnectionInfo": {
           "oneOf": [
             {
@@ -623,6 +889,52 @@
       ],
       "description": "Properties for the task that validates connection to Azure Database For PostgreSQL server and target server requirements for online migration"
     },
+    "ConnectToTargetOracleAzureDbForPostgreSqlSyncTaskInput": {
+      "type": "object",
+      "properties": {
+        "targetConnectionInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PostgreSqlConnectionInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Information for connecting to PostgreSQL server"
+        }
+      },
+      "required": [
+        "targetConnectionInfo"
+      ],
+      "description": "Input for the task that validates connection to Azure Database for PostgreSQL and target server requirements for Oracle source."
+    },
+    "ConnectToTargetOracleAzureDbForPostgreSqlSyncTaskProperties": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ConnectToTargetOracleAzureDbForPostgreSqlSyncTaskInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Input for the task that validates connection to Azure Database for PostgreSQL and target server requirements for Oracle source."
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "ConnectToTarget.Oracle.AzureDbForPostgreSql.Sync"
+          ]
+        }
+      },
+      "required": [
+        "taskType"
+      ],
+      "description": "Properties for the task that validates connection to Azure Database For PostgreSQL server and target server requirements for online migration for Oracle source."
+    },
     "ConnectToTargetSqlDbTaskInput": {
       "type": "object",
       "properties": {
@@ -730,6 +1042,30 @@
     "ConnectToTargetSqlMITaskInput": {
       "type": "object",
       "properties": {
+        "collectAgentJobs": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": true
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Flag for whether to collect agent jobs from target SQL MI server."
+        },
+        "collectLogins": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": true
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Flag for whether to collect logins from target SQL MI server."
+        },
         "targetConnectionInfo": {
           "oneOf": [
             {
@@ -740,6 +1076,18 @@
             }
           ],
           "description": "Information for connecting to SQL database server"
+        },
+        "validateSsisCatalogOnly": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Flag for whether to validate SSIS catalog is reachable on the target SQL MI server."
         }
       },
       "required": [
@@ -851,6 +1199,10 @@
           "type": "string",
           "description": "The public key of the service, used to encrypt secrets sent to the service"
         },
+        "virtualNicId": {
+          "type": "string",
+          "description": "The ID of the Microsoft.Network/networkInterfaces resource which the service have"
+        },
         "virtualSubnetId": {
           "type": "string",
           "description": "The ID of the Microsoft.Network/virtualNetworks/subnets resource to which the service should be joined"
@@ -859,7 +1211,7 @@
       "required": [
         "virtualSubnetId"
       ],
-      "description": "Properties of the Data Migration service instance"
+      "description": "Properties of the Database Migration Service instance"
     },
     "FileShare": {
       "type": "object",
@@ -954,6 +1306,189 @@
         "taskType"
       ],
       "description": "Properties for the task that gets TDE certificates in Base64 encoded format."
+    },
+    "GetUserTablesMySqlTaskInput": {
+      "type": "object",
+      "properties": {
+        "connectionInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MySqlConnectionInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Information for connecting to MySQL server"
+        },
+        "selectedDatabases": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of database names to collect tables for"
+        }
+      },
+      "required": [
+        "connectionInfo",
+        "selectedDatabases"
+      ],
+      "description": "Input for the task that collects user tables for the given list of databases"
+    },
+    "GetUserTablesMySqlTaskProperties": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GetUserTablesMySqlTaskInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Input for the task that collects user tables for the given list of databases"
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "GetUserTablesMySql"
+          ]
+        }
+      },
+      "required": [
+        "taskType"
+      ],
+      "description": "Properties for the task that collects user tables for the given list of databases"
+    },
+    "GetUserTablesOracleTaskInput": {
+      "type": "object",
+      "properties": {
+        "connectionInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OracleConnectionInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Information for connecting to Oracle server"
+        },
+        "selectedSchemas": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of Oracle schemas for which to collect tables"
+        }
+      },
+      "required": [
+        "connectionInfo",
+        "selectedSchemas"
+      ],
+      "description": "Input for the task that gets the list of tables contained within a provided list of Oracle schemas."
+    },
+    "GetUserTablesOracleTaskProperties": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GetUserTablesOracleTaskInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Input for the task that gets the list of tables contained within a provided list of Oracle schemas."
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "GetUserTablesOracle"
+          ]
+        }
+      },
+      "required": [
+        "taskType"
+      ],
+      "description": "Properties for the task that collects user tables for the given list of Oracle schemas"
+    },
+    "GetUserTablesPostgreSqlTaskInput": {
+      "type": "object",
+      "properties": {
+        "connectionInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PostgreSqlConnectionInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Information for connecting to PostgreSQL server"
+        },
+        "selectedDatabases": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of PostgreSQL databases for which to collect tables"
+        }
+      },
+      "required": [
+        "connectionInfo",
+        "selectedDatabases"
+      ],
+      "description": "Input for the task that gets the list of tables for a provided list of PostgreSQL databases."
+    },
+    "GetUserTablesPostgreSqlTaskProperties": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GetUserTablesPostgreSqlTaskInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Input for the task that gets the list of tables for a provided list of PostgreSQL databases."
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "GetUserTablesPostgreSql"
+          ]
+        }
+      },
+      "required": [
+        "taskType"
+      ],
+      "description": "Properties for the task that collects user tables for the given list of databases"
     },
     "GetUserTablesSqlSyncTaskInput": {
       "type": "object",
@@ -1104,6 +1639,202 @@
       ],
       "description": "Properties for the task that collects user tables for the given list of databases"
     },
+    "InstallOCIDriverTaskInput": {
+      "type": "object",
+      "properties": {
+        "driverPackageName": {
+          "type": "string",
+          "description": "Name of the uploaded driver package to install."
+        }
+      },
+      "description": "Input for the service task to install an OCI driver."
+    },
+    "InstallOCIDriverTaskProperties": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/InstallOCIDriverTaskInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Input for the service task to install an OCI driver."
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "Service.Install.OCI"
+          ]
+        }
+      },
+      "required": [
+        "taskType"
+      ],
+      "description": "Properties for the task that installs an OCI driver."
+    },
+    "MigrateMongoDbTaskProperties": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MongoDbMigrationSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Describes how a MongoDB data migration should be performed"
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "Migrate.MongoDb"
+          ]
+        }
+      },
+      "required": [
+        "taskType"
+      ],
+      "description": "Properties for the task that migrates data between MongoDB data sources"
+    },
+    "MigrateMySqlAzureDbForMySqlOfflineDatabaseInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the database"
+        },
+        "tableMap": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Mapping of source to target tables"
+        },
+        "targetDatabaseName": {
+          "type": "string",
+          "description": "Name of target database. Note: Target database will be truncated before starting migration."
+        }
+      },
+      "description": "Database specific information for offline MySQL to Azure Database for MySQL migration task inputs"
+    },
+    "MigrateMySqlAzureDbForMySqlOfflineTaskInput": {
+      "type": "object",
+      "properties": {
+        "makeSourceServerReadOnly": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Setting to set the source server read only"
+        },
+        "optionalAgentSettings": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Optional parameters for fine tuning the data transfer rate during migration"
+        },
+        "selectedDatabases": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MigrateMySqlAzureDbForMySqlOfflineDatabaseInput"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Databases to migrate"
+        },
+        "sourceConnectionInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MySqlConnectionInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Information for connecting to MySQL server"
+        },
+        "startedOn": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Parameter to specify when the migration started"
+        },
+        "targetConnectionInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MySqlConnectionInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Information for connecting to MySQL server"
+        }
+      },
+      "required": [
+        "selectedDatabases",
+        "sourceConnectionInfo",
+        "targetConnectionInfo"
+      ],
+      "description": "Input for the task that migrates MySQL databases to Azure Database for MySQL for offline migrations"
+    },
+    "MigrateMySqlAzureDbForMySqlOfflineTaskProperties": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MigrateMySqlAzureDbForMySqlOfflineTaskInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Input for the task that migrates MySQL databases to Azure Database for MySQL for offline migrations"
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "Migrate.MySql.AzureDbForMySql"
+          ]
+        }
+      },
+      "required": [
+        "taskType"
+      ],
+      "description": "Properties for the task that migrates MySQL databases to Azure Database for MySQL for offline migrations"
+    },
     "MigrateMySqlAzureDbForMySqlSyncDatabaseInput": {
       "type": "object",
       "properties": {
@@ -1140,6 +1871,21 @@
             }
           ],
           "description": "Source settings to tune source endpoint migration behavior"
+        },
+        "tableMap": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Mapping of source to target tables"
         },
         "targetDatabaseName": {
           "type": "string",
@@ -1236,6 +1982,161 @@
       ],
       "description": "Properties for the task that migrates MySQL databases to Azure Database for MySQL for online migrations"
     },
+    "MigrateOracleAzureDbForPostgreSqlSyncTaskProperties": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MigrateOracleAzureDbPostgreSqlSyncTaskInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Input for the task that migrates Oracle databases to Azure Database for PostgreSQL for online migrations"
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "Migrate.Oracle.AzureDbForPostgreSql.Sync"
+          ]
+        }
+      },
+      "required": [
+        "taskType"
+      ],
+      "description": "Properties for the task that migrates Oracle to Azure Database for PostgreSQL for online migrations"
+    },
+    "MigrateOracleAzureDbPostgreSqlSyncDatabaseInput": {
+      "type": "object",
+      "properties": {
+        "caseManipulation": {
+          "type": "string",
+          "description": "How to handle object name casing: either Preserve or ToLower"
+        },
+        "migrationSetting": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Migration settings which tune the migration behavior"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the migration pipeline"
+        },
+        "schemaName": {
+          "type": "string",
+          "description": "Name of the source schema"
+        },
+        "sourceSetting": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Source settings to tune source endpoint migration behavior"
+        },
+        "tableMap": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Mapping of source to target tables"
+        },
+        "targetDatabaseName": {
+          "type": "string",
+          "description": "Name of target database. Note: Target database will be truncated before starting migration."
+        },
+        "targetSetting": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Target settings to tune target endpoint migration behavior"
+        }
+      },
+      "description": "Database specific information for Oracle to Azure Database for PostgreSQL migration task inputs"
+    },
+    "MigrateOracleAzureDbPostgreSqlSyncTaskInput": {
+      "type": "object",
+      "properties": {
+        "selectedDatabases": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MigrateOracleAzureDbPostgreSqlSyncDatabaseInput"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Databases to migrate"
+        },
+        "sourceConnectionInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OracleConnectionInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Information for connecting to Oracle server"
+        },
+        "targetConnectionInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PostgreSqlConnectionInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Information for connecting to PostgreSQL server"
+        }
+      },
+      "required": [
+        "selectedDatabases",
+        "sourceConnectionInfo",
+        "targetConnectionInfo"
+      ],
+      "description": "Input for the task that migrates Oracle databases to Azure Database for PostgreSQL for online migrations"
+    },
     "MigratePostgreSqlAzureDbForPostgreSqlSyncDatabaseInput": {
       "type": "object",
       "properties": {
@@ -1257,6 +2158,20 @@
         "name": {
           "type": "string",
           "description": "Name of the database"
+        },
+        "selectedTables": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MigratePostgreSqlAzureDbForPostgreSqlSyncDatabaseTableInput"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tables selected for migration"
         },
         "sourceSetting": {
           "oneOf": [
@@ -1294,6 +2209,16 @@
         }
       },
       "description": "Database specific information for PostgreSQL to Azure Database for PostgreSQL migration task inputs"
+    },
+    "MigratePostgreSqlAzureDbForPostgreSqlSyncDatabaseTableInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the table to migrate"
+        }
+      },
+      "description": "Selected tables for the migration"
     },
     "MigratePostgreSqlAzureDbForPostgreSqlSyncTaskInput": {
       "type": "object",
@@ -1359,7 +2284,7 @@
         "taskType": {
           "type": "string",
           "enum": [
-            "Migrate.PostgreSql.AzureDbForPostgreSql.Sync"
+            "Migrate.PostgreSql.AzureDbForPostgreSql.SyncV2"
           ]
         }
       },
@@ -1367,6 +2292,104 @@
         "taskType"
       ],
       "description": "Properties for the task that migrates PostgreSQL databases to Azure Database for PostgreSQL for online migrations"
+    },
+    "MigrateSchemaSqlServerSqlDbDatabaseInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of source database"
+        },
+        "schemaSetting": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SchemaMigrationSetting"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Settings for migrating schema from source to target"
+        },
+        "targetDatabaseName": {
+          "type": "string",
+          "description": "Name of target database"
+        }
+      },
+      "description": "Database input for migrate schema Sql Server to Azure SQL Server scenario"
+    },
+    "MigrateSchemaSqlServerSqlDbTaskInput": {
+      "type": "object",
+      "properties": {
+        "selectedDatabases": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MigrateSchemaSqlServerSqlDbDatabaseInput"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Databases to migrate"
+        },
+        "sourceConnectionInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SqlConnectionInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Information for connecting to SQL database server"
+        },
+        "targetConnectionInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SqlConnectionInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Information for connecting to SQL database server"
+        }
+      },
+      "required": [
+        "selectedDatabases",
+        "sourceConnectionInfo",
+        "targetConnectionInfo"
+      ],
+      "description": "Input for task that migrates Schema for SQL Server databases to Azure SQL databases"
+    },
+    "MigrateSchemaSqlServerSqlDbTaskProperties": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MigrateSchemaSqlServerSqlDbTaskInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Input for task that migrates Schema for SQL Server databases to Azure SQL databases"
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "MigrateSchemaSqlServerSqlDb"
+          ]
+        }
+      },
+      "required": [
+        "taskType"
+      ],
+      "description": "Properties for task that migrates Schema for SQL Server databases to Azure SQL databases"
     },
     "MigrateSqlServerSqlDbDatabaseInput": {
       "type": "object",
@@ -1805,6 +2828,10 @@
     "MigrateSqlServerSqlMITaskInput": {
       "type": "object",
       "properties": {
+        "aadDomainName": {
+          "type": "string",
+          "description": "Azure Active Directory domain name in the format of 'contoso.com' for federated Azure AD or 'contoso.onmicrosoft.com' for managed domain, required if and only if Windows logins are selected"
+        },
         "backupBlobShare": {
           "oneOf": [
             {
@@ -1941,6 +2968,76 @@
       ],
       "description": "Properties for task that migrates SQL Server databases to Azure SQL Database Managed Instance"
     },
+    "MigrateSsisTaskInput": {
+      "type": "object",
+      "properties": {
+        "sourceConnectionInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SqlConnectionInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Information for connecting to SQL database server"
+        },
+        "ssisMigrationInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SsisMigrationInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "SSIS migration info with SSIS store type, overwrite policy."
+        },
+        "targetConnectionInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SqlConnectionInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Information for connecting to SQL database server"
+        }
+      },
+      "required": [
+        "sourceConnectionInfo",
+        "ssisMigrationInfo",
+        "targetConnectionInfo"
+      ],
+      "description": "Input for task that migrates SSIS packages from SQL Server to Azure SQL Database Managed Instance."
+    },
+    "MigrateSsisTaskProperties": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MigrateSsisTaskInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Input for task that migrates SSIS packages from SQL Server to Azure SQL Database Managed Instance."
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "Migrate.Ssis"
+          ]
+        }
+      },
+      "required": [
+        "taskType"
+      ],
+      "description": "Properties for task that migrates SSIS packages from SQL Server databases to Azure SQL Database Managed Instance."
+    },
     "MigrationValidationOptions": {
       "type": "object",
       "properties": {
@@ -2008,9 +3105,313 @@
       ],
       "description": "Properties required to create a connection to Azure SQL database Managed instance"
     },
+    "MongoDbCollectionSettings": {
+      "type": "object",
+      "properties": {
+        "canDelete": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether the migrator is allowed to drop the target collection in the course of performing a migration. The default is true."
+        },
+        "shardKey": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MongoDbShardKeySetting"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Describes a MongoDB shard key"
+        },
+        "targetRUs": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The RUs that should be configured on a CosmosDB target, or null to use the default. This has no effect on non-CosmosDB targets."
+        }
+      },
+      "description": "Describes how an individual MongoDB collection should be migrated"
+    },
+    "MongoDbConnectionInfo": {
+      "type": "object",
+      "properties": {
+        "connectionString": {
+          "type": "string",
+          "description": "A MongoDB connection string or blob container URL. The user name and password can be specified here or in the userName and password properties"
+        },
+        "password": {
+          "type": "string",
+          "description": "Password credential."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "MongoDbConnectionInfo"
+          ]
+        },
+        "userName": {
+          "type": "string",
+          "description": "User name"
+        }
+      },
+      "required": [
+        "connectionString",
+        "type"
+      ],
+      "description": "Describes a connection to a MongoDB data source"
+    },
+    "MongoDbDatabaseSettings": {
+      "type": "object",
+      "properties": {
+        "collections": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/MongoDbCollectionSettings"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The collections on the source database to migrate to the target. The keys are the unqualified names of the collections."
+        },
+        "targetRUs": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The RUs that should be configured on a CosmosDB target, or null to use the default, or 0 if throughput should not be provisioned for the database. This has no effect on non-CosmosDB targets."
+        }
+      },
+      "required": [
+        "collections"
+      ],
+      "description": "Describes how an individual MongoDB database should be migrated"
+    },
+    "MongoDbMigrationSettings": {
+      "type": "object",
+      "properties": {
+        "boostRUs": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The RU limit on a CosmosDB target that collections will be temporarily increased to (if lower) during the initial copy of a migration, from 10,000 to 1,000,000, or 0 to use the default boost (which is generally the maximum), or null to not boost the RUs. This setting has no effect on non-CosmosDB targets."
+        },
+        "databases": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/MongoDbDatabaseSettings"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The databases on the source cluster to migrate to the target. The keys are the names of the databases."
+        },
+        "replication": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Disabled",
+                "OneTime",
+                "Continuous"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Describes how changes will be replicated from the source to the target. The default is OneTime."
+        },
+        "source": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MongoDbConnectionInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Describes a connection to a MongoDB data source"
+        },
+        "target": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MongoDbConnectionInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Describes a connection to a MongoDB data source"
+        },
+        "throttling": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MongoDbThrottlingSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies resource limits for the migration"
+        }
+      },
+      "required": [
+        "databases",
+        "source",
+        "target"
+      ],
+      "description": "Describes how a MongoDB data migration should be performed"
+    },
+    "MongoDbShardKeyField": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the field"
+        },
+        "order": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Forward",
+                "Reverse",
+                "Hashed"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The field ordering."
+        }
+      },
+      "required": [
+        "name",
+        "order"
+      ],
+      "description": "Describes a field reference within a MongoDB shard key"
+    },
+    "MongoDbShardKeySetting": {
+      "type": "object",
+      "properties": {
+        "fields": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MongoDbShardKeyField"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The fields within the shard key"
+        },
+        "isUnique": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether the shard key is unique"
+        }
+      },
+      "required": [
+        "fields",
+        "isUnique"
+      ],
+      "description": "Describes a MongoDB shard key"
+    },
+    "MongoDbThrottlingSettings": {
+      "type": "object",
+      "properties": {
+        "maxParallelism": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The maximum number of work items (e.g. collection copies) that will be processed in parallel"
+        },
+        "minFreeCpu": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The percentage of CPU time that the migrator will try to avoid using, from 0 to 100"
+        },
+        "minFreeMemoryMb": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The number of megabytes of RAM that the migrator will try to avoid using"
+        }
+      },
+      "description": "Specifies resource limits for the migration"
+    },
     "MySqlConnectionInfo": {
       "type": "object",
       "properties": {
+        "encryptConnection": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": true
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether to encrypt the connection"
+        },
         "password": {
           "type": "string",
           "description": "Password credential."
@@ -2048,12 +3449,52 @@
       ],
       "description": "Information for connecting to MySQL server"
     },
+    "OracleConnectionInfo": {
+      "type": "object",
+      "properties": {
+        "dataSource": {
+          "type": "string",
+          "description": "EZConnect or TNSName connection string."
+        },
+        "password": {
+          "type": "string",
+          "description": "Password credential."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "OracleConnectionInfo"
+          ]
+        },
+        "userName": {
+          "type": "string",
+          "description": "User name"
+        }
+      },
+      "required": [
+        "dataSource",
+        "type"
+      ],
+      "description": "Information for connecting to Oracle server"
+    },
     "PostgreSqlConnectionInfo": {
       "type": "object",
       "properties": {
         "databaseName": {
           "type": "string",
           "description": "Name of the database"
+        },
+        "encryptConnection": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": true
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether to encrypt the connection"
         },
         "password": {
           "type": "string",
@@ -2074,6 +3515,18 @@
           "type": "string",
           "description": "Name of the server"
         },
+        "trustServerCertificate": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether to trust the server certificate"
+        },
         "type": {
           "type": "string",
           "enum": [
@@ -2091,6 +3544,24 @@
         "type"
       ],
       "description": "Information for connecting to PostgreSQL server"
+    },
+    "ProjectFileProperties": {
+      "type": "object",
+      "properties": {
+        "extension": {
+          "type": "string",
+          "description": "Optional File extension. If submitted it should not have a leading period and must match the extension from filePath."
+        },
+        "filePath": {
+          "type": "string",
+          "description": "Relative path of this file resource. This property can be set when creating or updating the file resource."
+        },
+        "mediaType": {
+          "type": "string",
+          "description": "File content type. This property can be modified to reflect the file content type."
+        }
+      },
+      "description": "Base class for file properties."
     },
     "ProjectProperties": {
       "type": "object",
@@ -2126,6 +3597,9 @@
               "type": "string",
               "enum": [
                 "SQL",
+                "MySQL",
+                "PostgreSql",
+                "MongoDb",
                 "Unknown"
               ]
             },
@@ -2152,6 +3626,10 @@
               "type": "string",
               "enum": [
                 "SQLDB",
+                "SQLMI",
+                "AzureDbForMySql",
+                "AzureDbForPostgreSql",
+                "MongoDb",
                 "Unknown"
               ]
             },
@@ -2172,7 +3650,19 @@
       "type": "object",
       "oneOf": [
         {
-          "$ref": "#/definitions/ConnectToSourceMySqlTaskProperties"
+          "$ref": "#/definitions/MigrateSchemaSqlServerSqlDbTaskProperties"
+        },
+        {
+          "$ref": "#/definitions/CheckOCIDriverTaskProperties"
+        },
+        {
+          "$ref": "#/definitions/UploadOCIDriverTaskProperties"
+        },
+        {
+          "$ref": "#/definitions/InstallOCIDriverTaskProperties"
+        },
+        {
+          "$ref": "#/definitions/ConnectToMongoDbTaskProperties"
         },
         {
           "$ref": "#/definitions/ConnectToSourceSqlServerTaskProperties"
@@ -2184,6 +3674,12 @@
           "$ref": "#/definitions/ConnectToSourcePostgreSqlSyncTaskProperties"
         },
         {
+          "$ref": "#/definitions/ConnectToSourceMySqlTaskProperties"
+        },
+        {
+          "$ref": "#/definitions/ConnectToSourceOracleSyncTaskProperties"
+        },
+        {
           "$ref": "#/definitions/ConnectToTargetSqlDbTaskProperties"
         },
         {
@@ -2193,10 +3689,22 @@
           "$ref": "#/definitions/ConnectToTargetAzureDbForPostgreSqlSyncTaskProperties"
         },
         {
+          "$ref": "#/definitions/ConnectToTargetOracleAzureDbForPostgreSqlSyncTaskProperties"
+        },
+        {
           "$ref": "#/definitions/GetUserTablesSqlTaskProperties"
         },
         {
           "$ref": "#/definitions/GetUserTablesSqlSyncTaskProperties"
+        },
+        {
+          "$ref": "#/definitions/GetUserTablesOracleTaskProperties"
+        },
+        {
+          "$ref": "#/definitions/GetUserTablesPostgreSqlTaskProperties"
+        },
+        {
+          "$ref": "#/definitions/GetUserTablesMySqlTaskProperties"
         },
         {
           "$ref": "#/definitions/ConnectToTargetSqlMITaskProperties"
@@ -2206,6 +3714,9 @@
         },
         {
           "$ref": "#/definitions/ConnectToTargetAzureDbForMySqlTaskProperties"
+        },
+        {
+          "$ref": "#/definitions/MigrateMongoDbTaskProperties"
         },
         {
           "$ref": "#/definitions/MigrateSqlServerSqlMITaskProperties"
@@ -2223,7 +3734,13 @@
           "$ref": "#/definitions/MigrateMySqlAzureDbForMySqlSyncTaskProperties"
         },
         {
+          "$ref": "#/definitions/MigrateMySqlAzureDbForMySqlOfflineTaskProperties"
+        },
+        {
           "$ref": "#/definitions/MigratePostgreSqlAzureDbForPostgreSqlSyncTaskProperties"
+        },
+        {
+          "$ref": "#/definitions/MigrateOracleAzureDbForPostgreSqlSyncTaskProperties"
         },
         {
           "$ref": "#/definitions/ValidateMigrationInputSqlServerSqlDbSyncTaskProperties"
@@ -2235,11 +3752,62 @@
           "$ref": "#/definitions/ValidateMigrationInputSqlServerSqlMISyncTaskProperties"
         },
         {
+          "$ref": "#/definitions/ValidateMongoDbTaskProperties"
+        },
+        {
+          "$ref": "#/definitions/ValidateOracleAzureDbForPostgreSqlSyncTaskProperties"
+        },
+        {
           "$ref": "#/definitions/GetTdeCertificatesSqlTaskProperties"
+        },
+        {
+          "$ref": "#/definitions/MigrateSsisTaskProperties"
         }
       ],
-      "properties": {},
+      "properties": {
+        "clientData": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Key value pairs of client data to attach meta data information to task"
+        }
+      },
       "description": "Base class for all types of DMS task properties. If task is not supported by current client, this object is returned."
+    },
+    "SchemaMigrationSetting": {
+      "type": "object",
+      "properties": {
+        "fileId": {
+          "type": "string",
+          "description": "Resource Identifier of a file resource containing the uploaded schema file"
+        },
+        "schemaOption": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "ExtractFromSource",
+                "UseStorageFile"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Option on how to migrate the schema."
+        }
+      },
+      "description": "Settings for migrating schema from source to target"
     },
     "SelectedCertificateInput": {
       "type": "object",
@@ -2287,7 +3855,7 @@
         },
         "tier": {
           "type": "string",
-          "description": "The tier of the SKU, such as 'Free', 'Basic', 'Standard', or 'Premium'"
+          "description": "The tier of the SKU, such as 'Basic', 'General Purpose', or 'Business Critical'"
         }
       },
       "description": "An Azure SKU instance"
@@ -2298,7 +3866,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-04-19"
+            "2021-06-30"
           ]
         },
         "location": {
@@ -2351,13 +3919,56 @@
       ],
       "description": "Microsoft.DataMigration/services/projects"
     },
+    "services_projects_files_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-06-30"
+          ]
+        },
+        "etag": {
+          "type": "string",
+          "description": "HTTP strong entity tag value. This is ignored if submitted."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the File"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProjectFileProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Base class for file properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "files"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DataMigration/services/projects/files"
+    },
     "services_projects_tasks_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-04-19"
+            "2021-06-30"
           ]
         },
         "etag": {
@@ -2393,6 +4004,49 @@
         "type"
       ],
       "description": "Microsoft.DataMigration/services/projects/tasks"
+    },
+    "services_serviceTasks_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-06-30"
+          ]
+        },
+        "etag": {
+          "type": "string",
+          "description": "HTTP strong entity tag value. This is ignored if submitted."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the Task"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProjectTaskProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Base class for all types of DMS task properties. If task is not supported by current client, this object is returned."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "serviceTasks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DataMigration/services/serviceTasks"
     },
     "SqlConnectionInfo": {
       "type": "object",
@@ -2481,6 +4135,99 @@
         "type"
       ],
       "description": "Information for connecting to SQL database server"
+    },
+    "SsisMigrationInfo": {
+      "type": "object",
+      "properties": {
+        "environmentOverwriteOption": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Ignore",
+                "Overwrite"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The overwrite option for the SSIS environment migration."
+        },
+        "projectOverwriteOption": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Ignore",
+                "Overwrite"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The overwrite option for the SSIS project migration."
+        },
+        "ssisStoreType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "SsisCatalog"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The SSIS store type of source, only SSIS catalog is supported now in DMS."
+        }
+      },
+      "description": "SSIS migration info with SSIS store type, overwrite policy."
+    },
+    "UploadOCIDriverTaskInput": {
+      "type": "object",
+      "properties": {
+        "driverShare": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FileShare"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "File share information with Path, Username, and Password."
+        }
+      },
+      "description": "Input for the service task to upload an OCI driver."
+    },
+    "UploadOCIDriverTaskProperties": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/UploadOCIDriverTaskInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Input for the service task to upload an OCI driver."
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "Service.Upload.OCI"
+          ]
+        }
+      },
+      "required": [
+        "taskType"
+      ],
+      "description": "Properties for the task that uploads an OCI driver."
     },
     "ValidateMigrationInputSqlServerSqlDbSyncTaskProperties": {
       "type": "object",
@@ -2733,6 +4480,58 @@
         "taskType"
       ],
       "description": "Properties for task that validates migration input for SQL to Azure SQL Database Managed Instance"
+    },
+    "ValidateMongoDbTaskProperties": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MongoDbMigrationSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Describes how a MongoDB data migration should be performed"
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "Validate.MongoDb"
+          ]
+        }
+      },
+      "required": [
+        "taskType"
+      ],
+      "description": "Properties for the task that validates a migration between MongoDB data sources"
+    },
+    "ValidateOracleAzureDbForPostgreSqlSyncTaskProperties": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MigrateOracleAzureDbPostgreSqlSyncTaskInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Input for the task that migrates Oracle databases to Azure Database for PostgreSQL for online migrations"
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "Validate.Oracle.AzureDbPostgreSql.Sync"
+          ]
+        }
+      },
+      "required": [
+        "taskType"
+      ],
+      "description": "Properties for the task that validates a migration for Oracle to Azure Database for PostgreSQL for online migrations"
     },
     "ValidateSyncMigrationInputSqlServerTaskInput": {
       "type": "object",

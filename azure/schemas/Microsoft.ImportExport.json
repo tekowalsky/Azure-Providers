@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2016-11-01/Microsoft.ImportExport.json#",
+  "id": "https://schema.management.azure.com/schemas/2021-01-01/Microsoft.ImportExport.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.ImportExport",
   "description": "Microsoft ImportExport Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2016-11-01"
+            "2021-01-01"
           ]
         },
         "location": {
@@ -374,7 +374,7 @@
         "returnPackage": {
           "oneOf": [
             {
-              "$ref": "#/definitions/PackageInfomation"
+              "$ref": "#/definitions/PackageInformation"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -416,7 +416,7 @@
       },
       "description": "Specifies the job properties"
     },
-    "PackageInfomation": {
+    "PackageInformation": {
       "type": "object",
       "properties": {
         "carrierName": {

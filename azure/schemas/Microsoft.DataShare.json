@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2019-11-01/Microsoft.DataShare.json#",
+  "id": "https://schema.management.azure.com/schemas/2021-08-01/Microsoft.DataShare.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.DataShare",
   "description": "Microsoft DataShare Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-08-01"
           ]
         },
         "identity": {
@@ -93,7 +93,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-08-01"
           ]
         },
         "name": {
@@ -148,7 +148,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-08-01"
           ]
         },
         "name": {
@@ -222,17 +222,23 @@
           "$ref": "#/definitions/KustoDatabaseDataSetMapping"
         },
         {
+          "$ref": "#/definitions/KustoTableDataSetMapping"
+        },
+        {
           "$ref": "#/definitions/SqlDBTableDataSetMapping"
         },
         {
           "$ref": "#/definitions/SqlDWTableDataSetMapping"
+        },
+        {
+          "$ref": "#/definitions/SynapseWorkspaceSqlPoolTableDataSetMapping"
         }
       ],
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-08-01"
           ]
         },
         "name": {
@@ -264,7 +270,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-08-01"
           ]
         },
         "name": {
@@ -319,17 +325,23 @@
           "$ref": "#/definitions/KustoDatabaseDataSet"
         },
         {
+          "$ref": "#/definitions/KustoTableDataSet"
+        },
+        {
           "$ref": "#/definitions/SqlDBTableDataSet"
         },
         {
           "$ref": "#/definitions/SqlDWTableDataSet"
+        },
+        {
+          "$ref": "#/definitions/SynapseWorkspaceSqlPoolTableDataSet"
         }
       ],
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-08-01"
           ]
         },
         "name": {
@@ -356,7 +368,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-08-01"
           ]
         },
         "name": {
@@ -400,7 +412,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-08-01"
           ]
         },
         "name": {
@@ -434,7 +446,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-08-01"
           ]
         },
         "name": {
@@ -495,17 +507,23 @@
           "$ref": "#/definitions/KustoDatabaseDataSetMapping"
         },
         {
+          "$ref": "#/definitions/KustoTableDataSetMapping"
+        },
+        {
           "$ref": "#/definitions/SqlDBTableDataSetMapping"
         },
         {
           "$ref": "#/definitions/SqlDWTableDataSetMapping"
+        },
+        {
+          "$ref": "#/definitions/SynapseWorkspaceSqlPoolTableDataSetMapping"
         }
       ],
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-08-01"
           ]
         },
         "name": {
@@ -537,7 +555,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-08-01"
           ]
         },
         "name": {
@@ -564,7 +582,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-08-01"
           ]
         },
         "name": {
@@ -631,17 +649,23 @@
           "$ref": "#/definitions/KustoDatabaseDataSet"
         },
         {
+          "$ref": "#/definitions/KustoTableDataSet"
+        },
+        {
           "$ref": "#/definitions/SqlDBTableDataSet"
         },
         {
           "$ref": "#/definitions/SqlDWTableDataSet"
+        },
+        {
+          "$ref": "#/definitions/SynapseWorkspaceSqlPoolTableDataSet"
         }
       ],
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-08-01"
           ]
         },
         "name": {
@@ -668,7 +692,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-08-01"
           ]
         },
         "name": {
@@ -712,7 +736,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-08-01"
           ]
         },
         "name": {
@@ -1631,6 +1655,11 @@
     "InvitationProperties": {
       "type": "object",
       "properties": {
+        "expirationDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The expiration date for the invitation and share subscription."
+        },
         "targetActiveDirectoryId": {
           "type": "string",
           "description": "The target Azure AD Id. Can't be combined with email."
@@ -1816,6 +1845,103 @@
       ],
       "description": "Properties of the kusto database data set."
     },
+    "KustoTableDataSet": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "KustoTable"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/KustoTableDataSetProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the kusto table data set."
+        }
+      },
+      "required": [
+        "kind",
+        "properties"
+      ],
+      "description": "A kusto table data set."
+    },
+    "KustoTableDataSetMapping": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "KustoTable"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/KustoTableDataSetMappingProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the Kusto database data set mapping"
+        }
+      },
+      "required": [
+        "kind",
+        "properties"
+      ],
+      "description": "A Kusto database data set mapping"
+    },
+    "KustoTableDataSetMappingProperties": {
+      "type": "object",
+      "properties": {
+        "dataSetId": {
+          "type": "string",
+          "description": "The id of the source data set."
+        },
+        "kustoClusterResourceId": {
+          "type": "string",
+          "description": "Resource id of the sink kusto cluster."
+        }
+      },
+      "required": [
+        "dataSetId",
+        "kustoClusterResourceId"
+      ],
+      "description": "Properties of the Kusto database data set mapping"
+    },
+    "KustoTableDataSetProperties": {
+      "type": "object",
+      "properties": {
+        "kustoDatabaseResourceId": {
+          "type": "string",
+          "description": "Resource id of the kusto database."
+        },
+        "tableLevelSharingProperties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TableLevelSharingProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Table level sharing properties dto for kusto data set properties"
+        }
+      },
+      "required": [
+        "kustoDatabaseResourceId",
+        "tableLevelSharingProperties"
+      ],
+      "description": "Properties of the kusto table data set."
+    },
     "ScheduledSynchronizationSetting": {
       "type": "object",
       "properties": {
@@ -1977,6 +2103,11 @@
     "ShareSubscriptionProperties": {
       "type": "object",
       "properties": {
+        "expirationDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The expiration date of the share subscription."
+        },
         "invitationId": {
           "type": "string",
           "description": "The invitation id."
@@ -2219,6 +2350,181 @@
         "tableName"
       ],
       "description": "Properties of the SQL DW table data set."
+    },
+    "SynapseWorkspaceSqlPoolTableDataSet": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "SynapseWorkspaceSqlPoolTable"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SynapseWorkspaceSqlPoolTableDataSetProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the Synapse Workspace SQL Pool Table data set."
+        }
+      },
+      "required": [
+        "kind",
+        "properties"
+      ],
+      "description": "A Synapse Workspace Sql Pool Table data set."
+    },
+    "SynapseWorkspaceSqlPoolTableDataSetMapping": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "SynapseWorkspaceSqlPoolTable"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SynapseWorkspaceSqlPoolTableDataSetMappingProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the Synapse Workspace SQL Pool Table data set mapping"
+        }
+      },
+      "required": [
+        "kind",
+        "properties"
+      ],
+      "description": "A Synapse Workspace Sql Pool Table data set mapping"
+    },
+    "SynapseWorkspaceSqlPoolTableDataSetMappingProperties": {
+      "type": "object",
+      "properties": {
+        "dataSetId": {
+          "type": "string",
+          "description": "The id of the source data set."
+        },
+        "synapseWorkspaceSqlPoolTableResourceId": {
+          "type": "string",
+          "description": "Resource id of the Synapse Workspace SQL Pool Table"
+        }
+      },
+      "required": [
+        "dataSetId",
+        "synapseWorkspaceSqlPoolTableResourceId"
+      ],
+      "description": "Properties of the Synapse Workspace SQL Pool Table data set mapping"
+    },
+    "SynapseWorkspaceSqlPoolTableDataSetProperties": {
+      "type": "object",
+      "properties": {
+        "synapseWorkspaceSqlPoolTableResourceId": {
+          "type": "string",
+          "description": "Resource id of the Synapse Workspace SQL Pool Table"
+        }
+      },
+      "required": [
+        "synapseWorkspaceSqlPoolTableResourceId"
+      ],
+      "description": "Properties of the Synapse Workspace SQL Pool Table data set."
+    },
+    "TableLevelSharingProperties": {
+      "type": "object",
+      "properties": {
+        "externalTablesToExclude": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "External tables to be excluded in the data set"
+        },
+        "externalTablesToInclude": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "External tables to be included in the data set"
+        },
+        "materializedViewsToExclude": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Materialized views to be excluded in the data set"
+        },
+        "materializedViewsToInclude": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Materialized views to be included in the data set"
+        },
+        "tablesToExclude": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tables to be excluded in the data set"
+        },
+        "tablesToInclude": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tables to be included in the data set"
+        }
+      },
+      "description": "Table level sharing properties dto for kusto data set properties"
     }
   }
 }

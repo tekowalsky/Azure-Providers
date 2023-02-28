@@ -1,36 +1,46 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2017-11-03-preview/Microsoft.HanaOnAzure.json#",
+  "id": "https://schema.management.azure.com/schemas/2020-02-07-preview/Microsoft.HanaOnAzure.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.HanaOnAzure",
   "description": "Microsoft HanaOnAzure Resource Types",
   "resourceDefinitions": {
-    "hanaInstances": {
+    "sapMonitors": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-03-preview"
+            "2020-02-07-preview"
           ]
         },
         "location": {
           "type": "string",
-          "description": "Resource location"
+          "description": "The geo-location where the resource lives"
         },
         "name": {
           "type": "string",
-          "description": "Name of the SAP HANA on Azure instance."
+          "description": "Name of the SAP monitor resource."
         },
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/HanaInstanceProperties"
+              "$ref": "#/definitions/SapMonitorProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Describes the properties of a HANA instance."
+          "description": "Describes the properties of a SAP monitor."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/sapMonitors_providerInstances_childResource"
+              }
+            ]
+          }
         },
         "tags": {
           "oneOf": [
@@ -45,12 +55,52 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Resource tags"
+          "description": "Resource tags."
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.HanaOnAzure/hanaInstances"
+            "Microsoft.HanaOnAzure/sapMonitors"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.HanaOnAzure/sapMonitors"
+    },
+    "sapMonitors_providerInstances": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2020-02-07-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the provider instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProviderInstanceProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Describes the properties of a provider instance."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.HanaOnAzure/sapMonitors/providerInstances"
           ]
         }
       },
@@ -60,189 +110,99 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.HanaOnAzure/hanaInstances"
+      "description": "Microsoft.HanaOnAzure/sapMonitors/providerInstances"
     }
   },
   "definitions": {
-    "Disk": {
+    "ProviderInstanceProperties": {
       "type": "object",
       "properties": {
-        "diskSizeGB": {
+        "metadata": {
+          "type": "string",
+          "description": "A JSON string containing metadata of the provider instance."
+        },
+        "properties": {
+          "type": "string",
+          "description": "A JSON string containing the properties of the provider instance."
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of provider instance."
+        }
+      },
+      "description": "Describes the properties of a provider instance."
+    },
+    "SapMonitorProperties": {
+      "type": "object",
+      "properties": {
+        "enableCustomerAnalytics": {
           "oneOf": [
             {
-              "type": "integer"
+              "type": "boolean"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Specifies the size of an empty data disk in gigabytes."
+          "description": "The value indicating whether to send analytics to Microsoft"
+        },
+        "logAnalyticsWorkspaceArmId": {
+          "type": "string",
+          "description": "The ARM ID of the Log Analytics Workspace that is used for monitoring"
+        },
+        "logAnalyticsWorkspaceId": {
+          "type": "string",
+          "description": "The workspace ID of the log analytics workspace to be used for monitoring"
+        },
+        "logAnalyticsWorkspaceSharedKey": {
+          "type": "string",
+          "description": "The shared key of the log analytics workspace that is used for monitoring"
+        },
+        "monitorSubnet": {
+          "type": "string",
+          "description": "The subnet which the SAP monitor will be deployed in"
+        }
+      },
+      "description": "Describes the properties of a SAP monitor."
+    },
+    "sapMonitors_providerInstances_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2020-02-07-preview"
+          ]
         },
         "name": {
           "type": "string",
-          "description": "The disk name."
-        }
-      },
-      "description": "Specifies the disk information for the HANA instance"
-    },
-    "HanaInstanceProperties": {
-      "type": "object",
-      "properties": {
-        "hardwareProfile": {
+          "description": "Name of the provider instance."
+        },
+        "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/HardwareProfile"
+              "$ref": "#/definitions/ProviderInstanceProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Specifies the hardware settings for the HANA instance."
+          "description": "Describes the properties of a provider instance."
         },
-        "networkProfile": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/NetworkProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Specifies the network settings for the HANA instance disks."
-        },
-        "osProfile": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/OSProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Specifies the operating system settings for the HANA instance."
-        },
-        "partnerNodeId": {
+        "type": {
           "type": "string",
-          "description": "ARM ID of another HanaInstance that will share a network with this HanaInstance"
-        },
-        "storageProfile": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/StorageProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Specifies the storage settings for the HANA instance disks."
+          "enum": [
+            "providerInstances"
+          ]
         }
       },
-      "description": "Describes the properties of a HANA instance."
-    },
-    "HardwareProfile": {
-      "type": "object",
-      "properties": {},
-      "description": "Specifies the hardware settings for the HANA instance."
-    },
-    "IpAddress": {
-      "type": "object",
-      "properties": {
-        "ipAddress": {
-          "type": "string",
-          "description": "Specifies the IP address of the network interface."
-        }
-      },
-      "description": "Specifies the IP address of the network interface."
-    },
-    "NetworkProfile": {
-      "type": "object",
-      "properties": {
-        "networkInterfaces": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/IpAddress"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Specifies the network interfaces for the HANA instance."
-        }
-      },
-      "description": "Specifies the network settings for the HANA instance disks."
-    },
-    "OSProfile": {
-      "type": "object",
-      "properties": {
-        "computerName": {
-          "type": "string",
-          "description": "Specifies the host OS name of the HANA instance."
-        },
-        "sshPublicKey": {
-          "type": "string",
-          "description": "Specifies the SSH public key used to access the operating system."
-        }
-      },
-      "description": "Specifies the operating system settings for the HANA instance."
-    },
-    "SAPSystemID": {
-      "type": "object",
-      "properties": {
-        "gid": {
-          "type": "string",
-          "description": "Group ID of the HANA database user."
-        },
-        "sid": {
-          "type": "string",
-          "description": "SAP system ID as database identifier."
-        },
-        "uid": {
-          "type": "string",
-          "description": "User ID of the HANA database user."
-        },
-        "username": {
-          "type": "string",
-          "description": "Name of the HANA database user."
-        }
-      },
-      "description": "Specifies information related to a SAP system ID"
-    },
-    "StorageProfile": {
-      "type": "object",
-      "properties": {
-        "hanaSids": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/SAPSystemID"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Specifies information related to SAP system IDs for the hana instance."
-        },
-        "osDisks": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Disk"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Specifies information about the operating system disk used by the hana instance."
-        }
-      },
-      "description": "Specifies the storage settings for the HANA instance disks."
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.HanaOnAzure/sapMonitors/providerInstances"
     }
   }
 }

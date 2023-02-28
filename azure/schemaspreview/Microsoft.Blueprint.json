@@ -1,17 +1,17 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2017-11-11-preview/Microsoft.Blueprint.json#",
+  "id": "https://schema.management.azure.com/schemas/2018-11-01-preview/Microsoft.Blueprint.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Blueprint",
   "description": "Microsoft Blueprint Resource Types",
   "resourceDefinitions": {},
-  "subscription_resourceDefinitions": {
+  "unknown_resourceDefinitions": {
     "blueprintAssignments": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-11-preview"
+            "2018-11-01-preview"
           ]
         },
         "identity": {
@@ -23,15 +23,15 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Managed Service Identity"
+          "description": "Managed identity generic object."
         },
         "location": {
           "type": "string",
-          "description": "The location of this Blueprint assignment."
+          "description": "The location of this blueprint assignment."
         },
         "name": {
           "type": "string",
-          "description": "name of the assignment."
+          "description": "Name of the blueprint assignment."
         },
         "properties": {
           "oneOf": [
@@ -42,7 +42,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Detailed properties for Assignment."
+          "description": "Detailed properties for a blueprint assignment."
         },
         "type": {
           "type": "string",
@@ -60,21 +60,19 @@
         "type"
       ],
       "description": "Microsoft.Blueprint/blueprintAssignments"
-    }
-  },
-  "managementGroup_resourceDefinitions": {
+    },
     "blueprints": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-11-preview"
+            "2018-11-01-preview"
           ]
         },
         "name": {
           "type": "string",
-          "description": "name of the blueprint."
+          "description": "Name of the blueprint definition."
         },
         "properties": {
           "oneOf": [
@@ -85,7 +83,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Schema for Blueprint properties."
+          "description": "Schema for blueprint definition properties."
         },
         "resources": {
           "type": "array",
@@ -132,12 +130,12 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-11-preview"
+            "2018-11-01-preview"
           ]
         },
         "name": {
           "type": "string",
-          "description": "name of the artifact."
+          "description": "Name of the blueprint artifact."
         },
         "type": {
           "type": "string",
@@ -159,12 +157,23 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-11-preview"
+            "2018-11-01-preview"
           ]
         },
         "name": {
           "type": "string",
-          "description": "version of the published blueprint."
+          "description": "Version of the published blueprint definition."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PublishedBlueprintProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Schema for published blueprint definition properties."
         },
         "type": {
           "type": "string",
@@ -176,6 +185,7 @@
       "required": [
         "apiVersion",
         "name",
+        "properties",
         "type"
       ],
       "description": "Microsoft.Blueprint/blueprints/versions"
@@ -185,13 +195,42 @@
     "AssignmentLockSettings": {
       "type": "object",
       "properties": {
+        "excludedActions": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of management operations that are excluded from blueprint locks. Up to 200 actions are permitted. If the lock mode is set to 'AllResourcesReadOnly', then the following actions are automatically appended to 'excludedActions': '*/read', 'Microsoft.Network/virtualNetworks/subnets/join/action' and 'Microsoft.Authorization/locks/delete'. If the lock mode is set to 'AllResourcesDoNotDelete', then the following actions are automatically appended to 'excludedActions': 'Microsoft.Authorization/locks/delete'. Duplicate actions will get removed."
+        },
+        "excludedPrincipals": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of AAD principals excluded from blueprint locks. Up to 5 principals are permitted."
+        },
         "mode": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
                 "None",
-                "AllResources"
+                "AllResourcesReadOnly",
+                "AllResourcesDoNotDelete"
               ]
             },
             {
@@ -201,14 +240,14 @@
           "description": "Lock mode."
         }
       },
-      "description": "Defines how Blueprint-managed resources will be locked."
+      "description": "Defines how resources deployed by a blueprint assignment are locked."
     },
     "AssignmentProperties": {
       "type": "object",
       "properties": {
         "blueprintId": {
           "type": "string",
-          "description": "ID of the Blueprint definition resource."
+          "description": "ID of the published version of a blueprint definition."
         },
         "description": {
           "type": "string",
@@ -229,14 +268,14 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Defines how Blueprint-managed resources will be locked."
+          "description": "Defines how resources deployed by a blueprint assignment are locked."
         },
         "parameters": {
           "oneOf": [
             {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/ParameterValueBase"
+                "$ref": "#/definitions/ParameterValue"
               },
               "properties": {}
             },
@@ -244,7 +283,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "A dictionary for parameters and their corresponding values."
+          "description": "Blueprint assignment parameter values."
         },
         "resourceGroups": {
           "oneOf": [
@@ -259,14 +298,18 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "A dictionary which maps resource group placeholders to the resource groups which will be created."
+          "description": "Names and locations of resource group placeholders."
+        },
+        "scope": {
+          "type": "string",
+          "description": "The target subscription scope of the blueprint assignment (format: '/subscriptions/{subscriptionId}'). For management group level assignments, the property is required."
         }
       },
       "required": [
         "parameters",
         "resourceGroups"
       ],
-      "description": "Detailed properties for Assignment."
+      "description": "Detailed properties for a blueprint assignment."
     },
     "BlueprintProperties": {
       "type": "object",
@@ -281,11 +324,6 @@
           "maxLength": 256,
           "description": "One-liner string explain this resource."
         },
-        "layout": {
-          "type": "object",
-          "properties": {},
-          "description": "Layout view of the blueprint, for UI reference."
-        },
         "parameters": {
           "oneOf": [
             {
@@ -299,7 +337,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "A dictionary hold parameter name and it's metadata."
+          "description": "Parameters required by this blueprint definition."
         },
         "resourceGroups": {
           "oneOf": [
@@ -314,7 +352,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "A dictionary which maps resource group placeholders to the resource groups which will be created."
+          "description": "Resource group placeholders defined by this blueprint definition."
         },
         "targetScope": {
           "oneOf": [
@@ -329,15 +367,15 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The scope where this Blueprint can be applied."
+          "description": "The scope where this blueprint definition can be assigned."
         },
         "versions": {
           "type": "object",
           "properties": {},
-          "description": "Published versions of this blueprint."
+          "description": "Published versions of this blueprint definition."
         }
       },
-      "description": "Schema for Blueprint properties."
+      "description": "Schema for blueprint definition properties."
     },
     "blueprints_artifacts_childResource": {
       "type": "object",
@@ -356,12 +394,12 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-11-preview"
+            "2018-11-01-preview"
           ]
         },
         "name": {
           "type": "string",
-          "description": "name of the artifact."
+          "description": "Name of the blueprint artifact."
         },
         "type": {
           "type": "string",
@@ -383,12 +421,23 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-11-preview"
+            "2018-11-01-preview"
           ]
         },
         "name": {
           "type": "string",
-          "description": "version of the published blueprint."
+          "description": "Version of the published blueprint definition."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PublishedBlueprintProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Schema for published blueprint definition properties."
         },
         "type": {
           "type": "string",
@@ -400,9 +449,23 @@
       "required": [
         "apiVersion",
         "name",
+        "properties",
         "type"
       ],
       "description": "Microsoft.Blueprint/blueprints/versions"
+    },
+    "KeyVaultReference": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Azure resource ID of the Key Vault."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "description": "Specifies the link to a Key Vault."
     },
     "ManagedServiceIdentity": {
       "type": "object",
@@ -429,13 +492,28 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Type of the Managed Service Identity."
+          "description": "Type of the managed identity."
+        },
+        "userAssignedIdentities": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/UserAssignedIdentity"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of user-assigned managed identities associated with the resource. Key is the Azure resource Id of the managed identity."
         }
       },
       "required": [
         "type"
       ],
-      "description": "Managed Service Identity"
+      "description": "Managed identity generic object."
     },
     "ParameterDefinition": {
       "type": "object",
@@ -489,7 +567,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Allowed data types for Azure Resource Manager template parameters."
+          "description": "Allowed data types for Resource Manager template parameters."
         }
       },
       "required": [
@@ -513,20 +591,32 @@
         "strongType": {
           "type": "string",
           "maxLength": 64,
-          "description": "StrongType for UI to render rich experience during assignment time."
+          "description": "StrongType for UI to render rich experience during blueprint assignment. Supported strong types are resourceType, principalId and location."
         }
       },
       "description": "User-friendly properties for this parameter."
     },
-    "ParameterValueBase": {
+    "ParameterValue": {
       "type": "object",
       "properties": {
-        "description": {
-          "type": "string",
-          "description": "Optional property, just to establish ParameterValueBase as a BaseClass."
+        "reference": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SecretValueReference"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Reference to a Key Vault secret."
+        },
+        "value": {
+          "type": "object",
+          "properties": {},
+          "description": "Parameter value. Any valid JSON value is allowed including objects, arrays, strings, numbers and booleans."
         }
       },
-      "description": "Base class for ParameterValue."
+      "description": "Value for the specified parameter. Can be either 'value' or 'reference' but not both."
     },
     "PolicyAssignmentArtifact": {
       "type": "object",
@@ -546,14 +636,14 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "PolicyAssignment properties"
+          "description": "Properties of a Policy assignment blueprint artifact."
         }
       },
       "required": [
         "kind",
         "properties"
       ],
-      "description": "Blueprint artifact applies Policy assignments."
+      "description": "Blueprint artifact that applies a Policy assignment."
     },
     "PolicyAssignmentArtifactProperties": {
       "type": "object",
@@ -587,7 +677,7 @@
             {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/ParameterValueBase"
+                "$ref": "#/definitions/ParameterValue"
               },
               "properties": {}
             },
@@ -595,7 +685,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "A dictionary for parameters and their corresponding values."
+          "description": "Parameter values for the policy definition."
         },
         "policyDefinitionId": {
           "type": "string",
@@ -610,7 +700,77 @@
         "parameters",
         "policyDefinitionId"
       ],
-      "description": "PolicyAssignment properties"
+      "description": "Properties of a Policy assignment blueprint artifact."
+    },
+    "PublishedBlueprintProperties": {
+      "type": "object",
+      "properties": {
+        "blueprintName": {
+          "type": "string",
+          "description": "Name of the published blueprint definition."
+        },
+        "changeNotes": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Version-specific change notes."
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Multi-line explain this resource."
+        },
+        "displayName": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "One-liner string explain this resource."
+        },
+        "parameters": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/ParameterDefinition"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Parameters required by this blueprint definition."
+        },
+        "resourceGroups": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/ResourceGroupDefinition"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource group placeholders defined by this blueprint definition."
+        },
+        "targetScope": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "subscription",
+                "managementGroup"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The scope where this blueprint definition can be assigned."
+        }
+      },
+      "description": "Schema for published blueprint definition properties."
     },
     "ResourceGroupDefinition": {
       "type": "object",
@@ -631,8 +791,7 @@
         },
         "location": {
           "type": "string",
-          "maxLength": 90,
-          "description": "Location of this resourceGroup, leave empty if the resource group location will be specified during the Blueprint assignment."
+          "description": "Location of this resourceGroup. Leave empty if the resource group location will be specified during the blueprint assignment."
         },
         "metadata": {
           "oneOf": [
@@ -647,25 +806,38 @@
         },
         "name": {
           "type": "string",
-          "minLength": 1,
-          "maxLength": 90,
-          "description": "Name of this resourceGroup, leave empty if the resource group name will be specified during the Blueprint assignment."
+          "description": "Name of this resourceGroup. Leave empty if the resource group name will be specified during the blueprint assignment."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tags to be assigned to this resource group."
         }
       },
-      "description": "Represents an Azure resource group in a Blueprint definition."
+      "description": "Represents an Azure resource group in a blueprint definition."
     },
     "ResourceGroupValue": {
       "type": "object",
       "properties": {
         "location": {
           "type": "string",
-          "description": "Location of the resource group"
+          "description": "Location of the resource group."
         },
         "name": {
           "type": "string",
           "minLength": 1,
           "maxLength": 90,
-          "description": "Name of the resource group"
+          "description": "Name of the resource group."
         }
       },
       "description": "Represents an Azure resource group."
@@ -688,14 +860,14 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Properties of the Role assignment artifact."
+          "description": "Properties of a Role assignment blueprint artifact."
         }
       },
       "required": [
         "kind",
         "properties"
       ],
-      "description": "Blueprint artifact applies Azure role assignment."
+      "description": "Blueprint artifact that applies a Role assignment."
     },
     "RoleAssignmentArtifactProperties": {
       "type": "object",
@@ -727,11 +899,11 @@
         "principalIds": {
           "type": "object",
           "properties": {},
-          "description": "Array of user or group identities in Azure Active Directory. The roleDefinition will apply to these identity."
+          "description": "Array of user or group identities in Azure Active Directory. The roleDefinition will apply to each identity."
         },
         "resourceGroup": {
           "type": "string",
-          "description": "RoleAssignment will be scope to this resourceGroup, if left empty, it would scope to the subscription."
+          "description": "RoleAssignment will be scope to this resourceGroup. If empty, it scopes to the subscription."
         },
         "roleDefinitionId": {
           "type": "string",
@@ -742,7 +914,36 @@
         "principalIds",
         "roleDefinitionId"
       ],
-      "description": "Properties of the Role assignment artifact."
+      "description": "Properties of a Role assignment blueprint artifact."
+    },
+    "SecretValueReference": {
+      "type": "object",
+      "properties": {
+        "keyVault": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/KeyVaultReference"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies the link to a Key Vault."
+        },
+        "secretName": {
+          "type": "string",
+          "description": "Name of the secret."
+        },
+        "secretVersion": {
+          "type": "string",
+          "description": "The version of the secret to use. If left blank, the latest version of the secret is used."
+        }
+      },
+      "required": [
+        "keyVault",
+        "secretName"
+      ],
+      "description": "Reference to a Key Vault secret."
     },
     "TemplateArtifact": {
       "type": "object",
@@ -762,14 +963,14 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Properties of a Template Artifact."
+          "description": "Properties of a Resource Manager template blueprint artifact."
         }
       },
       "required": [
         "kind",
         "properties"
       ],
-      "description": "Blueprint artifact deploys Azure resource manager template."
+      "description": "Blueprint artifact that deploys a Resource Manager template."
     },
     "TemplateArtifactProperties": {
       "type": "object",
@@ -803,7 +1004,7 @@
             {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/ParameterValueBase"
+                "$ref": "#/definitions/ParameterValue"
               },
               "properties": {}
             },
@@ -811,23 +1012,37 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "A dictionary for parameters and their corresponding values."
+          "description": "Resource Manager template blueprint artifact parameter values."
         },
         "resourceGroup": {
           "type": "string",
-          "description": "If applicable, the name of the resource group placeholder to which the template will be deployed."
+          "description": "If applicable, the name of the resource group placeholder to which the Resource Manager template blueprint artifact will be deployed."
         },
         "template": {
           "type": "object",
           "properties": {},
-          "description": "The Azure Resource Manager template body."
+          "description": "The Resource Manager template blueprint artifact body."
         }
       },
       "required": [
         "parameters",
         "template"
       ],
-      "description": "Properties of a Template Artifact."
+      "description": "Properties of a Resource Manager template blueprint artifact."
+    },
+    "UserAssignedIdentity": {
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "type": "string",
+          "description": "Client App Id associated with this identity."
+        },
+        "principalId": {
+          "type": "string",
+          "description": "Azure Active Directory principal ID associated with this Identity."
+        }
+      },
+      "description": "User-assigned managed identity."
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2020-10-01-preview/Microsoft.Logz.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-01-01-preview/Microsoft.Logz.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Logz",
   "description": "Microsoft Logz Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-10-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "identity": {
@@ -53,6 +53,9 @@
               },
               {
                 "$ref": "#/definitions/monitors_accounts_childResource"
+              },
+              {
+                "$ref": "#/definitions/monitors_metricsSource_childResource"
               }
             ]
           }
@@ -93,7 +96,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-10-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "identity": {
@@ -170,7 +173,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-10-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "name": {
@@ -202,13 +205,128 @@
       ],
       "description": "Microsoft.Logz/monitors/accounts/tagRules"
     },
+    "monitors_metricsSource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-01-01-preview"
+          ]
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IdentityProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "location": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "Metrics Account resource name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MonitorProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties specific to the monitor resource."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/monitors_metricsSource_tagRules_childResource"
+              }
+            ]
+          }
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Logz/monitors/metricsSource"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Logz/monitors/metricsSource"
+    },
+    "monitors_metricsSource_tagRules": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-01-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MetricsTagRulesProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Definition of the properties for a TagRules resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Logz/monitors/metricsSource/tagRules"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Logz/monitors/metricsSource/tagRules"
+    },
     "monitors_singleSignOnConfigurations": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-10-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "name": {
@@ -256,7 +374,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-10-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "name": {
@@ -457,6 +575,92 @@
         }
       }
     },
+    "MetricRules": {
+      "type": "object",
+      "properties": {
+        "filteringTags": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FilteringTag"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of filtering tags to be used for capturing metrics. If empty, all resources will be captured. If only Exclude action is specified, the rules will apply to the list of all available resources. If Include actions are specified, the rules will only include resources with the associated tags."
+        },
+        "subscriptionId": {
+          "type": "string",
+          "description": "Subscription Id for which filtering tags are applicable"
+        }
+      },
+      "description": "Set of rules for sending metrics for the Monitor resource."
+    },
+    "MetricsTagRulesProperties": {
+      "type": "object",
+      "properties": {
+        "metricRules": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MetricRules"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "provisioningState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Accepted",
+                "Creating",
+                "Updating",
+                "Deleting",
+                "Succeeded",
+                "Failed",
+                "Canceled",
+                "Deleted",
+                "NotSpecified"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "sendMetrics": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Flag specifying if metrics from Azure resources should be sent for the Monitor resource."
+        },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
+        }
+      },
+      "description": "Definition of the properties for a TagRules resource."
+    },
     "MonitoringTagRulesProperties": {
       "type": "object",
       "properties": {
@@ -611,7 +815,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-10-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "identity": {
@@ -678,7 +882,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-10-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "name": {
@@ -710,13 +914,118 @@
       ],
       "description": "Microsoft.Logz/monitors/accounts/tagRules"
     },
+    "monitors_metricsSource_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-01-01-preview"
+          ]
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IdentityProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "location": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "Metrics Account resource name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MonitorProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties specific to the monitor resource."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "metricsSource"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Logz/monitors/metricsSource"
+    },
+    "monitors_metricsSource_tagRules_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-01-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MetricsTagRulesProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Definition of the properties for a TagRules resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "tagRules"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Logz/monitors/metricsSource/tagRules"
+    },
     "monitors_singleSignOnConfigurations_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-10-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "name": {
@@ -764,7 +1073,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-10-01-preview"
+            "2022-01-01-preview"
           ]
         },
         "name": {

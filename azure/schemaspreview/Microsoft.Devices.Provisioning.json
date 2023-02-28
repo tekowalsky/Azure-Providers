@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2017-08-21-preview/Microsoft.Devices.Provisioning.json#",
+  "id": "https://schema.management.azure.com/schemas/2020-09-01-preview/Microsoft.Devices.Provisioning.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Devices",
   "description": "Microsoft Devices Resource Types",
@@ -10,12 +10,23 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-08-21-preview"
+            "2020-09-01-preview"
           ]
         },
         "etag": {
           "type": "string",
           "description": "The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention."
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ArmIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of ARM identities associated with the IoT DPS resource."
         },
         "location": {
           "type": "string",
@@ -33,7 +44,8 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "the service specific properties of a provisioning service, including keys, linked iot hubs, current state, and system generated properties such as hostname and idScope"
         },
         "resources": {
           "type": "array",
@@ -41,6 +53,9 @@
             "oneOf": [
               {
                 "$ref": "#/definitions/provisioningServices_certificates_childResource"
+              },
+              {
+                "$ref": "#/definitions/provisioningServices_privateEndpointConnections_childResource"
               }
             ]
           }
@@ -94,7 +109,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-08-21-preview"
+            "2020-09-01-preview"
           ]
         },
         "certificate": {
@@ -118,9 +133,123 @@
         "type"
       ],
       "description": "Microsoft.Devices/provisioningServices/certificates"
+    },
+    "provisioningServices_privateEndpointConnections": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2020-09-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the private endpoint connection"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of a private endpoint connection"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Devices/provisioningServices/privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Devices/provisioningServices/privateEndpointConnections"
     }
   },
   "definitions": {
+    "ArmIdentity": {
+      "type": "object",
+      "properties": {
+        "identityType": {
+          "type": "string",
+          "description": "Identity type. Only allowed values are SystemAssigned and UserAssigned. Comma separated if both for ex: SystemAssigned,UserAssigned."
+        },
+        "userAssignedIdentities": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/ArmUserIdentity"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of UserAssigned identities associated with the IoT DPS resource."
+        }
+      },
+      "description": "The set of ARM identities associated with the IoT DPS resource."
+    },
+    "ArmUserIdentity": {
+      "type": "object",
+      "properties": {},
+      "description": "The ARM UserAssigned identity information"
+    },
+    "EncryptionKeyIdentity": {
+      "type": "object",
+      "properties": {
+        "userAssignedIdentity": {
+          "type": "string",
+          "description": "The user assigned identity."
+        }
+      },
+      "description": "The properties of the identity used to access the key encryption key in KeyVault."
+    },
+    "EncryptionPropertiesDescription": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/EncryptionKeyIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of the identity used to access the key encryption key in KeyVault."
+        },
+        "keySource": {
+          "type": "string",
+          "description": "The source of the encryption key. Typically, Microsoft.KeyVault"
+        },
+        "keyVaultProperties": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/KeyVaultKeyProperties"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of the encryption key configured in KeyVault."
+        }
+      },
+      "description": "The customer-managed encryption key (CMK) properties for the IoT DPS instance."
+    },
     "IotDpsPropertiesDescription": {
       "type": "object",
       "properties": {
@@ -151,7 +280,19 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "List of authorization keys for a provisioning service."
+        },
+        "encryption": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/EncryptionPropertiesDescription"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The customer-managed encryption key (CMK) properties for the IoT DPS instance."
         },
         "iotHubs": {
           "oneOf": [
@@ -167,9 +308,52 @@
           ],
           "description": "List of IoT hubs associated with this provisioning service."
         },
+        "ipFilterRules": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IpFilterRule"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The IP filter rules."
+        },
+        "privateEndpointConnections": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PrivateEndpointConnection"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Private endpoint connections created on this IotHub"
+        },
         "provisioningState": {
           "type": "string",
           "description": "The ARM provisioning state of the provisioning service."
+        },
+        "publicNetworkAccess": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether requests from Public Network are allowed."
         },
         "state": {
           "oneOf": [
@@ -196,7 +380,8 @@
           ],
           "description": "Current state of the provisioning service."
         }
-      }
+      },
+      "description": "the service specific properties of a provisioning service, including keys, linked iot hubs, current state, and system generated properties such as hostname and idScope"
     },
     "IotDpsSkuInfo": {
       "type": "object",
@@ -210,7 +395,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The number of services of the selected tier allowed in the subscription."
+          "description": "The number of units to provision"
         },
         "name": {
           "oneOf": [
@@ -223,7 +408,8 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "Sku name."
         }
       },
       "description": "List of possible provisioning service SKUs."
@@ -239,7 +425,8 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "weight to apply for a given iot h."
         },
         "applyAllocationPolicy": {
           "oneOf": [
@@ -249,11 +436,12 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "flag for applying allocationPolicy or not for a given iot hub."
         },
         "connectionString": {
           "type": "string",
-          "description": "Connection string og the IoT hub."
+          "description": "Connection string of the IoT hub."
         },
         "location": {
           "type": "string",
@@ -266,13 +454,164 @@
       ],
       "description": "Description of the IoT hub."
     },
+    "IpFilterRule": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Accept",
+                "Reject"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The desired action for requests captured by this rule."
+        },
+        "filterName": {
+          "type": "string",
+          "description": "The name of the IP filter rule."
+        },
+        "ipMask": {
+          "type": "string",
+          "description": "A string that contains the IP address range in CIDR notation for the rule."
+        },
+        "target": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "all",
+                "serviceApi",
+                "deviceApi"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Target for requests captured by this rule."
+        }
+      },
+      "required": [
+        "action",
+        "filterName",
+        "ipMask"
+      ],
+      "description": "The IP filter rules for a provisioning Service."
+    },
+    "KeyVaultKeyProperties": {
+      "type": "object",
+      "properties": {
+        "keyIdentifier": {
+          "type": "string",
+          "description": "The identifier of the key."
+        }
+      },
+      "description": "The properties of the KeyVault key."
+    },
+    "PrivateEndpoint": {
+      "type": "object",
+      "properties": {},
+      "description": "The private endpoint property of a private endpoint connection"
+    },
+    "PrivateEndpointConnection": {
+      "type": "object",
+      "properties": {
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of a private endpoint connection"
+        }
+      },
+      "required": [
+        "properties"
+      ],
+      "description": "The private endpoint connection of a provisioning service"
+    },
+    "PrivateEndpointConnectionProperties": {
+      "type": "object",
+      "properties": {
+        "privateEndpoint": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpoint"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The private endpoint property of a private endpoint connection"
+        },
+        "privateLinkServiceConnectionState": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateLinkServiceConnectionState"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The current state of a private endpoint connection"
+        }
+      },
+      "required": [
+        "privateLinkServiceConnectionState"
+      ],
+      "description": "The properties of a private endpoint connection"
+    },
+    "PrivateLinkServiceConnectionState": {
+      "type": "object",
+      "properties": {
+        "actionsRequired": {
+          "type": "string",
+          "description": "Actions required for a private endpoint connection"
+        },
+        "description": {
+          "type": "string",
+          "description": "The description for the current state of a private endpoint connection"
+        },
+        "status": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Pending",
+                "Approved",
+                "Rejected",
+                "Disconnected"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The status of a private endpoint connection."
+        }
+      },
+      "required": [
+        "description",
+        "status"
+      ],
+      "description": "The current state of a private endpoint connection"
+    },
     "provisioningServices_certificates_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-08-21-preview"
+            "2020-09-01-preview"
           ]
         },
         "certificate": {
@@ -296,6 +635,45 @@
         "type"
       ],
       "description": "Microsoft.Devices/provisioningServices/certificates"
+    },
+    "provisioningServices_privateEndpointConnections_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2020-09-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the private endpoint connection"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of a private endpoint connection"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Devices/provisioningServices/privateEndpointConnections"
     },
     "SharedAccessSignatureAuthorizationRuleAccessRightsDescription": {
       "type": "object",

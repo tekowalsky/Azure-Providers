@@ -1,16 +1,24 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2017-11-15/Microsoft.TimeSeriesInsights.json#",
+  "id": "https://schema.management.azure.com/schemas/2020-05-15/Microsoft.TimeSeriesInsights.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.TimeSeriesInsights",
   "description": "Microsoft TimeSeriesInsights Resource Types",
   "resourceDefinitions": {
     "environments": {
       "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/Gen1EnvironmentCreateOrUpdateParameters"
+        },
+        {
+          "$ref": "#/definitions/Gen2EnvironmentCreateOrUpdateParameters"
+        }
+      ],
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-15"
+            "2020-05-15"
           ]
         },
         "location": {
@@ -20,17 +28,6 @@
         "name": {
           "type": "string",
           "description": "Name of the environment"
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/EnvironmentCreationProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Properties used to create an environment."
         },
         "resources": {
           "type": "array",
@@ -57,7 +54,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The sku determines the capacity of the environment, the SLA (in queries-per-minute and total capacity), and the billing rate."
+          "description": "The sku determines the type of environment, either Gen1 (S1 or S2) or Gen2 (L1). For Gen1 environments the sku determines the capacity of the environment, the ingress rate, and the billing rate."
         },
         "tags": {
           "oneOf": [
@@ -85,7 +82,6 @@
         "apiVersion",
         "location",
         "name",
-        "properties",
         "sku",
         "type"
       ],
@@ -97,7 +93,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-15"
+            "2020-05-15"
           ]
         },
         "name": {
@@ -143,8 +139,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-15"
+            "2020-05-15"
           ]
+        },
+        "localTimestamp": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalTimestamp"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An object that represents the local timestamp property. It contains the format of local timestamp that needs to be used and the corresponding timezone offset information. If a value isn't specified for localTimestamp, or if null, then the local timestamp will not be ingressed with the events."
         },
         "location": {
           "type": "string",
@@ -190,7 +197,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-15"
+            "2020-05-15"
           ]
         },
         "location": {
@@ -276,56 +283,13 @@
         }
       }
     },
-    "EnvironmentCreationProperties": {
-      "type": "object",
-      "properties": {
-        "dataRetentionTime": {
-          "type": "string",
-          "format": "duration",
-          "description": "ISO8601 timespan specifying the minimum number of days the environment's events will be available for query."
-        },
-        "partitionKeyProperties": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/PartitionKeyProperty"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The list of partition keys according to which the data in the environment will be ordered."
-        },
-        "storageLimitExceededBehavior": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "PurgeOldData",
-                "PauseIngress"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The behavior the Time Series Insights service should take when the environment's capacity has been exceeded. If \"PauseIngress\" is specified, new events will not be read from the event source. If \"PurgeOldData\" is specified, new events will continue to be read and old events will be deleted from the environment. The default behavior is PurgeOldData."
-        }
-      },
-      "required": [
-        "dataRetentionTime"
-      ],
-      "description": "Properties used to create an environment."
-    },
     "environments_accessPolicies_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-15"
+            "2020-05-15"
           ]
         },
         "name": {
@@ -371,8 +335,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-15"
+            "2020-05-15"
           ]
+        },
+        "localTimestamp": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalTimestamp"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An object that represents the local timestamp property. It contains the format of local timestamp that needs to be used and the corresponding timezone offset information. If a value isn't specified for localTimestamp, or if null, then the local timestamp will not be ingressed with the events."
         },
         "location": {
           "type": "string",
@@ -418,7 +393,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-15"
+            "2020-05-15"
           ]
         },
         "location": {
@@ -513,9 +488,31 @@
           "type": "string",
           "description": "The resource id of the event source in Azure Resource Manager."
         },
+        "ingressStartAt": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IngressStartAtProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An object that contains the details about the starting point in time to ingest events."
+        },
         "keyName": {
           "type": "string",
           "description": "The name of the SAS key that grants the Time Series Insights service access to the event hub. The shared access policies for this key must grant 'Listen' permissions to the event hub."
+        },
+        "localTimestamp": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalTimestamp"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An object that represents the local timestamp property. It contains the format of local timestamp that needs to be used and the corresponding timezone offset information. If a value isn't specified for localTimestamp, or if null, then the local timestamp will not be ingressed with the events."
         },
         "provisioningState": {
           "oneOf": [
@@ -559,6 +556,193 @@
       ],
       "description": "Properties of the EventHub event source that are required on create or update requests."
     },
+    "Gen1EnvironmentCreateOrUpdateParameters": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "Gen1"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Gen1EnvironmentCreationProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties used to create a Gen1 environment."
+        }
+      },
+      "required": [
+        "kind",
+        "properties"
+      ],
+      "description": "Parameters supplied to the Create or Update Environment operation for a Gen1 environment."
+    },
+    "Gen1EnvironmentCreationProperties": {
+      "type": "object",
+      "properties": {
+        "dataRetentionTime": {
+          "type": "string",
+          "format": "duration",
+          "description": "ISO8601 timespan specifying the minimum number of days the environment's events will be available for query."
+        },
+        "partitionKeyProperties": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TimeSeriesIdProperty"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of event properties which will be used to partition data in the environment. Currently, only a single partition key property is supported."
+        },
+        "storageLimitExceededBehavior": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "PurgeOldData",
+                "PauseIngress"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The behavior the Time Series Insights service should take when the environment's capacity has been exceeded. If \"PauseIngress\" is specified, new events will not be read from the event source. If \"PurgeOldData\" is specified, new events will continue to be read and old events will be deleted from the environment. The default behavior is PurgeOldData."
+        }
+      },
+      "required": [
+        "dataRetentionTime"
+      ],
+      "description": "Properties used to create a Gen1 environment."
+    },
+    "Gen2EnvironmentCreateOrUpdateParameters": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "Gen2"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Gen2EnvironmentCreationProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties used to create a Gen2 environment."
+        }
+      },
+      "required": [
+        "kind",
+        "properties"
+      ],
+      "description": "Parameters supplied to the Create or Update Environment operation for a Gen2 environment."
+    },
+    "Gen2EnvironmentCreationProperties": {
+      "type": "object",
+      "properties": {
+        "storageConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Gen2StorageConfigurationInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The storage configuration provides the connection details that allows the Time Series Insights service to connect to the customer storage account that is used to store the environment's data."
+        },
+        "timeSeriesIdProperties": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TimeSeriesIdProperty"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of event properties which will be used to define the environment's time series id."
+        },
+        "warmStoreConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/WarmStoreConfigurationProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The warm store configuration provides the details to create a warm store cache that will retain a copy of the environment's data available for faster query."
+        }
+      },
+      "required": [
+        "storageConfiguration",
+        "timeSeriesIdProperties"
+      ],
+      "description": "Properties used to create a Gen2 environment."
+    },
+    "Gen2StorageConfigurationInput": {
+      "type": "object",
+      "properties": {
+        "accountName": {
+          "type": "string",
+          "description": "The name of the storage account that will hold the environment's Gen2 data."
+        },
+        "managementKey": {
+          "type": "string",
+          "description": "The value of the management key that grants the Time Series Insights service write access to the storage account. This property is not shown in environment responses."
+        }
+      },
+      "required": [
+        "accountName",
+        "managementKey"
+      ],
+      "description": "The storage configuration provides the connection details that allows the Time Series Insights service to connect to the customer storage account that is used to store the environment's data."
+    },
+    "IngressStartAtProperties": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string",
+          "description": "ISO8601 UTC datetime with seconds precision (milliseconds are optional), specifying the date and time that will be the starting point for Events to be consumed."
+        },
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "EarliestAvailable",
+                "EventSourceCreationTime",
+                "CustomEnqueuedTime"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The type of the ingressStartAt, It can be \"EarliestAvailable\", \"EventSourceCreationTime\", \"CustomEnqueuedTime\"."
+        }
+      },
+      "description": "An object that contains the details about the starting point in time to ingest events."
+    },
     "IoTHubEventSourceCreateOrUpdateParameters": {
       "type": "object",
       "properties": {
@@ -597,6 +781,17 @@
           "type": "string",
           "description": "The resource id of the event source in Azure Resource Manager."
         },
+        "ingressStartAt": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IngressStartAtProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An object that contains the details about the starting point in time to ingest events."
+        },
         "iotHubName": {
           "type": "string",
           "description": "The name of the iot hub."
@@ -604,6 +799,17 @@
         "keyName": {
           "type": "string",
           "description": "The name of the Shared Access Policy key that grants the Time Series Insights service access to the iot hub. This shared access policy key must grant 'service connect' permissions to the iot hub."
+        },
+        "localTimestamp": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalTimestamp"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An object that represents the local timestamp property. It contains the format of local timestamp that needs to be used and the corresponding timezone offset information. If a value isn't specified for localTimestamp, or if null, then the local timestamp will not be ingressed with the events."
         },
         "provisioningState": {
           "oneOf": [
@@ -642,29 +848,46 @@
       ],
       "description": "Properties of the IoTHub event source that are required on create or update requests."
     },
-    "PartitionKeyProperty": {
+    "LocalTimestamp": {
       "type": "object",
       "properties": {
-        "name": {
-          "type": "string",
-          "description": "The name of the property."
-        },
-        "type": {
+        "format": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
-                "String"
+                "Embedded"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The type of the property."
+          "description": "An enum that represents the format of the local timestamp property that needs to be set."
+        },
+        "timeZoneOffset": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalTimestampTimeZoneOffset"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An object that represents the offset information for the local timestamp format specified. Should not be specified for LocalTimestampFormat - Embedded."
         }
       },
-      "description": "The structure of the property that a partition key can have. An environment can have multiple such properties."
+      "description": "An object that represents the local timestamp property. It contains the format of local timestamp that needs to be used and the corresponding timezone offset information. If a value isn't specified for localTimestamp, or if null, then the local timestamp will not be ingressed with the events."
+    },
+    "LocalTimestampTimeZoneOffset": {
+      "type": "object",
+      "properties": {
+        "propertyName": {
+          "type": "string",
+          "description": "The event property that will be contain the offset information to calculate the local timestamp. When the LocalTimestampFormat is Iana, the property name will contain the name of the column which contains IANA Timezone Name (eg: Americas/Los Angeles). When LocalTimestampFormat is Timespan, it contains the name of property which contains values representing the offset (eg: P1D or 1.00:00:00)"
+        }
+      },
+      "description": "An object that represents the offset information for the local timestamp format specified. Should not be specified for LocalTimestampFormat - Embedded."
     },
     "ReferenceDataSetCreationProperties": {
       "type": "object",
@@ -745,7 +968,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The capacity of the sku. This value can be changed to support scale out of environments after they have been created."
+          "description": "The capacity of the sku. For Gen1 environments, this value can be changed to support scale out of environments after they have been created."
         },
         "name": {
           "oneOf": [
@@ -753,7 +976,9 @@
               "type": "string",
               "enum": [
                 "S1",
-                "S2"
+                "S2",
+                "P1",
+                "L1"
               ]
             },
             {
@@ -767,7 +992,45 @@
         "capacity",
         "name"
       ],
-      "description": "The sku determines the capacity of the environment, the SLA (in queries-per-minute and total capacity), and the billing rate."
+      "description": "The sku determines the type of environment, either Gen1 (S1 or S2) or Gen2 (L1). For Gen1 environments the sku determines the capacity of the environment, the ingress rate, and the billing rate."
+    },
+    "TimeSeriesIdProperty": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the property."
+        },
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "String"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The type of the property."
+        }
+      },
+      "description": "The structure of the property that a time series id can have. An environment can have multiple such properties."
+    },
+    "WarmStoreConfigurationProperties": {
+      "type": "object",
+      "properties": {
+        "dataRetention": {
+          "type": "string",
+          "format": "duration",
+          "description": "ISO8601 timespan specifying the number of days the environment's events will be available for query from the warm store."
+        }
+      },
+      "required": [
+        "dataRetention"
+      ],
+      "description": "The warm store configuration provides the details to create a warm store cache that will retain a copy of the environment's data available for faster query."
     }
   }
 }

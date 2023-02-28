@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-03-01-preview/Microsoft.MobileNetwork.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-04-01-preview/Microsoft.MobileNetwork.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.MobileNetwork",
   "description": "Microsoft MobileNetwork Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -100,7 +100,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -118,7 +118,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The name of the mobile network dataNetwork."
+          "description": "The name of the data network."
         },
         "properties": {
           "oneOf": [
@@ -168,7 +168,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -236,7 +236,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -265,7 +265,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "SimPolicy properties."
+          "description": "SIM policy properties."
         },
         "tags": {
           "oneOf": [
@@ -304,7 +304,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -372,7 +372,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -390,7 +390,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The name of the mobile network slice."
+          "description": "The name of the network slice."
         },
         "properties": {
           "oneOf": [
@@ -440,8 +440,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ManagedServiceIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Managed service identity (system assigned and/or user assigned identities)"
         },
         "location": {
           "type": "string",
@@ -469,7 +480,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "PacketCoreControlPlane properties."
+          "description": "Packet core control plane properties."
         },
         "resources": {
           "type": "array",
@@ -518,7 +529,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -547,7 +558,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "PacketCoreDataPlane properties."
+          "description": "Packet core data plane properties."
         },
         "resources": {
           "type": "array",
@@ -596,7 +607,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -658,18 +669,103 @@
       ],
       "description": "Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreDataPlanes/attachedDataNetworks"
     },
-    "sims": {
+    "simGroups": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ManagedServiceIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Managed service identity (system assigned and/or user assigned identities)"
         },
         "location": {
           "type": "string",
           "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+              "maxLength": 64
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the SIM Group."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SimGroupPropertiesFormat"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "SIM group properties."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/simGroups_sims_childResource"
+              }
+            ]
+          }
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.MobileNetwork/simGroups"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.MobileNetwork/simGroups"
+    },
+    "simGroups_sims": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
         },
         "name": {
           "oneOf": [
@@ -693,38 +789,22 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Sim properties."
-        },
-        "tags": {
-          "oneOf": [
-            {
-              "type": "object",
-              "additionalProperties": {
-                "type": "string"
-              },
-              "properties": {}
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Resource tags."
+          "description": "SIM properties."
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.MobileNetwork/sims"
+            "Microsoft.MobileNetwork/simGroups/sims"
           ]
         }
       },
       "required": [
         "apiVersion",
-        "location",
         "name",
         "properties",
         "type"
       ],
-      "description": "Microsoft.MobileNetwork/sims"
+      "description": "Microsoft.MobileNetwork/simGroups/sims"
     }
   },
   "definitions": {
@@ -760,11 +840,25 @@
         "downlink",
         "uplink"
       ],
-      "description": "Aggregate Maximum Bit Rate."
+      "description": "Aggregate maximum bit rate."
     },
     "AttachedDataNetworkPropertiesFormat": {
       "type": "object",
       "properties": {
+        "dnsAddresses": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The DNS servers to signal to UEs to use for this attached data network."
+        },
         "naptConfiguration": {
           "oneOf": [
             {
@@ -774,7 +868,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The Network Address and Port Translation settings to use for the attached data network."
+          "description": "The network address and port translation settings to use for the attached data network."
         },
         "userEquipmentAddressPoolPrefix": {
           "oneOf": [
@@ -788,7 +882,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The user equipment address pool prefixes for the attached data network that are dynamically assigned by the core to UEs when they set up a PDU session.\nAt least one of userEquipmentAddressPoolPrefix and userEquipmentStaticAddressPoolPrefix must be defined. If both are defined then they must be the same size."
+          "description": "The user equipment (UE) address pool prefixes for the attached data network from which the packet core instance will dynamically assign IP addresses to UEs.\nThe packet core instance assigns an IP address to a UE when the UE sets up a PDU session.\n You must define at least one of userEquipmentAddressPoolPrefix and userEquipmentStaticAddressPoolPrefix. If you define both, they must be of the same size."
         },
         "userEquipmentStaticAddressPoolPrefix": {
           "oneOf": [
@@ -802,7 +896,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The user equipment address pool prefixes for the attached data network that are statically assigned by the core to UEs when they set up a PDU session.\nThe mapping of static IP to sim is configured in staticIpConfiguration on the sim resource.\nAt least one of userEquipmentAddressPoolPrefix and userEquipmentStaticAddressPoolPrefix must be defined. If both are defined then they must be the same size."
+          "description": "The user equipment (UE) address pool prefixes for the attached data network from which the packet core instance will assign static IP addresses to UEs.\nThe packet core instance assigns an IP address to a UE when the UE sets up a PDU session. The static IP address for a specific UE is set in StaticIPConfiguration on the corresponding SIM resource.\nAt least one of userEquipmentAddressPoolPrefix and userEquipmentStaticAddressPoolPrefix must be defined. If both are defined, they must be of the same size."
         },
         "userPlaneDataInterface": {
           "oneOf": [
@@ -834,13 +928,55 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Attached Data Network resource ID."
+          "description": "Attached data network resource ID."
         }
       },
       "required": [
         "id"
       ],
-      "description": "Reference to an Attached Data Network resource."
+      "description": "Reference to an attached data network resource."
+    },
+    "AzureStackEdgeDeviceResourceId": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^/[sS][uU][bB][sS][cC][rR][iI][pP][tT][iI][oO][nN][sS]/[^/?#]+/[rR][eE][sS][oO][uU][rR][cC][eE][gG][rR][oO][uU][pP][sS]/[^/?#]+/[pP][rR][oO][vV][iI][dD][eE][rR][sS]/[mM][iI][cC][rR][oO][sS][oO][fF][tT]\\.[dD][aA][tT][aA][bB][oO][xX][eE][dD][gG][eE]/[dD][aA][tT][aA][bB][oO][xX][eE][dD][gG][eE][dD][eE][vV][iI][cC][eE][sS]/[^/?#]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Azure Stack Edge device resource ID."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "description": "Reference to an Azure Arc custom location resource."
+    },
+    "ConnectedClusterResourceId": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^/[sS][uU][bB][sS][cC][rR][iI][pP][tT][iI][oO][nN][sS]/[^/?#]+/[rR][eE][sS][oO][uU][rR][cC][eE][gG][rR][oO][uU][pP][sS]/[^/?#]+/[pP][rR][oO][vV][iI][dD][eE][rR][sS]/[mM][iI][cC][rR][oO][sS][oO][fF][tT]\\.[kK][uU][bB][eE][rR][nN][eE][tT][eE][sS]/[cC][oO][nN][nN][eE][cC][tT][eE][dD][cC][lL][uU][sS][tT][eE][rR][sS]/[^/?#]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Azure Arc connected cluster resource ID."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "description": "Reference to an Azure Arc custom location resource."
     },
     "CustomLocationResourceId": {
       "type": "object",
@@ -855,13 +991,13 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Azure ARC custom location resource ID."
+          "description": "Azure Arc custom location resource ID."
         }
       },
       "required": [
         "id"
       ],
-      "description": "Reference to an Azure ARC custom location resource."
+      "description": "Reference to an Azure Arc custom location resource."
     },
     "DataNetworkConfiguration": {
       "type": "object",
@@ -895,7 +1031,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Allowed session types in addition to the default session type.  Must not duplicate the default session type."
+          "description": "Allowed session types in addition to the default session type. Must not duplicate the default session type."
         },
         "allocationAndRetentionPriorityLevel": {
           "oneOf": [
@@ -922,7 +1058,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "List of Services that can be used as part of this Sim Policy. The list must not contain duplicate items and must contain at least one item."
+          "description": "List of services that can be used as part of this SIM policy. The list must not contain duplicate items and must contain at least one item."
         },
         "dataNetwork": {
           "oneOf": [
@@ -933,7 +1069,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Reference to a Data Network resource."
+          "description": "Reference to a data network resource."
         },
         "defaultSessionType": {
           "oneOf": [
@@ -963,7 +1099,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Default QoS Flow preemption capability.  The Preemption Capability of a QoS Flow controls whether it can preempt another QoS Flow with a lower priority level. See 3GPP TS23.501 section 5.7.2.2 for a full description of the ARP parameters."
+          "description": "Default QoS Flow preemption capability. The preemption capability of a QoS Flow controls whether it can preempt another QoS Flow with a lower priority level. See 3GPP TS23.501 section 5.7.2.2 for a full description of the ARP parameters."
         },
         "preemptionVulnerability": {
           "oneOf": [
@@ -978,7 +1114,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Default QoS Flow preemption vulnerability.  The Preemption Vulnerability of a QoS Flow controls whether it can be preempted by QoS Flow with a higher priority level. See 3GPP TS23.501 section 5.7.2.2 for a full description of the ARP parameters."
+          "description": "Default QoS Flow preemption vulnerability. The preemption vulnerability of a QoS Flow controls whether it can be preempted by a QoS Flow with a higher priority level. See 3GPP TS23.501 section 5.7.2.2 for a full description of the ARP parameters."
         },
         "sessionAmbr": {
           "oneOf": [
@@ -989,7 +1125,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Aggregate Maximum Bit Rate."
+          "description": "Aggregate maximum bit rate."
         }
       },
       "required": [
@@ -997,7 +1133,7 @@
         "dataNetwork",
         "sessionAmbr"
       ],
-      "description": "Settings controlling Data Network use"
+      "description": "Settings controlling data network use"
     },
     "DataNetworkPropertiesFormat": {
       "type": "object",
@@ -1022,13 +1158,13 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Data Network resource ID."
+          "description": "Data network resource ID."
         }
       },
       "required": [
         "id"
       ],
-      "description": "Reference to a Data Network resource."
+      "description": "Reference to a data network resource."
     },
     "InterfaceProperties": {
       "type": "object",
@@ -1071,13 +1207,87 @@
         },
         "name": {
           "type": "string",
-          "description": "The logical name for this interface. This should match one of the interfaces configured on your Azure Stack Edge machine."
+          "description": "The logical name for this interface. This should match one of the interfaces configured on your Azure Stack Edge device."
+        }
+      },
+      "description": "Interface properties"
+    },
+    "KeyVaultCertificate": {
+      "type": "object",
+      "properties": {
+        "certificateUrl": {
+          "type": "string",
+          "description": "The certificate URL, unversioned. For example: https://contosovault.vault.azure.net/certificates/ingress."
+        }
+      },
+      "description": "An Azure key vault certificate."
+    },
+    "KeyVaultKey": {
+      "type": "object",
+      "properties": {
+        "keyUrl": {
+          "type": "string",
+          "description": "The key URL, unversioned. For example: https://contosovault.vault.azure.net/keys/azureKey."
+        }
+      },
+      "description": "An Azure key vault key."
+    },
+    "LocalDiagnosticsAccessConfiguration": {
+      "type": "object",
+      "properties": {
+        "httpsServerCertificate": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/KeyVaultCertificate"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An Azure key vault certificate."
+        }
+      },
+      "description": "The kubernetes ingress configuration to control access to packet core diagnostics over local APIs."
+    },
+    "ManagedServiceIdentity": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "SystemAssigned",
+                "UserAssigned",
+                "SystemAssigned,UserAssigned"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "userAssignedIdentities": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/UserAssignedIdentity"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
         }
       },
       "required": [
-        "name"
+        "type"
       ],
-      "description": "Interface properties"
+      "description": "Managed service identity (system assigned and/or user assigned identities)"
     },
     "MobileNetworkPropertiesFormat": {
       "type": "object",
@@ -1091,7 +1301,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Public Land Mobile Network (PLMN) ID."
+          "description": "Public land mobile network (PLMN) ID."
         }
       },
       "required": [
@@ -1112,13 +1322,13 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Mobile Network resource ID."
+          "description": "Mobile network resource ID."
         }
       },
       "required": [
         "id"
       ],
-      "description": "Reference to a Mobile Network resource."
+      "description": "Reference to a mobile network resource."
     },
     "mobileNetworks_dataNetworks_childResource": {
       "type": "object",
@@ -1126,7 +1336,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -1144,7 +1354,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The name of the mobile network dataNetwork."
+          "description": "The name of the data network."
         },
         "properties": {
           "oneOf": [
@@ -1194,7 +1404,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -1262,7 +1472,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -1291,7 +1501,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "SimPolicy properties."
+          "description": "SIM policy properties."
         },
         "tags": {
           "oneOf": [
@@ -1330,7 +1540,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -1398,7 +1608,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -1416,7 +1626,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The name of the mobile network slice."
+          "description": "The name of the network slice."
         },
         "properties": {
           "oneOf": [
@@ -1476,7 +1686,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Whether NAPT is enabled for connections to this attachedDataNetwork."
+          "description": "Whether NAPT is enabled for connections to this attached data network."
         },
         "pinholeLimits": {
           "oneOf": [
@@ -1490,7 +1700,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Maximum number of UDP and TCP pinholes that can be open simultaneously on the core interface."
+          "description": "Maximum number of UDP and TCP pinholes that can be open simultaneously on the core interface. For 5G networks, this is the N6 interface. For 4G networks, this is the SGi interface."
         },
         "pinholeTimeouts": {
           "oneOf": [
@@ -1512,7 +1722,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Range of port numbers to use as translated ports on each translated address.\nIf not specified and NAPT is enabled, this range defaults to 1,024 - 65,535. (Ports under 1,024 should not be used because these are special purpose ports reserved by IANA.)"
+          "description": "Range of port numbers to use as translated ports on each translated address.\nIf not specified and NAPT is enabled, this range defaults to 1,024 - 49,999.\n(Ports under 1,024 should not be used because these are special purpose ports reserved by IANA. Ports 50,000 and above are reserved for non-NAPT use.)"
         },
         "portReuseHoldTime": {
           "oneOf": [
@@ -1526,7 +1736,7 @@
           "description": "The minimum time (in seconds) that will pass before a port that was used by a closed pinhole can be recycled for use by another pinhole. All hold times must be minimum 1 second."
         }
       },
-      "description": "The Network Address and Port Translation settings to use for the attached data network."
+      "description": "The network address and port translation settings to use for the attached data network."
     },
     "PacketCoreControlPlanePropertiesFormat": {
       "type": "object",
@@ -1555,18 +1765,23 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The core network technology generation."
+          "description": "The core network technology generation (5G core or EPC / 4G core)."
         },
-        "customLocation": {
+        "interopSettings": {
+          "type": "object",
+          "properties": {},
+          "description": "Settings to allow interoperability with third party components e.g. RANs and UEs."
+        },
+        "localDiagnosticsAccess": {
           "oneOf": [
             {
-              "$ref": "#/definitions/CustomLocationResourceId"
+              "$ref": "#/definitions/LocalDiagnosticsAccessConfiguration"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Reference to an Azure ARC custom location resource."
+          "description": "The kubernetes ingress configuration to control access to packet core diagnostics over local APIs."
         },
         "mobileNetwork": {
           "oneOf": [
@@ -1577,7 +1792,38 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Reference to a Mobile Network resource."
+          "description": "Reference to a mobile network resource."
+        },
+        "platform": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PlatformConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The platform where the packet core is deployed."
+        },
+        "sku": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "EvaluationPackage",
+                "FlagshipStarterPackage",
+                "EdgeSite2GBPS",
+                "EdgeSite3GBPS",
+                "EdgeSite4GBPS",
+                "MediumPackage",
+                "LargePackage"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The SKU defining the throughput and SIM allowances for this packet core control plane deployment."
         },
         "version": {
           "type": "string",
@@ -1586,9 +1832,10 @@
       },
       "required": [
         "controlPlaneAccessInterface",
-        "mobileNetwork"
+        "mobileNetwork",
+        "sku"
       ],
-      "description": "PacketCoreControlPlane properties."
+      "description": "Packet core control plane properties."
     },
     "packetCoreControlPlanes_packetCoreDataPlanes_attachedDataNetworks_childResource": {
       "type": "object",
@@ -1596,7 +1843,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -1664,7 +1911,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -1693,7 +1940,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "PacketCoreDataPlane properties."
+          "description": "Packet core data plane properties."
         },
         "tags": {
           "oneOf": [
@@ -1744,7 +1991,7 @@
       "required": [
         "userPlaneAccessInterface"
       ],
-      "description": "PacketCoreDataPlane properties."
+      "description": "Packet core data plane properties."
     },
     "PccRuleConfiguration": {
       "type": "object",
@@ -1760,7 +2007,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The name of the rule. This must be unique within the parent Service. You must not use any of the following reserved strings - `default`, `requested` or `service`."
+          "description": "The name of the rule. This must be unique within the parent service. You must not use any of the following reserved strings - `default`, `requested` or `service`."
         },
         "rulePrecedence": {
           "oneOf": [
@@ -1773,7 +2020,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "A precedence value that is used to decide between PCC Rules when identifying the QoS values to use for a particular Sim. A lower value means a higher priority. This value should be unique among all PCC Rules configured in the Mobile Network."
+          "description": "A precedence value that is used to decide between data flow policy rules when identifying the QoS values to use for a particular SIM. A lower value means a higher priority. This value should be unique among all data flow policy rules configured in the mobile network."
         },
         "ruleQosPolicy": {
           "oneOf": [
@@ -1784,7 +2031,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "PCC rule QoS policy"
+          "description": "Data flow policy rule QoS policy"
         },
         "serviceDataFlowTemplates": {
           "oneOf": [
@@ -1798,7 +2045,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The set of service data flow templates to use for this PCC Rule."
+          "description": "The set of data flow templates to use for this data flow policy rule."
         },
         "trafficControl": {
           "oneOf": [
@@ -1813,7 +2060,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Determines whether flows that match this PCC Rule are permitted."
+          "description": "Determines whether flows that match this data flow policy rule are permitted."
         }
       },
       "required": [
@@ -1821,7 +2068,7 @@
         "rulePrecedence",
         "serviceDataFlowTemplates"
       ],
-      "description": "PCC rule configuration"
+      "description": "Data flow policy rule configuration"
     },
     "PccRuleQosPolicy": {
       "type": "object",
@@ -1861,7 +2108,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Aggregate Maximum Bit Rate."
+          "description": "Aggregate maximum bit rate."
         },
         "maximumBitRate": {
           "oneOf": [
@@ -1872,7 +2119,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Aggregate Maximum Bit Rate."
+          "description": "Aggregate maximum bit rate."
         },
         "preemptionCapability": {
           "oneOf": [
@@ -1887,7 +2134,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "QoS Flow preemption capability.  The Preemption Capability of a QoS Flow controls whether it can preempt another QoS Flow with a lower priority level. See 3GPP TS23.501 section 5.7.2.2 for a full description of the ARP parameters."
+          "description": "QoS Flow preemption capability. The preemption capability of a QoS Flow controls whether it can preempt another QoS Flow with a lower priority level. See 3GPP TS23.501 section 5.7.2.2 for a full description of the ARP parameters."
         },
         "preemptionVulnerability": {
           "oneOf": [
@@ -1902,13 +2149,13 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "QoS Flow preemption vulnerability.  The Preemption Vulnerability of a QoS Flow controls whether it can be preempted by QoS Flow with a higher priority level. See 3GPP TS23.501 section 5.7.2.2 for a full description of the ARP parameters."
+          "description": "QoS Flow preemption vulnerability. The preemption vulnerability of a QoS Flow controls whether it can be preempted by a QoS Flow with a higher priority level. See 3GPP TS23.501 section 5.7.2.2 for a full description of the ARP parameters."
         }
       },
       "required": [
         "maximumBitRate"
       ],
-      "description": "PCC rule QoS policy"
+      "description": "Data flow policy rule QoS policy"
     },
     "PinholeTimeouts": {
       "type": "object",
@@ -1918,42 +2165,99 @@
             {
               "type": "integer",
               "minimum": 1,
-              "default": "60"
+              "default": "30"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Pinhole timeout for ICMP pinholes in seconds. Default for ICMP Echo is 60 seconds per RFC 5508 section 3.2."
+          "description": "Pinhole timeout for ICMP pinholes in seconds. Default for ICMP Echo is 60 seconds, as per RFC 5508 section 3.2."
         },
         "tcp": {
           "oneOf": [
             {
               "type": "integer",
               "minimum": 1,
-              "default": "7440"
+              "default": "180"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Pinhole timeout for TCP pinholes in seconds. Default for TCP is 2 hours 4 minutes per RFC 5382 section 5."
+          "description": "Pinhole timeout for TCP pinholes in seconds. Default for TCP is 2 hours 4 minutes, as per RFC 5382 section 5."
         },
         "udp": {
           "oneOf": [
             {
               "type": "integer",
               "minimum": 1,
-              "default": "300"
+              "default": "30"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Pinhole timeout for UDP pinholes in seconds. Default for UDP is 5 minutes per RFC 4787 section 4.3."
+          "description": "Pinhole timeout for UDP pinholes in seconds. Default for UDP is 5 minutes, as per RFC 4787 section 4.3."
         }
       },
       "description": "Expiry times of inactive NAPT pinholes, in seconds. All timers must be at least 1 second."
+    },
+    "PlatformConfiguration": {
+      "type": "object",
+      "properties": {
+        "azureStackEdgeDevice": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AzureStackEdgeDeviceResourceId"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Reference to an Azure Arc custom location resource."
+        },
+        "connectedCluster": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ConnectedClusterResourceId"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Reference to an Azure Arc custom location resource."
+        },
+        "customLocation": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CustomLocationResourceId"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Reference to an Azure Arc custom location resource."
+        },
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "AKS-HCI",
+                "BaseVM"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The platform type where packet core is deployed."
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "description": "The platform where the packet core is deployed."
     },
     "PlmnId": {
       "type": "object",
@@ -1968,7 +2272,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Mobile Country Code."
+          "description": "Mobile country code."
         },
         "mnc": {
           "oneOf": [
@@ -1980,14 +2284,14 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Mobile Network Code."
+          "description": "Mobile network code."
         }
       },
       "required": [
         "mcc",
         "mnc"
       ],
-      "description": "Public Land Mobile Network (PLMN) ID."
+      "description": "Public land mobile network (PLMN) ID."
     },
     "PortRange": {
       "type": "object",
@@ -1998,7 +2302,7 @@
               "type": "integer",
               "minimum": 1024,
               "maximum": 65535,
-              "default": "65535"
+              "default": "49999"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -2021,7 +2325,7 @@
           "description": "The minimum port number"
         }
       },
-      "description": "Range of port numbers to use as translated ports on each translated address.\nIf not specified and NAPT is enabled, this range defaults to 1,024 - 65,535. (Ports under 1,024 should not be used because these are special purpose ports reserved by IANA.)"
+      "description": "Range of port numbers to use as translated ports on each translated address.\nIf not specified and NAPT is enabled, this range defaults to 1,024 - 49,999.\n(Ports under 1,024 should not be used because these are special purpose ports reserved by IANA. Ports 50,000 and above are reserved for non-NAPT use.)"
     },
     "PortReuseHoldTimes": {
       "type": "object",
@@ -2093,7 +2397,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Aggregate Maximum Bit Rate."
+          "description": "Aggregate maximum bit rate."
         },
         "preemptionCapability": {
           "oneOf": [
@@ -2108,7 +2412,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "QoS Flow preemption capability.  The Preemption Capability of a QoS Flow controls whether it can preempt another QoS Flow with a lower priority level. See 3GPP TS23.501 section 5.7.2.2 for a full description of the ARP parameters."
+          "description": "QoS Flow preemption capability. The preemption capability of a QoS Flow controls whether it can preempt another QoS Flow with a lower priority level. See 3GPP TS23.501 section 5.7.2.2 for a full description of the ARP parameters."
         },
         "preemptionVulnerability": {
           "oneOf": [
@@ -2123,7 +2427,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "QoS Flow preemption vulnerability.  The Preemption Vulnerability of a QoS Flow controls whether it can be preempted by QoS Flow with a higher priority level. See 3GPP TS23.501 section 5.7.2.2 for a full description of the ARP parameters."
+          "description": "QoS Flow preemption vulnerability. The preemption vulnerability of a QoS Flow controls whether it can be preempted by a QoS Flow with a higher priority level. See 3GPP TS23.501 section 5.7.2.2 for a full description of the ARP parameters."
         }
       },
       "required": [
@@ -2190,7 +2494,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The remote IP address(es) to which UEs will connect for this flow. If you want to allow connections on any IP address, use the value `any`. Otherwise, you must provide each of the remote IP addresses to which Fusion Core will connect for this flow. You must provide each IP address in CIDR notation, including the netmask (for example, 192.0.2.54/24)."
+          "description": "The remote IP address(es) to which UEs will connect for this flow. If you want to allow connections on any IP address, use the value `any`. Otherwise, you must provide each of the remote IP addresses to which the packet core instance will connect for this flow. You must provide each IP address in CIDR notation, including the netmask (for example, 192.0.2.54/24)."
         },
         "templateName": {
           "oneOf": [
@@ -2203,7 +2507,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The name of the SDF template. This must be unique within the parent PccRuleConfiguration. You must not use any of the following reserved strings - `default`, `requested` or `service`."
+          "description": "The name of the data flow template. This must be unique within the parent data flow policy rule. You must not use any of the following reserved strings - `default`, `requested` or `service`."
         }
       },
       "required": [
@@ -2212,7 +2516,7 @@
         "remoteIpList",
         "templateName"
       ],
-      "description": "Service data flow (SDF) template"
+      "description": "Data flow template"
     },
     "ServicePropertiesFormat": {
       "type": "object",
@@ -2229,7 +2533,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The set of PCC Rules that make up this service."
+          "description": "The set of data flow policy rules that make up this service."
         },
         "provisioningState": {
           "oneOf": [
@@ -2262,7 +2566,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "A precedence value that is used to decide between services when identifying the QoS values to use for a particular Sim. A lower value means a higher priority. This value should be unique among all services configured in the Mobile Network."
+          "description": "A precedence value that is used to decide between services when identifying the QoS values to use for a particular SIM. A lower value means a higher priority. This value should be unique among all services configured in the mobile network."
         },
         "serviceQosPolicy": {
           "oneOf": [
@@ -2301,7 +2605,83 @@
       "required": [
         "id"
       ],
-      "description": "Reference to a Service resource."
+      "description": "Reference to a service resource."
+    },
+    "SimGroupPropertiesFormat": {
+      "type": "object",
+      "properties": {
+        "encryptionKey": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/KeyVaultKey"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An Azure key vault key."
+        },
+        "mobileNetwork": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MobileNetworkResourceId"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Reference to a mobile network resource."
+        }
+      },
+      "description": "SIM group properties."
+    },
+    "simGroups_sims_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+              "maxLength": 64
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the SIM."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SimPropertiesFormat"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "SIM properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "sims"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.MobileNetwork/simGroups/sims"
     },
     "SimPolicyPropertiesFormat": {
       "type": "object",
@@ -2315,7 +2695,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Reference to a Slice resource."
+          "description": "Reference to a slice resource."
         },
         "provisioningState": {
           "oneOf": [
@@ -2335,7 +2715,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The provisioning state of the sim policy resource."
+          "description": "The provisioning state of the SIM policy resource."
         },
         "registrationTimer": {
           "oneOf": [
@@ -2386,7 +2766,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Aggregate Maximum Bit Rate."
+          "description": "Aggregate maximum bit rate."
         }
       },
       "required": [
@@ -2394,7 +2774,7 @@
         "sliceConfigurations",
         "ueAmbr"
       ],
-      "description": "SimPolicy properties."
+      "description": "SIM policy properties."
     },
     "SimPolicyResourceId": {
       "type": "object",
@@ -2409,13 +2789,13 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "SIM Policy resource ID."
+          "description": "SIM policy resource ID."
         }
       },
       "required": [
         "id"
       ],
-      "description": "Reference to a SIM Policy resource."
+      "description": "Reference to a SIM policy resource."
     },
     "SimPropertiesFormat": {
       "type": "object",
@@ -2430,11 +2810,11 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The ki value for the sim."
+          "description": "The Ki value for the SIM."
         },
         "deviceType": {
           "type": "string",
-          "description": "An optional free-form text field that can be used to record the device type this sim is associated with, for example 'Video camera'. The Azure portal allows Sims to be grouped and filtered based on this value."
+          "description": "An optional free-form text field that can be used to record the device type this SIM is associated with, for example 'Video camera'. The Azure portal allows SIMs to be grouped and filtered based on this value."
         },
         "integratedCircuitCardIdentifier": {
           "oneOf": [
@@ -2446,7 +2826,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The Integrated Circuit Card ID (ICC Id) for the sim."
+          "description": "The integrated circuit card ID (ICCID) for the SIM."
         },
         "internationalMobileSubscriberIdentity": {
           "oneOf": [
@@ -2458,18 +2838,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The International Mobile Subscriber Identity (IMSI) for the sim."
-        },
-        "mobileNetwork": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/MobileNetworkResourceId"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Reference to a Mobile Network resource."
+          "description": "The international mobile subscriber identity (IMSI) for the SIM."
         },
         "operatorKeyCode": {
           "oneOf": [
@@ -2481,7 +2850,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The Opc value for the sim."
+          "description": "The Opc value for the SIM."
         },
         "simPolicy": {
           "oneOf": [
@@ -2492,7 +2861,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Reference to a SIM Policy resource."
+          "description": "Reference to a SIM policy resource."
         },
         "staticIpConfiguration": {
           "oneOf": [
@@ -2506,13 +2875,13 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "A list of static IP addresses assigned to this sim. Each address is assigned at a defined network scope, made up of {attached data network, slice}."
+          "description": "A list of static IP addresses assigned to this SIM. Each address is assigned at a defined network scope, made up of {attached data network, slice}."
         }
       },
       "required": [
         "internationalMobileSubscriberIdentity"
       ],
-      "description": "Sim properties."
+      "description": "SIM properties."
     },
     "SimStaticIpProperties": {
       "type": "object",
@@ -2526,7 +2895,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Reference to an Attached Data Network resource."
+          "description": "Reference to an attached data network resource."
         },
         "slice": {
           "oneOf": [
@@ -2537,7 +2906,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Reference to a Slice resource."
+          "description": "Reference to a slice resource."
         },
         "staticIp": {
           "oneOf": [
@@ -2548,10 +2917,10 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The static IP configuration for the sim to use at the defined network scope."
+          "description": "The static IP configuration for the SIM to use at the defined network scope."
         }
       },
-      "description": "Static IP configuration for a sim, scoped to a particular attached data network and slice."
+      "description": "Static IP configuration for a SIM, scoped to a particular attached data network and slice."
     },
     "SimStaticIpPropertiesStaticIp": {
       "type": "object",
@@ -2569,7 +2938,7 @@
           "description": "IPv4 address."
         }
       },
-      "description": "The static IP configuration for the sim to use at the defined network scope."
+      "description": "The static IP configuration for the SIM to use at the defined network scope."
     },
     "SitePropertiesFormat": {
       "type": "object",
@@ -2586,7 +2955,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "An array of ids of the network functions deployed on the site, maintained by the user."
+          "description": "An array of IDs of the network functions deployed on the site, maintained by the user."
         }
       },
       "description": "Site properties."
@@ -2617,7 +2986,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Reference to a Data Network resource."
+          "description": "Reference to a data network resource."
         },
         "slice": {
           "oneOf": [
@@ -2628,7 +2997,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Reference to a Slice resource."
+          "description": "Reference to a slice resource."
         }
       },
       "required": [
@@ -2654,7 +3023,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Single-Network Slice Selection Assistance Information (S-NSSAI)."
+          "description": "Single-network slice selection assistance information (S-NSSAI)."
         }
       },
       "required": [
@@ -2681,7 +3050,7 @@
       "required": [
         "id"
       ],
-      "description": "Reference to a Slice resource."
+      "description": "Reference to a slice resource."
     },
     "Snssai": {
       "type": "object",
@@ -2696,7 +3065,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Slice Differentiator (SD)."
+          "description": "Slice differentiator (SD)."
         },
         "sst": {
           "oneOf": [
@@ -2709,13 +3078,13 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Slice/Service Type (SST)."
+          "description": "Slice/service type (SST)."
         }
       },
       "required": [
         "sst"
       ],
-      "description": "Single-Network Slice Selection Assistance Information (S-NSSAI)."
+      "description": "Single-network slice selection assistance information (S-NSSAI)."
     },
     "SubResource": {
       "type": "object",
@@ -2729,6 +3098,11 @@
         "id"
       ],
       "description": "Reference to another sub resource."
+    },
+    "UserAssignedIdentity": {
+      "type": "object",
+      "properties": {},
+      "description": "User assigned identity properties"
     }
   }
 }

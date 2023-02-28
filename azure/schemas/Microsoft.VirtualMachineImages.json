@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2020-02-14/Microsoft.VirtualMachineImages.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-02-14/Microsoft.VirtualMachineImages.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.VirtualMachineImages",
   "description": "Microsoft VirtualMachineImages Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-02-14"
+            "2022-02-14"
           ]
         },
         "identity": {
@@ -26,7 +26,7 @@
         },
         "location": {
           "type": "string",
-          "description": "Resource location"
+          "description": "The geo-location where the resource lives"
         },
         "name": {
           "oneOf": [
@@ -64,7 +64,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Resource tags"
+          "description": "Resource tags."
         },
         "type": {
           "type": "string",
@@ -227,6 +227,24 @@
       },
       "description": "Identity for the image template."
     },
+    "ImageTemplateInVMValidator": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/ImageTemplateShellValidator"
+        },
+        {
+          "$ref": "#/definitions/ImageTemplatePowerShellValidator"
+        }
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Friendly Name to provide context on what this validation step does"
+        }
+      },
+      "description": "Describes a unit of in-VM validation of image"
+    },
     "ImageTemplateManagedImageDistributor": {
       "type": "object",
       "properties": {
@@ -270,7 +288,7 @@
         "imageId",
         "type"
       ],
-      "description": "Describes an image source that is a managed image in customer subscription."
+      "description": "Describes an image source that is a managed image in customer subscription. This image must reside in the same subscription and region as the Image Builder template."
     },
     "ImageTemplatePlatformImageSource": {
       "type": "object",
@@ -306,7 +324,7 @@
         },
         "version": {
           "type": "string",
-          "description": "Image version from the [Azure Gallery Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages). If 'latest' is specified here, the version is evaluated when the image build takes place, not when the template is submitted. Specifying 'latest' could cause ROUNDTRIP_INCONSISTENT_PROPERTY issue which will be fixed."
+          "description": "Image version from the [Azure Gallery Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages). If 'latest' is specified here, the version is evaluated when the image build takes place, not when the template is submitted."
         }
       },
       "required": [
@@ -390,6 +408,82 @@
       ],
       "description": "Runs the specified PowerShell on the VM (Windows). Corresponds to Packer powershell provisioner. Exactly one of 'scriptUri' or 'inline' can be specified."
     },
+    "ImageTemplatePowerShellValidator": {
+      "type": "object",
+      "properties": {
+        "inline": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Array of PowerShell commands to execute"
+        },
+        "runAsSystem": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "If specified, the PowerShell script will be run with elevated privileges using the Local System user. Can only be true when the runElevated field above is set to true."
+        },
+        "runElevated": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "If specified, the PowerShell script will be run with elevated privileges"
+        },
+        "scriptUri": {
+          "type": "string",
+          "description": "URI of the PowerShell script to be run for validation. It can be a github link, Azure Storage URI, etc"
+        },
+        "sha256Checksum": {
+          "type": "string",
+          "default": "",
+          "description": "SHA256 checksum of the power shell script provided in the scriptUri field above"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "PowerShell"
+          ]
+        },
+        "validExitCodes": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Valid exit codes for the PowerShell script. [Default: 0]"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "description": "Runs the specified PowerShell script during the validation phase (Windows). Corresponds to Packer powershell provisioner. Exactly one of 'scriptUri' or 'inline' can be specified."
+    },
     "ImageTemplateProperties": {
       "type": "object",
       "properties": {
@@ -405,7 +499,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Maximum duration to wait while building the image template. Omit or specify 0 to use the default (4 hours)."
+          "description": "Maximum duration to wait while building the image template (includes all customizations, validations, and distributions). Omit or specify 0 to use the default (4 hours)."
         },
         "customize": {
           "oneOf": [
@@ -446,6 +540,21 @@
           ],
           "description": "Describes a virtual machine image source for building, customizing and distributing"
         },
+        "stagingResourceGroup": {
+          "type": "string",
+          "description": "The staging resource group id in the same subscription as the image template that will be used to build the image. If this field is empty, a resource group with a random name will be created. If the resource group specified in this field doesn't exist, it will be created with the same name. If the resource group specified exists, it must be empty and in the same region as the image template. The resource group created will be deleted during template deletion if this field is empty or the resource group specified doesn't exist, but if the resource group specified exists the resources created in the resource group will be deleted during template deletion and the resource group itself will remain."
+        },
+        "validate": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ImageTemplatePropertiesValidate"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Configuration options and list of validations to be performed on the resulting image."
+        },
         "vmProfile": {
           "oneOf": [
             {
@@ -455,7 +564,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Describes the virtual machine used to build, customize and capture images"
+          "description": "Describes the virtual machines used to build and validate images"
         }
       },
       "required": [
@@ -463,6 +572,50 @@
         "source"
       ],
       "description": "Describes the properties of an image template"
+    },
+    "ImageTemplatePropertiesValidate": {
+      "type": "object",
+      "properties": {
+        "continueDistributeOnFailure": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "If validation fails and this field is set to false, output image(s) will not be distributed. This is the default behavior. If validation fails and this field is set to true, output image(s) will still be distributed. Please use this option with caution as it may result in bad images being distributed for use. In either case (true or false), the end to end image run will be reported as having failed in case of a validation failure. [Note: This field has no effect if validation succeeds.]"
+        },
+        "inVMValidations": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ImageTemplateInVMValidator"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of validations to be performed."
+        },
+        "sourceValidationOnly": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "If this field is set to true, the image specified in the 'source' section will directly be validated. No separate build will be run to generate and then validate a customized image."
+        }
+      },
+      "description": "Configuration options and list of validations to be performed on the resulting image."
     },
     "ImageTemplateRestartCustomizer": {
       "type": "object",
@@ -611,6 +764,44 @@
       ],
       "description": "Runs a shell script during the customization phase (Linux). Corresponds to Packer shell provisioner. Exactly one of 'scriptUri' or 'inline' can be specified."
     },
+    "ImageTemplateShellValidator": {
+      "type": "object",
+      "properties": {
+        "inline": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Array of shell commands to execute"
+        },
+        "scriptUri": {
+          "type": "string",
+          "description": "URI of the shell script to be run for validation. It can be a github link, Azure Storage URI, etc"
+        },
+        "sha256Checksum": {
+          "type": "string",
+          "default": "",
+          "description": "SHA256 checksum of the shell script provided in the scriptUri field"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Shell"
+          ]
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "description": "Runs the specified shell script during the validation phase (Linux). Corresponds to Packer shell provisioner. Exactly one of 'scriptUri' or 'inline' can be specified."
+    },
     "ImageTemplateSource": {
       "type": "object",
       "oneOf": [
@@ -658,6 +849,20 @@
           ],
           "description": "Size of the OS disk in GB. Omit or specify 0 to use Azure's default OS disk size."
         },
+        "userAssignedIdentities": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Optional array of resource IDs of user assigned managed identities to be configured on the build VM and validation VM. This may include the identity of the image template."
+        },
         "vmSize": {
           "type": "string",
           "default": "",
@@ -675,7 +880,7 @@
           "description": "Virtual Network configuration."
         }
       },
-      "description": "Describes the virtual machine used to build, customize and capture images"
+      "description": "Describes the virtual machines used to build and validate images"
     },
     "ImageTemplateWindowsUpdateCustomizer": {
       "type": "object",
@@ -748,6 +953,11 @@
     "VirtualNetworkConfig": {
       "type": "object",
       "properties": {
+        "proxyVmSize": {
+          "type": "string",
+          "default": "",
+          "description": "Size of the proxy virtual machine used to pass traffic to the build VM and validation VM. Omit or specify empty string to use the default (Standard_A1_v2)."
+        },
         "subnetId": {
           "type": "string",
           "description": "Resource id of a pre-existing subnet."

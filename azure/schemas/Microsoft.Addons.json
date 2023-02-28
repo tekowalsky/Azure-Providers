@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2017-05-15/Microsoft.Addons.json#",
+  "id": "https://schema.management.azure.com/schemas/2018-03-01/Microsoft.Addons.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Addons",
   "description": "Microsoft Addons Resource Types",
@@ -11,7 +11,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-05-15"
+            "2018-03-01"
           ]
         },
         "name": {

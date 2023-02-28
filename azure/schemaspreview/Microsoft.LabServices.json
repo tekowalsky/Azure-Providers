@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-10-01-preview/Microsoft.LabServices.json#",
+  "id": "https://schema.management.azure.com/schemas/2021-11-15-preview/Microsoft.LabServices.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.LabServices",
   "description": "Microsoft LabServices Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-01-preview"
+            "2021-11-15-preview"
           ]
         },
         "location": {
@@ -81,7 +81,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-01-preview"
+            "2021-11-15-preview"
           ]
         },
         "name": {
@@ -130,7 +130,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-01-preview"
+            "2021-11-15-preview"
           ]
         },
         "location": {
@@ -159,10 +159,10 @@
           "items": {
             "oneOf": [
               {
-                "$ref": "#/definitions/labs_users_childResource"
+                "$ref": "#/definitions/labs_schedules_childResource"
               },
               {
-                "$ref": "#/definitions/labs_schedules_childResource"
+                "$ref": "#/definitions/labs_users_childResource"
               }
             ]
           }
@@ -204,7 +204,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-01-preview"
+            "2021-11-15-preview"
           ]
         },
         "name": {
@@ -253,7 +253,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-01-preview"
+            "2021-11-15-preview"
           ]
         },
         "name": {
@@ -633,7 +633,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-01-preview"
+            "2021-11-15-preview"
           ]
         },
         "name": {
@@ -770,7 +770,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-01-preview"
+            "2021-11-15-preview"
           ]
         },
         "name": {
@@ -819,7 +819,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-01-preview"
+            "2021-11-15-preview"
           ]
         },
         "name": {

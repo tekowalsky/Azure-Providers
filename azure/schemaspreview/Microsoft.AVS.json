@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2020-07-17-preview/Microsoft.AVS.json#",
+  "id": "https://schema.management.azure.com/schemas/2021-01-01-preview/Microsoft.AVS.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.AVS",
   "description": "Microsoft AVS Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "location": {
@@ -102,7 +102,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "name": {
@@ -141,7 +141,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "name": {
@@ -168,7 +168,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "name": {
@@ -185,6 +185,16 @@
             }
           ],
           "description": "The properties of a cluster"
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/privateClouds_clusters_datastores_childResource"
+              }
+            ]
+          }
         },
         "sku": {
           "oneOf": [
@@ -213,13 +223,52 @@
       ],
       "description": "Microsoft.AVS/privateClouds/clusters"
     },
+    "privateClouds_clusters_datastores": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-01-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the datastore in the private cloud cluster"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DatastoreProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of a datastore"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.AVS/privateClouds/clusters/datastores"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.AVS/privateClouds/clusters/datastores"
+    },
     "privateClouds_globalReachConnections": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "name": {
@@ -258,7 +307,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "name": {
@@ -285,7 +334,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "name": {
@@ -324,7 +373,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "name": {
@@ -363,7 +412,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "name": {
@@ -402,7 +451,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "name": {
@@ -441,7 +490,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "name": {
@@ -480,7 +529,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "name": {
@@ -561,6 +610,58 @@
         }
       },
       "description": "The properties of a cluster"
+    },
+    "DatastoreProperties": {
+      "type": "object",
+      "properties": {
+        "diskPoolVolume": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DiskPoolVolume"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An iSCSI volume from Microsoft.StoragePool provider"
+        },
+        "netAppVolume": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/NetAppVolume"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An Azure NetApp Files volume from Microsoft.NetApp provider"
+        }
+      },
+      "description": "The properties of a datastore"
+    },
+    "DiskPoolVolume": {
+      "type": "object",
+      "properties": {
+        "endpoints": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "iSCSI provider target IP address list"
+        },
+        "lunName": {
+          "type": "string",
+          "description": "Name of the LUN to be used"
+        }
+      },
+      "description": "An iSCSI volume from Microsoft.StoragePool provider"
     },
     "GlobalReachConnectionProperties": {
       "type": "object",
@@ -650,6 +751,20 @@
       },
       "description": "The properties of a management cluster"
     },
+    "NetAppVolume": {
+      "type": "object",
+      "properties": {
+        "nfsFilePath": {
+          "type": "string",
+          "description": "File path through which the NFS volume is exposed by the provider"
+        },
+        "nfsProviderIp": {
+          "type": "string",
+          "description": "IP address of the NFS provider"
+        }
+      },
+      "description": "An Azure NetApp Files volume from Microsoft.NetApp provider"
+    },
     "PrivateCloudProperties": {
       "type": "object",
       "properties": {
@@ -728,7 +843,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "name": {
@@ -767,7 +882,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "name": {
@@ -794,7 +909,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "name": {
@@ -839,13 +954,52 @@
       ],
       "description": "Microsoft.AVS/privateClouds/clusters"
     },
+    "privateClouds_clusters_datastores_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-01-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the datastore in the private cloud cluster"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DatastoreProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of a datastore"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "datastores"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.AVS/privateClouds/clusters/datastores"
+    },
     "privateClouds_globalReachConnections_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "name": {
@@ -884,7 +1038,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-17-preview"
+            "2021-01-01-preview"
           ]
         },
         "name": {

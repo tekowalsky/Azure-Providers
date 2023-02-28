@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2018-06-01-preview/Microsoft.ApiManagement.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-04-01-preview/Microsoft.ApiManagement.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.ApiManagement",
   "description": "Microsoft ApiManagement Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "identity": {
@@ -64,7 +64,13 @@
                 "$ref": "#/definitions/service_tags_childResource"
               },
               {
+                "$ref": "#/definitions/service_apiVersionSets_childResource"
+              },
+              {
                 "$ref": "#/definitions/service_authorizationServers_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_authorizationProviders_childResource"
               },
               {
                 "$ref": "#/definitions/service_backends_childResource"
@@ -76,10 +82,16 @@
                 "$ref": "#/definitions/service_certificates_childResource"
               },
               {
+                "$ref": "#/definitions/service_contentTypes_childResource"
+              },
+              {
                 "$ref": "#/definitions/service_diagnostics_childResource"
               },
               {
                 "$ref": "#/definitions/service_templates_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_gateways_childResource"
               },
               {
                 "$ref": "#/definitions/service_groups_childResource"
@@ -91,6 +103,9 @@
                 "$ref": "#/definitions/service_loggers_childResource"
               },
               {
+                "$ref": "#/definitions/service_namedValues_childResource"
+              },
+              {
                 "$ref": "#/definitions/service_notifications_childResource"
               },
               {
@@ -100,22 +115,34 @@
                 "$ref": "#/definitions/service_policies_childResource"
               },
               {
+                "$ref": "#/definitions/service_policyFragments_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_portalconfigs_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_portalRevisions_childResource"
+              },
+              {
                 "$ref": "#/definitions/service_portalsettings_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_privateEndpointConnections_childResource"
               },
               {
                 "$ref": "#/definitions/service_products_childResource"
               },
               {
-                "$ref": "#/definitions/service_properties_childResource"
+                "$ref": "#/definitions/service_schemas_childResource"
               },
               {
                 "$ref": "#/definitions/service_subscriptions_childResource"
               },
               {
-                "$ref": "#/definitions/service_users_childResource"
+                "$ref": "#/definitions/service_tenant_childResource"
               },
               {
-                "$ref": "#/definitions/service_api-version-sets_childResource"
+                "$ref": "#/definitions/service_users_childResource"
               }
             ]
           }
@@ -151,6 +178,20 @@
           "enum": [
             "Microsoft.ApiManagement/service"
           ]
+        },
+        "zones": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A list of availability zones denoting where the resource needs to come from."
         }
       },
       "required": [
@@ -163,76 +204,19 @@
       ],
       "description": "Microsoft.ApiManagement/service"
     },
-    "service_api-version-sets": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2018-06-01-preview"
-          ]
-        },
-        "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Api Version Set identifier. Must be unique in the current API Management service instance."
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/ApiVersionSetContractProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Properties of an API Version Set."
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "Microsoft.ApiManagement/service/api-version-sets"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.ApiManagement/service/api-version-sets"
-    },
     "service_apis": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
           "description": "API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number."
         },
         "properties": {
@@ -244,7 +228,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Api Create or Update Properties."
+          "description": "API Create or Update Properties."
         },
         "resources": {
           "type": "array",
@@ -298,7 +282,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -347,7 +331,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -409,7 +393,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -458,7 +442,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -507,21 +491,13 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
           "description": "Operation identifier within an API. Must be unique in the current API Management service instance."
         },
         "properties": {
@@ -569,7 +545,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -616,7 +592,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -653,7 +629,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -700,7 +676,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -749,22 +725,14 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Schema identifier within an API. Must be unique in the current API Management service instance."
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Schema id identifier. Must be unique in the current API Management service instance."
         },
         "properties": {
           "oneOf": [
@@ -775,7 +743,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Schema contract Properties."
+          "description": "API Schema create or update contract Properties."
         },
         "type": {
           "type": "string",
@@ -798,7 +766,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -813,7 +781,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Tag identifier. Must be unique in the current API Management service instance."
+          "description": "Tag description identifier. Used when creating tagDescription for API/Tag association. Based on API and Tag names."
         },
         "properties": {
           "oneOf": [
@@ -847,7 +815,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -878,13 +846,229 @@
       ],
       "description": "Microsoft.ApiManagement/service/apis/tags"
     },
+    "service_apiVersionSets": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Api Version Set identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApiVersionSetContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of an API Version Set."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/apiVersionSets"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/apiVersionSets"
+    },
+    "service_authorizationProviders": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Identifier of the authorization provider."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AuthorizationProviderContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Authorization Provider details."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/service_authorizationProviders_authorizations_childResource"
+              }
+            ]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/authorizationProviders"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/authorizationProviders"
+    },
+    "service_authorizationProviders_authorizations": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Identifier of the authorization."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AuthorizationContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Authorization details."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/service_authorizationProviders_authorizations_accessPolicies_childResource"
+              }
+            ]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/authorizationProviders/authorizations"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/authorizationProviders/authorizations"
+    },
+    "service_authorizationProviders_authorizations_accessPolicies": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Identifier of the authorization access policy."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AuthorizationAccessPolicyContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Authorization Access Policy details."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/authorizationProviders/authorizations/accessPolicies"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/authorizationProviders/authorizations/accessPolicies"
+    },
     "service_authorizationServers": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -933,21 +1117,13 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
           "description": "Identifier of the Backend entity. Must be unique in the current API Management service instance."
         },
         "properties": {
@@ -982,7 +1158,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -1031,7 +1207,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -1074,13 +1250,92 @@
       ],
       "description": "Microsoft.ApiManagement/service/certificates"
     },
+    "service_contentTypes": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Content type identifier."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ContentTypeContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/service_contentTypes_contentItems_childResource"
+              }
+            ]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/contentTypes"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/contentTypes"
+    },
+    "service_contentTypes_contentItems": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Content item identifier."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/contentTypes/contentItems"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/contentTypes/contentItems"
+    },
     "service_diagnostics": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -1123,13 +1378,111 @@
       ],
       "description": "Microsoft.ApiManagement/service/diagnostics"
     },
-    "service_groups": {
+    "service_gateways": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Gateway entity identifier. Must be unique in the current API Management service instance. Must not have value 'managed'"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GatewayContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the Gateway contract."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/service_gateways_hostnameConfigurations_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_gateways_apis_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_gateways_certificateAuthorities_childResource"
+              }
+            ]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/gateways"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/gateways"
+    },
+    "service_gateways_apis": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "API identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AssociationContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Association entity contract properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/gateways/apis"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/gateways/apis"
+    },
+    "service_gateways_certificateAuthorities": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -1138,12 +1491,94 @@
               "type": "string",
               "pattern": "^[^*#&+:<>?]+$",
               "minLength": 1,
-              "maxLength": 256
+              "maxLength": 80
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
+          "description": "Identifier of the certificate entity. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GatewayCertificateAuthorityContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gateway certificate authority details."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/gateways/certificateAuthorities"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/gateways/certificateAuthorities"
+    },
+    "service_gateways_hostnameConfigurations": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Gateway hostname configuration identifier. Must be unique in the scope of parent Gateway entity."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GatewayHostnameConfigurationContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gateway hostname configuration details."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/gateways/hostnameConfigurations"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/gateways/hostnameConfigurations"
+    },
+    "service_groups": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
           "description": "Group identifier. Must be unique in the current API Management service instance."
         },
         "properties": {
@@ -1188,21 +1623,13 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
           "description": "User identifier. Must be unique in the current API Management service instance."
         },
         "type": {
@@ -1225,7 +1652,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -1250,7 +1677,7 @@
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/IdentityProviderContractProperties"
+              "$ref": "#/definitions/IdentityProviderCreateContractProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -1279,7 +1706,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -1321,13 +1748,61 @@
       ],
       "description": "Microsoft.ApiManagement/service/loggers"
     },
+    "service_namedValues": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Identifier of the NamedValue."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/NamedValueCreateContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "NamedValue Contract properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/namedValues"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/namedValues"
+    },
     "service_notifications": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -1383,7 +1858,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -1410,21 +1885,13 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
           "description": "User identifier. Must be unique in the current API Management service instance."
         },
         "type": {
@@ -1447,7 +1914,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -1495,7 +1962,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -1535,6 +2002,136 @@
         "type"
       ],
       "description": "Microsoft.ApiManagement/service/policies"
+    },
+    "service_policyFragments": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "(^[\\w]+$)|(^[\\w][\\w\\-]+[\\w]$)",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A resource identifier."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyFragmentContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Policy fragment contract properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/policyFragments"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/policyFragments"
+    },
+    "service_portalconfigs": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Portal configuration identifier."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PortalConfigProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The developer portal configuration contract properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/portalconfigs"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/portalconfigs"
+    },
+    "service_portalRevisions": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Portal revision identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PortalRevisionContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/portalRevisions"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/portalRevisions"
     },
     "service_portalsettings": {
       "type": "object",
@@ -1640,7 +2237,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "type": {
@@ -1656,27 +2253,62 @@
       ],
       "description": "Microsoft.ApiManagement/service/portalsettings"
     },
+    "service_privateEndpointConnections": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "description": "Private Endpoint Connection Resource Id."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the private endpoint connection."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionRequestProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The connection state of the private endpoint connection."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/privateEndpointConnections"
+    },
     "service_products": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 256
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
           "description": "Product identifier. Must be unique in the current API Management service instance."
         },
         "properties": {
@@ -1730,21 +2362,13 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
           "description": "API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number."
         },
         "type": {
@@ -1767,21 +2391,13 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 256
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
           "description": "Group identifier. Must be unique in the current API Management service instance."
         },
         "type": {
@@ -1804,7 +2420,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -1851,7 +2467,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -1882,43 +2498,36 @@
       ],
       "description": "Microsoft.ApiManagement/service/products/tags"
     },
-    "service_properties": {
+    "service_schemas": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "maxLength": 256
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Identifier of the property."
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Schema id identifier. Must be unique in the current API Management service instance."
         },
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/PropertyContractProperties"
+              "$ref": "#/definitions/GlobalSchemaContractProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Property Contract properties."
+          "description": "Schema create or update contract Properties."
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.ApiManagement/service/properties"
+            "Microsoft.ApiManagement/service/schemas"
           ]
         }
       },
@@ -1928,7 +2537,7 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.ApiManagement/service/properties"
+      "description": "Microsoft.ApiManagement/service/schemas"
     },
     "service_subscriptions": {
       "type": "object",
@@ -1936,7 +2545,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -1984,7 +2593,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -2033,7 +2642,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -2089,27 +2698,69 @@
       ],
       "description": "Microsoft.ApiManagement/service/templates"
     },
-    "service_users": {
+    "service_tenant": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
           "oneOf": [
             {
               "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
+              "enum": [
+                "access",
+                "gitAccess"
+              ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
+          "description": "The identifier of the Access configuration."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AccessInformationCreateParameterProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tenant access information update parameters of the API Management service"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/tenant"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/tenant"
+    },
+    "service_users": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
           "description": "User identifier. Must be unique in the current API Management service instance."
         },
         "properties": {
@@ -2140,12 +2791,72 @@
     }
   },
   "definitions": {
+    "AccessInformationCreateParameterProperties": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Determines whether direct access is enabled."
+        },
+        "primaryKey": {
+          "type": "string",
+          "description": "Primary access key. This property will not be filled on 'GET' operations! Use '/listSecrets' POST request to get the value."
+        },
+        "principalId": {
+          "type": "string",
+          "description": "Principal (User) Identifier."
+        },
+        "secondaryKey": {
+          "type": "string",
+          "description": "Secondary access key. This property will not be filled on 'GET' operations! Use '/listSecrets' POST request to get the value."
+        }
+      },
+      "description": "Tenant access information update parameters of the API Management service"
+    },
     "AdditionalLocation": {
       "type": "object",
       "properties": {
+        "disableGateway": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Property only valid for an Api Management service deployed in multiple locations. This can be used to disable the gateway in this additional location."
+        },
         "location": {
           "type": "string",
           "description": "The location name of the additional region among Azure Data center regions."
+        },
+        "natGatewayState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Property can be used to enable NAT Gateway for this API Management service."
+        },
+        "publicIpAddressId": {
+          "type": "string",
+          "description": "Public Standard SKU IP V4 based IP address to be associated with Virtual Network deployed service in the location. Supported only for Premium SKU being deployed in Virtual Network."
         },
         "sku": {
           "oneOf": [
@@ -2168,6 +2879,20 @@
             }
           ],
           "description": "Configuration of a virtual network to which API Management service is deployed."
+        },
+        "zones": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A list of availability zones denoting where the resource needs to come from."
         }
       },
       "required": [
@@ -2176,6 +2901,24 @@
       ],
       "description": "Description of an additional API Management resource location."
     },
+    "ApiContactInformation": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "The email address of the contact person/organization. MUST be in the format of an email address"
+        },
+        "name": {
+          "type": "string",
+          "description": "The identifying name of the contact person/organization"
+        },
+        "url": {
+          "type": "string",
+          "description": "The URL pointing to the contact information. MUST be in the format of a URL"
+        }
+      },
+      "description": "API contact information"
+    },
     "ApiCreateOrUpdateProperties": {
       "type": "object",
       "properties": {
@@ -2183,12 +2926,12 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 100,
-          "description": "Describes the Revision of the Api. If no value is provided, default revision 1 is created"
+          "description": "Describes the revision of the API. If no value is provided, default revision 1 is created"
         },
         "apiRevisionDescription": {
           "type": "string",
           "maxLength": 256,
-          "description": "Description of the Api Revision."
+          "description": "Description of the API Revision."
         },
         "apiType": {
           "oneOf": [
@@ -2196,24 +2939,26 @@
               "type": "string",
               "enum": [
                 "http",
-                "soap"
+                "soap",
+                "websocket",
+                "graphql"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Type of Api to create. \n * `http` creates a SOAP to REST API \n * `soap` creates a SOAP pass-through API."
+          "description": "Type of API to create. \n * `http` creates a REST API \n * `soap` creates a SOAP pass-through API  \n * `websocket` creates websocket API \n * `graphql` creates GraphQL API."
         },
         "apiVersion": {
           "type": "string",
           "maxLength": 100,
-          "description": "Indicates the Version identifier of the API if the API is versioned"
+          "description": "Indicates the version identifier of the API if the API is versioned"
         },
         "apiVersionDescription": {
           "type": "string",
           "maxLength": 256,
-          "description": "Description of the Api Version."
+          "description": "Description of the API Version."
         },
         "apiVersionSet": {
           "oneOf": [
@@ -2241,7 +2986,28 @@
           ],
           "description": "API Authentication Settings."
         },
-        "contentFormat": {
+        "contact": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApiContactInformation"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "API contact information"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the API. May include HTML formatting tags."
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300,
+          "description": "API name. Must be 1 to 300 characters long."
+        },
+        "format": {
           "oneOf": [
             {
               "type": "string",
@@ -2254,7 +3020,9 @@
                 "wsdl-link",
                 "openapi",
                 "openapi+json",
-                "openapi-link"
+                "openapi-link",
+                "openapi+json-link",
+                "graphql-link"
               ]
             },
             {
@@ -2263,19 +3031,27 @@
           ],
           "description": "Format of the Content in which the API is getting imported."
         },
-        "contentValue": {
-          "type": "string",
-          "description": "Content value when Importing an API."
+        "isCurrent": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates if API revision is current api revision."
         },
-        "description": {
-          "type": "string",
-          "description": "Description of the API. May include HTML formatting tags."
-        },
-        "displayName": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 300,
-          "description": "API name."
+        "license": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApiLicenseInformation"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "API license information"
         },
         "path": {
           "type": "string",
@@ -2291,7 +3067,9 @@
                 "type": "string",
                 "enum": [
                   "http",
-                  "https"
+                  "https",
+                  "ws",
+                  "wss"
                 ]
               }
             },
@@ -2305,7 +3083,11 @@
           "type": "string",
           "minLength": 0,
           "maxLength": 2000,
-          "description": "Absolute URL of the backend service implementing this API."
+          "description": "Absolute URL of the backend service implementing this API. Cannot be more than 2000 characters long."
+        },
+        "sourceApiId": {
+          "type": "string",
+          "description": "API identifier of the source API."
         },
         "subscriptionKeyParameterNames": {
           "oneOf": [
@@ -2329,13 +3111,34 @@
           ],
           "description": "Specifies whether an API or Product subscription is required for accessing the API."
         },
+        "termsOfServiceUrl": {
+          "type": "string",
+          "description": " A URL to the Terms of Service for the API. MUST be in the format of a URL."
+        },
+        "translateRequiredQueryParameters": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "template",
+                "query"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Strategy of translating required query parameters to template ones. By default has value 'template'. Possible values: 'template', 'query'."
+        },
         "type": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
                 "http",
-                "soap"
+                "soap",
+                "websocket",
+                "graphql"
               ]
             },
             {
@@ -2343,6 +3146,10 @@
             }
           ],
           "description": "Type of API."
+        },
+        "value": {
+          "type": "string",
+          "description": "Content value when Importing an API."
         },
         "wsdlSelector": {
           "oneOf": [
@@ -2359,7 +3166,7 @@
       "required": [
         "path"
       ],
-      "description": "Api Create or Update Properties."
+      "description": "API Create or Update Properties."
     },
     "ApiCreateOrUpdatePropertiesWsdlSelector": {
       "type": "object",
@@ -2375,6 +3182,20 @@
       },
       "description": "Criteria to limit import of WSDL to a subset of the document."
     },
+    "ApiLicenseInformation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The license name used for the API"
+        },
+        "url": {
+          "type": "string",
+          "description": "A URL to the license used for the API. MUST be in the format of a URL"
+        }
+      },
+      "description": "API license information"
+    },
     "ApiManagementServiceIdentity": {
       "type": "object",
       "properties": {
@@ -2383,14 +3204,32 @@
             {
               "type": "string",
               "enum": [
-                "SystemAssigned"
+                "SystemAssigned",
+                "UserAssigned",
+                "SystemAssigned, UserAssigned",
+                "None"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The identity type. Currently the only supported type is 'SystemAssigned'."
+          "description": "The type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the service."
+        },
+        "userAssignedIdentities": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/UserIdentityProperties"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of user identities associated with the resource. The user identity \r\ndictionary key references will be ARM resource ids in the form: \r\n'/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/\r\n    providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
         }
       },
       "required": [
@@ -2414,6 +3253,17 @@
             }
           ],
           "description": "Additional datacenter locations of the API Management service."
+        },
+        "apiVersionConstraint": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApiVersionConstraint"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Control Plane Apis version constraint for the API Management service."
         },
         "certificates": {
           "oneOf": [
@@ -2442,7 +3292,31 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Custom properties of the API Management service. Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TripleDes168` will disable the cipher TLS_RSA_WITH_3DES_EDE_CBC_SHA for all TLS(1.0, 1.1 and 1.2). Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls11` can be used to disable just TLS 1.1 and setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls10` can be used to disable TLS 1.0 on an API Management service."
+          "description": "Custom properties of the API Management service.</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TripleDes168` will disable the cipher TLS_RSA_WITH_3DES_EDE_CBC_SHA for all TLS(1.0, 1.1 and 1.2).</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls11` can be used to disable just TLS 1.1.</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls10` can be used to disable TLS 1.0 on an API Management service.</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls11` can be used to disable just TLS 1.1 for communications with backends.</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls10` can be used to disable TLS 1.0 for communications with backends.</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Protocols.Server.Http2` can be used to enable HTTP2 protocol on an API Management service.</br>Not specifying any of these properties on PATCH operation will reset omitted properties' values to their defaults. For all the settings except Http2 the default value is `True` if the service was created on or before April 1st 2018 and `False` otherwise. Http2 setting's default value is `False`.</br></br>You can disable any of next ciphers by using settings `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.[cipher_name]`: TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_256_CBC_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA256, TLS_RSA_WITH_AES_256_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA. For example, `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TLS_RSA_WITH_AES_128_CBC_SHA256`:`false`. The default value is `true` for them.  Note: next ciphers can't be disabled since they are required by Azure CloudService internal components: TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384"
+        },
+        "disableGateway": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Property only valid for an Api Management service deployed in multiple locations. This can be used to disable the gateway in master region."
+        },
+        "enableClientCertificate": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Property only meant to be used for Consumption SKU Service. This enforces a client certificate to be presented on each request to the gateway. This also enables the ability to authenticate the certificate in the policy on the gateway."
         },
         "hostnameConfigurations": {
           "oneOf": [
@@ -2458,10 +3332,58 @@
           ],
           "description": "Custom hostname configuration of the API Management service."
         },
+        "natGatewayState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Property can be used to enable NAT Gateway for this API Management service."
+        },
         "notificationSenderEmail": {
           "type": "string",
           "maxLength": 100,
           "description": "Email address from which the notification will be sent."
+        },
+        "privateEndpointConnections": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RemotePrivateEndpointConnectionWrapper"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of Private Endpoint Connections of this service."
+        },
+        "publicIpAddressId": {
+          "type": "string",
+          "description": "Public Standard SKU IP V4 based IP address to be associated with Virtual Network deployed service in the region. Supported only for Developer and Premium SKU being deployed in Virtual Network."
+        },
+        "publicNetworkAccess": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether or not public endpoint access is allowed for this API Management service.  Value is optional but if passed in, must be 'Enabled' or 'Disabled'. If 'Disabled', private endpoints are the exclusive access method. Default value is 'Enabled'."
         },
         "publisherEmail": {
           "type": "string",
@@ -2472,6 +3394,18 @@
           "type": "string",
           "maxLength": 100,
           "description": "Publisher name."
+        },
+        "restore": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Undelete Api Management Service if it was previously soft-deleted. If this flag is specified and set to True all other properties will be ignored."
         },
         "virtualNetworkConfiguration": {
           "oneOf": [
@@ -2513,14 +3447,13 @@
         "capacity": {
           "oneOf": [
             {
-              "type": "integer",
-              "default": "1"
+              "type": "integer"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Capacity of the SKU (number of deployed units of the SKU). The default value is 1."
+          "description": "Capacity of the SKU (number of deployed units of the SKU). For Consumption SKU capacity must be specified as 0."
         },
         "name": {
           "oneOf": [
@@ -2531,7 +3464,8 @@
                 "Standard",
                 "Premium",
                 "Basic",
-                "Consumption"
+                "Consumption",
+                "Isolated"
               ]
             },
             {
@@ -2542,6 +3476,7 @@
         }
       },
       "required": [
+        "capacity",
         "name"
       ],
       "description": "API Management service resource SKU properties."
@@ -2560,6 +3495,16 @@
       },
       "description": "API Release details"
     },
+    "ApiVersionConstraint": {
+      "type": "object",
+      "properties": {
+        "minApiVersion": {
+          "type": "string",
+          "description": "Limit control plane API calls to API Management service with version equal to or newer than this value."
+        }
+      },
+      "description": "Control Plane Apis version constraint for the API Management service."
+    },
     "ApiVersionSetContractDetails": {
       "type": "object",
       "properties": {
@@ -2570,6 +3515,10 @@
         "id": {
           "type": "string",
           "description": "Identifier for existing API Version Set. Omit this value to create a new Version Set."
+        },
+        "name": {
+          "type": "string",
+          "description": "The display Name of the API Version Set."
         },
         "versionHeaderName": {
           "type": "string",
@@ -2646,6 +3595,31 @@
       ],
       "description": "Properties of an API Version Set."
     },
+    "ArmIdWrapper": {
+      "type": "object",
+      "properties": {},
+      "description": "A wrapper for an ARM resource id"
+    },
+    "AssociationContractProperties": {
+      "type": "object",
+      "properties": {
+        "provisioningState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "created"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Provisioning state."
+        }
+      },
+      "description": "Association entity contract properties."
+    },
     "AuthenticationSettingsContract": {
       "type": "object",
       "properties": {
@@ -2660,6 +3634,20 @@
           ],
           "description": "API OAuth2 Authentication settings details."
         },
+        "oAuth2AuthenticationSettings": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OAuth2AuthenticationSettingsContract"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Collection of OAuth2 authentication settings included into this API."
+        },
         "openid": {
           "oneOf": [
             {
@@ -2671,19 +3659,199 @@
           ],
           "description": "API OAuth2 Authentication settings details."
         },
-        "subscriptionKeyRequired": {
+        "openidAuthenticationSettings": {
           "oneOf": [
             {
-              "type": "boolean"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OpenIdAuthenticationSettingsContract"
+              }
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Specifies whether subscription key is required during call to this API, true - API is included into closed products only, false - API is included into open products alone, null - there is a mix of products."
+          "description": "Collection of Open ID Connect authentication settings included into this API."
         }
       },
       "description": "API Authentication Settings."
+    },
+    "AuthorizationAccessPolicyContractProperties": {
+      "type": "object",
+      "properties": {
+        "objectId": {
+          "type": "string",
+          "description": "The Object Id"
+        },
+        "tenantId": {
+          "type": "string",
+          "description": "The Tenant Id"
+        }
+      },
+      "description": "Authorization Access Policy details."
+    },
+    "AuthorizationContractProperties": {
+      "type": "object",
+      "properties": {
+        "authorizationType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "OAuth2"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Authorization type options."
+        },
+        "error": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AuthorizationError"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Authorization error details."
+        },
+        "oauth2grantType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "AuthorizationCode",
+                "ClientCredentials"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "OAuth2 grant type options."
+        },
+        "parameters": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Authorization parameters"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the Authorization"
+        }
+      },
+      "description": "Authorization details."
+    },
+    "AuthorizationError": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Error code"
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message"
+        }
+      },
+      "description": "Authorization error details."
+    },
+    "AuthorizationProviderContractProperties": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300,
+          "description": "Authorization Provider name. Must be 1 to 300 characters long."
+        },
+        "identityProvider": {
+          "type": "string",
+          "description": "Identity provider name. Must be 1 to 300 characters long."
+        },
+        "oauth2": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AuthorizationProviderOAuth2Settings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "OAuth2 settings details"
+        }
+      },
+      "description": "Authorization Provider details."
+    },
+    "AuthorizationProviderOAuth2GrantTypes": {
+      "type": "object",
+      "properties": {
+        "authorizationCode": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "OAuth2 authorization code grant parameters"
+        },
+        "clientCredentials": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "OAuth2 client credential grant parameters"
+        }
+      },
+      "description": "Authorization Provider oauth2 grant types settings"
+    },
+    "AuthorizationProviderOAuth2Settings": {
+      "type": "object",
+      "properties": {
+        "grantTypes": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AuthorizationProviderOAuth2GrantTypes"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Authorization Provider oauth2 grant types settings"
+        },
+        "redirectUrl": {
+          "type": "string",
+          "description": "Redirect URL to be set in the OAuth application."
+        }
+      },
+      "description": "OAuth2 settings details"
     },
     "AuthorizationServerContractProperties": {
       "type": "object",
@@ -2762,7 +3930,7 @@
         },
         "clientSecret": {
           "type": "string",
-          "description": "Client or app secret registered with this authorization server."
+          "description": "Client or app secret registered with this authorization server. This property will not be filled on 'GET' operations! Use '/listSecrets' POST request to get the value."
         },
         "defaultScope": {
           "type": "string",
@@ -2834,6 +4002,28 @@
         "tokenEndpoint": {
           "type": "string",
           "description": "OAuth token endpoint. Contains absolute URI to entity being referenced."
+        },
+        "useInApiDocumentation": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "If true, the authorization server will be used in the API documentation in the developer portal. False by default if no value is provided."
+        },
+        "useInTestConsole": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "If true, the authorization server may be used in the developer portal test console. True by default if no value is provided."
         }
       },
       "required": [
@@ -2928,7 +4118,7 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 2000,
-          "description": "Management Uri of the Resource in External System. This url can be the Arm Resource Id of Logic Apps, Function Apps or Api Apps."
+          "description": "Management Uri of the Resource in External System. This URL can be the Arm Resource Id of Logic Apps, Function Apps or API Apps."
         },
         "title": {
           "type": "string",
@@ -2986,7 +4176,21 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "List of Client Certificate Thumbprint."
+          "description": "List of Client Certificate Thumbprints. Will be ignored if certificatesIds are provided."
+        },
+        "certificateIds": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of Client Certificate Ids."
         },
         "header": {
           "oneOf": [
@@ -3070,9 +4274,13 @@
     "BackendServiceFabricClusterProperties": {
       "type": "object",
       "properties": {
+        "clientCertificateId": {
+          "type": "string",
+          "description": "The client certificate id for the management endpoint."
+        },
         "clientCertificatethumbprint": {
           "type": "string",
-          "description": "The client certificate thumbprint for the management endpoint."
+          "description": "The client certificate thumbprint for the management endpoint. Will be ignored if certificatesIds are provided"
         },
         "managementEndpoints": {
           "oneOf": [
@@ -3129,7 +4337,6 @@
         }
       },
       "required": [
-        "clientCertificatethumbprint",
         "managementEndpoints"
       ],
       "description": "Properties of the Service Fabric Type Backend."
@@ -3199,10 +4406,16 @@
           "type": "string",
           "maxLength": 2000,
           "description": "Original uri of entity in external system cache points to"
+        },
+        "useFromLocation": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "Location identifier to use cache from (should be either 'default' or valid Azure region identifier)"
         }
       },
       "required": [
-        "connectionString"
+        "connectionString",
+        "useFromLocation"
       ],
       "description": "Properties of the Cache contract."
     },
@@ -3256,15 +4469,22 @@
           "type": "string",
           "description": "Base 64 encoded certificate using the application/x-pkcs12 representation."
         },
+        "keyVault": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/KeyVaultContractCreateProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Create keyVault contract details."
+        },
         "password": {
           "type": "string",
           "description": "Password for the Certificate"
         }
       },
-      "required": [
-        "data",
-        "password"
-      ],
       "description": "Parameters supplied to the CreateOrUpdate certificate operation."
     },
     "CertificateInformation": {
@@ -3290,6 +4510,89 @@
         "thumbprint"
       ],
       "description": "SSL certificate information."
+    },
+    "ContentTypeContractProperties": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Content type description."
+        },
+        "id": {
+          "type": "string",
+          "description": "Content type identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Content type name. Must be 1 to 250 characters long."
+        },
+        "schema": {
+          "type": "object",
+          "properties": {},
+          "description": "Content type schema."
+        },
+        "version": {
+          "type": "string",
+          "description": "Content type version."
+        }
+      }
+    },
+    "DataMasking": {
+      "type": "object",
+      "properties": {
+        "headers": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DataMaskingEntity"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Masking settings for headers"
+        },
+        "queryParams": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DataMaskingEntity"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Masking settings for Url query parameters"
+        }
+      }
+    },
+    "DataMaskingEntity": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Mask",
+                "Hide"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Data masking mode."
+        },
+        "value": {
+          "type": "string",
+          "description": "The name of an entity to mask (e.g. a name of a header or a query parameter)."
+        }
+      }
     },
     "DiagnosticContractProperties": {
       "type": "object",
@@ -3319,17 +4622,6 @@
           ],
           "description": "Diagnostic settings for incoming/outgoing HTTP messages to the Gateway."
         },
-        "enableHttpCorrelationHeaders": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Whether to process Correlation Headers coming to Api Management Service. Only applicable to Application Insights diagnostics. Default is true."
-        },
         "frontend": {
           "oneOf": [
             {
@@ -3341,9 +4633,62 @@
           ],
           "description": "Diagnostic settings for incoming/outgoing HTTP messages to the Gateway."
         },
+        "httpCorrelationProtocol": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "Legacy",
+                "W3C"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Sets correlation protocol to use for Application Insights diagnostics."
+        },
+        "logClientIp": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Log the ClientIP. Default is false."
+        },
         "loggerId": {
           "type": "string",
           "description": "Resource Id of a target logger."
+        },
+        "metrics": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Emit custom metrics via emit-metric policy. Applicable only to Application Insights diagnostic settings."
+        },
+        "operationNameFormat": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Name",
+                "Url"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The format of the Operation Name for Application Insights telemetries. Default is Name."
         },
         "sampling": {
           "oneOf": [
@@ -3355,6 +4700,22 @@
             }
           ],
           "description": "Sampling settings for Diagnostic."
+        },
+        "verbosity": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "verbose",
+                "information",
+                "error"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The verbosity level applied to traces emitted by trace policies."
         }
       },
       "required": [
@@ -3441,6 +4802,141 @@
       },
       "description": "Email Template Update Contract properties."
     },
+    "GatewayCertificateAuthorityContractProperties": {
+      "type": "object",
+      "properties": {
+        "isTrusted": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Determines whether certificate authority is trusted."
+        }
+      },
+      "description": "Gateway certificate authority details."
+    },
+    "GatewayContractProperties": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "maxLength": 1000,
+          "description": "Gateway description"
+        },
+        "locationData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResourceLocationDataContract"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource location data properties."
+        }
+      },
+      "description": "Properties of the Gateway contract."
+    },
+    "GatewayHostnameConfigurationContractProperties": {
+      "type": "object",
+      "properties": {
+        "certificateId": {
+          "type": "string",
+          "description": "Identifier of Certificate entity that will be used for TLS connection establishment"
+        },
+        "hostname": {
+          "type": "string",
+          "description": "Hostname value. Supports valid domain name, partial or full wildcard"
+        },
+        "http2Enabled": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies if HTTP/2.0 is supported"
+        },
+        "negotiateClientCertificate": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Determines whether gateway requests client certificate"
+        },
+        "tls10Enabled": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies if TLS 1.0 is supported"
+        },
+        "tls11Enabled": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies if TLS 1.1 is supported"
+        }
+      },
+      "description": "Gateway hostname configuration details."
+    },
+    "GlobalSchemaContractProperties": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Free-form schema entity description."
+        },
+        "document": {
+          "type": "object",
+          "properties": {},
+          "description": "Global Schema Document Properties."
+        },
+        "schemaType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Schema Type. Immutable."
+        },
+        "value": {
+          "type": "object",
+          "properties": {},
+          "description": "Json-encoded string for non json-based schema."
+        }
+      },
+      "required": [
+        "schemaType"
+      ],
+      "description": "Schema create or update contract Properties."
+    },
     "GroupCreateParametersProperties": {
       "type": "object",
       "properties": {
@@ -3498,6 +4994,39 @@
           "type": "string",
           "description": "Certificate Password."
         },
+        "certificateSource": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Managed",
+                "KeyVault",
+                "Custom",
+                "BuiltIn"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Certificate Source."
+        },
+        "certificateStatus": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Completed",
+                "Failed",
+                "InProgress"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Certificate Status."
+        },
         "defaultSslBinding": {
           "oneOf": [
             {
@@ -3508,7 +5037,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Specify true to setup the certificate associated with this Hostname as the Default SSL Certificate. If a client does not send the SNI header, then this will be the certificate that will be challenged. The property is useful if a service has multiple custom hostname enabled and it needs to decide on the default ssl certificate. The setting only applied to Proxy Hostname Type."
+          "description": "Specify true to setup the certificate associated with this Hostname as the Default SSL Certificate. If a client does not send the SNI header, then this will be the certificate that will be challenged. The property is useful if a service has multiple custom hostname enabled and it needs to decide on the default ssl certificate. The setting only applied to gateway Hostname Type."
         },
         "encodedCertificate": {
           "type": "string",
@@ -3518,9 +5047,13 @@
           "type": "string",
           "description": "Hostname to configure on the Api Management service."
         },
+        "identityClientId": {
+          "type": "string",
+          "description": "System or User Assigned Managed identity clientId as generated by Azure AD, which has GET access to the keyVault containing the SSL certificate."
+        },
         "keyVaultId": {
           "type": "string",
-          "description": "Url to the KeyVault Secret containing the Ssl Certificate. If absolute Url containing version is provided, auto-update of ssl certificate will not work. This requires Api Management service to be configured with MSI. The secret should be of type *application/x-pkcs12*"
+          "description": "Url to the KeyVault Secret containing the Ssl Certificate. If absolute Url containing version is provided, auto-update of ssl certificate will not work. This requires Api Management service to be configured with aka.ms/apimmsi. The secret should be of type *application/x-pkcs12*"
         },
         "negotiateClientCertificate": {
           "oneOf": [
@@ -3542,7 +5075,8 @@
                 "Proxy",
                 "Portal",
                 "Management",
-                "Scm"
+                "Scm",
+                "DeveloperPortal"
               ]
             },
             {
@@ -3572,6 +5106,16 @@
           ],
           "description": "Body logging settings."
         },
+        "dataMasking": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DataMasking"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
         "headers": {
           "oneOf": [
             {
@@ -3589,7 +5133,7 @@
       },
       "description": "Http message diagnostic settings."
     },
-    "IdentityProviderContractProperties": {
+    "IdentityProviderCreateContractProperties": {
       "type": "object",
       "properties": {
         "allowedTenants": {
@@ -3615,10 +5159,16 @@
           "minLength": 1,
           "description": "Client Id of the Application in the external Identity Provider. It is App ID for Facebook login, Client ID for Google login, App ID for Microsoft."
         },
+        "clientLibrary": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 16,
+          "description": "The client library to be used in the developer portal. Only applies to AAD and AAD B2C Identity Provider."
+        },
         "clientSecret": {
           "type": "string",
           "minLength": 1,
-          "description": "Client secret of the Application in external Identity Provider, used to authenticate login request. For example, it is App Secret for Facebook login, API Key for Google login, Public Key for Microsoft."
+          "description": "Client secret of the Application in external Identity Provider, used to authenticate login request. For example, it is App Secret for Facebook login, API Key for Google login, Public Key for Microsoft. This property will not be filled on 'GET' operations! Use '/listSecrets' POST request to get the value."
         },
         "passwordResetPolicyName": {
           "type": "string",
@@ -3634,6 +5184,10 @@
           "type": "string",
           "minLength": 1,
           "description": "Signin Policy Name. Only applies to AAD B2C Identity Provider."
+        },
+        "signinTenant": {
+          "type": "string",
+          "description": "The TenantId to use instead of Common when logging into Active Directory"
         },
         "signupPolicyName": {
           "type": "string",
@@ -3762,6 +5316,20 @@
       ],
       "description": "Issue contract Properties."
     },
+    "KeyVaultContractCreateProperties": {
+      "type": "object",
+      "properties": {
+        "identityClientId": {
+          "type": "string",
+          "description": "Null for SystemAssignedIdentity or Client Id for UserAssignedIdentity , which will be used to access key vault secret."
+        },
+        "secretIdentifier": {
+          "type": "string",
+          "description": "Key vault secret identifier for fetching secret. Providing a versioned secret will prevent auto-refresh. This requires API Management service to be configured with aka.ms/apimmsi"
+        }
+      },
+      "description": "Create keyVault contract details."
+    },
     "LoggerContractProperties": {
       "type": "object",
       "properties": {
@@ -3802,7 +5370,8 @@
               "type": "string",
               "enum": [
                 "azureEventHub",
-                "applicationInsights"
+                "applicationInsights",
+                "azureMonitor"
               ]
             },
             {
@@ -3817,10 +5386,73 @@
         }
       },
       "required": [
-        "credentials",
         "loggerType"
       ],
       "description": "The Logger entity in API Management represents an event sink that you can use to log API Management events. Currently the Logger entity supports logging API Management events to Azure Event Hubs."
+    },
+    "NamedValueCreateContractProperties": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9-._]+$",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Unique name of NamedValue. It may contain only letters, digits, period, dash, and underscore characters."
+        },
+        "keyVault": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/KeyVaultContractCreateProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Create keyVault contract details."
+        },
+        "secret": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Determines whether the value is a secret and should be encrypted or not. Default value is false."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Optional tags that when provided can be used to filter the NamedValue list."
+        },
+        "value": {
+          "type": "string",
+          "maxLength": 4096,
+          "description": "Value of the NamedValue. Can contain policy expressions. It may not be empty or consist only of whitespace. This property will not be filled on 'GET' operations! Use '/listSecrets' POST request to get the value."
+        }
+      },
+      "required": [
+        "displayName"
+      ],
+      "description": "NamedValue Contract properties."
     },
     "OAuth2AuthenticationSettingsContract": {
       "type": "object",
@@ -3887,6 +5519,28 @@
         "metadataEndpoint": {
           "type": "string",
           "description": "Metadata endpoint URI."
+        },
+        "useInApiDocumentation": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "If true, the Open ID Connect provider will be used in the API documentation in the developer portal. False by default if no value is provided."
+        },
+        "useInTestConsole": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "If true, the Open ID Connect provider may be used in the developer portal test console. True by default if no value is provided."
         }
       },
       "required": [
@@ -3982,6 +5636,21 @@
           "type": "string",
           "description": "Parameter description."
         },
+        "examples": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/ParameterExampleContract"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Parameter examples."
+        },
         "name": {
           "type": "string",
           "description": "Parameter name."
@@ -3995,11 +5664,19 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "whether parameter is required or not."
+          "description": "Specifies whether parameter is required or not."
+        },
+        "schemaId": {
+          "type": "string",
+          "description": "Schema identifier."
         },
         "type": {
           "type": "string",
           "description": "Parameter type."
+        },
+        "typeName": {
+          "type": "string",
+          "description": "Type name defined by the schema."
         },
         "values": {
           "oneOf": [
@@ -4021,6 +5698,29 @@
         "type"
       ],
       "description": "Operation parameters details."
+    },
+    "ParameterExampleContract": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Long description for the example"
+        },
+        "externalValue": {
+          "type": "string",
+          "description": "A URL that points to the literal example"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Short description for the example"
+        },
+        "value": {
+          "type": "object",
+          "properties": {},
+          "description": "Example value. May be a primitive value, or an object."
+        }
+      },
+      "description": "Parameter example."
     },
     "PipelineDiagnosticSettings": {
       "type": "object",
@@ -4053,7 +5753,7 @@
     "PolicyContractProperties": {
       "type": "object",
       "properties": {
-        "contentFormat": {
+        "format": {
           "oneOf": [
             {
               "type": "string",
@@ -4070,15 +5770,281 @@
           ],
           "description": "Format of the policyContent."
         },
-        "policyContent": {
+        "value": {
           "type": "string",
-          "description": "Json escaped Xml Encoded contents of the Policy."
+          "description": "Contents of the Policy as defined by the format."
         }
       },
       "required": [
-        "policyContent"
+        "value"
       ],
       "description": "Policy contract Properties."
+    },
+    "PolicyFragmentContractProperties": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 1000,
+          "description": "Policy fragment description."
+        },
+        "format": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "xml",
+                "rawxml"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Format of the policy fragment content."
+        },
+        "value": {
+          "type": "string",
+          "description": "Contents of the policy fragment."
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "description": "Policy fragment contract properties."
+    },
+    "PortalConfigCorsProperties": {
+      "type": "object",
+      "properties": {
+        "allowedOrigins": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Allowed origins, e.g. `https://trusted.com`."
+        }
+      },
+      "description": "The developer portal Cross-Origin Resource Sharing (CORS) settings."
+    },
+    "PortalConfigCspProperties": {
+      "type": "object",
+      "properties": {
+        "allowedSources": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Allowed sources, e.g. `*.trusted.com`, `trusted.com`, `https://`."
+        },
+        "mode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "enabled",
+                "disabled",
+                "reportOnly"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The mode of the developer portal Content Security Policy (CSP)."
+        },
+        "reportUri": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The URLs used by the browser to report CSP violations."
+        }
+      },
+      "description": "The developer portal Content Security Policy (CSP) settings."
+    },
+    "PortalConfigDelegationProperties": {
+      "type": "object",
+      "properties": {
+        "delegateRegistration": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Enable or disable delegation for user registration."
+        },
+        "delegateSubscription": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Enable or disable delegation for product subscriptions."
+        },
+        "delegationUrl": {
+          "type": "string",
+          "description": "A delegation endpoint URL."
+        },
+        "validationKey": {
+          "type": "string",
+          "description": "A base64-encoded validation key to ensure requests originate from Azure API Management service."
+        }
+      }
+    },
+    "PortalConfigProperties": {
+      "type": "object",
+      "properties": {
+        "cors": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PortalConfigCorsProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The developer portal Cross-Origin Resource Sharing (CORS) settings."
+        },
+        "csp": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PortalConfigCspProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The developer portal Content Security Policy (CSP) settings."
+        },
+        "delegation": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PortalConfigDelegationProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "enableBasicAuth": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": true
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Enable or disable Basic authentication method."
+        },
+        "signin": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PortalConfigPropertiesSignin"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "signup": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PortalConfigPropertiesSignup"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        }
+      },
+      "description": "The developer portal configuration contract properties."
+    },
+    "PortalConfigPropertiesSignin": {
+      "type": "object",
+      "properties": {
+        "require": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Redirect anonymous users to the sign-in page."
+        }
+      }
+    },
+    "PortalConfigPropertiesSignup": {
+      "type": "object",
+      "properties": {
+        "termsOfService": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PortalConfigTermsOfServiceProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Terms of service contract properties."
+        }
+      }
+    },
+    "PortalConfigTermsOfServiceProperties": {
+      "type": "object",
+      "properties": {
+        "requireConsent": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Ask user for consent to the terms of service."
+        },
+        "text": {
+          "type": "string",
+          "description": "A terms of service text."
+        }
+      },
+      "description": "Terms of service contract properties."
     },
     "PortalDelegationSettingsProperties": {
       "type": "object",
@@ -4115,6 +6081,27 @@
         }
       },
       "description": "Delegation settings contract properties."
+    },
+    "PortalRevisionContractProperties": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "maxLength": 2000,
+          "description": "Portal revision description."
+        },
+        "isCurrent": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates if the portal's revision is public."
+        }
+      }
     },
     "PortalSigninSettingProperties": {
       "type": "object",
@@ -4161,6 +6148,84 @@
       },
       "description": "Sign-up settings contract properties."
     },
+    "PrivateEndpointConnectionRequestProperties": {
+      "type": "object",
+      "properties": {
+        "privateLinkServiceConnectionState": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateLinkServiceConnectionState"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A collection of information about the state of the connection between service consumer and provider."
+        }
+      },
+      "description": "The connection state of the private endpoint connection."
+    },
+    "PrivateEndpointConnectionWrapperProperties": {
+      "type": "object",
+      "properties": {
+        "privateEndpoint": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ArmIdWrapper"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A wrapper for an ARM resource id"
+        },
+        "privateLinkServiceConnectionState": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateLinkServiceConnectionState"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A collection of information about the state of the connection between service consumer and provider."
+        }
+      },
+      "required": [
+        "privateLinkServiceConnectionState"
+      ],
+      "description": "Properties of the PrivateEndpointConnectProperties."
+    },
+    "PrivateLinkServiceConnectionState": {
+      "type": "object",
+      "properties": {
+        "actionsRequired": {
+          "type": "string",
+          "description": "A message indicating if changes on the service provider require any updates on the consumer."
+        },
+        "description": {
+          "type": "string",
+          "description": "The reason for approval/rejection of the connection."
+        },
+        "status": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Pending",
+                "Approved",
+                "Rejected"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service."
+        }
+      },
+      "description": "A collection of information about the state of the connection between service consumer and provider."
+    },
     "ProductContractProperties": {
       "type": "object",
       "properties": {
@@ -4173,11 +6238,11 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "whether subscription approval is required. If false, new subscriptions will be approved automatically enabling developers to call the product’s APIs immediately after subscribing. If true, administrators must manually approve the subscription before the developer can any of the product’s APIs. Can be present only if subscriptionRequired property is present and has a value of true."
+          "description": "whether subscription approval is required. If false, new subscriptions will be approved automatically enabling developers to call the product’s APIs immediately after subscribing. If true, administrators must manually approve the subscription before the developer can any of the product’s APIs. Can be present only if subscriptionRequired property is present and has a value of false."
         },
         "description": {
           "type": "string",
-          "minLength": 1,
+          "minLength": 0,
           "maxLength": 1000,
           "description": "Product description. May include HTML formatting tags."
         },
@@ -4222,7 +6287,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Whether the number of subscriptions a user can have to this product at the same time. Set to null or omit to allow unlimited per user subscriptions. Can be present only if subscriptionRequired property is present and has a value of true."
+          "description": "Whether the number of subscriptions a user can have to this product at the same time. Set to null or omit to allow unlimited per user subscriptions. Can be present only if subscriptionRequired property is present and has a value of false."
         },
         "terms": {
           "type": "string",
@@ -4233,61 +6298,6 @@
         "displayName"
       ],
       "description": "Product profile."
-    },
-    "PropertyContractProperties": {
-      "type": "object",
-      "properties": {
-        "displayName": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[A-Za-z0-9-._]+$",
-              "minLength": 1,
-              "maxLength": 256
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Unique name of Property. It may contain only letters, digits, period, dash, and underscore characters."
-        },
-        "secret": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Determines whether the value is a secret and should be encrypted or not. Default value is false."
-        },
-        "tags": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Optional tags that when provided can be used to filter the property list."
-        },
-        "value": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 4096,
-          "description": "Value of the property. Can contain policy expressions. It may not be empty or consist only of whitespace."
-        }
-      },
-      "required": [
-        "displayName",
-        "value"
-      ],
-      "description": "Property Contract properties."
     },
     "RegistrationDelegationSettingsProperties": {
       "type": "object",
@@ -4306,12 +6316,56 @@
       },
       "description": "User registration delegation settings properties."
     },
+    "RemotePrivateEndpointConnectionWrapper": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Private Endpoint connection resource id"
+        },
+        "name": {
+          "type": "string",
+          "description": "Private Endpoint Connection Name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionWrapperProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the PrivateEndpointConnectProperties."
+        },
+        "type": {
+          "type": "string",
+          "description": "Private Endpoint Connection Resource Type"
+        }
+      },
+      "description": "Remote Private Endpoint Connection resource."
+    },
     "RepresentationContract": {
       "type": "object",
       "properties": {
         "contentType": {
           "type": "string",
           "description": "Specifies a registered or custom content type for this representation, e.g. application/xml."
+        },
+        "examples": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/ParameterExampleContract"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Parameter examples."
         },
         "formParameters": {
           "oneOf": [
@@ -4326,10 +6380,6 @@
             }
           ],
           "description": "Collection of form parameters. Required if 'contentType' value is either 'application/x-www-form-urlencoded' or 'multipart/form-data'.."
-        },
-        "sample": {
-          "type": "string",
-          "description": "An example of the representation."
         },
         "schemaId": {
           "type": "string",
@@ -4396,6 +6446,35 @@
         }
       },
       "description": "Operation request details."
+    },
+    "ResourceLocationDataContract": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "The city or locality where the resource is located."
+        },
+        "countryOrRegion": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "The country or region where the resource is located."
+        },
+        "district": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "The district, state, or province where the resource is located."
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "A canonical name for the geographic or physical location."
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "description": "Resource location data properties."
     },
     "ResponseContract": {
       "type": "object",
@@ -4487,7 +6566,7 @@
       "properties": {
         "contentType": {
           "type": "string",
-          "description": "Must be a valid a media type used in a Content-Type header as defined in the RFC 2616. Media type of the schema document (e.g. application/json, application/xml)."
+          "description": "Must be a valid a media type used in a Content-Type header as defined in the RFC 2616. Media type of the schema document (e.g. application/json, application/xml). </br> - `Swagger` Schema use `application/vnd.ms-azure-apim.swagger.definitions+json` </br> - `WSDL` Schema use `application/vnd.ms-azure-apim.xsd+xml` </br> - `OpenApi` Schema use `application/vnd.oai.openapi.components+json` </br> - `WADL Schema` use `application/vnd.ms-azure-apim.wadl.grammars+xml`."
         },
         "document": {
           "oneOf": [
@@ -4498,72 +6577,34 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Schema Document Properties."
+          "description": "Api Schema Document Properties."
         }
       },
       "required": [
-        "contentType"
+        "contentType",
+        "document"
       ],
-      "description": "Schema contract Properties."
+      "description": "API Schema create or update contract Properties."
     },
     "SchemaDocumentProperties": {
       "type": "object",
       "properties": {
+        "components": {
+          "type": "object",
+          "properties": {},
+          "description": "Types definitions. Used for Swagger/OpenAPI v2/v3 schemas only, null otherwise."
+        },
+        "definitions": {
+          "type": "object",
+          "properties": {},
+          "description": "Types definitions. Used for Swagger/OpenAPI v1 schemas only, null otherwise."
+        },
         "value": {
           "type": "string",
-          "description": "Json escaped string defining the document representing the Schema."
+          "description": "Json escaped string defining the document representing the Schema. Used for schemas other than Swagger/OpenAPI."
         }
       },
-      "description": "Schema Document Properties."
-    },
-    "service_api-version-sets_childResource": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2018-06-01-preview"
-          ]
-        },
-        "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Api Version Set identifier. Must be unique in the current API Management service instance."
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/ApiVersionSetContractProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Properties of an API Version Set."
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "api-version-sets"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.ApiManagement/service/api-version-sets"
+      "description": "Api Schema Document Properties."
     },
     "service_apis_childResource": {
       "type": "object",
@@ -4571,21 +6612,13 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
           "description": "API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number."
         },
         "properties": {
@@ -4597,7 +6630,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Api Create or Update Properties."
+          "description": "API Create or Update Properties."
         },
         "type": {
           "type": "string",
@@ -4620,7 +6653,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -4669,7 +6702,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -4718,7 +6751,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -4767,7 +6800,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -4816,21 +6849,13 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
           "description": "Operation identifier within an API. Must be unique in the current API Management service instance."
         },
         "properties": {
@@ -4865,7 +6890,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -4907,7 +6932,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -4944,7 +6969,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -4986,7 +7011,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -5035,22 +7060,14 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Schema identifier within an API. Must be unique in the current API Management service instance."
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Schema id identifier. Must be unique in the current API Management service instance."
         },
         "properties": {
           "oneOf": [
@@ -5061,7 +7078,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Schema contract Properties."
+          "description": "API Schema create or update contract Properties."
         },
         "type": {
           "type": "string",
@@ -5084,7 +7101,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -5099,7 +7116,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Tag identifier. Must be unique in the current API Management service instance."
+          "description": "Tag description identifier. Used when creating tagDescription for API/Tag association. Based on API and Tag names."
         },
         "properties": {
           "oneOf": [
@@ -5133,7 +7150,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -5164,13 +7181,209 @@
       ],
       "description": "Microsoft.ApiManagement/service/apis/tags"
     },
+    "service_apiVersionSets_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Api Version Set identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApiVersionSetContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of an API Version Set."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "apiVersionSets"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/apiVersionSets"
+    },
+    "service_authorizationProviders_authorizations_accessPolicies_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Identifier of the authorization access policy."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AuthorizationAccessPolicyContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Authorization Access Policy details."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "accessPolicies"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/authorizationProviders/authorizations/accessPolicies"
+    },
+    "service_authorizationProviders_authorizations_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Identifier of the authorization."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AuthorizationContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Authorization details."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "authorizations"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/authorizationProviders/authorizations"
+    },
+    "service_authorizationProviders_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Identifier of the authorization provider."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AuthorizationProviderContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Authorization Provider details."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "authorizationProviders"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/authorizationProviders"
+    },
     "service_authorizationServers_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -5219,21 +7432,13 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
           "description": "Identifier of the Backend entity. Must be unique in the current API Management service instance."
         },
         "properties": {
@@ -5268,7 +7473,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -5317,7 +7522,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -5360,13 +7565,82 @@
       ],
       "description": "Microsoft.ApiManagement/service/certificates"
     },
+    "service_contentTypes_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Content type identifier."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ContentTypeContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "contentTypes"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/contentTypes"
+    },
+    "service_contentTypes_contentItems_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Content item identifier."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "contentItems"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/contentTypes/contentItems"
+    },
     "service_diagnostics_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -5409,13 +7683,54 @@
       ],
       "description": "Microsoft.ApiManagement/service/diagnostics"
     },
-    "service_groups_childResource": {
+    "service_gateways_apis_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "API identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AssociationContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Association entity contract properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "apis"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/gateways/apis"
+    },
+    "service_gateways_certificateAuthorities_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -5424,12 +7739,135 @@
               "type": "string",
               "pattern": "^[^*#&+:<>?]+$",
               "minLength": 1,
-              "maxLength": 256
+              "maxLength": 80
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
+          "description": "Identifier of the certificate entity. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GatewayCertificateAuthorityContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gateway certificate authority details."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "certificateAuthorities"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/gateways/certificateAuthorities"
+    },
+    "service_gateways_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Gateway entity identifier. Must be unique in the current API Management service instance. Must not have value 'managed'"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GatewayContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the Gateway contract."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "gateways"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/gateways"
+    },
+    "service_gateways_hostnameConfigurations_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Gateway hostname configuration identifier. Must be unique in the scope of parent Gateway entity."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GatewayHostnameConfigurationContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gateway hostname configuration details."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "hostnameConfigurations"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/gateways/hostnameConfigurations"
+    },
+    "service_groups_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
           "description": "Group identifier. Must be unique in the current API Management service instance."
         },
         "properties": {
@@ -5464,21 +7902,13 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
           "description": "User identifier. Must be unique in the current API Management service instance."
         },
         "type": {
@@ -5501,7 +7931,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -5526,7 +7956,7 @@
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/IdentityProviderContractProperties"
+              "$ref": "#/definitions/IdentityProviderCreateContractProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -5555,7 +7985,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -5597,13 +8027,61 @@
       ],
       "description": "Microsoft.ApiManagement/service/loggers"
     },
+    "service_namedValues_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Identifier of the NamedValue."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/NamedValueCreateContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "NamedValue Contract properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "namedValues"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/namedValues"
+    },
     "service_notifications_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -5646,7 +8124,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -5673,21 +8151,13 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
           "description": "User identifier. Must be unique in the current API Management service instance."
         },
         "type": {
@@ -5710,7 +8180,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -5758,7 +8228,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -5793,6 +8263,136 @@
         "type"
       ],
       "description": "Microsoft.ApiManagement/service/policies"
+    },
+    "service_policyFragments_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "(^[\\w]+$)|(^[\\w][\\w\\-]+[\\w]$)",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A resource identifier."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyFragmentContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Policy fragment contract properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "policyFragments"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/policyFragments"
+    },
+    "service_portalconfigs_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Portal configuration identifier."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PortalConfigProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The developer portal configuration contract properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "portalconfigs"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/portalconfigs"
+    },
+    "service_portalRevisions_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Portal revision identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PortalRevisionContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "portalRevisions"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/portalRevisions"
     },
     "service_portalsettings_childResource": {
       "type": "object",
@@ -5883,7 +8483,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "type": {
@@ -5899,27 +8499,62 @@
       ],
       "description": "Microsoft.ApiManagement/service/portalsettings"
     },
+    "service_privateEndpointConnections_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "description": "Private Endpoint Connection Resource Id."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the private endpoint connection."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionRequestProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The connection state of the private endpoint connection."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/privateEndpointConnections"
+    },
     "service_products_apis_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
           "description": "API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number."
         },
         "type": {
@@ -5942,21 +8577,13 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 256
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
           "description": "Product identifier. Must be unique in the current API Management service instance."
         },
         "properties": {
@@ -5991,21 +8618,13 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 256
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
           "description": "Group identifier. Must be unique in the current API Management service instance."
         },
         "type": {
@@ -6028,7 +8647,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -6070,7 +8689,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -6101,43 +8720,36 @@
       ],
       "description": "Microsoft.ApiManagement/service/products/tags"
     },
-    "service_properties_childResource": {
+    "service_schemas_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "maxLength": 256
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Identifier of the property."
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Schema id identifier. Must be unique in the current API Management service instance."
         },
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/PropertyContractProperties"
+              "$ref": "#/definitions/GlobalSchemaContractProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Property Contract properties."
+          "description": "Schema create or update contract Properties."
         },
         "type": {
           "type": "string",
           "enum": [
-            "properties"
+            "schemas"
           ]
         }
       },
@@ -6147,7 +8759,7 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.ApiManagement/service/properties"
+      "description": "Microsoft.ApiManagement/service/schemas"
     },
     "service_subscriptions_childResource": {
       "type": "object",
@@ -6155,7 +8767,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -6203,7 +8815,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -6252,7 +8864,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -6308,27 +8920,69 @@
       ],
       "description": "Microsoft.ApiManagement/service/templates"
     },
-    "service_users_childResource": {
+    "service_tenant_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
           "oneOf": [
             {
               "type": "string",
-              "pattern": "^[^*#&+:<>?]+$",
-              "minLength": 1,
-              "maxLength": 80
+              "enum": [
+                "access",
+                "gitAccess"
+              ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
+          "description": "The identifier of the Access configuration."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AccessInformationCreateParameterProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tenant access information update parameters of the API Management service"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "tenant"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/tenant"
+    },
+    "service_users_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
           "description": "User identifier. Must be unique in the current API Management service instance."
         },
         "properties": {
@@ -6541,6 +9195,21 @@
     "UserCreateParameterProperties": {
       "type": "object",
       "properties": {
+        "appType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "portal",
+                "developerPortal"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Determines the type of application which send the create user request. Default is legacy portal."
+        },
         "confirmation": {
           "oneOf": [
             {
@@ -6634,6 +9303,19 @@
         }
       },
       "description": "User identity details."
+    },
+    "UserIdentityProperties": {
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "type": "string",
+          "description": "The client id of user assigned identity."
+        },
+        "principalId": {
+          "type": "string",
+          "description": "The principal id of user assigned identity."
+        }
+      }
     },
     "VirtualNetworkConfiguration": {
       "type": "object",

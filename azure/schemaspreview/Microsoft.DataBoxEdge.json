@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2020-05-01-preview/Microsoft.DataBoxEdge.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-01-01-preview/Microsoft.DataBoxEdge.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.DataBoxEdge",
   "description": "Microsoft DataBoxEdge Resource Types",
@@ -10,12 +10,23 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "etag": {
           "type": "string",
           "description": "The etag for the devices."
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResourceIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Msi identity details of the resource"
         },
         "location": {
           "type": "string",
@@ -42,6 +53,12 @@
             "oneOf": [
               {
                 "$ref": "#/definitions/dataBoxEdgeDevices_bandwidthSchedules_childResource"
+              },
+              {
+                "$ref": "#/definitions/dataBoxEdgeDevices_diagnosticProactiveLogCollectionSettings_childResource"
+              },
+              {
+                "$ref": "#/definitions/dataBoxEdgeDevices_diagnosticRemoteSupportSettings_childResource"
               },
               {
                 "$ref": "#/definitions/dataBoxEdgeDevices_orders_childResource"
@@ -115,7 +132,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -148,13 +165,105 @@
       ],
       "description": "Microsoft.DataBoxEdge/dataBoxEdgeDevices/bandwidthSchedules"
     },
+    "dataBoxEdgeDevices_diagnosticProactiveLogCollectionSettings": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-01-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^.*/default$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProactiveLogCollectionSettingsProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of proactive log collection settings."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DataBoxEdge/dataBoxEdgeDevices/diagnosticProactiveLogCollectionSettings"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DataBoxEdge/dataBoxEdgeDevices/diagnosticProactiveLogCollectionSettings"
+    },
+    "dataBoxEdgeDevices_diagnosticRemoteSupportSettings": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-01-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^.*/default$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DiagnosticRemoteSupportSettingsProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of remote support settings."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DataBoxEdge/dataBoxEdgeDevices/diagnosticRemoteSupportSettings"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DataBoxEdge/dataBoxEdgeDevices/diagnosticRemoteSupportSettings"
+    },
     "dataBoxEdgeDevices_orders": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -198,19 +307,41 @@
       "type": "object",
       "oneOf": [
         {
+          "$ref": "#/definitions/CloudEdgeManagementRole"
+        },
+        {
           "$ref": "#/definitions/IoTRole"
+        },
+        {
+          "$ref": "#/definitions/KubernetesRole"
+        },
+        {
+          "$ref": "#/definitions/MECRole"
         }
       ],
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
           "type": "string",
           "description": "The role name."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/dataBoxEdgeDevices_roles_addons_childResource"
+              },
+              {
+                "$ref": "#/definitions/dataBoxEdgeDevices_roles_monitoringConfig_childResource"
+              }
+            ]
+          }
         },
         "type": {
           "type": "string",
@@ -226,13 +357,91 @@
       ],
       "description": "Microsoft.DataBoxEdge/dataBoxEdgeDevices/roles"
     },
+    "dataBoxEdgeDevices_roles_addons": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/ArcAddon"
+        }
+      ],
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-01-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The addon name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DataBoxEdge/dataBoxEdgeDevices/roles/addons"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.DataBoxEdge/dataBoxEdgeDevices/roles/addons"
+    },
+    "dataBoxEdgeDevices_roles_monitoringConfig": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-01-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^.*/default$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MonitoringMetricConfigurationProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metrics properties"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DataBoxEdge/dataBoxEdgeDevices/roles/monitoringConfig"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DataBoxEdge/dataBoxEdgeDevices/roles/monitoringConfig"
+    },
     "dataBoxEdgeDevices_shares": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -271,7 +480,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -310,7 +519,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -359,7 +568,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -406,7 +615,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -433,7 +642,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -501,13 +710,64 @@
         }
       },
       "required": [
-        "addressLine1",
-        "city",
-        "country",
-        "postalCode",
-        "state"
+        "country"
       ],
       "description": "The shipping address of the customer."
+    },
+    "ArcAddon": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "ArcForKubernetes"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ArcAddonProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Arc addon properties."
+        }
+      },
+      "required": [
+        "kind",
+        "properties"
+      ],
+      "description": "Arc Addon."
+    },
+    "ArcAddonProperties": {
+      "type": "object",
+      "properties": {
+        "resourceGroupName": {
+          "type": "string",
+          "description": "Arc resource group name"
+        },
+        "resourceLocation": {
+          "type": "string",
+          "description": "Arc resource location"
+        },
+        "resourceName": {
+          "type": "string",
+          "description": "Arc resource Name"
+        },
+        "subscriptionId": {
+          "type": "string",
+          "description": "Arc resource subscription Id"
+        }
+      },
+      "required": [
+        "resourceGroupName",
+        "resourceLocation",
+        "resourceName",
+        "subscriptionId"
+      ],
+      "description": "Arc addon properties."
     },
     "AsymmetricEncryptedSecret": {
       "type": "object",
@@ -679,6 +939,88 @@
       ],
       "description": "The mapping between a particular client IP and the type of access client has on the NFS share."
     },
+    "CloudEdgeManagementRole": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "CloudEdgeManagement"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CloudEdgeManagementRoleProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "CloudEdgeManagement Role properties."
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "description": "The preview of Virtual Machine Cloud Management from the Azure supports deploying and managing VMs on your Azure Stack Edge device from Azure Portal. \r\nFor more information, refer to: https://docs.microsoft.com/en-us/azure/databox-online/azure-stack-edge-gpu-virtual-machine-overview\r\nBy using this feature, you agree to the preview legal terms. See the https://azure.microsoft.com/en-us/support/legal/preview-supplemental-terms/ for additional details."
+    },
+    "CloudEdgeManagementRoleProperties": {
+      "type": "object",
+      "properties": {
+        "roleStatus": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Role status."
+        }
+      },
+      "required": [
+        "roleStatus"
+      ],
+      "description": "CloudEdgeManagement Role properties."
+    },
+    "ComputeResource": {
+      "type": "object",
+      "properties": {
+        "memoryInGB": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Memory in GB"
+        },
+        "processorCount": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Processor count"
+        }
+      },
+      "required": [
+        "memoryInGB",
+        "processorCount"
+      ],
+      "description": "Compute infrastructure Resource"
+    },
     "ContactDetails": {
       "type": "object",
       "properties": {
@@ -745,37 +1087,16 @@
     "DataBoxEdgeDeviceProperties": {
       "type": "object",
       "properties": {
-        "dataBoxEdgeDeviceStatus": {
+        "dataResidency": {
           "oneOf": [
             {
-              "type": "string",
-              "enum": [
-                "ReadyToSetup",
-                "Online",
-                "Offline",
-                "NeedsAttention",
-                "Disconnected",
-                "PartiallyDisconnected",
-                "Maintenance"
-              ]
+              "$ref": "#/definitions/DataResidency"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The status of the Data Box Edge/Gateway device."
-        },
-        "description": {
-          "type": "string",
-          "description": "The Description of the Data Box Edge/Gateway device."
-        },
-        "friendlyName": {
-          "type": "string",
-          "description": "The Data Box Edge/Gateway device name."
-        },
-        "modelDescription": {
-          "type": "string",
-          "description": "The description of the Data Box Edge/Gateway device model."
+          "description": "Wraps data-residency related information for edge-resource and this should be used with ARM layer."
         }
       },
       "description": "The properties of the Data Box Edge/Gateway device."
@@ -786,7 +1107,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -819,13 +1140,95 @@
       ],
       "description": "Microsoft.DataBoxEdge/dataBoxEdgeDevices/bandwidthSchedules"
     },
+    "dataBoxEdgeDevices_diagnosticProactiveLogCollectionSettings_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-01-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "default"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProactiveLogCollectionSettingsProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of proactive log collection settings."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "diagnosticProactiveLogCollectionSettings"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DataBoxEdge/dataBoxEdgeDevices/diagnosticProactiveLogCollectionSettings"
+    },
+    "dataBoxEdgeDevices_diagnosticRemoteSupportSettings_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-01-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "default"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DiagnosticRemoteSupportSettingsProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of remote support settings."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "diagnosticRemoteSupportSettings"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DataBoxEdge/dataBoxEdgeDevices/diagnosticRemoteSupportSettings"
+    },
     "dataBoxEdgeDevices_orders_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -860,18 +1263,59 @@
       ],
       "description": "Microsoft.DataBoxEdge/dataBoxEdgeDevices/orders"
     },
-    "dataBoxEdgeDevices_roles_childResource": {
+    "dataBoxEdgeDevices_roles_addons_childResource": {
       "type": "object",
       "oneOf": [
         {
-          "$ref": "#/definitions/IoTRole"
+          "$ref": "#/definitions/ArcAddon"
         }
       ],
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The addon name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "addons"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.DataBoxEdge/dataBoxEdgeDevices/roles/addons"
+    },
+    "dataBoxEdgeDevices_roles_childResource": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/CloudEdgeManagementRole"
+        },
+        {
+          "$ref": "#/definitions/IoTRole"
+        },
+        {
+          "$ref": "#/definitions/KubernetesRole"
+        },
+        {
+          "$ref": "#/definitions/MECRole"
+        }
+      ],
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -892,13 +1336,54 @@
       ],
       "description": "Microsoft.DataBoxEdge/dataBoxEdgeDevices/roles"
     },
+    "dataBoxEdgeDevices_roles_monitoringConfig_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-01-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "default"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MonitoringMetricConfigurationProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metrics properties"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "monitoringConfig"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DataBoxEdge/dataBoxEdgeDevices/roles/monitoringConfig"
+    },
     "dataBoxEdgeDevices_shares_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -937,7 +1422,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -976,7 +1461,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -1015,7 +1500,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -1062,7 +1547,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -1089,7 +1574,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -1121,6 +1606,47 @@
         "type"
       ],
       "description": "Microsoft.DataBoxEdge/dataBoxEdgeDevices/users"
+    },
+    "DataResidency": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "GeoZoneReplication",
+                "ZoneReplication"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "DataResidencyType enum."
+        }
+      },
+      "description": "Wraps data-residency related information for edge-resource and this should be used with ARM layer."
+    },
+    "DiagnosticRemoteSupportSettingsProperties": {
+      "type": "object",
+      "properties": {
+        "remoteSupportSettingsList": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RemoteSupportSettings"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Remote support settings list according to the RemoteApplicationType"
+        }
+      },
+      "description": "The properties of remote support settings."
     },
     "FileEventTrigger": {
       "type": "object",
@@ -1167,6 +1693,7 @@
       "properties": {
         "customContextTag": {
           "type": "string",
+          "maxLength": 192,
           "description": "A custom context tag typically used to correlate the trigger against its usage. For example, if a periodic timer trigger is intended for certain specific IoT modules in the device, the tag can be the name or the image URL of the module."
         },
         "sinkInfo": {
@@ -1318,6 +1845,17 @@
     "IoTRoleProperties": {
       "type": "object",
       "properties": {
+        "computeResource": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ComputeResource"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Compute infrastructure Resource"
+        },
         "hostPlatform": {
           "oneOf": [
             {
@@ -1404,6 +1942,387 @@
       ],
       "description": "IoT role properties."
     },
+    "KubernetesClusterInfo": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Kubernetes cluster version"
+        }
+      },
+      "required": [
+        "version"
+      ],
+      "description": "Kubernetes cluster configuration"
+    },
+    "KubernetesRole": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "Kubernetes"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/KubernetesRoleProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Kubernetes role properties."
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "description": "The limited preview of Kubernetes Cluster Management from the Azure supports:\r\n1. Using a simple turn-key option in Azure Portal, deploy a Kubernetes cluster on your Azure Stack Edge device. \r\n2. Configure Kubernetes cluster running on your device with Arc enabled Kubernetes with a click of a button in the Azure Portal. \r\n Azure Arc enables organizations to view, manage, and govern their on-premises Kubernetes clusters using the Azure Portal, command line tools, and APIs.\r\n3. Easily configure Persistent Volumes using SMB and NFS shares for storing container data. \r\n For more information, refer to the document here: https://databoxupdatepackages.blob.core.windows.net/documentation/Microsoft-Azure-Stack-Edge-K8-Cloud-Management-20210323.pdf \r\n Or Demo: https://databoxupdatepackages.blob.core.windows.net/documentation/Microsoft-Azure-Stack-Edge-K8S-Cloud-Management-20210323.mp4\r\n By using this feature, you agree to the preview legal terms. See the https://azure.microsoft.com/en-us/support/legal/preview-supplemental-terms/"
+    },
+    "KubernetesRoleCompute": {
+      "type": "object",
+      "properties": {
+        "vmProfile": {
+          "type": "string",
+          "description": "VM profile"
+        }
+      },
+      "required": [
+        "vmProfile"
+      ],
+      "description": "Kubernetes role compute resource"
+    },
+    "KubernetesRoleProperties": {
+      "type": "object",
+      "properties": {
+        "hostPlatform": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Windows",
+                "Linux"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Host OS supported by the Kubernetes role."
+        },
+        "kubernetesClusterInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/KubernetesClusterInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Kubernetes cluster configuration"
+        },
+        "kubernetesRoleResources": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/KubernetesRoleResources"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Kubernetes role resources"
+        },
+        "roleStatus": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Role status."
+        }
+      },
+      "required": [
+        "hostPlatform",
+        "kubernetesClusterInfo",
+        "kubernetesRoleResources",
+        "roleStatus"
+      ],
+      "description": "Kubernetes role properties."
+    },
+    "KubernetesRoleResources": {
+      "type": "object",
+      "properties": {
+        "compute": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/KubernetesRoleCompute"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Kubernetes role compute resource"
+        },
+        "storage": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/KubernetesRoleStorage"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Kubernetes role storage resource"
+        }
+      },
+      "required": [
+        "compute"
+      ],
+      "description": "Kubernetes role resources"
+    },
+    "KubernetesRoleStorage": {
+      "type": "object",
+      "properties": {
+        "endpoints": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MountPointMap"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Mount points of shares in role(s)."
+        }
+      },
+      "description": "Kubernetes role storage resource"
+    },
+    "MECRole": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "MEC"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MECRoleProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "MEC role properties."
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "description": "MEC role."
+    },
+    "MECRoleProperties": {
+      "type": "object",
+      "properties": {
+        "connectionString": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AsymmetricEncryptedSecret"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Represent the secrets intended for encryption with asymmetric key pair."
+        },
+        "controllerEndpoint": {
+          "type": "string",
+          "description": "Controller Endpoint."
+        },
+        "resourceUniqueId": {
+          "type": "string",
+          "description": "Unique Id of the Resource."
+        },
+        "roleStatus": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Role status."
+        }
+      },
+      "required": [
+        "roleStatus"
+      ],
+      "description": "MEC role properties."
+    },
+    "MetricConfiguration": {
+      "type": "object",
+      "properties": {
+        "counterSets": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MetricCounterSet"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Host name for the IoT hub associated to the device."
+        },
+        "mdmAccount": {
+          "type": "string",
+          "description": "The MDM account to which the counters should be pushed."
+        },
+        "metricNameSpace": {
+          "type": "string",
+          "description": "The MDM namespace to which the counters should be pushed. This is required if MDMAccount is specified"
+        },
+        "resourceId": {
+          "type": "string",
+          "description": "The Resource ID on which the metrics should be pushed."
+        }
+      },
+      "required": [
+        "counterSets",
+        "resourceId"
+      ],
+      "description": "Metric configuration."
+    },
+    "MetricCounter": {
+      "type": "object",
+      "properties": {
+        "additionalDimensions": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MetricDimension"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The additional dimensions to be added to metric."
+        },
+        "dimensionFilter": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MetricDimension"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The dimension filter."
+        },
+        "instance": {
+          "type": "string",
+          "description": "The instance from which counter should be collected."
+        },
+        "name": {
+          "type": "string",
+          "description": "The counter name."
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "description": "The metric counter"
+    },
+    "MetricCounterSet": {
+      "type": "object",
+      "properties": {
+        "counters": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MetricCounter"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The counters that should be collected in this set."
+        }
+      },
+      "required": [
+        "counters"
+      ],
+      "description": "The metric counter set"
+    },
+    "MetricDimension": {
+      "type": "object",
+      "properties": {
+        "sourceName": {
+          "type": "string",
+          "description": "The dimension value."
+        },
+        "sourceType": {
+          "type": "string",
+          "description": "The dimension type."
+        }
+      },
+      "required": [
+        "sourceName",
+        "sourceType"
+      ],
+      "description": "The metric dimension"
+    },
+    "MonitoringMetricConfigurationProperties": {
+      "type": "object",
+      "properties": {
+        "metricConfigurations": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MetricConfiguration"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The metrics configuration details"
+        }
+      },
+      "required": [
+        "metricConfigurations"
+      ],
+      "description": "Metrics properties"
+    },
     "MountPointMap": {
       "type": "object",
       "properties": {
@@ -1431,16 +2350,21 @@
           ],
           "description": "Contains all the contact details of the customer."
         },
-        "currentStatus": {
+        "shipmentType": {
           "oneOf": [
             {
-              "$ref": "#/definitions/OrderStatus"
+              "type": "string",
+              "enum": [
+                "NotApplicable",
+                "ShippedToCustomer",
+                "SelfPickup"
+              ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Represents a single status change."
+          "description": "ShipmentType of the order."
         },
         "shippingAddress": {
           "oneOf": [
@@ -1455,50 +2379,9 @@
         }
       },
       "required": [
-        "contactInformation",
-        "shippingAddress"
+        "contactInformation"
       ],
       "description": "Order properties."
-    },
-    "OrderStatus": {
-      "type": "object",
-      "properties": {
-        "comments": {
-          "type": "string",
-          "description": "Comments related to this status change."
-        },
-        "status": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "Untracked",
-                "AwaitingFulfilment",
-                "AwaitingPreparation",
-                "AwaitingShipment",
-                "Shipped",
-                "Arriving",
-                "Delivered",
-                "ReplacementRequested",
-                "LostDevice",
-                "Declined",
-                "ReturnInitiated",
-                "AwaitingReturnShipment",
-                "ShippedBack",
-                "CollectedAtMicrosoft"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Status of the order as per the allowed status types."
-        }
-      },
-      "required": [
-        "status"
-      ],
-      "description": "Represents a single status change."
     },
     "PeriodicTimerEventTrigger": {
       "type": "object",
@@ -1532,6 +2415,7 @@
       "properties": {
         "customContextTag": {
           "type": "string",
+          "maxLength": 192,
           "description": "A custom context tag typically used to correlate the trigger against its usage. For example, if a periodic timer trigger is intended for certain specific IoT modules in the device, the tag can be the name or the image URL of the module."
         },
         "sinkInfo": {
@@ -1586,6 +2470,30 @@
       ],
       "description": "Periodic timer event source."
     },
+    "ProactiveLogCollectionSettingsProperties": {
+      "type": "object",
+      "properties": {
+        "userConsent": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Proactive diagnostic collection consent flag."
+        }
+      },
+      "required": [
+        "userConsent"
+      ],
+      "description": "The properties of proactive log collection settings."
+    },
     "RefreshDetails": {
       "type": "object",
       "properties": {
@@ -1608,6 +2516,73 @@
         }
       },
       "description": "Fields for tracking refresh job on the share or container."
+    },
+    "RemoteSupportSettings": {
+      "type": "object",
+      "properties": {
+        "accessLevel": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "ReadOnly",
+                "ReadWrite",
+                "FullAccess"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Access level allowed for this remote application type."
+        },
+        "expirationTimeStampInUTC": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Expiration time stamp"
+        },
+        "remoteApplicationType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Powershell",
+                "WAC",
+                "LocalUI",
+                "AllApplications"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Remote application type."
+        }
+      },
+      "description": "RemoteApplicationType for which remote support settings is being modified"
+    },
+    "ResourceIdentity": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "SystemAssigned",
+                "UserAssigned"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Identity type."
+        }
+      },
+      "description": "Msi identity details of the resource"
     },
     "RoleSinkInfo": {
       "type": "object",
@@ -1768,9 +2743,25 @@
                 "TEA_4Node_UPS_Heater",
                 "TMA",
                 "TDC",
-                "TCA_Large",
                 "TCA_Small",
-                "GPU"
+                "GPU",
+                "TCA_Large",
+                "EdgeP_Base",
+                "EdgeP_High",
+                "EdgePR_Base",
+                "EdgePR_Base_UPS",
+                "EP2_64_1VPU_W",
+                "EP2_128_1T4_Mx1_W",
+                "EP2_256_2T4_W",
+                "EdgeMR_Mini",
+                "RCA_Small",
+                "RCA_Large",
+                "RDC",
+                "Management",
+                "EP2_64_Mx1_W",
+                "EP2_128_GPU1_Mx1_W",
+                "EP2_256_GPU2_Mx1",
+                "EdgeMR_TCP"
               ]
             },
             {
@@ -1913,6 +2904,9 @@
           "description": "Current status of the storage account."
         }
       },
+      "required": [
+        "dataPolicy"
+      ],
       "description": "The storage account properties."
     },
     "SymmetricKey": {

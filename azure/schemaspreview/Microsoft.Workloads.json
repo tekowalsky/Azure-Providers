@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-12-01-preview/Microsoft.Workloads.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-11-01-preview/Microsoft.Workloads.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Workloads",
   "description": "Microsoft Workloads Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-12-01-preview"
+            "2022-11-01-preview"
           ]
         },
         "identity": {
@@ -49,6 +49,9 @@
             "oneOf": [
               {
                 "$ref": "#/definitions/monitors_providerInstances_childResource"
+              },
+              {
+                "$ref": "#/definitions/monitors_sapLandscapeMonitor_childResource"
               }
             ]
           }
@@ -90,7 +93,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-12-01-preview"
+            "2022-11-01-preview"
           ]
         },
         "identity": {
@@ -134,119 +137,13 @@
       ],
       "description": "Microsoft.Workloads/monitors/providerInstances"
     },
-    "phpWorkloads": {
+    "monitors_sapLandscapeMonitor": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-12-01-preview"
-          ]
-        },
-        "identity": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/PhpWorkloadResourceIdentity"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Identity for the resource. Currently not supported"
-        },
-        "kind": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "WordPress"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Indicates which kind of php workload this resource represent e.g WordPress"
-        },
-        "location": {
-          "type": "string",
-          "description": "The geo-location where the resource lives"
-        },
-        "name": {
-          "type": "string",
-          "description": "Php workload name"
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/PhpWorkloadResourceProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "PHP workload resource properties"
-        },
-        "resources": {
-          "type": "array",
-          "items": {
-            "oneOf": [
-              {
-                "$ref": "#/definitions/phpWorkloads_wordpressInstances_childResource"
-              }
-            ]
-          }
-        },
-        "sku": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/Sku"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The resource model definition representing SKU"
-        },
-        "tags": {
-          "oneOf": [
-            {
-              "type": "object",
-              "additionalProperties": {
-                "type": "string"
-              },
-              "properties": {}
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Resource tags."
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "Microsoft.Workloads/phpWorkloads"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "kind",
-        "location",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.Workloads/phpWorkloads"
-    },
-    "phpWorkloads_wordpressInstances": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2021-12-01-preview"
+            "2022-11-01-preview"
           ]
         },
         "name": {
@@ -263,18 +160,18 @@
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/WordpressInstanceResourceProperties"
+              "$ref": "#/definitions/SapLandscapeMonitorProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "WordPress instance properties"
+          "description": "Gets or sets the properties for Sap Landscape Monitor Dashboard."
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.Workloads/phpWorkloads/wordpressInstances"
+            "Microsoft.Workloads/monitors/sapLandscapeMonitor"
           ]
         }
       },
@@ -284,7 +181,7 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Workloads/phpWorkloads/wordpressInstances"
+      "description": "Microsoft.Workloads/monitors/sapLandscapeMonitor"
     },
     "sapVirtualInstances": {
       "type": "object",
@@ -292,7 +189,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-12-01-preview"
+            "2022-11-01-preview"
           ]
         },
         "identity": {
@@ -378,7 +275,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-12-01-preview"
+            "2022-11-01-preview"
           ]
         },
         "location": {
@@ -437,7 +334,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-12-01-preview"
+            "2022-11-01-preview"
           ]
         },
         "location": {
@@ -496,7 +393,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-12-01-preview"
+            "2022-11-01-preview"
           ]
         },
         "location": {
@@ -588,74 +485,29 @@
       ],
       "description": "Gets or sets the application server configuration."
     },
-    "BackupProfile": {
+    "ApplicationServerFullResourceNames": {
       "type": "object",
       "properties": {
-        "backupEnabled": {
+        "availabilitySetName": {
+          "type": "string",
+          "description": "The full name for availability set. In case name is not provided, it will be defaulted to {SID}-App-AvSet."
+        },
+        "virtualMachines": {
           "oneOf": [
             {
-              "type": "string",
-              "enum": [
-                "Enabled",
-                "Disabled"
-              ]
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/VirtualMachineResourceNames"
+              }
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Whether to enable Azure backup for the workload."
+          "description": "The list of virtual machine naming details."
         }
       },
-      "required": [
-        "backupEnabled"
-      ],
-      "description": "Backup profile"
-    },
-    "CacheProfile": {
-      "type": "object",
-      "properties": {
-        "capacity": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Cache capacity"
-        },
-        "family": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "C",
-                "P"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Cache family."
-        },
-        "name": {
-          "type": "string",
-          "description": "Cache name"
-        },
-        "skuName": {
-          "type": "string",
-          "description": "Cache SKU name"
-        }
-      },
-      "required": [
-        "capacity",
-        "family",
-        "skuName"
-      ],
-      "description": "Cache profile"
+      "description": "The full resource names object for application layer resources. The number of entries in this list should be equal to the number VMs to be created for application layer."
     },
     "CentralServerConfiguration": {
       "type": "object",
@@ -694,6 +546,41 @@
       ],
       "description": "Gets or sets the central server configuration."
     },
+    "CentralServerFullResourceNames": {
+      "type": "object",
+      "properties": {
+        "availabilitySetName": {
+          "type": "string",
+          "description": "The full name for availability set. In case name is not provided, it will be defaulted to {SID}-ASCS-AvSet."
+        },
+        "loadBalancer": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LoadBalancerResourceNames"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The resource names object for load balancer and related resources."
+        },
+        "virtualMachines": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/VirtualMachineResourceNames"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of names for all ASCS virtual machines to be deployed. The number of entries in this list should be equal to the number VMs to be created for ASCS layer. At maximum, there can be two virtual machines at this layer: ASCS and ERS."
+        }
+      },
+      "description": "The full resource names object for central server layer resources."
+    },
     "CreateAndMountFileShareConfiguration": {
       "type": "object",
       "properties": {
@@ -715,7 +602,7 @@
       "required": [
         "configurationType"
       ],
-      "description": "Gets or sets the file share configuration where the transport directory fileshare is created and mounted as a part of the create infra flow."
+      "description": "Gets or sets the file share configuration for file share created with the VIS case."
     },
     "DatabaseConfiguration": {
       "type": "object",
@@ -780,126 +667,40 @@
       ],
       "description": "Gets or sets the database configuration."
     },
-    "DatabaseProfile": {
+    "DatabaseServerFullResourceNames": {
       "type": "object",
       "properties": {
-        "backupRetentionDays": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Backup retention days for the server"
-        },
-        "haEnabled": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "Enabled",
-                "Disabled"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Whether to enable HA for the server."
-        },
-        "serverName": {
+        "availabilitySetName": {
           "type": "string",
-          "description": "Database server name"
+          "description": "The full name for availability set. In case name is not provided, it will be defaulted to {SID}-DB-AvSet."
         },
-        "sku": {
-          "type": "string",
-          "description": "The name of the server SKU, e.g. Standard_D32s_v4"
-        },
-        "sslEnforcementEnabled": {
+        "loadBalancer": {
           "oneOf": [
             {
-              "type": "string",
-              "enum": [
-                "Enabled",
-                "Disabled"
-              ]
+              "$ref": "#/definitions/LoadBalancerResourceNames"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Whether to enable SSL enforcement on the database."
+          "description": "The resource names object for load balancer and related resources."
         },
-        "storageInGB": {
+        "virtualMachines": {
           "oneOf": [
             {
-              "type": "integer",
-              "minimum": 1
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/VirtualMachineResourceNames"
+              }
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Database storage size in GB"
-        },
-        "storageIops": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Storage IOPS for the server"
-        },
-        "storageSku": {
-          "type": "string",
-          "description": "SKU name for database storage"
-        },
-        "tier": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "Burstable",
-                "GeneralPurpose",
-                "MemoryOptimized"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Tier of the server SKU."
-        },
-        "type": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "MySql"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Database type"
-        },
-        "version": {
-          "type": "string",
-          "description": "Database version"
+          "description": "The list of virtual machine naming details."
         }
       },
-      "required": [
-        "sku",
-        "tier",
-        "type"
-      ],
-      "description": "Workload database profile"
+      "description": "The full resource names object for database layer resources. The number of entries in this list should be equal to the number VMs to be created for database layer."
     },
     "DB2ProviderInstanceProperties": {
       "type": "object",
@@ -1082,6 +883,12 @@
           "enum": [
             "Discovery"
           ]
+        },
+        "managedRgStorageAccountName": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 24,
+          "description": "The custom storage account name for the storage account created by the service in the managed resource group created as part of VIS deployment.<br><br>Refer to the storage account naming rules [here](https://learn.microsoft.com/azure/azure-resource-manager/management/resource-name-rules#microsoftstorage).<br><br>If not provided, the service will create the storage account with a random name."
         }
       },
       "required": [
@@ -1109,42 +916,6 @@
         }
       },
       "description": "The Disk Configuration Details."
-    },
-    "DiskInfo": {
-      "type": "object",
-      "properties": {
-        "sizeInGB": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Disk size in GB"
-        },
-        "storageType": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "Premium_LRS",
-                "Standard_LRS",
-                "StandardSSD_LRS"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Storage type."
-        }
-      },
-      "required": [
-        "storageType"
-      ],
-      "description": "Disk resource creation details"
     },
     "DiskSku": {
       "type": "object",
@@ -1255,60 +1026,6 @@
       "properties": {},
       "description": "File Share configuration details, populated with information on storage configuration mounted on the VIS. The createAndMount option is selected in case of missing input."
     },
-    "FileshareProfile": {
-      "type": "object",
-      "properties": {
-        "shareSizeInGB": {
-          "oneOf": [
-            {
-              "type": "integer",
-              "minimum": 1
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "File share size in GB"
-        },
-        "shareType": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "NfsOnController",
-                "AzureFiles"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Share type."
-        },
-        "storageType": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "Standard_LRS",
-                "Standard_GRS",
-                "Standard_ZRS",
-                "Premium_LRS"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "File share backing storage type."
-        }
-      },
-      "required": [
-        "shareType",
-        "storageType"
-      ],
-      "description": "File share profile"
-    },
     "GatewayServerProperties": {
       "type": "object",
       "properties": {},
@@ -1329,10 +1046,6 @@
           "type": "string",
           "description": "Gets or sets the key vault URI to secret with the database password."
         },
-        "dbSslCertificateUri": {
-          "type": "string",
-          "description": "Gets or sets the blob URI to SSL certificate for the DB."
-        },
         "dbUsername": {
           "type": "string",
           "description": "Gets or sets the database user name."
@@ -1350,6 +1063,10 @@
           "enum": [
             "SapHana"
           ]
+        },
+        "sapSid": {
+          "type": "string",
+          "description": "Gets or sets the SAP System Identifier."
         },
         "sqlPort": {
           "type": "string",
@@ -1521,6 +1238,58 @@
       ],
       "description": "Specifies the Linux operating system settings on the virtual machine. <br><br>For a list of supported Linux distributions, see [Linux on Azure-Endorsed Distributions](https://docs.microsoft.com/azure/virtual-machines/linux/endorsed-distros)."
     },
+    "LoadBalancerResourceNames": {
+      "type": "object",
+      "properties": {
+        "backendPoolNames": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of backend pool names. Currently, ACSS deploys only one backend pool and hence, size of this list should be 1"
+        },
+        "frontendIpConfigurationNames": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of frontend IP configuration names. If provided as input, size of this list should be 2 for cs layer and should be 1 for database layer."
+        },
+        "healthProbeNames": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of health probe names. If provided as input, size of this list should be 2 for cs layer and should be 1 for database layer."
+        },
+        "loadBalancerName": {
+          "type": "string",
+          "description": "The full resource name for load balancer. If this value is not provided, load balancer will be name as {ASCS/DB}-loadBalancer."
+        }
+      },
+      "description": "The resource names object for load balancer and related resources."
+    },
     "ManagedRGConfiguration": {
       "type": "object",
       "properties": {
@@ -1590,7 +1359,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-12-01-preview"
+            "2022-11-01-preview"
           ]
         },
         "identity": {
@@ -1634,6 +1403,47 @@
       ],
       "description": "Microsoft.Workloads/monitors/providerInstances"
     },
+    "monitors_sapLandscapeMonitor_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-11-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "default"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SapLandscapeMonitorProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the properties for Sap Landscape Monitor Dashboard."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "sapLandscapeMonitor"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Workloads/monitors/sapLandscapeMonitor"
+    },
     "MountFileShareConfiguration": {
       "type": "object",
       "properties": {
@@ -1657,7 +1467,7 @@
         "id",
         "privateEndpointId"
       ],
-      "description": "Gets or sets the file share configuration where the transport directory fileshare already exists, and user wishes to mount the fileshare as a part of the create infra flow."
+      "description": "Gets or sets the file share configuration for externally mounted cases."
     },
     "MsSqlServerProviderInstanceProperties": {
       "type": "object",
@@ -1735,118 +1545,15 @@
       },
       "description": "Defines the network configuration type for SAP system infrastructure that is being deployed "
     },
-    "NetworkProfile": {
+    "NetworkInterfaceResourceNames": {
       "type": "object",
       "properties": {
-        "azureFrontDoorEnabled": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "Enabled",
-                "Disabled"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Whether to enable Azure front door."
-        },
-        "capacity": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Capacity, applicable only for Application Gateway"
-        },
-        "loadBalancerSku": {
+        "networkInterfaceName": {
           "type": "string",
-          "description": "Load balancer SKU"
-        },
-        "loadBalancerTier": {
-          "type": "string",
-          "description": "Load balancer tier"
-        },
-        "loadBalancerType": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "ApplicationGateway",
-                "LoadBalancer"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Load balancer type."
+          "description": "The full name for network interface. If name is not provided, service uses a default name based on the deployment type. For SingleServer, default name is {SID}-Nic. In case of HA-AvZone systems, default name will be {SID}-{App/ASCS/DB}-Zone{A/B}-Nic with an incrementor at the end in case of more than 1 instance per layer. For distributed and HA-AvSet systems, default name will be {SID}-{App/ASCS/DB}-Nic with an incrementor at the end in case of more than 1 instance per layer."
         }
       },
-      "required": [
-        "loadBalancerType"
-      ],
-      "description": "Network profile"
-    },
-    "NodeProfile": {
-      "type": "object",
-      "properties": {
-        "dataDisks": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/DiskInfo"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Data disks details. This property is not in use right now"
-        },
-        "name": {
-          "type": "string",
-          "description": "VM or VMSS name"
-        },
-        "nodeSku": {
-          "type": "string",
-          "description": "VM SKU for node(s)"
-        },
-        "osDisk": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/DiskInfo"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Disk resource creation details"
-        },
-        "osImage": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/OsImageProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "OS image profile"
-        }
-      },
-      "required": [
-        "nodeSku",
-        "osDisk",
-        "osImage"
-      ],
-      "description": "VM or VMSS node profile"
+      "description": "The resource names object for network interface and related resources."
     },
     "OSConfiguration": {
       "type": "object",
@@ -1860,69 +1567,6 @@
       ],
       "properties": {},
       "description": "Defines the OS configuration."
-    },
-    "OsImageProfile": {
-      "type": "object",
-      "properties": {
-        "offer": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "UbuntuServer"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "OS image offer."
-        },
-        "publisher": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "Canonical"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "OS image publisher."
-        },
-        "sku": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "18.04-LTS",
-                "16.04-LTS"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "OS image sku."
-        },
-        "version": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "latest"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "OS image version."
-        }
-      },
-      "description": "OS image profile"
     },
     "OSProfile": {
       "type": "object",
@@ -1969,260 +1613,6 @@
         }
       },
       "description": "Defines the OS and SAP Configurations for Deployment"
-    },
-    "PhpProfile": {
-      "type": "object",
-      "properties": {
-        "version": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "7.2",
-                "7.3",
-                "7.4"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "PHP version."
-        }
-      },
-      "required": [
-        "version"
-      ],
-      "description": "PHP profile"
-    },
-    "PhpWorkloadResourceIdentity": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "None",
-                "UserAssigned"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Type of manage identity."
-        },
-        "userAssignedIdentities": {
-          "oneOf": [
-            {
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/UserAssignedIdentity"
-              },
-              "properties": {}
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
-        }
-      },
-      "required": [
-        "type"
-      ],
-      "description": "Identity for the resource. Currently not supported"
-    },
-    "PhpWorkloadResourceProperties": {
-      "type": "object",
-      "properties": {
-        "adminUserProfile": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/UserProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "User profile to configure on a compute resources such as VM, VMSS"
-        },
-        "appLocation": {
-          "type": "string",
-          "description": "The infra resources for PHP workload will be created in this location"
-        },
-        "backupProfile": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/BackupProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Backup profile"
-        },
-        "cacheProfile": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/CacheProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Cache profile"
-        },
-        "controllerProfile": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/NodeProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "VM or VMSS node profile"
-        },
-        "databaseProfile": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/DatabaseProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Workload database profile"
-        },
-        "fileshareProfile": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/FileshareProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "File share profile"
-        },
-        "managedResourceGroupConfiguration": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/ManagedRGConfiguration"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Managed resource group configuration"
-        },
-        "networkProfile": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/NetworkProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Network profile"
-        },
-        "phpProfile": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/PhpProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "PHP profile"
-        },
-        "searchProfile": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/SearchProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Search profile"
-        },
-        "siteProfile": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/SiteProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Workload website profile"
-        },
-        "webNodesProfile": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/VmssNodesProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "VMSS profile"
-        }
-      },
-      "required": [
-        "adminUserProfile",
-        "appLocation",
-        "controllerProfile",
-        "databaseProfile",
-        "webNodesProfile"
-      ],
-      "description": "PHP workload resource properties"
-    },
-    "phpWorkloads_wordpressInstances_childResource": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2021-12-01-preview"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "enum": [
-            "default"
-          ]
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/WordpressInstanceResourceProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "WordPress instance properties"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "wordpressInstances"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.Workloads/phpWorkloads/wordpressInstances"
     },
     "PrometheusHaClusterProviderInstanceProperties": {
       "type": "object",
@@ -2286,6 +1676,10 @@
           "enum": [
             "PrometheusOS"
           ]
+        },
+        "sapSid": {
+          "type": "string",
+          "description": "Gets or sets the SAP System Identifier"
         },
         "sslCertificateUri": {
           "type": "string",
@@ -2471,6 +1865,138 @@
       ],
       "description": "The SAP Software configuration Input when the software is to be installed by service without OS Configurations"
     },
+    "SapLandscapeMonitorMetricThresholds": {
+      "type": "object",
+      "properties": {
+        "green": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the threshold value for Green."
+        },
+        "name": {
+          "type": "string",
+          "description": "Gets or sets the name of the threshold."
+        },
+        "red": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the threshold value for Red."
+        },
+        "yellow": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the threshold value for Yellow."
+        }
+      },
+      "description": "Gets or sets the Threshold Values for Top Metrics Health."
+    },
+    "SapLandscapeMonitorProperties": {
+      "type": "object",
+      "properties": {
+        "grouping": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SapLandscapeMonitorPropertiesGrouping"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the SID groupings by landscape and Environment."
+        },
+        "topMetricsThresholds": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SapLandscapeMonitorMetricThresholds"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the list Top Metric Thresholds for SAP Landscape Monitor Dashboard"
+        }
+      },
+      "description": "Gets or sets the properties for Sap Landscape Monitor Dashboard."
+    },
+    "SapLandscapeMonitorPropertiesGrouping": {
+      "type": "object",
+      "properties": {
+        "landscape": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SapLandscapeMonitorSidMapping"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the list of landscape to SID mappings."
+        },
+        "sapApplication": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SapLandscapeMonitorSidMapping"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the list of Sap Applications to SID mappings."
+        }
+      },
+      "description": "Gets or sets the SID groupings by landscape and Environment."
+    },
+    "SapLandscapeMonitorSidMapping": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Gets or sets the name of the grouping."
+        },
+        "topSid": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the list of SID's."
+        }
+      },
+      "description": "Gets or sets the mapping for SID to Environment/Applications."
+    },
     "SapNetWeaverProviderInstanceProperties": {
       "type": "object",
       "properties": {
@@ -2521,10 +2047,6 @@
         "sapSid": {
           "type": "string",
           "description": "Gets or sets the SAP System Identifier"
-        },
-        "sapSslCertificateUri": {
-          "type": "string",
-          "description": "Gets or sets the blob URI to SSL certificate for the SAP system."
         },
         "sapUsername": {
           "type": "string",
@@ -2623,7 +2145,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-12-01-preview"
+            "2022-11-01-preview"
           ]
         },
         "location": {
@@ -2682,7 +2204,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-12-01-preview"
+            "2022-11-01-preview"
           ]
         },
         "location": {
@@ -2741,7 +2263,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-12-01-preview"
+            "2022-11-01-preview"
           ]
         },
         "location": {
@@ -2794,76 +2316,6 @@
       ],
       "description": "Microsoft.Workloads/sapVirtualInstances/databaseInstances"
     },
-    "SearchProfile": {
-      "type": "object",
-      "properties": {
-        "dataDisks": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/DiskInfo"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Data disks details. This property is not in use right now"
-        },
-        "name": {
-          "type": "string",
-          "description": "VM or VMSS name"
-        },
-        "nodeSku": {
-          "type": "string",
-          "description": "VM SKU for node(s)"
-        },
-        "osDisk": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/DiskInfo"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Disk resource creation details"
-        },
-        "osImage": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/OsImageProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "OS image profile"
-        },
-        "searchType": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "Elastic"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Search type"
-        }
-      },
-      "required": [
-        "nodeSku",
-        "osDisk",
-        "osImage",
-        "searchType"
-      ],
-      "description": "Search profile"
-    },
     "ServiceInitiatedSoftwareConfiguration": {
       "type": "object",
       "properties": {
@@ -2915,9 +2367,34 @@
       ],
       "description": "The SAP Software configuration Input when the software is to be installed by service."
     },
+    "SharedStorageResourceNames": {
+      "type": "object",
+      "properties": {
+        "sharedStorageAccountName": {
+          "type": "string",
+          "description": "The full name of the shared storage account. If it is not provided, it will be defaulted to {SID}nfs{guid of 15 chars}."
+        },
+        "sharedStorageAccountPrivateEndPointName": {
+          "type": "string",
+          "description": "The full name of private end point for the shared storage account. If it is not provided, it will be defaulted to {storageAccountName}_pe"
+        }
+      },
+      "description": "The resource names object for shared storage."
+    },
     "SingleServerConfiguration": {
       "type": "object",
       "properties": {
+        "customResourceNames": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SingleServerCustomResourceNames"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The resource-names input to specify custom names for underlying azure resources that are part of a single server SAP system."
+        },
         "databaseType": {
           "oneOf": [
             {
@@ -2984,15 +2461,41 @@
       ],
       "description": "Gets or sets the single server configuration."
     },
-    "SiteProfile": {
+    "SingleServerCustomResourceNames": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/SingleServerFullResourceNames"
+        }
+      ],
+      "properties": {},
+      "description": "The resource-names input to specify custom names for underlying azure resources that are part of a single server SAP system."
+    },
+    "SingleServerFullResourceNames": {
       "type": "object",
       "properties": {
-        "domainName": {
+        "namingPatternType": {
           "type": "string",
-          "description": "Domain name for the application site URL"
+          "enum": [
+            "FullResourceName"
+          ]
+        },
+        "virtualMachine": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/VirtualMachineResourceNames"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The resource names object for virtual machine and related resources."
         }
       },
-      "description": "Workload website profile"
+      "required": [
+        "namingPatternType"
+      ],
+      "description": "The resource name object where the specified values will be full resource names of the corresponding resources in a single server SAP system."
     },
     "SkipFileShareConfiguration": {
       "type": "object",
@@ -3007,55 +2510,7 @@
       "required": [
         "configurationType"
       ],
-      "description": "Gets or sets the file share configuration for scenarios where transport directory fileshare is not created or required."
-    },
-    "Sku": {
-      "type": "object",
-      "properties": {
-        "capacity": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
-        },
-        "family": {
-          "type": "string",
-          "description": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
-        },
-        "name": {
-          "type": "string",
-          "description": "The name of the SKU. Ex - P3. It is typically a letter+number code"
-        },
-        "size": {
-          "type": "string",
-          "description": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
-        },
-        "tier": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "Free",
-                "Basic",
-                "Standard",
-                "Premium"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ]
-        }
-      },
-      "required": [
-        "name"
-      ],
-      "description": "The resource model definition representing SKU"
+      "description": "Gets or sets the skip file share configuration"
     },
     "SoftwareConfiguration": {
       "type": "object",
@@ -3159,6 +2614,17 @@
           ],
           "description": "Gets or sets the central server configuration."
         },
+        "customResourceNames": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ThreeTierCustomResourceNames"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The resource-names input to specify custom names for underlying azure resources that are part of a three tier SAP system."
+        },
         "databaseServer": {
           "oneOf": [
             {
@@ -3218,6 +2684,75 @@
       ],
       "description": "Gets or sets the three tier SAP configuration."
     },
+    "ThreeTierCustomResourceNames": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/ThreeTierFullResourceNames"
+        }
+      ],
+      "properties": {},
+      "description": "The resource-names input to specify custom names for underlying azure resources that are part of a three tier SAP system."
+    },
+    "ThreeTierFullResourceNames": {
+      "type": "object",
+      "properties": {
+        "applicationServer": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApplicationServerFullResourceNames"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The full resource names object for application layer resources. The number of entries in this list should be equal to the number VMs to be created for application layer."
+        },
+        "centralServer": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CentralServerFullResourceNames"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The full resource names object for central server layer resources."
+        },
+        "databaseServer": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DatabaseServerFullResourceNames"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The full resource names object for database layer resources. The number of entries in this list should be equal to the number VMs to be created for database layer."
+        },
+        "namingPatternType": {
+          "type": "string",
+          "enum": [
+            "FullResourceName"
+          ]
+        },
+        "sharedStorage": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SharedStorageResourceNames"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The resource names object for shared storage."
+        }
+      },
+      "required": [
+        "namingPatternType"
+      ],
+      "description": "The resource name object where the specified values will be full resource names of the corresponding resources in a three tier SAP system."
+    },
     "UserAssignedIdentity": {
       "type": "object",
       "properties": {},
@@ -3262,24 +2797,6 @@
       ],
       "description": "Managed service identity (user assigned identities)"
     },
-    "UserProfile": {
-      "type": "object",
-      "properties": {
-        "sshPublicKey": {
-          "type": "string",
-          "description": "SSH public key data"
-        },
-        "userName": {
-          "type": "string",
-          "description": "User name"
-        }
-      },
-      "required": [
-        "sshPublicKey",
-        "userName"
-      ],
-      "description": "User profile to configure on a compute resources such as VM, VMSS"
-    },
     "VirtualMachineConfiguration": {
       "type": "object",
       "properties": {
@@ -3317,84 +2834,55 @@
       ],
       "description": "Defines the virtual machine configuration."
     },
-    "VmssNodesProfile": {
+    "VirtualMachineResourceNames": {
       "type": "object",
       "properties": {
-        "autoScaleMaxCount": {
+        "dataDiskNames": {
           "oneOf": [
             {
-              "type": "integer",
-              "minimum": 1
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "properties": {}
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Maximum number of nodes for autoscale"
+          "description": "The full resource names for virtual machine data disks. This is a dictionary containing list of names of data disks per volume. Currently supported volumes for database layer are ['hana/data', 'hana/log', hana/shared', 'usr/sap', 'os', 'backup']. For application and cs layers, only 'default' volume is supported"
         },
-        "autoScaleMinCount": {
-          "oneOf": [
-            {
-              "type": "integer",
-              "minimum": 1
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Minimum number of nodes for autoscale"
+        "hostName": {
+          "type": "string",
+          "description": "The full name for virtual-machine's host (computer name). Currently, ACSS only supports host names which are less than or equal to 13 characters long. If this value is not provided, vmName will be used as host name."
         },
-        "dataDisks": {
+        "networkInterfaces": {
           "oneOf": [
             {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/DiskInfo"
+                "$ref": "#/definitions/NetworkInterfaceResourceNames"
               }
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Data disks details. This property is not in use right now"
+          "description": "The list of network interface name objects for the selected virtual machine. Currently, only one network interface is supported per virtual machine."
         },
-        "name": {
+        "osDiskName": {
           "type": "string",
-          "description": "VM or VMSS name"
+          "description": "The full name for OS disk attached to the VM. If this value is not provided, it will be named by ARM as per its default naming standards (prefixed with vm name). There is only one OS disk attached per Virtual Machine."
         },
-        "nodeSku": {
+        "vmName": {
           "type": "string",
-          "description": "VM SKU for node(s)"
-        },
-        "osDisk": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/DiskInfo"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Disk resource creation details"
-        },
-        "osImage": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/OsImageProfile"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "OS image profile"
+          "description": "The full name for virtual machine. The length of this field can be upto 64 characters. If name is not provided, service uses a default name based on the deployment type. For SingleServer, default name is {SID}vm. In case of HA-AvZone systems, default name will be {SID}{app/ascs/db}z{a/b}vm with an incrementor at the end in case of more than 1 vm per layer. For distributed and HA-AvSet systems, default name will be {SID}{app/ascs/db}vm with an incrementor at the end in case of more than 1 vm per layer."
         }
       },
-      "required": [
-        "nodeSku",
-        "osDisk",
-        "osImage"
-      ],
-      "description": "VMSS profile"
+      "description": "The resource names object for virtual machine and related resources."
     },
     "WindowsConfiguration": {
       "type": "object",
@@ -3410,40 +2898,6 @@
         "osType"
       ],
       "description": "Specifies Windows operating system settings on the virtual machine."
-    },
-    "WordpressInstanceResourceProperties": {
-      "type": "object",
-      "properties": {
-        "databaseName": {
-          "type": "string",
-          "description": "Database name used by the application"
-        },
-        "databaseUser": {
-          "type": "string",
-          "description": "User name used by the application to connect to database"
-        },
-        "version": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "5.4.3",
-                "5.4.2",
-                "5.4.1",
-                "5.4"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Application version."
-        }
-      },
-      "required": [
-        "version"
-      ],
-      "description": "WordPress instance properties"
     }
   }
 }

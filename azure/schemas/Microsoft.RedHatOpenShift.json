@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2020-04-30/Microsoft.RedHatOpenShift.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-09-04/Microsoft.RedHatOpenShift.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.RedHatOpenShift",
   "description": "Microsoft RedHatOpenShift Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-04-30"
+            "2022-09-04"
           ]
         },
         "location": {
@@ -18,7 +18,17 @@
           "description": "The geo-location where the resource lives"
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]$|^[a-zA-Z0-9][-_a-zA-Z0-9]*[a-zA-Z0-9]$",
+              "minLength": 1,
+              "maxLength": 63
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "The name of the OpenShift cluster resource."
         },
         "properties": {
@@ -31,6 +41,25 @@
             }
           ],
           "description": "OpenShiftClusterProperties represents an OpenShift cluster's properties."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/openshiftclusters_machinePool_childResource"
+              },
+              {
+                "$ref": "#/definitions/openshiftclusters_secret_childResource"
+              },
+              {
+                "$ref": "#/definitions/openshiftclusters_syncIdentityProvider_childResource"
+              },
+              {
+                "$ref": "#/definitions/openshiftclusters_syncSet_childResource"
+              }
+            ]
+          }
         },
         "tags": {
           "oneOf": [
@@ -62,6 +91,202 @@
         "type"
       ],
       "description": "Microsoft.RedHatOpenShift/openShiftClusters"
+    },
+    "openshiftclusters_machinePool": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-09-04"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]$|^[a-zA-Z0-9][-_a-zA-Z0-9]*[a-zA-Z0-9]$",
+              "minLength": 1,
+              "maxLength": 63
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the MachinePool resource."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MachinePoolProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "MachinePoolProperties represents the properties of a MachinePool"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RedHatOpenShift/openshiftclusters/machinePool"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.RedHatOpenShift/openshiftclusters/machinePool"
+    },
+    "openshiftclusters_secret": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-09-04"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]$|^[a-zA-Z0-9][-_a-zA-Z0-9]*[a-zA-Z0-9]$",
+              "minLength": 1,
+              "maxLength": 63
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the Secret resource."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SecretProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "SecretProperties represents the properties of a Secret"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RedHatOpenShift/openshiftclusters/secret"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.RedHatOpenShift/openshiftclusters/secret"
+    },
+    "openshiftclusters_syncIdentityProvider": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-09-04"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]$|^[a-zA-Z0-9][-_a-zA-Z0-9]*[a-zA-Z0-9]$",
+              "minLength": 1,
+              "maxLength": 63
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the SyncIdentityProvider resource."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SyncIdentityProviderProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "SyncSetProperties represents the properties of a SyncSet"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RedHatOpenShift/openshiftclusters/syncIdentityProvider"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.RedHatOpenShift/openshiftclusters/syncIdentityProvider"
+    },
+    "openshiftclusters_syncSet": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-09-04"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]$|^[a-zA-Z0-9][-_a-zA-Z0-9]*[a-zA-Z0-9]$",
+              "minLength": 1,
+              "maxLength": 63
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the SyncSet resource."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SyncSetProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "SyncSetProperties represents the properties of a SyncSet"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RedHatOpenShift/openshiftclusters/syncSet"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.RedHatOpenShift/openshiftclusters/syncSet"
     }
   },
   "definitions": {
@@ -70,11 +295,11 @@
       "properties": {
         "ip": {
           "type": "string",
-          "description": "The IP of the cluster API server (immutable)."
+          "description": "The IP of the cluster API server."
         },
         "url": {
           "type": "string",
-          "description": "The URL to access the cluster API server (immutable)."
+          "description": "The URL to access the cluster API server."
         },
         "visibility": {
           "oneOf": [
@@ -89,7 +314,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "API server visibility (immutable)."
+          "description": "API server visibility."
         }
       },
       "description": "APIServerProfile represents an API server profile."
@@ -99,19 +324,34 @@
       "properties": {
         "domain": {
           "type": "string",
-          "description": "The domain for the cluster (immutable)."
+          "description": "The domain for the cluster."
+        },
+        "fipsValidatedModules": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Disabled",
+                "Enabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "If FIPS validated crypto modules are used."
         },
         "pullSecret": {
           "type": "string",
-          "description": "The pull secret for the cluster (immutable)."
+          "description": "The pull secret for the cluster."
         },
         "resourceGroupId": {
           "type": "string",
-          "description": "The ID of the cluster resource group (immutable)."
+          "description": "The ID of the cluster resource group."
         },
         "version": {
           "type": "string",
-          "description": "The version of the cluster (immutable)."
+          "description": "The version of the cluster."
         }
       },
       "description": "ClusterProfile represents a cluster profile."
@@ -121,7 +361,7 @@
       "properties": {
         "url": {
           "type": "string",
-          "description": "The URL to access the cluster console (immutable)."
+          "description": "The URL to access the cluster console."
         }
       },
       "description": "ConsoleProfile represents a console profile."
@@ -131,11 +371,11 @@
       "properties": {
         "ip": {
           "type": "string",
-          "description": "The IP of the ingress (immutable)."
+          "description": "The IP of the ingress."
         },
         "name": {
           "type": "string",
-          "description": "The ingress profile name.  Must be \"default\" (immutable)."
+          "description": "The ingress profile name."
         },
         "visibility": {
           "oneOf": [
@@ -150,33 +390,49 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Ingress visibility (immutable)."
+          "description": "Ingress visibility."
         }
       },
       "description": "IngressProfile represents an ingress profile."
     },
+    "MachinePoolProperties": {
+      "type": "object",
+      "properties": {
+        "resources": {
+          "type": "string"
+        }
+      },
+      "description": "MachinePoolProperties represents the properties of a MachinePool"
+    },
     "MasterProfile": {
       "type": "object",
       "properties": {
-        "subnetId": {
+        "diskEncryptionSetId": {
           "type": "string",
-          "description": "The Azure resource ID of the master subnet (immutable)."
+          "description": "The resource ID of an associated DiskEncryptionSet, if applicable."
         },
-        "vmSize": {
+        "encryptionAtHost": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
-                "Standard_D2s_v3",
-                "Standard_D4s_v3",
-                "Standard_D8s_v3"
+                "Disabled",
+                "Enabled"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The size of the master VMs (immutable)."
+          "description": "Whether master virtual machines are encrypted at host."
+        },
+        "subnetId": {
+          "type": "string",
+          "description": "The Azure resource ID of the master subnet."
+        },
+        "vmSize": {
+          "type": "string",
+          "description": "VM size availability varies by region.\nIf a node contains insufficient compute resources (memory, cpu, etc.), pods might fail to run correctly.\nFor more details on restricted VM sizes, see: https://docs.microsoft.com/en-us/azure/openshift/support-policies-v4#supported-virtual-machine-sizes"
         }
       },
       "description": "MasterProfile represents a master profile."
@@ -186,11 +442,11 @@
       "properties": {
         "podCidr": {
           "type": "string",
-          "description": "The CIDR used for OpenShift/Kubernetes Pods (immutable)."
+          "description": "The CIDR used for OpenShift/Kubernetes Pods."
         },
         "serviceCidr": {
           "type": "string",
-          "description": "The CIDR used for OpenShift/Kubernetes Services (immutable)."
+          "description": "The CIDR used for OpenShift/Kubernetes Services."
         }
       },
       "description": "NetworkProfile represents a network profile."
@@ -284,7 +540,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The cluster provisioning state (immutable)."
+          "description": "The cluster provisioning state."
         },
         "servicePrincipalProfile": {
           "oneOf": [
@@ -314,19 +570,244 @@
       },
       "description": "OpenShiftClusterProperties represents an OpenShift cluster's properties."
     },
+    "openshiftclusters_machinePool_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-09-04"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]$|^[a-zA-Z0-9][-_a-zA-Z0-9]*[a-zA-Z0-9]$",
+              "minLength": 1,
+              "maxLength": 63
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the MachinePool resource."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MachinePoolProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "MachinePoolProperties represents the properties of a MachinePool"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "machinePool"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.RedHatOpenShift/openshiftclusters/machinePool"
+    },
+    "openshiftclusters_secret_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-09-04"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]$|^[a-zA-Z0-9][-_a-zA-Z0-9]*[a-zA-Z0-9]$",
+              "minLength": 1,
+              "maxLength": 63
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the Secret resource."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SecretProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "SecretProperties represents the properties of a Secret"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "secret"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.RedHatOpenShift/openshiftclusters/secret"
+    },
+    "openshiftclusters_syncIdentityProvider_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-09-04"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]$|^[a-zA-Z0-9][-_a-zA-Z0-9]*[a-zA-Z0-9]$",
+              "minLength": 1,
+              "maxLength": 63
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the SyncIdentityProvider resource."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SyncIdentityProviderProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "SyncSetProperties represents the properties of a SyncSet"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "syncIdentityProvider"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.RedHatOpenShift/openshiftclusters/syncIdentityProvider"
+    },
+    "openshiftclusters_syncSet_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-09-04"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]$|^[a-zA-Z0-9][-_a-zA-Z0-9]*[a-zA-Z0-9]$",
+              "minLength": 1,
+              "maxLength": 63
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the SyncSet resource."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SyncSetProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "SyncSetProperties represents the properties of a SyncSet"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "syncSet"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.RedHatOpenShift/openshiftclusters/syncSet"
+    },
+    "SecretProperties": {
+      "type": "object",
+      "properties": {
+        "secretResources": {
+          "type": "string",
+          "description": "The Secrets Resources."
+        }
+      },
+      "description": "SecretProperties represents the properties of a Secret"
+    },
     "ServicePrincipalProfile": {
       "type": "object",
       "properties": {
         "clientId": {
           "type": "string",
-          "description": "The client ID used for the cluster (immutable)."
+          "description": "The client ID used for the cluster."
         },
         "clientSecret": {
           "type": "string",
-          "description": "The client secret used for the cluster (immutable)."
+          "description": "The client secret used for the cluster."
         }
       },
       "description": "ServicePrincipalProfile represents a service principal profile."
+    },
+    "SyncIdentityProviderProperties": {
+      "type": "object",
+      "properties": {
+        "resources": {
+          "type": "string"
+        }
+      },
+      "description": "SyncSetProperties represents the properties of a SyncSet"
+    },
+    "SyncSetProperties": {
+      "type": "object",
+      "properties": {
+        "resources": {
+          "type": "string",
+          "description": "Resources represents the SyncSets configuration."
+        }
+      },
+      "description": "SyncSetProperties represents the properties of a SyncSet"
     },
     "WorkerProfile": {
       "type": "object",
@@ -340,7 +821,11 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The number of worker VMs.  Must be between 3 and 20 (immutable)."
+          "description": "The number of worker VMs."
+        },
+        "diskEncryptionSetId": {
+          "type": "string",
+          "description": "The resource ID of an associated DiskEncryptionSet, if applicable."
         },
         "diskSizeGB": {
           "oneOf": [
@@ -351,31 +836,34 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The disk size of the worker VMs.  Must be 128 or greater (immutable)."
+          "description": "The disk size of the worker VMs."
         },
-        "name": {
-          "type": "string",
-          "description": "The worker profile name.  Must be \"worker\" (immutable)."
-        },
-        "subnetId": {
-          "type": "string",
-          "description": "The Azure resource ID of the worker subnet (immutable)."
-        },
-        "vmSize": {
+        "encryptionAtHost": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
-                "Standard_D2s_v3",
-                "Standard_D4s_v3",
-                "Standard_D8s_v3"
+                "Disabled",
+                "Enabled"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The size of the worker VMs (immutable)."
+          "description": "Whether master virtual machines are encrypted at host."
+        },
+        "name": {
+          "type": "string",
+          "description": "The worker profile name."
+        },
+        "subnetId": {
+          "type": "string",
+          "description": "The Azure resource ID of the worker subnet."
+        },
+        "vmSize": {
+          "type": "string",
+          "description": "VM size availability varies by region.\nIf a node contains insufficient compute resources (memory, cpu, etc.), pods might fail to run correctly.\nFor more details on restricted VM sizes, see: https://docs.microsoft.com/en-us/azure/openshift/support-policies-v4#supported-virtual-machine-sizes"
         }
       },
       "description": "WorkerProfile represents a worker profile."

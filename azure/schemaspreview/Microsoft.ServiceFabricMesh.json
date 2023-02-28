@@ -1,5 +1,5 @@
 {
-    "id": "https://schema.management.azure.com/schemas/2018-07-01-preview/Microsoft.ServiceFabricMesh.json#",
+    "id": "https://schema.management.azure.com/schemas/2018-09-01-preview/Microsoft.ServiceFabricMesh.json#",
     "$schema": "http://json-schema.org/draft-04/schema#",
     "title": "Microsoft.ServiceFabricMesh",
     "description": "Microsoft ServiceFabricMesh Resource Types",
@@ -10,7 +10,7 @@
           "apiVersion": {
             "type": "string",
             "enum": [
-              "2018-07-01-preview"
+              "2018-09-01-preview"
             ]
           },
           "location": {
@@ -56,11 +56,71 @@
         },
         "required": [
           "apiVersion",
+          "location",
           "name",
           "properties",
           "type"
         ],
         "description": "Microsoft.ServiceFabricMesh/applications"
+      },
+      "gateways": {
+        "type": "object",
+        "properties": {
+          "apiVersion": {
+            "type": "string",
+            "enum": [
+              "2018-09-01-preview"
+            ]
+          },
+          "location": {
+            "type": "string",
+            "description": "The geo-location where the resource lives"
+          },
+          "name": {
+            "type": "string",
+            "description": "The identity of the gateway."
+          },
+          "properties": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/GatewayResourceProperties"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "This type describes properties of a gateway resource."
+          },
+          "tags": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "properties": {}
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Resource tags."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Microsoft.ServiceFabricMesh/gateways"
+            ]
+          }
+        },
+        "required": [
+          "apiVersion",
+          "location",
+          "name",
+          "properties",
+          "type"
+        ],
+        "description": "Microsoft.ServiceFabricMesh/gateways"
       },
       "networks": {
         "type": "object",
@@ -68,7 +128,7 @@
           "apiVersion": {
             "type": "string",
             "enum": [
-              "2018-07-01-preview"
+              "2018-09-01-preview"
             ]
           },
           "location": {
@@ -114,11 +174,140 @@
         },
         "required": [
           "apiVersion",
+          "location",
           "name",
           "properties",
           "type"
         ],
         "description": "Microsoft.ServiceFabricMesh/networks"
+      },
+      "secrets": {
+        "type": "object",
+        "properties": {
+          "apiVersion": {
+            "type": "string",
+            "enum": [
+              "2018-09-01-preview"
+            ]
+          },
+          "location": {
+            "type": "string",
+            "description": "The geo-location where the resource lives"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the secret resource."
+          },
+          "properties": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/SecretResourceProperties"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Describes the properties of a secret resource."
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/secrets_values_childResource"
+                }
+              ]
+            }
+          },
+          "tags": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "properties": {}
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Resource tags."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Microsoft.ServiceFabricMesh/secrets"
+            ]
+          }
+        },
+        "required": [
+          "apiVersion",
+          "location",
+          "name",
+          "properties",
+          "type"
+        ],
+        "description": "Microsoft.ServiceFabricMesh/secrets"
+      },
+      "secrets_values": {
+        "type": "object",
+        "properties": {
+          "apiVersion": {
+            "type": "string",
+            "enum": [
+              "2018-09-01-preview"
+            ]
+          },
+          "location": {
+            "type": "string",
+            "description": "The geo-location where the resource lives"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the secret resource value which is typically the version identifier for the value."
+          },
+          "properties": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/SecretValueResourceProperties"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "This type describes properties of a secret value resource."
+          },
+          "tags": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "properties": {}
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Resource tags."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Microsoft.ServiceFabricMesh/secrets/values"
+            ]
+          }
+        },
+        "required": [
+          "apiVersion",
+          "location",
+          "name",
+          "properties",
+          "type"
+        ],
+        "description": "Microsoft.ServiceFabricMesh/secrets/values"
       },
       "volumes": {
         "type": "object",
@@ -126,7 +315,7 @@
           "apiVersion": {
             "type": "string",
             "enum": [
-              "2018-07-01-preview"
+              "2018-09-01-preview"
             ]
           },
           "location": {
@@ -146,7 +335,7 @@
                 "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
               }
             ],
-            "description": "Describes properties of a volume resource."
+            "description": "This type describes properties of a volume resource."
           },
           "tags": {
             "oneOf": [
@@ -172,6 +361,7 @@
         },
         "required": [
           "apiVersion",
+          "location",
           "name",
           "properties",
           "type"
@@ -185,7 +375,7 @@
         "properties": {
           "debugParams": {
             "type": "string",
-            "description": "Internal use."
+            "description": "Internal - used by Visual Studio to setup the debugging session on the local development environment."
           },
           "description": {
             "type": "string",
@@ -214,10 +404,145 @@
                 "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
               }
             ],
-            "description": "describes the services in the application."
+            "description": "Describes the services in the application. This property is used to create or modify services of the application. On get only the name of the service is returned. The service description can be obtained by querying for the service resource."
           }
         },
         "description": "This type describes properties of an application resource."
+      },
+      "ApplicationScopedVolume": {
+        "type": "object",
+        "properties": {
+          "creationParameters": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/ApplicationScopedVolumeCreationParameters"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Describes parameters for creating application-scoped volumes."
+          },
+          "destinationPath": {
+            "type": "string",
+            "description": "The path within the container at which the volume should be mounted. Only valid path characters are allowed."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the volume being referenced."
+          },
+          "readOnly": {
+            "oneOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "The flag indicating whether the volume is read only. Default is 'false'."
+          }
+        },
+        "required": [
+          "creationParameters",
+          "destinationPath",
+          "name"
+        ],
+        "description": "Describes a volume whose lifetime is scoped to the application's lifetime."
+      },
+      "ApplicationScopedVolumeCreationParameters": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/definitions/ApplicationScopedVolumeCreationParametersServiceFabricVolumeDisk"
+          }
+        ],
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "User readable description of the volume."
+          }
+        },
+        "description": "Describes parameters for creating application-scoped volumes."
+      },
+      "ApplicationScopedVolumeCreationParametersServiceFabricVolumeDisk": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "ServiceFabricVolumeDisk"
+            ]
+          },
+          "sizeDisk": {
+            "oneOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "Small",
+                  "Medium",
+                  "Large"
+                ]
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Volume size."
+          }
+        },
+        "required": [
+          "kind",
+          "sizeDisk"
+        ],
+        "description": "Describes parameters for creating application-scoped volumes provided by Service Fabric Volume Disks"
+      },
+      "AutoScalingMechanism": {
+        "type": "object",
+        "properties": {},
+        "description": "Describes the mechanism for performing auto scaling operation. Derived classes will describe the actual mechanism."
+      },
+      "AutoScalingPolicy": {
+        "type": "object",
+        "properties": {
+          "mechanism": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/AutoScalingMechanism"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Describes the mechanism for performing auto scaling operation. Derived classes will describe the actual mechanism."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the auto scaling policy."
+          },
+          "trigger": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/AutoScalingTrigger"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Describes the trigger for performing auto scaling operation."
+          }
+        },
+        "required": [
+          "mechanism",
+          "name",
+          "trigger"
+        ],
+        "description": "Describes the auto scaling policy"
+      },
+      "AutoScalingTrigger": {
+        "type": "object",
+        "properties": {},
+        "description": "Describes the trigger for performing auto scaling operation."
       },
       "AzureInternalMonitoringPipelineSinkDescription": {
         "type": "object",
@@ -348,6 +673,20 @@
             "type": "string",
             "description": "The name of the code package."
           },
+          "reliableCollectionsRefs": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/ReliableCollectionsRef"
+                }
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "A list of ReliableCollection resources used by this particular code package. Please refer to ReliableCollectionsRef for more details."
+          },
           "resources": {
             "oneOf": [
               {
@@ -378,14 +717,28 @@
               {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/ContainerVolume"
+                  "$ref": "#/definitions/VolumeReference"
                 }
               },
               {
                 "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
               }
             ],
-            "description": "The volumes to be attached to the container."
+            "description": "Volumes to be attached to the container. The lifetime of these volumes is independent of the application's lifetime."
+          },
+          "volumes": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/ApplicationScopedVolume"
+                }
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Volumes to be attached to the container. The lifetime of these volumes is scoped to the application's lifetime."
           }
         },
         "required": [
@@ -412,35 +765,6 @@
           "value"
         ],
         "description": "Describes a container label."
-      },
-      "ContainerVolume": {
-        "type": "object",
-        "properties": {
-          "destinationPath": {
-            "type": "string",
-            "description": "The path within the container at which the volume should be mounted. Only valid path characters are allowed."
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the volume."
-          },
-          "readOnly": {
-            "oneOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-              }
-            ],
-            "description": "The flag indicating whether the volume is read only. Default is 'false'."
-          }
-        },
-        "required": [
-          "destinationPath",
-          "name"
-        ],
-        "description": "Describes how a volume is attached to a container."
       },
       "DiagnosticsDescription": {
         "type": "object",
@@ -561,6 +885,16 @@
         ],
         "description": "Describes a container endpoint."
       },
+      "EndpointRef": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the endpoint."
+          }
+        },
+        "description": "Describes a reference to a service endpoint."
+      },
       "EnvironmentVariable": {
         "type": "object",
         "properties": {
@@ -575,12 +909,301 @@
         },
         "description": "Describes an environment variable for the container."
       },
+      "GatewayDestination": {
+        "type": "object",
+        "properties": {
+          "applicationName": {
+            "type": "string",
+            "description": "Name of the service fabric Mesh application."
+          },
+          "endpointName": {
+            "type": "string",
+            "description": "name of the endpoint in the service."
+          },
+          "serviceName": {
+            "type": "string",
+            "description": "service that contains the endpoint."
+          }
+        },
+        "required": [
+          "applicationName",
+          "endpointName",
+          "serviceName"
+        ],
+        "description": "Describes destination endpoint for routing traffic."
+      },
+      "GatewayResourceProperties": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "User readable description of the gateway."
+          },
+          "destinationNetwork": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/NetworkRef"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Describes a network reference in a service."
+          },
+          "http": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/HttpConfig"
+                }
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Configuration for http connectivity for this gateway."
+          },
+          "sourceNetwork": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/NetworkRef"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Describes a network reference in a service."
+          },
+          "tcp": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/TcpConfig"
+                }
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Configuration for tcp connectivity for this gateway."
+          }
+        },
+        "required": [
+          "destinationNetwork",
+          "sourceNetwork"
+        ],
+        "description": "This type describes properties of a gateway resource."
+      },
+      "HttpConfig": {
+        "type": "object",
+        "properties": {
+          "hosts": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/HttpHostConfig"
+                }
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "description for routing."
+          },
+          "name": {
+            "type": "string",
+            "description": "http gateway config name."
+          },
+          "port": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Specifies the port at which the service endpoint below needs to be exposed."
+          }
+        },
+        "required": [
+          "hosts",
+          "name",
+          "port"
+        ],
+        "description": "Describes the http configuration for external connectivity for this network."
+      },
+      "HttpHostConfig": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "http hostname config name."
+          },
+          "routes": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/HttpRouteConfig"
+                }
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Route information to use for routing. Routes are processed in the order they are specified. Specify routes that are more specific before routes that can handle general cases."
+          }
+        },
+        "required": [
+          "name",
+          "routes"
+        ],
+        "description": "Describes the hostname properties for http routing."
+      },
+      "HttpRouteConfig": {
+        "type": "object",
+        "properties": {
+          "destination": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/GatewayDestination"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Describes destination endpoint for routing traffic."
+          },
+          "match": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/HttpRouteMatchRule"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Describes a rule for http route matching."
+          },
+          "name": {
+            "type": "string",
+            "description": "http route name."
+          }
+        },
+        "required": [
+          "destination",
+          "match",
+          "name"
+        ],
+        "description": "Describes the hostname properties for http routing."
+      },
+      "HttpRouteMatchHeader": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of header to match in request."
+          },
+          "type": {
+            "oneOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "exact"
+                ]
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "how to match header value."
+          },
+          "value": {
+            "type": "string",
+            "description": "Value of header to match in request."
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "description": "Describes header information for http route matching."
+      },
+      "HttpRouteMatchPath": {
+        "type": "object",
+        "properties": {
+          "rewrite": {
+            "type": "string",
+            "description": "replacement string for matched part of the Uri."
+          },
+          "type": {
+            "oneOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "prefix"
+                ]
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "how to match value in the Uri"
+          },
+          "value": {
+            "type": "string",
+            "description": "Uri path to match for request."
+          }
+        },
+        "required": [
+          "type",
+          "value"
+        ],
+        "description": "Path to match for routing."
+      },
+      "HttpRouteMatchRule": {
+        "type": "object",
+        "properties": {
+          "headers": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/HttpRouteMatchHeader"
+                }
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "headers and their values to match in request."
+          },
+          "path": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/HttpRouteMatchPath"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Path to match for routing."
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "description": "Describes a rule for http route matching."
+      },
       "ImageRegistryCredential": {
         "type": "object",
         "properties": {
           "password": {
             "type": "string",
-            "description": "The password for the private registry."
+            "description": "The password for the private registry. The password is required for create or update operations, however it is not returned in the get or list operations."
           },
           "server": {
             "type": "string",
@@ -597,110 +1220,102 @@
         ],
         "description": "Image registry credential."
       },
-      "IngressConfig": {
+      "InlinedValueSecretResourceProperties": {
         "type": "object",
         "properties": {
-          "layer4": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "inlinedValue"
+            ]
+          }
+        },
+        "required": [
+          "kind"
+        ],
+        "description": "Describes the properties of a secret resource whose value is provided explicitly as plaintext. The secret resource may have multiple values, each being uniquely versioned. The secret value of each version is stored encrypted, and delivered as plaintext into the context of applications referencing it."
+      },
+      "LocalNetworkResourceProperties": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "Local"
+            ]
+          },
+          "networkAddressPrefix": {
+            "type": "string",
+            "description": "Address space for a container network. This is expressed in CIDR notation."
+          }
+        },
+        "required": [
+          "kind"
+        ],
+        "description": "Information about a Service Fabric container network local to a single Service Fabric cluster."
+      },
+      "NetworkRef": {
+        "type": "object",
+        "properties": {
+          "endpointRefs": {
             "oneOf": [
               {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/Layer4IngressConfig"
+                  "$ref": "#/definitions/EndpointRef"
                 }
               },
               {
                 "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
               }
             ],
-            "description": "Configuration for layer4 public connectivity for this network."
-          },
-          "qosLevel": {
-            "oneOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "Bronze"
-                ]
-              },
-              {
-                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-              }
-            ],
-            "description": "The QoS tier for ingress."
-          }
-        },
-        "description": "Describes public connectivity configuration for the network."
-      },
-      "Layer4IngressConfig": {
-        "type": "object",
-        "properties": {
-          "applicationName": {
-            "type": "string",
-            "description": "The application name which contains the service to be exposed."
-          },
-          "endpointName": {
-            "type": "string",
-            "description": "The service endpoint that needs to be exposed."
+            "description": "A list of endpoints that are exposed on this network."
           },
           "name": {
             "type": "string",
-            "description": "Layer4 ingress config name."
-          },
-          "publicPort": {
-            "oneOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-              }
-            ],
-            "description": "Specifies the public port at which the service endpoint below needs to be exposed."
-          },
-          "serviceName": {
-            "type": "string",
-            "description": "The service whose endpoint needs to be exposed at the public port."
-          }
-        },
-        "description": "Describes the layer4 configuration for public connectivity for this network."
-      },
-      "NetworkRef": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of the network."
+            "description": "Name of the network"
           }
         },
         "description": "Describes a network reference in a service."
       },
       "NetworkResourceProperties": {
         "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/definitions/LocalNetworkResourceProperties"
+          }
+        ],
         "properties": {
-          "addressPrefix": {
-            "type": "string",
-            "description": "the address prefix for this network."
-          },
           "description": {
             "type": "string",
             "description": "User readable description of the network."
-          },
-          "ingressConfig": {
+          }
+        },
+        "description": "Describes properties of a network resource."
+      },
+      "ReliableCollectionsRef": {
+        "type": "object",
+        "properties": {
+          "doNotPersistState": {
             "oneOf": [
               {
-                "$ref": "#/definitions/IngressConfig"
+                "type": "boolean"
               },
               {
                 "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
               }
             ],
-            "description": "Describes public connectivity configuration for the network."
+            "description": "False (the default) if ReliableCollections state is persisted to disk as usual. True if you do not want to persist state, in which case replication is still enabled and you can use ReliableCollections as distributed cache."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of ReliableCollection resource. Right now it's not used and you can use any string."
           }
         },
         "required": [
-          "addressPrefix"
+          "name"
         ],
-        "description": "Describes properties of a network resource."
+        "description": "Specifying this parameter adds support for reliable collections"
       },
       "ResourceLimits": {
         "type": "object",
@@ -760,7 +1375,7 @@
           "cpu",
           "memoryInGB"
         ],
-        "description": "This type describes the requested resources for a given container. It describes the least amount of resources required for the container. A container can consume more than requested resources up to the specified limits before being restarted. Currently, the requested resources are treated as limits.\n"
+        "description": "This type describes the requested resources for a given container. It describes the least amount of resources required for the container. A container can consume more than requested resources up to the specified limits before being restarted. Currently, the requested resources are treated as limits."
       },
       "ResourceRequirements": {
         "type": "object",
@@ -785,13 +1400,101 @@
                 "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
               }
             ],
-            "description": "This type describes the requested resources for a given container. It describes the least amount of resources required for the container. A container can consume more than requested resources up to the specified limits before being restarted. Currently, the requested resources are treated as limits.\n"
+            "description": "This type describes the requested resources for a given container. It describes the least amount of resources required for the container. A container can consume more than requested resources up to the specified limits before being restarted. Currently, the requested resources are treated as limits."
           }
         },
         "required": [
           "requests"
         ],
         "description": "This type describes the resource requirements for a container or a service."
+      },
+      "SecretResourceProperties": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/definitions/InlinedValueSecretResourceProperties"
+          }
+        ],
+        "properties": {
+          "contentType": {
+            "type": "string",
+            "description": "The type of the content stored in the secret value. The value of this property is opaque to Service Fabric. Once set, the value of this property cannot be changed."
+          },
+          "description": {
+            "type": "string",
+            "description": "User readable description of the secret."
+          }
+        },
+        "description": "Describes the properties of a secret resource."
+      },
+      "secrets_values_childResource": {
+        "type": "object",
+        "properties": {
+          "apiVersion": {
+            "type": "string",
+            "enum": [
+              "2018-09-01-preview"
+            ]
+          },
+          "location": {
+            "type": "string",
+            "description": "The geo-location where the resource lives"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the secret resource value which is typically the version identifier for the value."
+          },
+          "properties": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/SecretValueResourceProperties"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "This type describes properties of a secret value resource."
+          },
+          "tags": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "properties": {}
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Resource tags."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "values"
+            ]
+          }
+        },
+        "required": [
+          "apiVersion",
+          "location",
+          "name",
+          "properties",
+          "type"
+        ],
+        "description": "Microsoft.ServiceFabricMesh/secrets/values"
+      },
+      "SecretValueResourceProperties": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The actual value of the secret."
+          }
+        },
+        "description": "This type describes properties of a secret value resource."
       },
       "ServiceResourceDescription": {
         "type": "object",
@@ -820,6 +1523,20 @@
       "ServiceResourceProperties": {
         "type": "object",
         "properties": {
+          "autoScalingPolicies": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/AutoScalingPolicy"
+                }
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Auto scaling policies"
+          },
           "codePackages": {
             "oneOf": [
               {
@@ -832,7 +1549,7 @@
                 "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
               }
             ],
-            "description": "Describes the set of code packages that forms the service. A code package describes the container and the properties for running it. All the code packages are started together on the same host and share the same context (network, process etc.).\n"
+            "description": "Describes the set of code packages that forms the service. A code package describes the container and the properties for running it. All the code packages are started together on the same host and share the same context (network, process etc.)."
           },
           "description": {
             "type": "string",
@@ -848,24 +1565,6 @@
               }
             ],
             "description": "Reference to sinks in DiagnosticsDescription."
-          },
-          "healthState": {
-            "oneOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "Invalid",
-                  "Ok",
-                  "Warning",
-                  "Error",
-                  "Unknown"
-                ]
-              },
-              {
-                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-              }
-            ],
-            "description": "The health state of a resource such as Application, Service, or Network."
           },
           "networkRefs": {
             "oneOf": [
@@ -894,7 +1593,7 @@
                 "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
               }
             ],
-            "description": "The Operating system type required by the code in service.\n."
+            "description": "The operation system required by the code in service."
           },
           "replicaCount": {
             "oneOf": [
@@ -926,7 +1625,44 @@
             "description": "The value of the setting."
           }
         },
-        "description": "Describes a setting for the container."
+        "description": "Describes a setting for the container. The setting file path can be fetched from environment variable \"Fabric_SettingPath\". The path for Windows container is \"C:\\\\secrets\". The path for Linux container is \"/var/secrets\"."
+      },
+      "TcpConfig": {
+        "type": "object",
+        "properties": {
+          "destination": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/GatewayDestination"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Describes destination endpoint for routing traffic."
+          },
+          "name": {
+            "type": "string",
+            "description": "tcp gateway config name."
+          },
+          "port": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "Specifies the port at which the service endpoint below needs to be exposed."
+          }
+        },
+        "required": [
+          "destination",
+          "name",
+          "port"
+        ],
+        "description": "Describes the tcp configuration for external connectivity for this network."
       },
       "VolumeProviderParametersAzureFile": {
         "type": "object",
@@ -949,6 +1685,35 @@
           "shareName"
         ],
         "description": "This type describes a volume provided by an Azure Files file share."
+      },
+      "VolumeReference": {
+        "type": "object",
+        "properties": {
+          "destinationPath": {
+            "type": "string",
+            "description": "The path within the container at which the volume should be mounted. Only valid path characters are allowed."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the volume being referenced."
+          },
+          "readOnly": {
+            "oneOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+              }
+            ],
+            "description": "The flag indicating whether the volume is read only. Default is 'false'."
+          }
+        },
+        "required": [
+          "destinationPath",
+          "name"
+        ],
+        "description": "Describes a reference to a volume resource."
       },
       "VolumeResourceProperties": {
         "type": "object",
@@ -986,7 +1751,7 @@
         "required": [
           "provider"
         ],
-        "description": "Describes properties of a volume resource."
+        "description": "This type describes properties of a volume resource."
       }
     }
   }

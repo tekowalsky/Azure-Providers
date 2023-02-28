@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-10-31-preview/Microsoft.ResourceConnector.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-04-15-preview/Microsoft.ResourceConnector.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.ResourceConnector",
   "description": "Microsoft ResourceConnector Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-31-preview"
+            "2022-04-15-preview"
           ]
         },
         "identity": {
@@ -117,6 +117,10 @@
         "publicKey": {
           "type": "string",
           "description": "Certificates pair used to download MSI certificate from HIS"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of the Appliance"
         }
       },
       "description": "Properties for an appliance."
@@ -131,7 +135,9 @@
               "enum": [
                 "VMWare",
                 "HCI",
-                "SCVMM"
+                "SCVMM",
+                "KubeVirt",
+                "OpenStack"
               ]
             },
             {

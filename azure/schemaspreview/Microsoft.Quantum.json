@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2019-11-04-preview/Microsoft.Quantum.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-01-10-preview/Microsoft.Quantum.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Quantum",
   "description": "Microsoft Quantum Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-04-preview"
+            "2022-01-10-preview"
           ]
         },
         "identity": {

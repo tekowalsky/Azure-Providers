@@ -1,38 +1,38 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2017-11-01-preview/Microsoft.Subscription.json#",
+  "id": "https://schema.management.azure.com/schemas/2019-10-01-preview/Microsoft.Subscription.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Subscription",
   "description": "Microsoft Subscription Resource Types",
   "resourceDefinitions": {},
   "tenant_resourceDefinitions": {
-    "subscriptionDefinitions": {
+    "aliases": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-01-preview"
+            "2019-10-01-preview"
           ]
         },
         "name": {
           "type": "string",
-          "description": "The name of the Azure subscription definition."
+          "description": "Name for this subscription creation request also known as alias. Note that this is not the same as subscription name and this doesn’t have any other lifecycle need beyond the request for subscription creation."
         },
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/SubscriptionDefinitionProperties"
+              "$ref": "#/definitions/PutAliasRequestProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The subscription definition properties."
+          "description": "Put subscription properties."
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.Subscription/subscriptionDefinitions"
+            "Microsoft.Subscription/aliases"
           ]
         }
       },
@@ -42,27 +42,47 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Subscription/subscriptionDefinitions"
+      "description": "Microsoft.Subscription/aliases"
     }
   },
   "definitions": {
-    "SubscriptionDefinitionProperties": {
+    "PutAliasRequestProperties": {
       "type": "object",
       "properties": {
-        "etag": {
+        "billingScope": {
           "type": "string",
-          "description": "The etag the subscription definition."
+          "description": "Determines whether subscription is fieldLed, partnerLed or LegacyEA"
         },
-        "offerType": {
+        "displayName": {
           "type": "string",
-          "description": "The offer type of the subscription. For example, MS-AZR-0017P (EnterpriseAgreement) and MS-AZR-0148P (EnterpriseAgreement devTest) are available."
+          "description": "The friendly name of the subscription."
         },
-        "subscriptionDisplayName": {
+        "subscriptionId": {
           "type": "string",
-          "description": "The display name of the subscription."
+          "description": "This parameter can be used to create alias for existing subscription Id"
+        },
+        "workload": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Production",
+                "DevTest"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The workload type of the subscription. It can be either Production or DevTest."
         }
       },
-      "description": "The subscription definition properties."
+      "required": [
+        "billingScope",
+        "displayName",
+        "workload"
+      ],
+      "description": "Put subscription properties."
     }
   }
 }

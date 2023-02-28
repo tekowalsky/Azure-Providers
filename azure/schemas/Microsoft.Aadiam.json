@@ -1,38 +1,131 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2017-04-01/Microsoft.Aadiam.json#",
+  "id": "https://schema.management.azure.com/schemas/2020-03-01/Microsoft.Aadiam.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "microsoft.aadiam",
   "description": "microsoft aadiam Resource Types",
-  "resourceDefinitions": {},
-  "tenant_resourceDefinitions": {
-    "diagnosticSettings": {
+  "resourceDefinitions": {
+    "privateLinkForAzureAd": {
       "type": "object",
       "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2017-04-01"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "description": "The name of the diagnostic setting."
-        },
-        "properties": {
+        "allTenants": {
           "oneOf": [
             {
-              "$ref": "#/definitions/DiagnosticSettings"
+              "type": "boolean"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The diagnostic settings."
+          "description": "Flag indicating whether all tenants are allowed"
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2020-03-01"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the private link policy in Azure AD."
+        },
+        "ownerTenantId": {
+          "type": "string",
+          "description": "Guid of the owner tenant"
+        },
+        "resourceGroup": {
+          "type": "string",
+          "description": "Name of the resource group"
+        },
+        "resourceName": {
+          "type": "string",
+          "description": "Name of the private link policy resource"
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/privateLinkForAzureAd_privateEndpointConnections_childResource"
+              }
+            ]
+          }
+        },
+        "subscriptionId": {
+          "type": "string",
+          "description": "Subscription Identifier"
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "tenants": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of tenantIds."
         },
         "type": {
           "type": "string",
           "enum": [
-            "microsoft.aadiam/diagnosticSettings"
+            "microsoft.aadiam/privateLinkForAzureAd"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "microsoft.aadiam/privateLinkForAzureAd"
+    },
+    "privateLinkForAzureAd_privateEndpointConnections": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2020-03-01"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The PrivateEndpointConnection name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the private endpoint connection resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "microsoft.aadiam/privateLinkForAzureAd/privateEndpointConnections"
           ]
         }
       },
@@ -42,128 +135,166 @@
         "properties",
         "type"
       ],
-      "description": "microsoft.aadiam/diagnosticSettings"
+      "description": "microsoft.aadiam/privateLinkForAzureAd/privateEndpointConnections"
     }
   },
   "definitions": {
-    "DiagnosticSettings": {
+    "PrivateEndpoint": {
       "type": "object",
       "properties": {
-        "eventHubAuthorizationRuleId": {
+        "id": {
           "type": "string",
-          "description": "The resource Id for the event hub authorization rule."
-        },
-        "eventHubName": {
-          "type": "string",
-          "description": "The name of the event hub. If none is specified, the default event hub will be selected."
-        },
-        "logs": {
+          "description": "Full identifier of the private endpoint resource."
+        }
+      },
+      "description": "Private endpoint object properties."
+    },
+    "PrivateEndpointConnectionProperties": {
+      "type": "object",
+      "properties": {
+        "privateEndpoint": {
           "oneOf": [
             {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/LogSettings"
-              }
+              "$ref": "#/definitions/PrivateEndpoint"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The list of logs settings."
+          "description": "Private endpoint object properties."
         },
-        "serviceBusRuleId": {
-          "type": "string",
-          "description": "The service bus rule Id of the diagnostic setting. This is here to maintain backwards compatibility."
+        "privateLinkConnectionTags": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TagsResource"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A container holding only the Tags for a resource, allowing the user to update the tags on a PrivateLinkConnection instance."
         },
-        "storageAccountId": {
-          "type": "string",
-          "description": "The resource ID of the storage account to which you would like to send Diagnostic Logs."
+        "privateLinkServiceConnectionState": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateLinkServiceConnectionState"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An object that represents the approval state of the private link connection."
         },
-        "workspaceId": {
-          "type": "string",
-          "description": "The workspace ID (resource ID of a Log Analytics workspace) for a Log Analytics workspace to which you would like to send Diagnostic Logs. Example: /subscriptions/4b9e8510-67ab-4e9a-95a9-e2f1e570ea9c/resourceGroups/insights-integration/providers/Microsoft.OperationalInsights/workspaces/viruela2"
-        }
-      },
-      "description": "The diagnostic settings."
-    },
-    "LogSettings": {
-      "type": "object",
-      "properties": {
-        "category": {
+        "provisioningState": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
-                "AuditLogs",
-                "SignInLogs"
+                "Succeeded",
+                "Provisioning",
+                "Failed"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Name of a Diagnostic Log category for a resource type this setting is applied to. To obtain the list of Diagnostic Log categories for a resource, first perform a GET diagnostic settings operation."
-        },
-        "enabled": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "A value indicating whether this log is enabled."
-        },
-        "retentionPolicy": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/RetentionPolicy"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Specifies the retention policy for the log."
+          "description": "Provisioning state of the private endpoint connection."
         }
       },
-      "required": [
-        "enabled"
-      ],
-      "description": "Part of MultiTenantDiagnosticSettings. Specifies the settings for a particular log."
+      "description": "Properties of the private endpoint connection resource."
     },
-    "RetentionPolicy": {
+    "privateLinkForAzureAd_privateEndpointConnections_childResource": {
       "type": "object",
       "properties": {
-        "days": {
-          "oneOf": [
-            {
-              "type": "integer",
-              "minimum": 0
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The number of days for the retention in days. A value of 0 will retain the events indefinitely."
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2020-03-01"
+          ]
         },
-        "enabled": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The PrivateEndpointConnection name."
+        },
+        "properties": {
           "oneOf": [
             {
-              "type": "boolean"
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "A value indicating whether the retention policy is enabled."
+          "description": "Properties of the private endpoint connection resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "privateEndpointConnections"
+          ]
         }
       },
       "required": [
-        "days",
-        "enabled"
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
       ],
-      "description": "Specifies the retention policy for the log."
+      "description": "microsoft.aadiam/privateLinkForAzureAd/privateEndpointConnections"
+    },
+    "PrivateLinkServiceConnectionState": {
+      "type": "object",
+      "properties": {
+        "actionsRequired": {
+          "type": "string",
+          "description": "A message indicating if changes on the service provider require any updates on the consumer."
+        },
+        "description": {
+          "type": "string",
+          "description": "The reason for approval or rejection."
+        },
+        "status": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Approved",
+                "Pending",
+                "Rejected",
+                "Disconnected"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates whether the connection has been approved, rejected or removed by the given policy owner."
+        }
+      },
+      "description": "An object that represents the approval state of the private link connection."
+    },
+    "TagsResource": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags"
+        }
+      },
+      "description": "A container holding only the Tags for a resource, allowing the user to update the tags on a PrivateLinkConnection instance."
     }
   }
 }

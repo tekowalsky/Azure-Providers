@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-07-12/Microsoft.DesktopVirtualization.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-09-09/Microsoft.DesktopVirtualization.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.DesktopVirtualization",
   "description": "Microsoft DesktopVirtualization Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-07-12"
+            "2022-09-09"
           ]
         },
         "identity": {
@@ -90,6 +90,17 @@
             }
           ]
         },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
+        },
         "tags": {
           "oneOf": [
             {
@@ -126,7 +137,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-07-12"
+            "2022-09-09"
           ]
         },
         "name": {
@@ -145,6 +156,17 @@
             }
           ],
           "description": "Schema for Application properties."
+        },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
         },
         "type": {
           "type": "string",
@@ -167,7 +189,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-07-12"
+            "2022-09-09"
           ]
         },
         "identity": {
@@ -247,6 +269,17 @@
             }
           ]
         },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
+        },
         "tags": {
           "oneOf": [
             {
@@ -283,7 +316,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-07-12"
+            "2022-09-09"
           ]
         },
         "name": {
@@ -302,6 +335,17 @@
             }
           ],
           "description": "Schema for MSIX Package properties."
+        },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
         },
         "type": {
           "type": "string",
@@ -324,7 +368,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-07-12"
+            "2022-09-09"
           ]
         },
         "identity": {
@@ -360,7 +404,7 @@
         "name": {
           "type": "string",
           "minLength": 3,
-          "maxLength": 24,
+          "maxLength": 64,
           "description": "The name of the scaling plan."
         },
         "plan": {
@@ -384,6 +428,16 @@
           ],
           "description": "Scaling plan properties."
         },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/scalingPlans_pooledSchedules_childResource"
+              }
+            ]
+          }
+        },
         "sku": {
           "oneOf": [
             {
@@ -393,6 +447,17 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ]
+        },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
         },
         "tags": {
           "oneOf": [
@@ -424,13 +489,65 @@
       ],
       "description": "Microsoft.DesktopVirtualization/scalingPlans"
     },
+    "scalingPlans_pooledSchedules": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-09-09"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "description": "The name of the ScalingPlanSchedule"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ScalingPlanPooledScheduleProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A ScalingPlanPooledSchedule."
+        },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DesktopVirtualization/scalingPlans/pooledSchedules"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DesktopVirtualization/scalingPlans/pooledSchedules"
+    },
     "workspaces": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-07-12"
+            "2022-09-09"
           ]
         },
         "identity": {
@@ -500,6 +617,17 @@
             }
           ]
         },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
+        },
         "tags": {
           "oneOf": [
             {
@@ -532,6 +660,56 @@
     }
   },
   "definitions": {
+    "AgentUpdateProperties": {
+      "type": "object",
+      "properties": {
+        "maintenanceWindows": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MaintenanceWindowProperties"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of maintenance windows. Maintenance windows are 2 hours long."
+        },
+        "maintenanceWindowTimeZone": {
+          "type": "string",
+          "description": "Time zone for maintenance as defined in https://docs.microsoft.com/en-us/dotnet/api/system.timezoneinfo.findsystemtimezonebyid?view=net-5.0. Must be set if useLocalTime is true."
+        },
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Default",
+                "Scheduled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The type of maintenance for session host components."
+        },
+        "useSessionHostLocalTime": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether to use localTime of the virtual machine."
+        }
+      },
+      "description": "The session host configuration for updating agent, monitoring agent, and stack component."
+    },
     "ApplicationGroupProperties": {
       "type": "object",
       "properties": {
@@ -561,17 +739,6 @@
         "hostPoolArmPath": {
           "type": "string",
           "description": "HostPool arm path of ApplicationGroup."
-        },
-        "migrationRequest": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/MigrationRequestProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Properties for arm migration."
         }
       },
       "required": [
@@ -586,7 +753,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-07-12"
+            "2022-09-09"
           ]
         },
         "name": {
@@ -605,6 +772,17 @@
             }
           ],
           "description": "Schema for Application properties."
+        },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
         },
         "type": {
           "type": "string",
@@ -714,6 +892,17 @@
     "HostPoolProperties": {
       "type": "object",
       "properties": {
+        "agentUpdate": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AgentUpdateProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The session host configuration for updating agent, monitoring agent, and stack component."
+        },
         "customRdpProperty": {
           "type": "string",
           "description": "Custom rdp property of HostPool."
@@ -768,17 +957,6 @@
             }
           ],
           "description": "The max session limit of HostPool."
-        },
-        "migrationRequest": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/MigrationRequestProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Properties for arm migration."
         },
         "personalDesktopAssignmentType": {
           "oneOf": [
@@ -902,7 +1080,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-07-12"
+            "2022-09-09"
           ]
         },
         "name": {
@@ -922,6 +1100,17 @@
           ],
           "description": "Schema for MSIX Package properties."
         },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
+        },
         "type": {
           "type": "string",
           "enum": [
@@ -937,33 +1126,42 @@
       ],
       "description": "Microsoft.DesktopVirtualization/hostPools/msixPackages"
     },
-    "MigrationRequestProperties": {
+    "MaintenanceWindowProperties": {
       "type": "object",
       "properties": {
-        "migrationPath": {
-          "type": "string",
-          "description": "The path to the legacy object to migrate."
-        },
-        "operation": {
+        "dayOfWeek": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
-                "Start",
-                "Revoke",
-                "Complete",
-                "Hide",
-                "Unhide"
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The type of operation for migration."
+          "description": "Day of the week."
+        },
+        "hour": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The update start hour of the day. (0 - 23)"
         }
       },
-      "description": "Properties for arm migration."
+      "description": "Maintenance window starting hour and day of week."
     },
     "MsixPackageApplications": {
       "type": "object",
@@ -1267,73 +1465,7 @@
       },
       "description": "Scaling plan reference to hostpool."
     },
-    "ScalingPlanProperties": {
-      "type": "object",
-      "properties": {
-        "description": {
-          "type": "string",
-          "description": "Description of scaling plan."
-        },
-        "exclusionTag": {
-          "type": "string",
-          "description": "Exclusion tag for scaling plan."
-        },
-        "friendlyName": {
-          "type": "string",
-          "description": "User friendly name of scaling plan."
-        },
-        "hostPoolReferences": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/ScalingHostPoolReference"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "List of ScalingHostPoolReference definitions."
-        },
-        "hostPoolType": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "Personal",
-                "Pooled",
-                "BYODesktop"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "HostPool type for desktop."
-        },
-        "schedules": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/ScalingSchedule"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "List of ScalingSchedule definitions."
-        },
-        "timeZone": {
-          "type": "string",
-          "description": "Timezone of the scaling plan."
-        }
-      },
-      "description": "Scaling plan properties."
-    },
-    "ScalingSchedule": {
+    "ScalingPlanPooledScheduleProperties": {
       "type": "object",
       "properties": {
         "daysOfWeek": {
@@ -1343,13 +1475,13 @@
               "items": {
                 "type": "string",
                 "enum": [
-                  "Sunday",
                   "Monday",
                   "Tuesday",
                   "Wednesday",
                   "Thursday",
                   "Friday",
-                  "Saturday"
+                  "Saturday",
+                  "Sunday"
                 ]
               }
             },
@@ -1358,10 +1490,6 @@
             }
           ],
           "description": "Set of days of the week on which this schedule is active."
-        },
-        "name": {
-          "type": "string",
-          "description": "Name of the scaling schedule."
         },
         "offPeakLoadBalancingAlgorithm": {
           "oneOf": [
@@ -1379,9 +1507,15 @@
           "description": "Load balancing algorithm for off-peak period."
         },
         "offPeakStartTime": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Starting time for off-peak period."
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Time"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time for a scaling action to occur."
         },
         "peakLoadBalancingAlgorithm": {
           "oneOf": [
@@ -1399,9 +1533,15 @@
           "description": "Load balancing algorithm for peak period."
         },
         "peakStartTime": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Starting time for peak period."
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Time"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time for a scaling action to occur."
         },
         "rampDownCapacityThresholdPct": {
           "oneOf": [
@@ -1460,9 +1600,15 @@
           "description": "Notification message for users during ramp down period."
         },
         "rampDownStartTime": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Starting time for ramp down period."
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Time"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time for a scaling action to occur."
         },
         "rampDownStopHostsWhen": {
           "oneOf": [
@@ -1494,7 +1640,7 @@
           "oneOf": [
             {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 1,
               "maximum": 100
             },
             {
@@ -1532,12 +1678,461 @@
           "description": "Minimum host percentage for ramp up period."
         },
         "rampUpStartTime": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Starting time for ramp up period."
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Time"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time for a scaling action to occur."
         }
       },
-      "description": "Scaling plan schedule."
+      "description": "A ScalingPlanPooledSchedule."
+    },
+    "ScalingPlanProperties": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Description of scaling plan."
+        },
+        "exclusionTag": {
+          "type": "string",
+          "description": "Exclusion tag for scaling plan."
+        },
+        "friendlyName": {
+          "type": "string",
+          "description": "User friendly name of scaling plan."
+        },
+        "hostPoolReferences": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ScalingHostPoolReference"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of ScalingHostPoolReference definitions."
+        },
+        "hostPoolType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Pooled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "HostPool type for desktop."
+        },
+        "schedules": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ScalingSchedule"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of ScalingPlanPooledSchedule definitions."
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "Timezone of the scaling plan."
+        }
+      },
+      "required": [
+        "timeZone"
+      ],
+      "description": "Scaling plan properties."
+    },
+    "scalingPlans_pooledSchedules_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-09-09"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "description": "The name of the ScalingPlanSchedule"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ScalingPlanPooledScheduleProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A ScalingPlanPooledSchedule."
+        },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "pooledSchedules"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DesktopVirtualization/scalingPlans/pooledSchedules"
+    },
+    "ScalingSchedule": {
+      "type": "object",
+      "properties": {
+        "daysOfWeek": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Sunday",
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday"
+                ]
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Set of days of the week on which this schedule is active."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the ScalingPlanPooledSchedule."
+        },
+        "offPeakLoadBalancingAlgorithm": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "BreadthFirst",
+                "DepthFirst"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Load balancing algorithm for off-peak period."
+        },
+        "offPeakStartTime": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Time"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time for a scaling action to occur."
+        },
+        "peakLoadBalancingAlgorithm": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "BreadthFirst",
+                "DepthFirst"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Load balancing algorithm for peak period."
+        },
+        "peakStartTime": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Time"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time for a scaling action to occur."
+        },
+        "rampDownCapacityThresholdPct": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Capacity threshold for ramp down period."
+        },
+        "rampDownForceLogoffUsers": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Should users be logged off forcefully from hosts."
+        },
+        "rampDownLoadBalancingAlgorithm": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "BreadthFirst",
+                "DepthFirst"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Load balancing algorithm for ramp down period."
+        },
+        "rampDownMinimumHostsPct": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Minimum host percentage for ramp down period."
+        },
+        "rampDownNotificationMessage": {
+          "type": "string",
+          "description": "Notification message for users during ramp down period."
+        },
+        "rampDownStartTime": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Time"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time for a scaling action to occur."
+        },
+        "rampDownStopHostsWhen": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "ZeroSessions",
+                "ZeroActiveSessions"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies when to stop hosts during ramp down period."
+        },
+        "rampDownWaitTimeMinutes": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Number of minutes to wait to stop hosts during ramp down period."
+        },
+        "rampUpCapacityThresholdPct": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Capacity threshold for ramp up period."
+        },
+        "rampUpLoadBalancingAlgorithm": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "BreadthFirst",
+                "DepthFirst"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Load balancing algorithm for ramp up period."
+        },
+        "rampUpMinimumHostsPct": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Minimum host percentage for ramp up period."
+        },
+        "rampUpStartTime": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Time"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time for a scaling action to occur."
+        }
+      },
+      "description": "A ScalingPlanPooledSchedule."
+    },
+    "SystemData": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp of resource creation (UTC)."
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "The identity that created the resource."
+        },
+        "createdByType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "User",
+                "Application",
+                "ManagedIdentity",
+                "Key"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The type of identity that created the resource."
+        },
+        "lastModifiedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp of resource last modification (UTC)"
+        },
+        "lastModifiedBy": {
+          "type": "string",
+          "description": "The identity that last modified the resource."
+        },
+        "lastModifiedByType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "User",
+                "Application",
+                "ManagedIdentity",
+                "Key"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The type of identity that last modified the resource."
+        }
+      },
+      "description": "Metadata pertaining to creation and last modification of the resource."
+    },
+    "Time": {
+      "type": "object",
+      "properties": {
+        "hour": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 23
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The hour."
+        },
+        "minute": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 59
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The minute."
+        }
+      },
+      "required": [
+        "hour",
+        "minute"
+      ],
+      "description": "The time for a scaling action to occur."
     },
     "WorkspaceProperties": {
       "type": "object",

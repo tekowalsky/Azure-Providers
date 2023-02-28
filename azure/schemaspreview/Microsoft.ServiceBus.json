@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2018-01-01-preview/Microsoft.ServiceBus.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-10-01-preview/Microsoft.ServiceBus.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.ServiceBus",
   "description": "Microsoft ServiceBus Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "identity": {
@@ -22,7 +22,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Properties to configure Identity for Bring your Own Keys"
+          "description": "Properties to configure User Assigned Identities for Bring your Own Keys"
         },
         "location": {
           "type": "string",
@@ -48,16 +48,10 @@
           "items": {
             "oneOf": [
               {
-                "$ref": "#/definitions/namespaces_ipfilterrules_childResource"
-              },
-              {
-                "$ref": "#/definitions/namespaces_virtualnetworkrules_childResource"
+                "$ref": "#/definitions/namespaces_networkRuleSets_childResource"
               },
               {
                 "$ref": "#/definitions/namespaces_AuthorizationRules_childResource"
-              },
-              {
-                "$ref": "#/definitions/namespaces_networkRuleSets_childResource"
               },
               {
                 "$ref": "#/definitions/namespaces_privateEndpointConnections_childResource"
@@ -66,13 +60,13 @@
                 "$ref": "#/definitions/namespaces_disasterRecoveryConfigs_childResource"
               },
               {
+                "$ref": "#/definitions/namespaces_migrationConfigurations_childResource"
+              },
+              {
                 "$ref": "#/definitions/namespaces_queues_childResource"
               },
               {
                 "$ref": "#/definitions/namespaces_topics_childResource"
-              },
-              {
-                "$ref": "#/definitions/namespaces_migrationConfigurations_childResource"
               }
             ]
           }
@@ -125,7 +119,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -166,7 +160,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -201,53 +195,13 @@
       ],
       "description": "Microsoft.ServiceBus/namespaces/disasterRecoveryConfigs"
     },
-    "namespaces_ipfilterrules": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2018-01-01-preview"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "minLength": 1,
-          "description": "The IP Filter Rule name."
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/IpFilterRuleProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Properties supplied to create or update IpFilterRules"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "Microsoft.ServiceBus/namespaces/ipfilterrules"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.ServiceBus/namespaces/ipfilterrules"
-    },
     "namespaces_migrationConfigurations": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -294,7 +248,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -340,7 +294,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -379,7 +333,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -429,7 +383,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -470,7 +424,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -523,7 +477,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -564,7 +518,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -615,7 +569,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -649,46 +603,6 @@
         "type"
       ],
       "description": "Microsoft.ServiceBus/namespaces/topics/subscriptions/rules"
-    },
-    "namespaces_virtualnetworkrules": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2018-01-01-preview"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "minLength": 1,
-          "description": "The Virtual Network Rule name."
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/VirtualNetworkRuleProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Properties supplied to create or update VirtualNetworkRules"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "Microsoft.ServiceBus/namespaces/virtualnetworkrules"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.ServiceBus/namespaces/virtualnetworkrules"
     }
   },
   "definitions": {
@@ -851,13 +765,27 @@
         "keyVaultProperties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/KeyVaultProperties"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/KeyVaultProperties"
+              }
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Properties to configure keyVault Properties"
+          "description": "Properties of KeyVault"
+        },
+        "requireInfrastructureEncryption": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Enable Infrastructure Encryption (Double Encryption)"
         }
       },
       "description": "Properties to configure Encryption"
@@ -865,63 +793,54 @@
     "Identity": {
       "type": "object",
       "properties": {
-        "principalId": {
-          "type": "string",
-          "description": "ObjectId from the KeyVault"
-        },
-        "tenantId": {
-          "type": "string",
-          "description": "TenantId from the KeyVault"
-        },
         "type": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
-                "SystemAssigned"
+                "SystemAssigned",
+                "UserAssigned",
+                "SystemAssigned, UserAssigned",
+                "None"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Enumerates the possible value Identity type, which currently supports only 'SystemAssigned'."
-        }
-      },
-      "description": "Properties to configure Identity for Bring your Own Keys"
-    },
-    "IpFilterRuleProperties": {
-      "type": "object",
-      "properties": {
-        "action": {
+          "description": "Type of managed service identity."
+        },
+        "userAssignedIdentities": {
           "oneOf": [
             {
-              "type": "string",
-              "enum": [
-                "Accept",
-                "Reject"
-              ]
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/UserAssignedIdentity"
+              },
+              "properties": {}
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The IP Filter Action."
-        },
-        "filterName": {
-          "type": "string",
-          "description": "IP Filter name"
-        },
-        "ipMask": {
-          "type": "string",
-          "description": "IP Mask"
+          "description": "Properties for User Assigned Identities"
         }
       },
-      "description": "Properties supplied to create or update IpFilterRules"
+      "description": "Properties to configure User Assigned Identities for Bring your Own Keys"
     },
     "KeyVaultProperties": {
       "type": "object",
       "properties": {
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/UserAssignedIdentityProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
         "keyName": {
           "type": "string",
           "description": "Name of the Key from KeyVault"
@@ -929,6 +848,10 @@
         "keyVaultUri": {
           "type": "string",
           "description": "Uri of KeyVault"
+        },
+        "keyVersion": {
+          "type": "string",
+          "description": "Version of KeyVault"
         }
       },
       "description": "Properties to configure keyVault Properties"
@@ -957,7 +880,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -998,7 +921,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1033,53 +956,13 @@
       ],
       "description": "Microsoft.ServiceBus/namespaces/disasterRecoveryConfigs"
     },
-    "namespaces_ipfilterrules_childResource": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2018-01-01-preview"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "minLength": 1,
-          "description": "The IP Filter Rule name."
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/IpFilterRuleProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Properties supplied to create or update IpFilterRules"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "ipfilterrules"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.ServiceBus/namespaces/ipfilterrules"
-    },
     "namespaces_migrationConfigurations_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1121,7 +1004,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1162,7 +1045,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1201,7 +1084,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1242,7 +1125,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1282,7 +1165,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1323,7 +1206,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1363,7 +1246,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1404,7 +1287,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-01-preview"
+            "2022-10-01-preview"
           ]
         },
         "name": {
@@ -1439,46 +1322,6 @@
       ],
       "description": "Microsoft.ServiceBus/namespaces/topics/subscriptions/rules"
     },
-    "namespaces_virtualnetworkrules_childResource": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2018-01-01-preview"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "minLength": 1,
-          "description": "The Virtual Network Rule name."
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/VirtualNetworkRuleProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Properties supplied to create or update VirtualNetworkRules"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "virtualnetworkrules"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.ServiceBus/namespaces/virtualnetworkrules"
-    },
     "NetworkRuleSetProperties": {
       "type": "object",
       "properties": {
@@ -1510,6 +1353,32 @@
             }
           ],
           "description": "List of IpRules"
+        },
+        "publicNetworkAccess": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "This determines if traffic is allowed over public network. By default it is enabled."
+        },
+        "trustedServiceAccessEnabled": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Value that indicates whether Trusted Service Access is Enabled or not."
         },
         "virtualNetworkRules": {
           "oneOf": [
@@ -1589,6 +1458,23 @@
         }
       },
       "description": "PrivateEndpoint information."
+    },
+    "PrivateEndpointConnection": {
+      "type": "object",
+      "properties": {
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the private endpoint connection resource."
+        }
+      },
+      "description": "Properties of the PrivateEndpointConnection."
     },
     "PrivateEndpointConnectionProperties": {
       "type": "object",
@@ -1719,9 +1605,56 @@
       ],
       "description": "AuthorizationRule properties."
     },
+    "SBClientAffineProperties": {
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "type": "string",
+          "description": "Indicates the Client ID of the application that created the client-affine subscription."
+        },
+        "isDurable": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "For client-affine subscriptions, this value indicates whether the subscription is durable or not."
+        },
+        "isShared": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "For client-affine subscriptions, this value indicates whether the subscription is shared or not."
+        }
+      },
+      "description": "Properties specific to client affine subscriptions."
+    },
     "SBNamespaceProperties": {
       "type": "object",
       "properties": {
+        "alternateName": {
+          "type": "string",
+          "description": "Alternate name for namespace"
+        },
+        "disableLocalAuth": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "This property disables SAS authentication for the Service Bus namespace."
+        },
         "encryption": {
           "oneOf": [
             {
@@ -1732,6 +1665,63 @@
             }
           ],
           "description": "Properties to configure Encryption"
+        },
+        "minimumTlsVersion": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The minimum TLS version for the cluster to support, e.g. '1.2'."
+        },
+        "premiumMessagingPartitions": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The number of partitions of a Service Bus namespace. This property is only applicable to Premium SKU namespaces. The default value is 1 and possible values are 1, 2 and 4"
+        },
+        "privateEndpointConnections": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PrivateEndpointConnection"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of private endpoint connections."
+        },
+        "publicNetworkAccess": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled",
+                "SecuredByPerimeter"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "This determines if traffic is allowed over public network. By default it is enabled."
         },
         "zoneRedundant": {
           "oneOf": [
@@ -1833,6 +1823,17 @@
           ],
           "description": "The maximum delivery count. A message is automatically deadlettered after this number of deliveries. default value is 10."
         },
+        "maxMessageSizeInKilobytes": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Maximum size (in KB) of the message payload that can be accepted by the queue. This property is only used in Premium today and default is 1024."
+        },
         "maxSizeInMegabytes": {
           "oneOf": [
             {
@@ -1903,7 +1904,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The specified messaging units for the tier. For Premium tier, capacity are 1,2 and 4."
+          "description": "Messaging units for your service bus premium namespace. Valid capacities are {1, 2, 4, 8, 16} multiples of your properties.premiumMessagingPartitions setting. For example, If properties.premiumMessagingPartitions is 1 then possible capacity values are 1, 2, 4, 8, and 16. If properties.premiumMessagingPartitions is 4 then possible capacity values are 4, 8, 16, 32 and 64"
         },
         "name": {
           "oneOf": [
@@ -1950,6 +1951,17 @@
           "type": "string",
           "format": "duration",
           "description": "ISO 8061 timeSpan idle interval after which the topic is automatically deleted. The minimum duration is 5 minutes."
+        },
+        "clientAffineProperties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SBClientAffineProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties specific to client affine subscriptions."
         },
         "deadLetteringOnFilterEvaluationExceptions": {
           "oneOf": [
@@ -2001,6 +2013,17 @@
         "forwardTo": {
           "type": "string",
           "description": "Queue/Topic name to forward the messages"
+        },
+        "isClientAffine": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Value that indicates whether the subscription has an affinity to the client id."
         },
         "lockDuration": {
           "type": "string",
@@ -2105,6 +2128,17 @@
           ],
           "description": "Value that indicates whether the topic to be partitioned across multiple message brokers is enabled."
         },
+        "maxMessageSizeInKilobytes": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Maximum size (in KB) of the message payload that can be accepted by the topic. This property is only used in Premium today and default is 1024."
+        },
         "maxSizeInMegabytes": {
           "oneOf": [
             {
@@ -2169,10 +2203,7 @@
         "compatibilityLevel": {
           "oneOf": [
             {
-              "type": "integer",
-              "minimum": 20,
-              "maximum": 20,
-              "default": "20"
+              "type": "integer"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -2212,15 +2243,19 @@
       ],
       "description": "Properties supplied for Subnet"
     },
-    "VirtualNetworkRuleProperties": {
+    "UserAssignedIdentity": {
+      "type": "object",
+      "properties": {},
+      "description": "Recognized Dictionary value."
+    },
+    "UserAssignedIdentityProperties": {
       "type": "object",
       "properties": {
-        "virtualNetworkSubnetId": {
+        "userAssignedIdentity": {
           "type": "string",
-          "description": "Resource ID of Virtual Network Subnet"
+          "description": "ARM ID of user Identity selected for encryption"
         }
-      },
-      "description": "Properties supplied to create or update VirtualNetworkRules"
+      }
     }
   }
 }

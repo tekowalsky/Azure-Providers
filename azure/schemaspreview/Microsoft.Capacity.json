@@ -1,40 +1,51 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2019-07-19-preview/Microsoft.Capacity.json#",
+  "id": "https://schema.management.azure.com/schemas/2020-10-01-preview/Microsoft.Capacity.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Capacity",
   "description": "Microsoft Capacity Resource Types",
   "resourceDefinitions": {},
-  "subscription_resourceDefinitions": {
-    "autoQuotaIncrease": {
+  "tenant_resourceDefinitions": {
+    "reservationOrders": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-07-19-preview"
+            "2020-10-01-preview"
           ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The Azure Region where the reserved resource lives."
         },
         "name": {
           "type": "string",
-          "enum": [
-            "autoQuotaIncrease"
-          ]
+          "description": "Order Id of the reservation"
         },
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/AutoQuotaIncreaseSettings"
+              "$ref": "#/definitions/PurchaseRequestProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "Actions for auto quota increase."
+          ]
+        },
+        "sku": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SkuName"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.Capacity/autoQuotaIncrease"
+            "Microsoft.Capacity/reservationOrders"
           ]
         }
       },
@@ -44,213 +55,14 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Capacity/autoQuotaIncrease"
-    },
-    "resourceProviders_locations_serviceLimits": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2019-07-19-preview"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "description": "The resource name for a resource provider, such as SKU name for Microsoft.Compute, Sku or TotalLowPriorityCores for Microsoft.MachineLearningServices"
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/QuotaProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Quota properties for the resource."
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "Microsoft.Capacity/resourceProviders/locations/serviceLimits"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.Capacity/resourceProviders/locations/serviceLimits"
+      "description": "Microsoft.Capacity/reservationOrders"
     }
   },
   "definitions": {
-    "Actions": {
+    "PurchaseRequestProperties": {
       "type": "object",
       "properties": {
-        "emailActions": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/EmailActions"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The email actions."
-        }
-      },
-      "description": "The actions for auto quota increase."
-    },
-    "AqiSettings": {
-      "type": "object",
-      "properties": {
-        "autoQuotaIncreaseState": {
-          "type": "object",
-          "properties": {},
-          "description": "If the subscription has enabled automatic quota increase."
-        }
-      },
-      "description": "Settings for auto quota increase."
-    },
-    "AutoQuotaIncreaseSettings": {
-      "type": "object",
-      "properties": {
-        "onFailure": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/Actions"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The actions for auto quota increase."
-        },
-        "onSuccess": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/Actions"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The actions for auto quota increase."
-        },
-        "settings": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/AqiSettings"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Settings for auto quota increase."
-        },
-        "supportTicketAction": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/SupportRequestAction"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The SupportRequest action."
-        }
-      },
-      "description": "Actions for auto quota increase."
-    },
-    "EmailAction": {
-      "type": "object",
-      "properties": {
-        "emailAddress": {
-          "type": "string",
-          "description": "The email address for the action."
-        }
-      },
-      "description": "Email Action."
-    },
-    "EmailActions": {
-      "type": "object",
-      "properties": {
-        "emailAddresses": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/EmailAction"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The list of email actions."
-        }
-      },
-      "description": "The email actions."
-    },
-    "QuotaProperties": {
-      "type": "object",
-      "properties": {
-        "limit": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The quota limit."
-        },
-        "name": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/ResourceName"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Name of the resource provide by the resource Provider. Please use this name property for quotaRequests."
-        },
-        "properties": {
-          "type": "object",
-          "properties": {},
-          "description": "Additional properties for the specific resource provider."
-        },
-        "resourceType": {
-          "type": "object",
-          "properties": {},
-          "description": "The Resource Type Name."
-        },
-        "unit": {
-          "type": "string",
-          "description": " The units of the limit, such as - Count, Bytes, etc. Use the unit field provided in the Get quota response."
-        }
-      },
-      "description": "Quota properties for the resource."
-    },
-    "ResourceName": {
-      "type": "object",
-      "properties": {
-        "value": {
-          "type": "string",
-          "description": "Resource name."
-        }
-      },
-      "description": "Name of the resource provide by the resource Provider. Please use this name property for quotaRequests."
-    },
-    "SupportRequestAction": {
-      "type": "object",
-      "properties": {
-        "alternateEmailAddresses": {
+        "appliedScopes": {
           "oneOf": [
             {
               "type": "array",
@@ -262,44 +74,153 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The alternate email address of the recipient."
+          "description": "List of the subscriptions that the benefit will be applied. Do not specify if AppliedScopeType is Shared."
         },
-        "country": {
+        "appliedScopeType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Single",
+                "Shared"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "billingPlan": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Upfront",
+                "Monthly"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "billingScopeId": {
           "type": "string",
-          "description": "The country of the recipient."
+          "description": "Subscription that will be charged for purchasing Reservation"
         },
-        "firstName": {
+        "displayName": {
           "type": "string",
-          "description": "The first name of the recipient."
+          "description": "Friendly name of the Reservation"
         },
-        "lastName": {
-          "type": "string",
-          "description": "The last name of the recipient."
+        "quantity": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Quantity of the SKUs that are part of the Reservation. Must be greater than zero."
         },
-        "phoneNumber": {
-          "type": "string",
-          "description": "The phone number of the recipient."
+        "renew": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Setting this to true will automatically purchase a new reservation on the expiration date time."
         },
-        "preferredContactMethod": {
-          "type": "object",
-          "properties": {},
-          "description": "The preferred communication channel."
+        "reservedResourceProperties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PurchaseRequestPropertiesReservedResourceProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties specific to each reserved resource type. Not required if not applicable."
         },
-        "primaryEmailAddress": {
-          "type": "string",
-          "description": "The primary email addresses of the recipients."
+        "reservedResourceType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "VirtualMachines",
+                "SqlDatabases",
+                "SuseLinux",
+                "CosmosDb",
+                "RedHat",
+                "SqlDataWarehouse",
+                "VMwareCloudSimple",
+                "RedHatOsa",
+                "Databricks",
+                "AppService",
+                "ManagedDisk",
+                "BlockBlob",
+                "RedisCache",
+                "AzureDataExplorer",
+                "MySql",
+                "MariaDb",
+                "PostgreSql",
+                "DedicatedHost",
+                "SapHana",
+                "SqlAzureHybridBenefit"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
         },
-        "severity": {
-          "type": "object",
-          "properties": {},
-          "description": "The support request severity."
-        },
-        "supportLanguage": {
-          "type": "string",
-          "description": "The support language."
+        "term": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "P1Y",
+                "P3Y"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        }
+      }
+    },
+    "PurchaseRequestPropertiesReservedResourceProperties": {
+      "type": "object",
+      "properties": {
+        "instanceFlexibility": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "On",
+                "Off"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
         }
       },
-      "description": "The SupportRequest action."
+      "description": "Properties specific to each reserved resource type. Not required if not applicable."
+    },
+    "SkuName": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
     }
   }
 }

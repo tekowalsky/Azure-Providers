@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2018-01-20-preview/Microsoft.GuestConfiguration.json#",
+  "id": "https://schema.management.azure.com/schemas/2018-06-30-preview/Microsoft.GuestConfiguration.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.GuestConfiguration",
   "description": "Microsoft GuestConfiguration Resource Types",
@@ -11,7 +11,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-01-20-preview"
+            "2018-06-30-preview"
           ]
         },
         "location": {
@@ -31,7 +31,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Properties of guest configuration assignment object."
+          "description": "Guest configuration assignment properties."
         },
         "type": {
           "type": "string",
@@ -55,29 +55,96 @@
       "properties": {},
       "description": "Represents a configuration parameter."
     },
-    "ConfigurationParameterList": {
+    "ConfigurationSetting": {
       "type": "object",
       "properties": {
-        "value": {
+        "actionAfterReboot": {
           "oneOf": [
             {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/ConfigurationParameter"
-              }
+              "type": "string",
+              "enum": [
+                "ContinueConfiguration",
+                "StopConfiguration"
+              ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Represents the list for configuration parameters."
+          "description": "Specifies what happens after a reboot during the application of a configuration. The possible values are ContinueConfiguration and StopConfiguration."
+        },
+        "allowModuleOverwrite": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "If true - new configurations downloaded from the pull service are allowed to overwrite the old ones on the target node. Otherwise, false"
+        },
+        "configurationMode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "ApplyOnly",
+                "ApplyAndMonitor",
+                "ApplyAndAutoCorrect"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies how the LCM(Local Configuration Manager) actually applies the configuration to the target nodes. Possible values are ApplyOnly, ApplyAndMonitor, and ApplyAndAutoCorrect."
+        },
+        "configurationModeFrequencyMins": {
+          "oneOf": [
+            {
+              "type": "number",
+              "default": 15
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "How often, in minutes, the current configuration is checked and applied. This property is ignored if the ConfigurationMode property is set to ApplyOnly. The default value is 15."
+        },
+        "rebootIfNeeded": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Set this to true to automatically reboot the node after a configuration that requires reboot is applied. Otherwise, you will have to manually reboot the node for any configuration that requires it. The default value is false. To use this setting when a reboot condition is enacted by something other than DSC (such as Windows Installer), combine this setting with the xPendingReboot module."
+        },
+        "refreshFrequencyMins": {
+          "oneOf": [
+            {
+              "type": "number",
+              "default": 30
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time interval, in minutes, at which the LCM checks a pull service to get updated configurations. This value is ignored if the LCM is not configured in pull mode. The default value is 30."
         }
       },
-      "description": "Represents the list for configuration parameters."
+      "description": "Configuration setting of LCM (Local Configuration Manager)."
     },
     "GuestConfigurationAssignmentProperties": {
       "type": "object",
       "properties": {
+        "context": {
+          "type": "string",
+          "description": "The source which initiated the guest configuration assignment. Ex: Azure Policy"
+        },
         "guestConfiguration": {
           "oneOf": [
             {
@@ -90,7 +157,7 @@
           "description": "Guest configuration is an artifact that encapsulates DSC configuration and its dependencies. The artifact is a zip file containing DSC configuration (as MOF) and dependent resources and other dependencies like modules."
         }
       },
-      "description": "Properties of guest configuration assignment object."
+      "description": "Guest configuration assignment properties."
     },
     "GuestConfigurationNavigation": {
       "type": "object",
@@ -98,13 +165,27 @@
         "configurationParameter": {
           "oneOf": [
             {
-              "$ref": "#/definitions/ConfigurationParameterList"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ConfigurationParameter"
+              }
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Represents the list for configuration parameters."
+          "description": "The configuration parameters for the guest configuration."
+        },
+        "configurationSetting": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ConfigurationSetting"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Configuration setting of LCM (Local Configuration Manager)."
         },
         "kind": {
           "oneOf": [
@@ -124,9 +205,9 @@
           "type": "string",
           "description": "Name of the guest configuration."
         },
-        "type": {
+        "version": {
           "type": "string",
-          "description": "Type of the guest configuration."
+          "description": "Version of the guest configuration."
         }
       },
       "description": "Guest configuration is an artifact that encapsulates DSC configuration and its dependencies. The artifact is a zip file containing DSC configuration (as MOF) and dependent resources and other dependencies like modules."

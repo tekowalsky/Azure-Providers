@@ -1,38 +1,48 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2015-10-01-preview/Microsoft.Authorization.Resources.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-08-01-preview/Microsoft.Authorization.Resources.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Authorization",
   "description": "Microsoft Authorization Resource Types",
   "resourceDefinitions": {},
   "subscription_resourceDefinitions": {
-    "policydefinitions": {
+    "variables": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-10-01-preview"
+            "2022-08-01-preview"
           ]
         },
         "name": {
           "type": "string",
-          "description": "The name of the policy definition to create."
+          "description": "The name of the variable to operate on."
         },
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/PolicyDefinitionProperties"
+              "$ref": "#/definitions/PolicyVariableProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The policy definition properties."
+          "description": "The variable properties."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/variables_values_childResource"
+              }
+            ]
+          }
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.Authorization/policydefinitions"
+            "Microsoft.Authorization/variables"
           ]
         }
       },
@@ -42,42 +52,87 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Authorization/policydefinitions"
+      "description": "Microsoft.Authorization/variables"
+    },
+    "variables_values": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-08-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the variable value to operate on."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyVariableValueProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The variable value properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Authorization/variables/values"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Authorization/variables/values"
     }
   },
-  "unknown_resourceDefinitions": {
-    "policyassignments": {
+  "managementGroup_resourceDefinitions": {
+    "variables": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-10-01-preview"
+            "2022-08-01-preview"
           ]
-        },
-        "id": {
-          "type": "string",
-          "description": "The ID of the policy assignment."
         },
         "name": {
           "type": "string",
-          "description": "The name of the policy assignment."
+          "description": "The name of the variable to operate on."
         },
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/PolicyAssignmentProperties"
+              "$ref": "#/definitions/PolicyVariableProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The policy assignment properties."
+          "description": "The variable properties."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/variables_values_childResource"
+              }
+            ]
+          }
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.Authorization/policyassignments"
+            "Microsoft.Authorization/variables"
           ]
         }
       },
@@ -87,62 +142,165 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Authorization/policyassignments"
+      "description": "Microsoft.Authorization/variables"
+    },
+    "variables_values": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-08-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the variable value to operate on."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyVariableValueProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The variable value properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Authorization/variables/values"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Authorization/variables/values"
     }
   },
   "definitions": {
-    "PolicyAssignmentProperties": {
+    "PolicyVariableColumn": {
       "type": "object",
       "properties": {
-        "displayName": {
+        "columnName": {
           "type": "string",
-          "description": "The display name of the policy assignment."
-        },
-        "policyDefinitionId": {
-          "type": "string",
-          "description": "The ID of the policy definition."
-        },
-        "scope": {
-          "type": "string",
-          "description": "The scope for the policy assignment."
+          "description": "The name of this policy variable column."
         }
       },
-      "description": "The policy assignment properties."
+      "required": [
+        "columnName"
+      ],
+      "description": "The variable column."
     },
-    "PolicyDefinitionProperties": {
+    "PolicyVariableProperties": {
       "type": "object",
       "properties": {
-        "description": {
-          "type": "string",
-          "description": "The policy definition description."
-        },
-        "displayName": {
-          "type": "string",
-          "description": "The display name of the policy definition."
-        },
-        "policyRule": {
-          "type": "object",
-          "properties": {},
-          "description": "The policy rule."
-        },
-        "policyType": {
+        "columns": {
           "oneOf": [
             {
-              "type": "string",
-              "enum": [
-                "NotSpecified",
-                "BuiltIn",
-                "Custom"
-              ]
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PolicyVariableColumn"
+              }
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The type of policy definition. Possible values are NotSpecified, BuiltIn, and Custom."
+          "description": "Variable column definitions."
         }
       },
-      "description": "The policy definition properties."
+      "required": [
+        "columns"
+      ],
+      "description": "The variable properties."
+    },
+    "PolicyVariableValueColumnValue": {
+      "type": "object",
+      "properties": {
+        "columnName": {
+          "type": "string",
+          "description": "Column name for the variable value"
+        },
+        "columnValue": {
+          "type": "object",
+          "properties": {},
+          "description": "Column value for the variable value; this can be an integer, double, boolean, null or a string."
+        }
+      },
+      "required": [
+        "columnName",
+        "columnValue"
+      ],
+      "description": "The name value tuple for this variable value column."
+    },
+    "PolicyVariableValueProperties": {
+      "type": "object",
+      "properties": {
+        "values": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PolicyVariableValueColumnValue"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Variable value column value array."
+        }
+      },
+      "required": [
+        "values"
+      ],
+      "description": "The variable value properties."
+    },
+    "variables_values_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-08-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the variable value to operate on."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyVariableValueProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The variable value properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "values"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Authorization/variables/values"
     }
   }
 }

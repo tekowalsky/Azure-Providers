@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2019-11-01/Microsoft.Management.json#",
+  "id": "https://schema.management.azure.com/schemas/2021-04-01/Microsoft.Management.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Management",
   "description": "Microsoft Management Resource Types",
@@ -11,7 +11,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-04-01"
           ]
         },
         "name": {
@@ -35,6 +35,9 @@
             "oneOf": [
               {
                 "$ref": "#/definitions/managementGroups_subscriptions_childResource"
+              },
+              {
+                "$ref": "#/definitions/managementGroups_settings_childResource"
               }
             ]
           }
@@ -54,13 +57,59 @@
       ],
       "description": "Microsoft.Management/managementGroups"
     },
+    "managementGroups_settings": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-04-01"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^.*/default$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreateOrUpdateSettingsProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of the request to create or update Management Group settings"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Management/managementGroups/settings"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Management/managementGroups/settings"
+    },
     "managementGroups_subscriptions": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-04-01"
           ]
         },
         "name": {
@@ -121,6 +170,27 @@
       },
       "description": "The generic properties of a management group used during creation."
     },
+    "CreateOrUpdateSettingsProperties": {
+      "type": "object",
+      "properties": {
+        "defaultManagementGroup": {
+          "type": "string",
+          "description": "Settings that sets the default Management Group under which new subscriptions get added in this tenant. For example, /providers/Microsoft.Management/managementGroups/defaultGroup"
+        },
+        "requireAuthorizationForGroupCreation": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates whether RBAC access is required upon group creation under the root Management Group. If set to true, user will require Microsoft.Management/managementGroups/write action on the root Management Group scope in order to create new Groups directly under the root. This will prevent new users from creating new Management Groups, unless they are given access."
+        }
+      },
+      "description": "The properties of the request to create or update Management Group settings"
+    },
     "CreateParentGroupInfo": {
       "type": "object",
       "properties": {
@@ -131,13 +201,54 @@
       },
       "description": "(Optional) The ID of the parent management group used during creation."
     },
+    "managementGroups_settings_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-04-01"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "default"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreateOrUpdateSettingsProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of the request to create or update Management Group settings"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "settings"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Management/managementGroups/settings"
+    },
     "managementGroups_subscriptions_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-11-01"
+            "2021-04-01"
           ]
         },
         "name": {

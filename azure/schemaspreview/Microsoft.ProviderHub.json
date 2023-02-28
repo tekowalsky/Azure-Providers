@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-05-01-preview/Microsoft.ProviderHub.json#",
+  "id": "https://schema.management.azure.com/schemas/2021-09-01-preview/Microsoft.ProviderHub.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.ProviderHub",
   "description": "Microsoft ProviderHub Resource Types",
@@ -11,7 +11,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2021-09-01-preview"
           ]
         },
         "name": {
@@ -71,7 +71,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2021-09-01-preview"
           ]
         },
         "name": {
@@ -110,7 +110,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2021-09-01-preview"
           ]
         },
         "name": {
@@ -149,7 +149,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2021-09-01-preview"
           ]
         },
         "name": {
@@ -187,20 +187,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
-          ]
-        },
-        "contents": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/OperationsDefinition"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
+            "2021-09-01-preview"
           ]
         },
         "name": {
@@ -208,6 +195,16 @@
             {
               "type": "string",
               "pattern": "^.*/default$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OperationsPutContentProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -223,8 +220,8 @@
       },
       "required": [
         "apiVersion",
-        "contents",
         "name",
+        "properties",
         "type"
       ],
       "description": "Microsoft.ProviderHub/providerRegistrations/operations"
@@ -235,7 +232,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2021-09-01-preview"
           ]
         },
         "name": {
@@ -283,7 +280,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2021-09-01-preview"
           ]
         },
         "name": {
@@ -321,7 +318,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2021-09-01-preview"
           ]
         },
         "name": {
@@ -359,7 +356,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2021-09-01-preview"
           ]
         },
         "name": {
@@ -397,7 +394,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2021-09-01-preview"
           ]
         },
         "name": {
@@ -1083,6 +1080,713 @@
         }
       }
     },
+    "LocalizedOperationDefinition": {
+      "type": "object",
+      "properties": {
+        "actionType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "NotSpecified",
+                "Internal"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "display": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDefinitionDisplay"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation."
+        },
+        "isDataAction": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates whether the operation applies to data-plane."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the operation."
+        },
+        "origin": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "NotSpecified",
+                "User",
+                "System"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "properties": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      "required": [
+        "display",
+        "name"
+      ]
+    },
+    "LocalizedOperationDefinitionDisplay": {
+      "type": "object",
+      "properties": {
+        "cs": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionCs"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for cs locale."
+        },
+        "de": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionDe"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for de locale."
+        },
+        "default": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionDefault"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation."
+        },
+        "en": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionEn"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for en locale."
+        },
+        "es": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionEs"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for es locale."
+        },
+        "fr": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionFr"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for fr locale."
+        },
+        "hu": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionHu"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for hu locale."
+        },
+        "it": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionIt"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for it locale."
+        },
+        "ja": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionJa"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for ja locale."
+        },
+        "ko": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionKo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for ko locale."
+        },
+        "nl": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionNl"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for nl locale."
+        },
+        "pl": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionPl"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for pl locale."
+        },
+        "ptBR": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionPtBR"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for pt-BR locale."
+        },
+        "ptPT": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionPtPT"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for pt-PT locale."
+        },
+        "ru": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionRu"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for ru locale."
+        },
+        "sv": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionSv"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for sv locale."
+        },
+        "zhHans": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionZhHans"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for zh-Hans locale."
+        },
+        "zhHant": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LocalizedOperationDisplayDefinitionZhHant"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Display information of the operation for zh-Hant locale."
+        }
+      },
+      "required": [
+        "default"
+      ],
+      "description": "Display information of the operation."
+    },
+    "LocalizedOperationDisplayDefinitionCs": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for cs locale."
+    },
+    "LocalizedOperationDisplayDefinitionDe": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for de locale."
+    },
+    "LocalizedOperationDisplayDefinitionDefault": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation."
+    },
+    "LocalizedOperationDisplayDefinitionEn": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for en locale."
+    },
+    "LocalizedOperationDisplayDefinitionEs": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for es locale."
+    },
+    "LocalizedOperationDisplayDefinitionFr": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for fr locale."
+    },
+    "LocalizedOperationDisplayDefinitionHu": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for hu locale."
+    },
+    "LocalizedOperationDisplayDefinitionIt": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for it locale."
+    },
+    "LocalizedOperationDisplayDefinitionJa": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for ja locale."
+    },
+    "LocalizedOperationDisplayDefinitionKo": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for ko locale."
+    },
+    "LocalizedOperationDisplayDefinitionNl": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for nl locale."
+    },
+    "LocalizedOperationDisplayDefinitionPl": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for pl locale."
+    },
+    "LocalizedOperationDisplayDefinitionPtBR": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for pt-BR locale."
+    },
+    "LocalizedOperationDisplayDefinitionPtPT": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for pt-PT locale."
+    },
+    "LocalizedOperationDisplayDefinitionRu": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for ru locale."
+    },
+    "LocalizedOperationDisplayDefinitionSv": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for sv locale."
+    },
+    "LocalizedOperationDisplayDefinitionZhHans": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for zh-Hans locale."
+    },
+    "LocalizedOperationDisplayDefinitionZhHant": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "operation",
+        "provider",
+        "resource"
+      ],
+      "description": "Display information of the operation for zh-Hant locale."
+    },
     "LoggingRule": {
       "type": "object",
       "properties": {
@@ -1273,35 +1977,25 @@
         }
       }
     },
-    "OperationsDefinition": {
+    "OpenApiConfiguration": {
       "type": "object",
       "properties": {
-        "actionType": {
+        "validation": {
           "oneOf": [
             {
-              "type": "string",
-              "enum": [
-                "NotSpecified",
-                "Internal"
-              ]
+              "$ref": "#/definitions/OpenApiValidation"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ]
-        },
-        "display": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/OperationsDefinitionDisplay"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Display information of the operation."
-        },
-        "isDataAction": {
+        }
+      }
+    },
+    "OpenApiValidation": {
+      "type": "object",
+      "properties": {
+        "allowNoncompliantCollectionResponse": {
           "oneOf": [
             {
               "type": "boolean"
@@ -1310,61 +2004,28 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Indicates whether the operation applies to data-plane."
-        },
-        "name": {
-          "type": "string",
-          "description": "Name of the operation."
-        },
-        "origin": {
+          "description": "Indicates whether a non compliance response is allowed for a LIST call"
+        }
+      }
+    },
+    "OperationsPutContentProperties": {
+      "type": "object",
+      "properties": {
+        "contents": {
           "oneOf": [
             {
-              "type": "string",
-              "enum": [
-                "NotSpecified",
-                "User",
-                "System"
-              ]
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LocalizedOperationDefinition"
+              }
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
-        },
-        "properties": {
-          "type": "object",
-          "properties": {}
+          ],
+          "description": "Operations content."
         }
-      },
-      "required": [
-        "display",
-        "name"
-      ],
-      "description": "Properties of an Operation."
-    },
-    "OperationsDefinitionDisplay": {
-      "type": "object",
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "operation": {
-          "type": "string"
-        },
-        "provider": {
-          "type": "string"
-        },
-        "resource": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "description",
-        "operation",
-        "provider",
-        "resource"
-      ],
-      "description": "Display information of the operation."
+      }
     },
     "ProviderHubMetadataProviderAuthentication": {
       "type": "object",
@@ -1555,6 +2216,26 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ]
+        },
+        "subscriptionLifecycleNotificationSpecifications": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProviderRegistrationPropertiesSubscriptionLifecycleNotificationSpecifications"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "templateDeploymentOptions": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResourceProviderManifestPropertiesTemplateDeploymentOptions"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
         }
       }
     },
@@ -1596,13 +2277,35 @@
         }
       }
     },
+    "ProviderRegistrationPropertiesSubscriptionLifecycleNotificationSpecifications": {
+      "type": "object",
+      "properties": {
+        "softDeleteTTL": {
+          "type": "string",
+          "format": "duration"
+        },
+        "subscriptionStateOverrideActions": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SubscriptionStateOverrideAction"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        }
+      }
+    },
     "providerRegistrations_customRollouts_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2021-09-01-preview"
           ]
         },
         "name": {
@@ -1641,7 +2344,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2021-09-01-preview"
           ]
         },
         "name": {
@@ -1680,7 +2383,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2021-09-01-preview"
           ]
         },
         "name": {
@@ -1718,26 +2421,23 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
-          ]
-        },
-        "contents": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/OperationsDefinition"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
+            "2021-09-01-preview"
           ]
         },
         "name": {
           "type": "string",
           "enum": [
             "default"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OperationsPutContentProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
           ]
         },
         "type": {
@@ -1749,8 +2449,8 @@
       },
       "required": [
         "apiVersion",
-        "contents",
         "name",
+        "properties",
         "type"
       ],
       "description": "Microsoft.ProviderHub/providerRegistrations/operations"
@@ -1761,7 +2461,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2021-09-01-preview"
           ]
         },
         "name": {
@@ -1799,7 +2499,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2021-09-01-preview"
           ]
         },
         "name": {
@@ -2051,6 +2751,39 @@
         }
       }
     },
+    "ResourceProviderManifestPropertiesTemplateDeploymentOptions": {
+      "type": "object",
+      "properties": {
+        "preflightOptions": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "None",
+                  "ContinueDeploymentOnFailure",
+                  "DefaultValidationOnly"
+                ]
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "preflightSupported": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        }
+      }
+    },
     "ResourceTypeEndpoint": {
       "type": "object",
       "properties": {
@@ -2071,6 +2804,22 @@
           "oneOf": [
             {
               "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "endpointType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "NotSpecified",
+                "Canary",
+                "Production",
+                "TestInProduction"
+              ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -2440,6 +3189,16 @@
                 "Bypass",
                 "Store"
               ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "openApiConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OpenApiConfiguration"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -2961,6 +3720,27 @@
       "properties": {
         "componentId": {
           "type": "string"
+        },
+        "readiness": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "ClosingDown",
+                "Deprecated",
+                "GA",
+                "InDevelopment",
+                "InternalOnly",
+                "PrivatePreview",
+                "PublicPreview",
+                "RemovedFromARM",
+                "Retired"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
         },
         "serviceId": {
           "type": "string"

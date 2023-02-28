@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2017-11-01-preview/Microsoft.Management.json#",
+  "id": "https://schema.management.azure.com/schemas/2018-03-01-preview/Microsoft.Management.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Management",
   "description": "Microsoft Management Resource Types",
@@ -11,20 +11,23 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-01-preview"
+            "2018-03-01-preview"
           ]
-        },
-        "displayName": {
-          "type": "string",
-          "description": "The friendly name of the management group."
         },
         "name": {
           "type": "string",
           "description": "Management Group ID."
         },
-        "parentId": {
-          "type": "string",
-          "description": "(Optional) The fully qualified ID for the parent management group.  For example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000"
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreateManagementGroupProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The generic properties of a management group used during creation."
         },
         "resources": {
           "type": "array",
@@ -46,6 +49,7 @@
       "required": [
         "apiVersion",
         "name",
+        "properties",
         "type"
       ],
       "description": "Microsoft.Management/managementGroups"
@@ -56,7 +60,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-01-preview"
+            "2018-03-01-preview"
           ]
         },
         "name": {
@@ -79,13 +83,61 @@
     }
   },
   "definitions": {
+    "CreateManagementGroupDetails": {
+      "type": "object",
+      "properties": {
+        "parent": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreateParentGroupInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "(Optional) The ID of the parent management group used during creation."
+        }
+      },
+      "description": "The details of a management group used during creation."
+    },
+    "CreateManagementGroupProperties": {
+      "type": "object",
+      "properties": {
+        "details": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreateManagementGroupDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The details of a management group used during creation."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The friendly name of the management group. If no value is passed then this  field will be set to the groupId."
+        }
+      },
+      "description": "The generic properties of a management group used during creation."
+    },
+    "CreateParentGroupInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The fully qualified ID for the parent management group.  For example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000"
+        }
+      },
+      "description": "(Optional) The ID of the parent management group used during creation."
+    },
     "managementGroups_subscriptions_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-11-01-preview"
+            "2018-03-01-preview"
           ]
         },
         "name": {

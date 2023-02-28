@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-03-01/Microsoft.Datadog.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-06-01/Microsoft.Datadog.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Datadog",
   "description": "Microsoft Datadog Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-03-01"
+            "2022-06-01"
           ]
         },
         "identity": {
@@ -100,7 +100,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-03-01"
+            "2022-06-01"
           ]
         },
         "name": {
@@ -138,7 +138,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-03-01"
+            "2022-06-01"
           ]
         },
         "name": {
@@ -179,7 +179,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-03-01"
+            "2022-06-01"
           ]
         },
         "name": {
@@ -277,6 +277,10 @@
           "type": "string",
           "description": "The Id of the Enterprise App used for Single sign on."
         },
+        "id": {
+          "type": "string",
+          "description": "Id of the Datadog organization."
+        },
         "linkingAuthCode": {
           "type": "string",
           "description": "The auth code used to linking to an existing datadog organization."
@@ -284,6 +288,10 @@
         "linkingClientId": {
           "type": "string",
           "description": "The client_id from an existing in exchange for an auth token to link organization."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the Datadog organization."
         },
         "redirectUri": {
           "type": "string",
@@ -606,7 +614,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-03-01"
+            "2022-06-01"
           ]
         },
         "name": {
@@ -644,7 +652,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-03-01"
+            "2022-06-01"
           ]
         },
         "name": {

@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2015-06-01/Microsoft.MarketplaceOrdering.json#",
+  "id": "https://schema.management.azure.com/schemas/2021-01-01/Microsoft.MarketplaceOrdering.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.MarketplaceOrdering",
   "description": "Microsoft MarketplaceOrdering Resource Types",
@@ -11,7 +11,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2015-06-01"
+            "2021-01-01"
           ]
         },
         "name": {
@@ -70,6 +70,10 @@
         "licenseTextLink": {
           "type": "string",
           "description": "Link to HTML with Microsoft and Publisher terms."
+        },
+        "marketplaceTermsLink": {
+          "type": "string",
+          "description": "Link to HTML with Azure Marketplace terms."
         },
         "plan": {
           "type": "string",

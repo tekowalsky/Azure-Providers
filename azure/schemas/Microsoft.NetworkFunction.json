@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-05-01/Microsoft.NetworkFunction.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-11-01/Microsoft.NetworkFunction.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.NetworkFunction",
   "description": "Microsoft NetworkFunction Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -66,6 +66,7 @@
       },
       "required": [
         "apiVersion",
+        "location",
         "name",
         "properties",
         "type"
@@ -78,8 +79,12 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
+        },
+        "location": {
+          "type": "string",
+          "description": "Resource location."
         },
         "name": {
           "type": "string",
@@ -96,6 +101,21 @@
           ],
           "description": "Collection policy properties."
         },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
         "type": {
           "type": "string",
           "enum": [
@@ -105,6 +125,7 @@
       },
       "required": [
         "apiVersion",
+        "location",
         "name",
         "properties",
         "type"
@@ -116,20 +137,6 @@
     "AzureTrafficCollectorPropertiesFormat": {
       "type": "object",
       "properties": {
-        "collectorPolicies": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/CollectorPolicy"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Collector Policies for Azure Traffic Collector."
-        },
         "virtualHub": {
           "oneOf": [
             {
@@ -150,8 +157,12 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
+        },
+        "location": {
+          "type": "string",
+          "description": "Resource location."
         },
         "name": {
           "type": "string",
@@ -168,6 +179,21 @@
           ],
           "description": "Collection policy properties."
         },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
         "type": {
           "type": "string",
           "enum": [
@@ -177,28 +203,12 @@
       },
       "required": [
         "apiVersion",
+        "location",
         "name",
         "properties",
         "type"
       ],
       "description": "Microsoft.NetworkFunction/azureTrafficCollectors/collectorPolicies"
-    },
-    "CollectorPolicy": {
-      "type": "object",
-      "properties": {
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/CollectorPolicyPropertiesFormat"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Collection policy properties."
-        }
-      },
-      "description": "Collector policy resource."
     },
     "CollectorPolicyPropertiesFormat": {
       "type": "object",

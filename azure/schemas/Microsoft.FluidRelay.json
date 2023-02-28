@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-02-15/Microsoft.FluidRelay.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-06-01/Microsoft.FluidRelay.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.FluidRelay",
   "description": "Microsoft FluidRelay Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-02-15"
+            "2022-06-01"
           ]
         },
         "identity": {
@@ -76,9 +76,83 @@
     }
   },
   "definitions": {
+    "CustomerManagedKeyEncryptionProperties": {
+      "type": "object",
+      "properties": {
+        "keyEncryptionKeyIdentity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CustomerManagedKeyEncryptionPropertiesKeyEncryptionKeyIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "All identity configuration for Customer-managed key settings defining which identity should be used to auth to Key Vault."
+        },
+        "keyEncryptionKeyUrl": {
+          "type": "string",
+          "description": "key encryption key Url, with or without a version. Ex: https://contosovault.vault.azure.net/keys/contosokek/562a4bb76b524a1493a6afe8e536ee78 or https://contosovault.vault.azure.net/keys/contosokek. Key auto rotation is enabled by providing a key uri without version. Otherwise, customer is responsible for rotating the key. The keyEncryptionKeyIdentity(either SystemAssigned or UserAssigned) should have permission to access this key url."
+        }
+      },
+      "description": "All Customer-managed key encryption properties for the resource."
+    },
+    "CustomerManagedKeyEncryptionPropertiesKeyEncryptionKeyIdentity": {
+      "type": "object",
+      "properties": {
+        "identityType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "SystemAssigned",
+                "UserAssigned"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Values can be SystemAssigned or UserAssigned."
+        },
+        "userAssignedIdentityResourceId": {
+          "type": "string",
+          "description": "user assigned identity to use for accessing key encryption key Url. Ex: /subscriptions/fa5fc227-a624-475e-b696-cdd604c735bc/resourceGroups/<resource group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId. Mutually exclusive with identityType systemAssignedIdentity."
+        }
+      },
+      "description": "All identity configuration for Customer-managed key settings defining which identity should be used to auth to Key Vault."
+    },
+    "EncryptionProperties": {
+      "type": "object",
+      "properties": {
+        "customerManagedKeyEncryption": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CustomerManagedKeyEncryptionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "All Customer-managed key encryption properties for the resource."
+        }
+      },
+      "description": "All encryption configuration for a resource."
+    },
     "FluidRelayServerProperties": {
       "type": "object",
       "properties": {
+        "encryption": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/EncryptionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "All encryption configuration for a resource."
+        },
         "provisioningState": {
           "oneOf": [
             {
@@ -94,6 +168,21 @@
             }
           ],
           "description": "Provision states for FluidRelay RP."
+        },
+        "storagesku": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "standard",
+                "basic"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Sku of the storage associated with the resource."
         }
       },
       "description": "The properties of a Fluid Relay Service resource."

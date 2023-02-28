@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2018-09-01-preview/Microsoft.Solutions.solutions.json#",
+  "id": "https://schema.management.azure.com/schemas/2021-02-01-preview/Microsoft.Solutions.solutions.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Solutions",
   "description": "Microsoft Solutions Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-09-01-preview"
+            "2021-02-01-preview"
           ]
         },
         "location": {
@@ -85,7 +85,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-09-01-preview"
+            "2021-02-01-preview"
           ]
         },
         "identity": {
@@ -195,7 +195,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-09-01-preview"
+            "2021-02-01-preview"
           ]
         },
         "location": {
@@ -351,6 +351,17 @@
           "properties": {},
           "description": "The createUiDefinition json for the backing template with Microsoft.Solutions/applications resource. It can be a JObject or well-formed JSON string."
         },
+        "deploymentPolicy": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApplicationDeploymentPolicy"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Managed application deployment policy."
+        },
         "description": {
           "type": "string",
           "description": "The managed application definition description."
@@ -369,6 +380,17 @@
             }
           ],
           "description": "A value indicating whether the package is enabled or not."
+        },
+        "lockingPolicy": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApplicationPackageLockingPolicyDefinition"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Managed application locking policy."
         },
         "lockLevel": {
           "oneOf": [
@@ -391,6 +413,28 @@
           "properties": {},
           "description": "The inline main template json which has resources to be provisioned. It can be a JObject or well-formed JSON string."
         },
+        "managementPolicy": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApplicationManagementPolicy"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Managed application management policy."
+        },
+        "notificationPolicy": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApplicationNotificationPolicy"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Managed application notification policy."
+        },
         "packageFileUri": {
           "type": "string",
           "description": "The managed application definition package file Uri. Use this element"
@@ -408,12 +452,41 @@
             }
           ],
           "description": "The managed application provider policies."
+        },
+        "storageAccountId": {
+          "type": "string",
+          "description": "The storage account id for bring your own storage scenario."
         }
       },
       "required": [
         "lockLevel"
       ],
       "description": "The managed application definition properties."
+    },
+    "ApplicationDeploymentPolicy": {
+      "type": "object",
+      "properties": {
+        "deploymentMode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "NotSpecified",
+                "Incremental",
+                "Complete"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The managed application deployment mode."
+        }
+      },
+      "required": [
+        "deploymentMode"
+      ],
+      "description": "Managed application deployment policy."
     },
     "ApplicationJitAccessPolicy": {
       "type": "object",
@@ -468,6 +541,98 @@
         "jitAccessEnabled"
       ],
       "description": "Managed application Jit access policy."
+    },
+    "ApplicationManagementPolicy": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "NotSpecified",
+                "Unmanaged",
+                "Managed"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The managed application management mode."
+        }
+      },
+      "description": "Managed application management policy."
+    },
+    "ApplicationNotificationEndpoint": {
+      "type": "object",
+      "properties": {
+        "uri": {
+          "type": "string",
+          "description": "The managed application notification endpoint uri."
+        }
+      },
+      "required": [
+        "uri"
+      ],
+      "description": "Managed application notification endpoint."
+    },
+    "ApplicationNotificationPolicy": {
+      "type": "object",
+      "properties": {
+        "notificationEndpoints": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ApplicationNotificationEndpoint"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The managed application notification endpoint."
+        }
+      },
+      "required": [
+        "notificationEndpoints"
+      ],
+      "description": "Managed application notification policy."
+    },
+    "ApplicationPackageLockingPolicyDefinition": {
+      "type": "object",
+      "properties": {
+        "allowedActions": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The deny assignment excluded actions."
+        },
+        "allowedDataActions": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The deny assignment excluded data actions."
+        }
+      },
+      "description": "Managed application locking policy."
     },
     "ApplicationPolicy": {
       "type": "object",

@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2016-07-01/Microsoft.Relay.json#",
+  "id": "https://schema.management.azure.com/schemas/2021-11-01/Microsoft.Relay.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Relay",
   "description": "Microsoft Relay Resource Types",
@@ -10,18 +10,18 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2016-07-01"
+            "2021-11-01"
           ]
         },
         "location": {
           "type": "string",
-          "description": "Resource location"
+          "description": "Resource location."
         },
         "name": {
           "type": "string",
           "minLength": 6,
           "maxLength": 50,
-          "description": "The Namespace Name"
+          "description": "The namespace name"
         },
         "properties": {
           "oneOf": [
@@ -32,20 +32,26 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Properties of the Namespace."
+          "description": "Properties of the namespace."
         },
         "resources": {
           "type": "array",
           "items": {
             "oneOf": [
               {
-                "$ref": "#/definitions/namespaces_AuthorizationRules_childResource"
+                "$ref": "#/definitions/namespaces_authorizationRules_childResource"
               },
               {
-                "$ref": "#/definitions/namespaces_HybridConnections_childResource"
+                "$ref": "#/definitions/namespaces_networkRuleSets_childResource"
               },
               {
-                "$ref": "#/definitions/namespaces_WcfRelays_childResource"
+                "$ref": "#/definitions/namespaces_hybridConnections_childResource"
+              },
+              {
+                "$ref": "#/definitions/namespaces_wcfRelays_childResource"
+              },
+              {
+                "$ref": "#/definitions/namespaces_privateEndpointConnections_childResource"
               }
             ]
           }
@@ -59,7 +65,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Sku of the Namespace."
+          "description": "SKU of the namespace."
         },
         "tags": {
           "oneOf": [
@@ -74,7 +80,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Resource tags"
+          "description": "Resource tags."
         },
         "type": {
           "type": "string",
@@ -92,20 +98,19 @@
       ],
       "description": "Microsoft.Relay/namespaces"
     },
-    "namespaces_AuthorizationRules": {
+    "namespaces_authorizationRules": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2016-07-01"
+            "2021-11-01"
           ]
         },
         "name": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 50,
-          "description": "The authorizationRule name."
+          "description": "The authorization rule name."
         },
         "properties": {
           "oneOf": [
@@ -116,12 +121,12 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "AuthorizationRule properties."
+          "description": "Properties supplied to create or update AuthorizationRule"
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.Relay/namespaces/AuthorizationRules"
+            "Microsoft.Relay/namespaces/authorizationRules"
           ]
         }
       },
@@ -131,21 +136,20 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Relay/namespaces/AuthorizationRules"
+      "description": "Microsoft.Relay/namespaces/authorizationRules"
     },
-    "namespaces_HybridConnections": {
+    "namespaces_hybridConnections": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2016-07-01"
+            "2021-11-01"
           ]
         },
         "name": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 50,
           "description": "The hybrid connection name."
         },
         "properties": {
@@ -164,7 +168,7 @@
           "items": {
             "oneOf": [
               {
-                "$ref": "#/definitions/namespaces_HybridConnections_authorizationRules_childResource"
+                "$ref": "#/definitions/namespaces_hybridConnections_authorizationRules_childResource"
               }
             ]
           }
@@ -172,7 +176,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.Relay/namespaces/HybridConnections"
+            "Microsoft.Relay/namespaces/hybridConnections"
           ]
         }
       },
@@ -182,22 +186,21 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Relay/namespaces/HybridConnections"
+      "description": "Microsoft.Relay/namespaces/hybridConnections"
     },
-    "namespaces_HybridConnections_authorizationRules": {
+    "namespaces_hybridConnections_authorizationRules": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2016-07-01"
+            "2021-11-01"
           ]
         },
         "name": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 50,
-          "description": "The authorizationRule name."
+          "description": "The authorization rule name."
         },
         "properties": {
           "oneOf": [
@@ -208,12 +211,12 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "AuthorizationRule properties."
+          "description": "Properties supplied to create or update AuthorizationRule"
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.Relay/namespaces/HybridConnections/authorizationRules"
+            "Microsoft.Relay/namespaces/hybridConnections/authorizationRules"
           ]
         }
       },
@@ -223,22 +226,106 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Relay/namespaces/HybridConnections/authorizationRules"
+      "description": "Microsoft.Relay/namespaces/hybridConnections/authorizationRules"
     },
-    "namespaces_WcfRelays": {
+    "namespaces_networkRuleSets": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2016-07-01"
+            "2021-11-01"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^.*/default$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/NetworkRuleSetProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "NetworkRuleSet properties"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Relay/namespaces/networkRuleSets"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Relay/namespaces/networkRuleSets"
+    },
+    "namespaces_privateEndpointConnections": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-11-01"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The PrivateEndpointConnection name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the private endpoint connection resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Relay/namespaces/privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Relay/namespaces/privateEndpointConnections"
+    },
+    "namespaces_wcfRelays": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-11-01"
           ]
         },
         "name": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 50,
-          "description": "The relay name"
+          "description": "The relay name."
         },
         "properties": {
           "oneOf": [
@@ -249,14 +336,14 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Properties of the WcfRelay Properties."
+          "description": "Properties of the WCF relay."
         },
         "resources": {
           "type": "array",
           "items": {
             "oneOf": [
               {
-                "$ref": "#/definitions/namespaces_WcfRelays_authorizationRules_childResource"
+                "$ref": "#/definitions/namespaces_wcfRelays_authorizationRules_childResource"
               }
             ]
           }
@@ -264,7 +351,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.Relay/namespaces/WcfRelays"
+            "Microsoft.Relay/namespaces/wcfRelays"
           ]
         }
       },
@@ -274,22 +361,21 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Relay/namespaces/WcfRelays"
+      "description": "Microsoft.Relay/namespaces/wcfRelays"
     },
-    "namespaces_WcfRelays_authorizationRules": {
+    "namespaces_wcfRelays_authorizationRules": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2016-07-01"
+            "2021-11-01"
           ]
         },
         "name": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 50,
-          "description": "The authorizationRule name."
+          "description": "The authorization rule name."
         },
         "properties": {
           "oneOf": [
@@ -300,12 +386,12 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "AuthorizationRule properties."
+          "description": "Properties supplied to create or update AuthorizationRule"
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.Relay/namespaces/WcfRelays/authorizationRules"
+            "Microsoft.Relay/namespaces/wcfRelays/authorizationRules"
           ]
         }
       },
@@ -315,7 +401,7 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Relay/namespaces/WcfRelays/authorizationRules"
+      "description": "Microsoft.Relay/namespaces/wcfRelays/authorizationRules"
     }
   },
   "definitions": {
@@ -345,7 +431,34 @@
       "required": [
         "rights"
       ],
-      "description": "AuthorizationRule properties."
+      "description": "Properties supplied to create or update AuthorizationRule"
+    },
+    "ConnectionState": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Description of the connection state."
+        },
+        "status": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Pending",
+                "Approved",
+                "Rejected",
+                "Disconnected"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Status of the connection."
+        }
+      },
+      "description": "ConnectionState information."
     },
     "HybridConnectionProperties": {
       "type": "object",
@@ -359,29 +472,28 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "true if client authorization is needed for this HybridConnection; otherwise, false."
+          "description": "Returns true if client authorization is needed for this hybrid connection; otherwise, false."
         },
         "userMetadata": {
           "type": "string",
-          "description": "usermetadata is a placeholder to store user-defined string data for the HybridConnection endpoint.e.g. it can be used to store  descriptive data, such as list of teams and their contact information also user-defined configuration settings can be stored."
+          "description": "The usermetadata is a placeholder to store user-defined string data for the hybrid connection endpoint. For example, it can be used to store descriptive data, such as a list of teams and their contact information. Also, user-defined configuration settings can be stored."
         }
       },
       "description": "Properties of the HybridConnection."
     },
-    "namespaces_AuthorizationRules_childResource": {
+    "namespaces_authorizationRules_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2016-07-01"
+            "2021-11-01"
           ]
         },
         "name": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 50,
-          "description": "The authorizationRule name."
+          "description": "The authorization rule name."
         },
         "properties": {
           "oneOf": [
@@ -392,48 +504,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "AuthorizationRule properties."
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "AuthorizationRules"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.Relay/namespaces/AuthorizationRules"
-    },
-    "namespaces_HybridConnections_authorizationRules_childResource": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2016-07-01"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 50,
-          "description": "The authorizationRule name."
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/AuthorizationRuleProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "AuthorizationRule properties."
+          "description": "Properties supplied to create or update AuthorizationRule"
         },
         "type": {
           "type": "string",
@@ -448,21 +519,60 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Relay/namespaces/HybridConnections/authorizationRules"
+      "description": "Microsoft.Relay/namespaces/authorizationRules"
     },
-    "namespaces_HybridConnections_childResource": {
+    "namespaces_hybridConnections_authorizationRules_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2016-07-01"
+            "2021-11-01"
           ]
         },
         "name": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 50,
+          "description": "The authorization rule name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AuthorizationRuleProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties supplied to create or update AuthorizationRule"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "authorizationRules"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Relay/namespaces/hybridConnections/authorizationRules"
+    },
+    "namespaces_hybridConnections_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-11-01"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
           "description": "The hybrid connection name."
         },
         "properties": {
@@ -479,7 +589,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "HybridConnections"
+            "hybridConnections"
           ]
         }
       },
@@ -489,22 +599,101 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Relay/namespaces/HybridConnections"
+      "description": "Microsoft.Relay/namespaces/hybridConnections"
     },
-    "namespaces_WcfRelays_authorizationRules_childResource": {
+    "namespaces_networkRuleSets_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2016-07-01"
+            "2021-11-01"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "default"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/NetworkRuleSetProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "NetworkRuleSet properties"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "networkRuleSets"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Relay/namespaces/networkRuleSets"
+    },
+    "namespaces_privateEndpointConnections_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-11-01"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The PrivateEndpointConnection name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the private endpoint connection resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Relay/namespaces/privateEndpointConnections"
+    },
+    "namespaces_wcfRelays_authorizationRules_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-11-01"
           ]
         },
         "name": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 50,
-          "description": "The authorizationRule name."
+          "description": "The authorization rule name."
         },
         "properties": {
           "oneOf": [
@@ -515,7 +704,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "AuthorizationRule properties."
+          "description": "Properties supplied to create or update AuthorizationRule"
         },
         "type": {
           "type": "string",
@@ -530,22 +719,21 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Relay/namespaces/WcfRelays/authorizationRules"
+      "description": "Microsoft.Relay/namespaces/wcfRelays/authorizationRules"
     },
-    "namespaces_WcfRelays_childResource": {
+    "namespaces_wcfRelays_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2016-07-01"
+            "2021-11-01"
           ]
         },
         "name": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 50,
-          "description": "The relay name"
+          "description": "The relay name."
         },
         "properties": {
           "oneOf": [
@@ -556,12 +744,12 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Properties of the WcfRelay Properties."
+          "description": "Properties of the WCF relay."
         },
         "type": {
           "type": "string",
           "enum": [
-            "WcfRelays"
+            "wcfRelays"
           ]
         }
       },
@@ -571,12 +759,192 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Relay/namespaces/WcfRelays"
+      "description": "Microsoft.Relay/namespaces/wcfRelays"
+    },
+    "NetworkRuleSetProperties": {
+      "type": "object",
+      "properties": {
+        "defaultAction": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Allow",
+                "Deny"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Default Action for Network Rule Set."
+        },
+        "ipRules": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/NWRuleSetIpRules"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of IpRules"
+        },
+        "publicNetworkAccess": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled",
+                "SecuredByPerimeter"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "This determines if traffic is allowed over public network. By default it is enabled."
+        }
+      },
+      "description": "NetworkRuleSet properties"
+    },
+    "NWRuleSetIpRules": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Allow"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The IP Filter Action."
+        },
+        "ipMask": {
+          "type": "string",
+          "description": "IP Mask"
+        }
+      },
+      "description": "The response from the List namespace operation."
+    },
+    "PrivateEndpoint": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ARM identifier for Private Endpoint."
+        }
+      },
+      "description": "PrivateEndpoint information."
+    },
+    "PrivateEndpointConnection": {
+      "type": "object",
+      "properties": {
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the private endpoint connection resource."
+        }
+      },
+      "description": "Properties of the PrivateEndpointConnection."
+    },
+    "PrivateEndpointConnectionProperties": {
+      "type": "object",
+      "properties": {
+        "privateEndpoint": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpoint"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "PrivateEndpoint information."
+        },
+        "privateLinkServiceConnectionState": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ConnectionState"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "ConnectionState information."
+        },
+        "provisioningState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Creating",
+                "Updating",
+                "Deleting",
+                "Succeeded",
+                "Canceled",
+                "Failed"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Provisioning state of the Private Endpoint Connection."
+        }
+      },
+      "description": "Properties of the private endpoint connection resource."
     },
     "RelayNamespaceProperties": {
       "type": "object",
-      "properties": {},
-      "description": "Properties of the Namespace."
+      "properties": {
+        "privateEndpointConnections": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PrivateEndpointConnection"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of private endpoint connections."
+        },
+        "publicNetworkAccess": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled",
+                "SecuredByPerimeter"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "This determines if traffic is allowed over public network. By default it is enabled."
+        }
+      },
+      "description": "Properties of the namespace."
     },
     "Sku": {
       "type": "object",
@@ -593,7 +961,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Name of this Sku"
+          "description": "Name of this SKU."
         },
         "tier": {
           "oneOf": [
@@ -607,14 +975,13 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The tier of this particular SKU"
+          "description": "The tier of this SKU."
         }
       },
       "required": [
-        "name",
-        "tier"
+        "name"
       ],
-      "description": "Sku of the Namespace."
+      "description": "SKU of the namespace."
     },
     "WcfRelayProperties": {
       "type": "object",
@@ -632,7 +999,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "WCFRelay Type."
+          "description": "WCF relay type."
         },
         "requiresClientAuthorization": {
           "oneOf": [
@@ -643,7 +1010,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "true if client authorization is needed for this relay; otherwise, false."
+          "description": "Returns true if client authorization is needed for this relay; otherwise, false."
         },
         "requiresTransportSecurity": {
           "oneOf": [
@@ -654,14 +1021,14 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "true if transport security is needed for this relay; otherwise, false."
+          "description": "Returns true if transport security is needed for this relay; otherwise, false."
         },
         "userMetadata": {
           "type": "string",
-          "description": "usermetadata is a placeholder to store user-defined string data for the HybridConnection endpoint.e.g. it can be used to store  descriptive data, such as list of teams and their contact information also user-defined configuration settings can be stored."
+          "description": "The usermetadata is a placeholder to store user-defined string data for the WCF Relay endpoint. For example, it can be used to store descriptive data, such as list of teams and their contact information. Also, user-defined configuration settings can be stored."
         }
       },
-      "description": "Properties of the WcfRelay Properties."
+      "description": "Properties of the WCF relay."
     }
   }
 }

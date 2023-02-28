@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2017-06-01-preview/Microsoft.MachineLearningCompute.json#",
+  "id": "https://schema.management.azure.com/schemas/2017-08-01-preview/Microsoft.MachineLearningCompute.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.MachineLearningCompute",
   "description": "Microsoft MachineLearningCompute Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-06-01-preview"
+            "2017-08-01-preview"
           ]
         },
         "location": {
@@ -150,7 +150,21 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The Azure VM size of the agent VM nodes. This cannot be changed once the cluster is created."
+          "description": "The Azure VM size of the agent VM nodes. This cannot be changed once the cluster is created. This list is non exhaustive; refer to https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes for the possible VM sizes."
+        },
+        "masterCount": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5,
+              "default": "1"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The number of master nodes in the container service."
         },
         "orchestratorProperties": {
           "oneOf": [
@@ -168,7 +182,8 @@
             {
               "type": "string",
               "enum": [
-                "Kubernetes"
+                "Kubernetes",
+                "None"
               ]
             },
             {
@@ -182,11 +197,7 @@
             {
               "type": "array",
               "items": {
-                "type": "string",
-                "enum": [
-                  "Scoring",
-                  "Batch"
-                ]
+                "$ref": "#/definitions/SystemService"
               }
             },
             {
@@ -197,24 +208,19 @@
         }
       },
       "required": [
-        "orchestratorProperties",
         "orchestratorType"
       ],
       "description": "Information about the container service backing the cluster"
     },
-    "AppInsightsCredentials": {
+    "AppInsightsProperties": {
       "type": "object",
       "properties": {
-        "apiKey": {
+        "resourceId": {
           "type": "string",
-          "description": "The AppInsights API key. This is not returned in response of GET/PUT on the resource.. To see this please call listKeys API."
-        },
-        "appId": {
-          "type": "string",
-          "description": "The AppInsights application ID."
+          "description": "ARM resource ID of the App Insights."
         }
       },
-      "description": "AppInsights credentials."
+      "description": "Properties of App Insights."
     },
     "AutoScaleConfiguration": {
       "type": "object",
@@ -303,7 +309,8 @@
             {
               "type": "object",
               "additionalProperties": {
-                "type": "string"
+                "type": "object",
+                "properties": {}
               },
               "properties": {}
             },
@@ -368,9 +375,6 @@
           "description": "The Azure service principal used by Kubernetes for configuring load balancers"
         }
       },
-      "required": [
-        "servicePrincipal"
-      ],
       "description": "Kubernetes cluster specific properties"
     },
     "OperationalizationClusterProperties": {
@@ -379,20 +383,21 @@
         "appInsights": {
           "oneOf": [
             {
-              "$ref": "#/definitions/AppInsightsCredentials"
+              "$ref": "#/definitions/AppInsightsProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "AppInsights credentials."
+          "description": "Properties of App Insights."
         },
         "clusterType": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
-                "ACS"
+                "ACS",
+                "Local"
               ]
             },
             {
@@ -451,8 +456,7 @@
         }
       },
       "required": [
-        "clusterType",
-        "containerService"
+        "clusterType"
       ],
       "description": "Properties of an operationalization cluster"
     },
@@ -497,11 +501,15 @@
       "properties": {
         "cert": {
           "type": "string",
-          "description": "The SSL cert data in PEM format encoded as base64 string"
+          "description": "The SSL cert data in PEM format."
+        },
+        "cname": {
+          "type": "string",
+          "description": "The CName of the certificate."
         },
         "key": {
           "type": "string",
-          "description": "The SSL key data in PEM format encoded as base64 string. This is not returned in response of GET/PUT on the resource.. To see this please call listKeys API."
+          "description": "The SSL key data in PEM format. This is not returned in response of GET/PUT on the resource. To see this please call listKeys API."
         },
         "status": {
           "oneOf": [
@@ -530,6 +538,31 @@
         }
       },
       "description": "Properties of Storage Account."
+    },
+    "SystemService": {
+      "type": "object",
+      "properties": {
+        "systemServiceType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "ScoringFrontEnd",
+                "BatchFrontEnd"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The system service type."
+        }
+      },
+      "required": [
+        "systemServiceType"
+      ],
+      "description": "Information about a system service deployed in the cluster"
     }
   }
 }

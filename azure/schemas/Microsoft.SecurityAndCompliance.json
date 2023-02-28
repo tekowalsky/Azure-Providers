@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-01-11/Microsoft.SecurityAndCompliance.json#",
+  "id": "https://schema.management.azure.com/schemas/2021-03-08/Microsoft.SecurityAndCompliance.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.SecurityAndCompliance",
   "description": "Microsoft SecurityAndCompliance Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-11"
+            "2021-03-08"
           ]
         },
         "etag": {
@@ -124,7 +124,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-11"
+            "2021-03-08"
           ]
         },
         "name": {
@@ -174,7 +174,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-11"
+            "2021-03-08"
           ]
         },
         "etag": {
@@ -288,7 +288,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-11"
+            "2021-03-08"
           ]
         },
         "name": {
@@ -338,7 +338,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-11"
+            "2021-03-08"
           ]
         },
         "etag": {
@@ -452,7 +452,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-11"
+            "2021-03-08"
           ]
         },
         "name": {
@@ -496,13 +496,177 @@
       ],
       "description": "Microsoft.SecurityAndCompliance/privateLinkServicesForM365SecurityCenter/privateEndpointConnections"
     },
+    "privateLinkServicesForMIPPolicySync": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-03-08"
+          ]
+        },
+        "etag": {
+          "type": "string",
+          "description": "An etag associated with the resource, used for optimistic concurrency when editing it."
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ServicesResourceIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Setting indicating whether the service has a managed identity associated with it."
+        },
+        "kind": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "fhir",
+                "fhir-Stu3",
+                "fhir-R4"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The kind of the service."
+        },
+        "location": {
+          "type": "string",
+          "description": "The resource location."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 24,
+          "description": "The name of the service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ServicesProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of a service instance."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/privateLinkServicesForMIPPolicySync_privateEndpointConnections_childResource"
+              }
+            ]
+          }
+        },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.SecurityAndCompliance/privateLinkServicesForMIPPolicySync"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "kind",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.SecurityAndCompliance/privateLinkServicesForMIPPolicySync"
+    },
+    "privateLinkServicesForMIPPolicySync_privateEndpointConnections": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-03-08"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the private endpoint connection associated with the Azure resource"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the PrivateEndpointConnectProperties."
+        },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.SecurityAndCompliance/privateLinkServicesForMIPPolicySync/privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.SecurityAndCompliance/privateLinkServicesForMIPPolicySync/privateEndpointConnections"
+    },
     "privateLinkServicesForO365ManagementActivityAPI": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-11"
+            "2021-03-08"
           ]
         },
         "etag": {
@@ -616,7 +780,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-11"
+            "2021-03-08"
           ]
         },
         "name": {
@@ -666,7 +830,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-11"
+            "2021-03-08"
           ]
         },
         "etag": {
@@ -780,7 +944,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-11"
+            "2021-03-08"
           ]
         },
         "name": {
@@ -943,7 +1107,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-11"
+            "2021-03-08"
           ]
         },
         "name": {
@@ -993,7 +1157,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-11"
+            "2021-03-08"
           ]
         },
         "name": {
@@ -1043,7 +1207,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-11"
+            "2021-03-08"
           ]
         },
         "name": {
@@ -1087,13 +1251,63 @@
       ],
       "description": "Microsoft.SecurityAndCompliance/privateLinkServicesForM365SecurityCenter/privateEndpointConnections"
     },
+    "privateLinkServicesForMIPPolicySync_privateEndpointConnections_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-03-08"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the private endpoint connection associated with the Azure resource"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the PrivateEndpointConnectProperties."
+        },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.SecurityAndCompliance/privateLinkServicesForMIPPolicySync/privateEndpointConnections"
+    },
     "privateLinkServicesForO365ManagementActivityAPI_privateEndpointConnections_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-11"
+            "2021-03-08"
           ]
         },
         "name": {
@@ -1143,7 +1357,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-11"
+            "2021-03-08"
           ]
         },
         "name": {

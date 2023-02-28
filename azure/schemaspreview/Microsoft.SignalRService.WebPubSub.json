@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-04-01-preview/Microsoft.SignalRService.WebPubSub.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-08-01-preview/Microsoft.SignalRService.WebPubSub.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.SignalRService",
   "description": "Microsoft SignalRService Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-04-01-preview"
+            "2022-08-01-preview"
           ]
         },
         "identity": {
@@ -47,6 +47,15 @@
           "type": "array",
           "items": {
             "oneOf": [
+              {
+                "$ref": "#/definitions/webPubSub_customCertificates_childResource"
+              },
+              {
+                "$ref": "#/definitions/webPubSub_customDomains_childResource"
+              },
+              {
+                "$ref": "#/definitions/webPubSub_hubs_childResource"
+              },
               {
                 "$ref": "#/definitions/webPubSub_privateEndpointConnections_childResource"
               },
@@ -97,13 +106,130 @@
       ],
       "description": "Microsoft.SignalRService/webPubSub"
     },
+    "webPubSub_customCertificates": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-08-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Custom certificate name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CustomCertificateProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Custom certificate properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.SignalRService/webPubSub/customCertificates"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.SignalRService/webPubSub/customCertificates"
+    },
+    "webPubSub_customDomains": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-08-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Custom domain name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CustomDomainProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of a custom domain."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.SignalRService/webPubSub/customDomains"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.SignalRService/webPubSub/customDomains"
+    },
+    "webPubSub_hubs": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-08-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The hub name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/WebPubSubHubProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of a hub."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.SignalRService/webPubSub/hubs"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.SignalRService/webPubSub/hubs"
+    },
     "webPubSub_privateEndpointConnections": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-04-01-preview"
+            "2022-08-01-preview"
           ]
         },
         "name": {
@@ -142,7 +268,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-04-01-preview"
+            "2022-08-01-preview"
           ]
         },
         "name": {
@@ -177,31 +303,54 @@
     }
   },
   "definitions": {
-    "EventHandlerSettings": {
+    "CustomCertificateProperties": {
       "type": "object",
       "properties": {
-        "items": {
+        "keyVaultBaseUri": {
+          "type": "string",
+          "description": "Base uri of the KeyVault that stores certificate."
+        },
+        "keyVaultSecretName": {
+          "type": "string",
+          "description": "Certificate secret name."
+        },
+        "keyVaultSecretVersion": {
+          "type": "string",
+          "description": "Certificate secret version."
+        }
+      },
+      "required": [
+        "keyVaultBaseUri",
+        "keyVaultSecretName"
+      ],
+      "description": "Custom certificate properties."
+    },
+    "CustomDomainProperties": {
+      "type": "object",
+      "properties": {
+        "customCertificate": {
           "oneOf": [
             {
-              "type": "object",
-              "additionalProperties": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/EventHandlerTemplate"
-                }
-              },
-              "properties": {}
+              "$ref": "#/definitions/ResourceReference"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Get or set the EventHandler items. The key is the hub name and the value is the corresponding EventHandlerTemplate."
+          "description": "Reference to a resource."
+        },
+        "domainName": {
+          "type": "string",
+          "description": "The custom domain name."
         }
       },
-      "description": "The settings for event handler in webpubsub service"
+      "required": [
+        "customCertificate",
+        "domainName"
+      ],
+      "description": "Properties of a custom domain."
     },
-    "EventHandlerTemplate": {
+    "EventHandler": {
       "type": "object",
       "properties": {
         "auth": {
@@ -213,11 +362,21 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Upstream auth settings."
+          "description": "Upstream auth settings. If not set, no auth is used for upstream messages."
         },
-        "systemEventPattern": {
-          "type": "string",
-          "description": "Gets ot sets the system event pattern.\r\nThere are 2 kind of patterns supported:\r\n    1. The single event name, for example, \"connect\", it matches \"connect\"\r\n    2. Combine multiple events with \",\", for example \"connect,disconnected\", it matches event \"connect\" and \"disconnected\""
+        "systemEvents": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the list of system events."
         },
         "urlTemplate": {
           "type": "string",
@@ -225,13 +384,162 @@
         },
         "userEventPattern": {
           "type": "string",
-          "description": "Gets or sets the matching pattern for event names.\r\nThere are 3 kind of patterns supported:\r\n    1. \"*\", it to matches any event name\r\n    2. Combine multiple events with \",\", for example \"event1,event2\", it matches event \"event1\" and \"event2\"\r\n    3. The single event name, for example, \"event1\", it matches \"event1\""
+          "description": "Gets or sets the matching pattern for event names.\r\nThere are 3 kinds of patterns supported:\r\n    1. \"*\", it matches any event name\r\n    2. Combine multiple events with \",\", for example \"event1,event2\", it matches event \"event1\" and \"event2\"\r\n    3. A single event name, for example, \"event1\", it matches \"event1\""
         }
       },
       "required": [
         "urlTemplate"
       ],
-      "description": "EventHandler template item settings."
+      "description": "Properties of event handler."
+    },
+    "EventHubEndpoint": {
+      "type": "object",
+      "properties": {
+        "eventHubName": {
+          "type": "string",
+          "description": "The name of the Event Hub."
+        },
+        "fullyQualifiedNamespace": {
+          "type": "string",
+          "description": "The fully qualified namespace name of the Event Hub resource. For example, \"example.servicebus.windows.net\"."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "EventHub"
+          ]
+        }
+      },
+      "required": [
+        "eventHubName",
+        "fullyQualifiedNamespace",
+        "type"
+      ],
+      "description": "An Event Hub endpoint. \r\nThe managed identity of Web PubSub service must be enabled, and the identity should have the \"Azure Event Hubs Data sender\" role to access Event Hub."
+    },
+    "EventListener": {
+      "type": "object",
+      "properties": {
+        "endpoint": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/EventListenerEndpoint"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An endpoint specifying where Web PubSub should send events to."
+        },
+        "filter": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/EventListenerFilter"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A base class for event filter which determines whether an event should be sent to an event listener."
+        }
+      },
+      "required": [
+        "endpoint",
+        "filter"
+      ],
+      "description": "A setting defines which kinds of events should be sent to which endpoint."
+    },
+    "EventListenerEndpoint": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/EventHubEndpoint"
+        }
+      ],
+      "properties": {},
+      "description": "An endpoint specifying where Web PubSub should send events to."
+    },
+    "EventListenerFilter": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/EventNameFilter"
+        }
+      ],
+      "properties": {},
+      "description": "A base class for event filter which determines whether an event should be sent to an event listener."
+    },
+    "EventNameFilter": {
+      "type": "object",
+      "properties": {
+        "systemEvents": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets a list of system events. Supported events: \"connected\" and \"disconnected\". Blocking event \"connect\" is not supported because it requires a response."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "EventName"
+          ]
+        },
+        "userEventPattern": {
+          "type": "string",
+          "description": "Gets or sets a matching pattern for event names.\r\nThere are 3 kinds of patterns supported:\r\n    1. \"*\", it matches any event name\r\n    2. Combine multiple events with \",\", for example \"event1,event2\", it matches events \"event1\" and \"event2\"\r\n    3. A single event name, for example, \"event1\", it matches \"event1\""
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "description": "Filter events by their name."
+    },
+    "LiveTraceCategory": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "string",
+          "description": "Indicates whether or the live trace category is enabled.\r\nAvailable values: true, false.\r\nCase insensitive."
+        },
+        "name": {
+          "type": "string",
+          "description": "Gets or sets the live trace category's name.\r\nAvailable values: ConnectivityLogs, MessagingLogs.\r\nCase insensitive."
+        }
+      },
+      "description": "Live trace category configuration of a Microsoft.SignalRService resource."
+    },
+    "LiveTraceConfiguration": {
+      "type": "object",
+      "properties": {
+        "categories": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LiveTraceCategory"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the list of category configurations."
+        },
+        "enabled": {
+          "type": "string",
+          "default": "false",
+          "description": "Indicates whether or not enable live trace.\r\nWhen it's set to true, live trace client can connect to the service.\r\nOtherwise, live trace client can't connect to the service, so that you are unable to receive any log, no matter what you configure in \"categories\".\r\nAvailable values: true, false.\r\nCase insensitive."
+        }
+      },
+      "description": "Live trace configuration of a Microsoft.SignalRService resource."
     },
     "ManagedIdentity": {
       "type": "object",
@@ -249,8 +557,7 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "Represent the identity type: systemAssigned, userAssigned, None."
+          ]
         },
         "userAssignedIdentities": {
           "oneOf": [
@@ -442,11 +749,54 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service."
+          ]
         }
       },
       "description": "Connection state of the private endpoint connection"
+    },
+    "ResourceLogCategory": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "string",
+          "description": "Indicates whether or the resource log category is enabled.\r\nAvailable values: true, false.\r\nCase insensitive."
+        },
+        "name": {
+          "type": "string",
+          "description": "Gets or sets the resource log category's name.\r\nAvailable values: ConnectivityLogs, MessagingLogs.\r\nCase insensitive."
+        }
+      },
+      "description": "Resource log category configuration of a Microsoft.SignalRService resource."
+    },
+    "ResourceLogConfiguration": {
+      "type": "object",
+      "properties": {
+        "categories": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ResourceLogCategory"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the list of category configurations."
+        }
+      },
+      "description": "Resource log configuration of a Microsoft.SignalRService resource."
+    },
+    "ResourceReference": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Resource ID."
+        }
+      },
+      "description": "Reference to a resource."
     },
     "ResourceSku": {
       "type": "object",
@@ -460,11 +810,11 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Optional, integer. The unit count of the resource. 1 by default.\r\n\r\nIf present, following values are allowed:\r\n    Free: 1\r\n    Standard: 1,2,5,10,20,50,100"
+          "description": "Optional, integer. The unit count of the resource. 1 by default.\r\n\r\nIf present, following values are allowed:\r\n    Free: 1;\r\n    Standard: 1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100;\r\n    Premium:  1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100;"
         },
         "name": {
           "type": "string",
-          "description": "The name of the SKU. Required.\r\n\r\nAllowed values: Standard_S1, Free_F1"
+          "description": "The name of the SKU. Required.\r\n\r\nAllowed values: Standard_S1, Free_F1, Premium_P1"
         },
         "tier": {
           "oneOf": [
@@ -480,8 +830,7 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "Optional tier of this particular SKU. 'Standard' or 'Free'. \r\n\r\n`Basic` is deprecated, use `Standard` instead."
+          ]
         }
       },
       "required": [
@@ -537,63 +886,54 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "Gets or sets the type of auth. None or ManagedIdentity is supported now."
+          ]
         }
       },
-      "description": "Upstream auth settings."
+      "description": "Upstream auth settings. If not set, no auth is used for upstream messages."
     },
     "UserAssignedIdentityProperty": {
       "type": "object",
       "properties": {},
       "description": "Properties of user assigned identity."
     },
-    "WebPubSubFeature": {
+    "WebPubSubHubProperties": {
       "type": "object",
       "properties": {
-        "flag": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "EnableConnectivityLogs",
-                "EnableMessagingLogs",
-                "EnableLiveTrace"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "FeatureFlags is the supported features of Azure SignalR service.\n - EnableConnectivityLogs: \"true\"/\"false\", to enable/disable the connectivity log category respectively.\n - EnableMessagingLogs: \"true\"/\"false\", to enable/disable the connectivity log category respectively.\n - EnableLiveTrace: Live Trace allows you to know what's happening inside Azure SignalR service, it will give you live traces in real time, it will be helpful when you developing your own Azure SignalR based web application or self-troubleshooting some issues. Please note that live traces are counted as outbound messages that will be charged. Values allowed: \"true\"/\"false\", to enable/disable live trace feature.\n."
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "type": "object",
-              "additionalProperties": {
-                "type": "string"
-              },
-              "properties": {}
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Optional properties related to this feature."
-        },
-        "value": {
+        "anonymousConnectPolicy": {
           "type": "string",
-          "minLength": 1,
-          "maxLength": 128,
-          "description": "Value of the feature flag. See Azure SignalR service document https://docs.microsoft.com/azure/azure-signalr/ for allowed values."
+          "default": "deny",
+          "description": "The settings for configuring if anonymous connections are allowed for this hub: \"allow\" or \"deny\". Default to \"deny\"."
+        },
+        "eventHandlers": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EventHandler"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Event handler of a hub."
+        },
+        "eventListeners": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EventListener"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Event listener settings for forwarding your client events to listeners.\r\nEvent listener is transparent to Web PubSub clients, and it doesn't return any result to clients nor interrupt the lifetime of clients.\r\nOne event can be sent to multiple listeners, as long as it matches the filters in those listeners. The order of the array elements doesn't matter.\r\nMaximum count of event listeners among all hubs is 10."
         }
       },
-      "required": [
-        "flag",
-        "value"
-      ],
-      "description": "Feature of a resource, which controls the runtime behavior."
+      "description": "Properties of a hub."
     },
     "WebPubSubNetworkACLs": {
       "type": "object",
@@ -610,8 +950,7 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "Default action when no other rule matches."
+          ]
         },
         "privateEndpoints": {
           "oneOf": [
@@ -644,30 +983,40 @@
     "WebPubSubProperties": {
       "type": "object",
       "properties": {
-        "eventHandler": {
+        "disableAadAuth": {
           "oneOf": [
             {
-              "$ref": "#/definitions/EventHandlerSettings"
+              "type": "boolean",
+              "default": false
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The settings for event handler in webpubsub service"
+          "description": "DisableLocalAuth\r\nEnable or disable aad auth\r\nWhen set as true, connection with AuthType=aad won't work."
         },
-        "features": {
+        "disableLocalAuth": {
           "oneOf": [
             {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/WebPubSubFeature"
-              }
+              "type": "boolean",
+              "default": false
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "List of the featureFlags.\r\n\r\nFeatureFlags that are not included in the parameters for the update operation will not be modified.\r\nAnd the response will only include featureFlags that are explicitly set. \r\nWhen a featureFlag is not explicitly set, its globally default value will be used\r\nBut keep in mind, the default value doesn't mean \"false\". It varies in terms of different FeatureFlags."
+          "description": "DisableLocalAuth\r\nEnable or disable local auth with AccessKey\r\nWhen set as true, connection with AccessKey=xxx won't work."
+        },
+        "liveTraceConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LiveTraceConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Live trace configuration of a Microsoft.SignalRService resource."
         },
         "networkACLs": {
           "oneOf": [
@@ -684,6 +1033,17 @@
           "type": "string",
           "default": "Enabled",
           "description": "Enable or disable public network access. Default to \"Enabled\".\r\nWhen it's Enabled, network ACLs still apply.\r\nWhen it's Disabled, public network access is always disabled no matter what you set in network ACLs."
+        },
+        "resourceLogConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResourceLogConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource log configuration of a Microsoft.SignalRService resource."
         },
         "tls": {
           "oneOf": [
@@ -717,13 +1077,130 @@
       },
       "description": "TLS settings for the resource"
     },
+    "webPubSub_customCertificates_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-08-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Custom certificate name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CustomCertificateProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Custom certificate properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "customCertificates"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.SignalRService/webPubSub/customCertificates"
+    },
+    "webPubSub_customDomains_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-08-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Custom domain name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CustomDomainProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of a custom domain."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "customDomains"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.SignalRService/webPubSub/customDomains"
+    },
+    "webPubSub_hubs_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-08-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The hub name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/WebPubSubHubProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of a hub."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "hubs"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.SignalRService/webPubSub/hubs"
+    },
     "webPubSub_privateEndpointConnections_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-04-01-preview"
+            "2022-08-01-preview"
           ]
         },
         "name": {
@@ -762,7 +1239,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-04-01-preview"
+            "2022-08-01-preview"
           ]
         },
         "name": {

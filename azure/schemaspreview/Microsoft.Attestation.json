@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2018-09-01-preview/Microsoft.Attestation.json#",
+  "id": "https://schema.management.azure.com/schemas/2021-06-01-preview/Microsoft.Attestation.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Attestation",
   "description": "Microsoft Attestation Resource Types",
@@ -10,16 +10,24 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-09-01-preview"
+            "2021-06-01-preview"
           ]
         },
         "location": {
           "type": "string",
-          "description": "The supported Azure location where the attestation service instance should be created."
+          "description": "The supported Azure location where the attestation provider should be created."
         },
         "name": {
-          "type": "string",
-          "description": "Name of the attestation service instance."
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Name of the attestation provider."
         },
         "properties": {
           "oneOf": [
@@ -30,7 +38,17 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Client supplied parameters used to create a new attestation service instance."
+          "description": "Client supplied parameters used to create a new attestation provider."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/attestationProviders_privateEndpointConnections_childResource"
+              }
+            ]
+          }
         },
         "tags": {
           "oneOf": [
@@ -45,7 +63,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The tags that will be assigned to the attestation service instance."
+          "description": "The tags that will be assigned to the attestation provider."
         },
         "type": {
           "type": "string",
@@ -62,16 +80,90 @@
         "type"
       ],
       "description": "Microsoft.Attestation/attestationProviders"
+    },
+    "attestationProviders_privateEndpointConnections": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-06-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the private endpoint connection associated with the attestation providers."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the PrivateEndpointConnectProperties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Attestation/attestationProviders/privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Attestation/attestationProviders/privateEndpointConnections"
     }
   },
   "definitions": {
+    "attestationProviders_privateEndpointConnections_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-06-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the private endpoint connection associated with the attestation providers."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the PrivateEndpointConnectProperties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Attestation/attestationProviders/privateEndpointConnections"
+    },
     "AttestationServiceCreationSpecificParams": {
       "type": "object",
       "properties": {
-        "attestationPolicy": {
-          "type": "string",
-          "description": "Name of attestation policy."
-        },
         "policySigningCertificates": {
           "oneOf": [
             {
@@ -81,9 +173,24 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ]
+        },
+        "publicNetworkAccess": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Controls whether traffic from the public network is allowed to access the Attestation Provider APIs."
         }
       },
-      "description": "Client supplied parameters used to create a new attestation service instance."
+      "description": "Client supplied parameters used to create a new attestation provider."
     },
     "JSONWebKey": {
       "type": "object",
@@ -189,6 +296,89 @@
           "description": "The value of the \"keys\" parameter is an array of JWK values.  By\ndefault, the order of the JWK values within the array does not imply\nan order of preference among them, although applications of JWK Sets\ncan choose to assign a meaning to the order for their purposes, if\ndesired."
         }
       }
+    },
+    "PrivateEndpoint": {
+      "type": "object",
+      "properties": {},
+      "description": "The Private Endpoint resource."
+    },
+    "PrivateEndpointConnectionProperties": {
+      "type": "object",
+      "properties": {
+        "privateEndpoint": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpoint"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The Private Endpoint resource."
+        },
+        "privateLinkServiceConnectionState": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateLinkServiceConnectionState"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A collection of information about the state of the connection between service consumer and provider."
+        },
+        "provisioningState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Succeeded",
+                "Creating",
+                "Deleting",
+                "Failed"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The provisioning state of the private endpoint connection resource."
+        }
+      },
+      "required": [
+        "privateLinkServiceConnectionState"
+      ],
+      "description": "Properties of the PrivateEndpointConnectProperties."
+    },
+    "PrivateLinkServiceConnectionState": {
+      "type": "object",
+      "properties": {
+        "actionsRequired": {
+          "type": "string",
+          "description": "A message indicating if changes on the service provider require any updates on the consumer."
+        },
+        "description": {
+          "type": "string",
+          "description": "The reason for approval/rejection of the connection."
+        },
+        "status": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Pending",
+                "Approved",
+                "Rejected"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service."
+        }
+      },
+      "description": "A collection of information about the state of the connection between service consumer and provider."
     }
   }
 }

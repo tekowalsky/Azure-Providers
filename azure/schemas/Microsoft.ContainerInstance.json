@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2018-04-01/Microsoft.ContainerInstance.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-09-01/Microsoft.ContainerInstance.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.ContainerInstance",
   "description": "Microsoft ContainerInstance Resource Types",
@@ -10,8 +10,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-04-01"
+            "2022-09-01"
           ]
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ContainerGroupIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Identity for the container group."
         },
         "location": {
           "type": "string",
@@ -24,12 +35,13 @@
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/ContainerGroupProperties"
+              "$ref": "#/definitions/ContainerGroupPropertiesProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "The container group properties"
         },
         "tags": {
           "oneOf": [
@@ -51,6 +63,20 @@
           "enum": [
             "Microsoft.ContainerInstance/containerGroups"
           ]
+        },
+        "zones": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The zones for the container group."
         }
       },
       "required": [
@@ -121,7 +147,82 @@
       ],
       "description": "A container instance."
     },
-    "ContainerGroupProperties": {
+    "ContainerExec": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The commands to execute within the container."
+        }
+      },
+      "description": "The container execution command, for liveness or readiness probe"
+    },
+    "ContainerGroupDiagnostics": {
+      "type": "object",
+      "properties": {
+        "logAnalytics": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LogAnalytics"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Container group log analytics information."
+        }
+      },
+      "description": "Container group diagnostic information."
+    },
+    "ContainerGroupIdentity": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "SystemAssigned",
+                "UserAssigned",
+                "SystemAssigned, UserAssigned",
+                "None"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The type of identity used for the container group. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the container group."
+        },
+        "userAssignedIdentities": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/UserAssignedIdentities"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of user identities associated with the container group."
+        }
+      },
+      "description": "Identity for the container group."
+    },
+    "ContainerGroupPropertiesProperties": {
       "type": "object",
       "properties": {
         "containers": {
@@ -138,6 +239,53 @@
           ],
           "description": "The containers within the container group."
         },
+        "diagnostics": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ContainerGroupDiagnostics"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Container group diagnostic information."
+        },
+        "dnsConfig": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DnsConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "DNS configuration for the container group."
+        },
+        "encryptionProperties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/EncryptionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The container group encryption properties."
+        },
+        "extensions": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DeploymentExtensionSpec"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "extensions used by virtual kubelet"
+        },
         "imageRegistryCredentials": {
           "oneOf": [
             {
@@ -151,6 +299,20 @@
             }
           ],
           "description": "The image registry credentials by which the container group is created from."
+        },
+        "initContainers": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/InitContainerDefinition"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The init containers for a container group."
         },
         "ipAddress": {
           "oneOf": [
@@ -194,6 +356,35 @@
           ],
           "description": "Restart policy for all containers within the container group. \n- `Always` Always restart\n- `OnFailure` Restart on failure\n- `Never` Never restart\n."
         },
+        "sku": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Standard",
+                "Dedicated"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The SKU for a container group."
+        },
+        "subnetIds": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ContainerGroupSubnetId"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The subnet resource IDs for a container group."
+        },
         "volumes": {
           "oneOf": [
             {
@@ -212,7 +403,78 @@
       "required": [
         "containers",
         "osType"
-      ]
+      ],
+      "description": "The container group properties"
+    },
+    "ContainerGroupSubnetId": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Resource ID of virtual network and subnet."
+        },
+        "name": {
+          "type": "string",
+          "description": "Friendly name for the subnet."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "description": "Container group subnet information."
+    },
+    "ContainerHttpGet": {
+      "type": "object",
+      "properties": {
+        "httpHeaders": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/HttpHeader"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The HTTP headers."
+        },
+        "path": {
+          "type": "string",
+          "description": "The path to probe."
+        },
+        "port": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The port number to probe."
+        },
+        "scheme": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "http",
+                "https"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The scheme."
+        }
+      },
+      "required": [
+        "port"
+      ],
+      "description": "The container Http Get settings, for liveness or readiness probe"
     },
     "ContainerPort": {
       "type": "object",
@@ -249,6 +511,89 @@
       ],
       "description": "The port exposed on the container instance."
     },
+    "ContainerProbe": {
+      "type": "object",
+      "properties": {
+        "exec": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ContainerExec"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The container execution command, for liveness or readiness probe"
+        },
+        "failureThreshold": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The failure threshold."
+        },
+        "httpGet": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ContainerHttpGet"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The container Http Get settings, for liveness or readiness probe"
+        },
+        "initialDelaySeconds": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The initial delay seconds."
+        },
+        "periodSeconds": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The period seconds."
+        },
+        "successThreshold": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The success threshold."
+        },
+        "timeoutSeconds": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The timeout seconds."
+        }
+      },
+      "description": "The container probe, for liveness or readiness"
+    },
     "ContainerProperties": {
       "type": "object",
       "properties": {
@@ -284,6 +629,17 @@
           "type": "string",
           "description": "The name of the image used to create the container instance."
         },
+        "livenessProbe": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ContainerProbe"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The container probe, for liveness or readiness"
+        },
         "ports": {
           "oneOf": [
             {
@@ -297,6 +653,17 @@
             }
           ],
           "description": "The exposed ports on the container instance."
+        },
+        "readinessProbe": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ContainerProbe"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The container probe, for liveness or readiness"
         },
         "resources": {
           "oneOf": [
@@ -330,6 +697,116 @@
       ],
       "description": "The container instance properties."
     },
+    "DeploymentExtensionSpec": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the extension."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DeploymentExtensionSpecProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Extension specific properties"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "description": "Extension sidecars to be added to the deployment."
+    },
+    "DeploymentExtensionSpecProperties": {
+      "type": "object",
+      "properties": {
+        "extensionType": {
+          "type": "string",
+          "description": "Type of extension to be added."
+        },
+        "protectedSettings": {
+          "type": "object",
+          "properties": {},
+          "description": "Protected settings for the extension."
+        },
+        "settings": {
+          "type": "object",
+          "properties": {},
+          "description": "Settings for the extension."
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of the extension being used."
+        }
+      },
+      "required": [
+        "extensionType",
+        "version"
+      ],
+      "description": "Extension specific properties"
+    },
+    "DnsConfiguration": {
+      "type": "object",
+      "properties": {
+        "nameServers": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The DNS servers for the container group."
+        },
+        "options": {
+          "type": "string",
+          "description": "The DNS options for the container group."
+        },
+        "searchDomains": {
+          "type": "string",
+          "description": "The DNS search domains for hostname lookup in the container group."
+        }
+      },
+      "required": [
+        "nameServers"
+      ],
+      "description": "DNS configuration for the container group."
+    },
+    "EncryptionProperties": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "The keyvault managed identity."
+        },
+        "keyName": {
+          "type": "string",
+          "description": "The encryption key name."
+        },
+        "keyVersion": {
+          "type": "string",
+          "description": "The encryption key version."
+        },
+        "vaultBaseUrl": {
+          "type": "string",
+          "description": "The keyvault base url."
+        }
+      },
+      "required": [
+        "keyName",
+        "keyVersion",
+        "vaultBaseUrl"
+      ],
+      "description": "The container group encryption properties."
+    },
     "EnvironmentVariable": {
       "type": "object",
       "properties": {
@@ -337,14 +814,17 @@
           "type": "string",
           "description": "The name of the environment variable."
         },
+        "secureValue": {
+          "type": "string",
+          "description": "The value of the secure environment variable."
+        },
         "value": {
           "type": "string",
           "description": "The value of the environment variable."
         }
       },
       "required": [
-        "name",
-        "value"
+        "name"
       ],
       "description": "The environment variable to set within the container instance."
     },
@@ -369,9 +849,68 @@
       ],
       "description": "Represents a volume that is populated with the contents of a git repository"
     },
+    "GpuResource": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The count of the GPU resource."
+        },
+        "sku": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "K80",
+                "P100",
+                "V100"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The SKU of the GPU resource."
+        }
+      },
+      "required": [
+        "count",
+        "sku"
+      ],
+      "description": "The GPU resource."
+    },
+    "HttpHeader": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The header name."
+        },
+        "value": {
+          "type": "string",
+          "description": "The header value."
+        }
+      },
+      "description": "The HTTP header."
+    },
     "ImageRegistryCredential": {
       "type": "object",
       "properties": {
+        "identity": {
+          "type": "string",
+          "description": "The identity for the private registry."
+        },
+        "identityUrl": {
+          "type": "string",
+          "description": "The identity URL for the private registry."
+        },
         "password": {
           "type": "string",
           "description": "The password for the private registry."
@@ -386,14 +925,108 @@
         }
       },
       "required": [
-        "server",
-        "username"
+        "server"
       ],
       "description": "Image registry credential."
+    },
+    "InitContainerDefinition": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name for the init container."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/InitContainerPropertiesDefinition"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The init container definition properties."
+        }
+      },
+      "required": [
+        "name",
+        "properties"
+      ],
+      "description": "The init container definition."
+    },
+    "InitContainerPropertiesDefinition": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The command to execute within the init container in exec form."
+        },
+        "environmentVariables": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EnvironmentVariable"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The environment variables to set in the init container."
+        },
+        "image": {
+          "type": "string",
+          "description": "The image of the init container."
+        },
+        "volumeMounts": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/VolumeMount"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The volume mounts available to the init container."
+        }
+      },
+      "description": "The init container definition properties."
     },
     "IpAddress": {
       "type": "object",
       "properties": {
+        "autoGeneratedDomainNameLabelScope": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Unsecure",
+                "TenantReuse",
+                "SubscriptionReuse",
+                "ResourceGroupReuse",
+                "Noreuse"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The value representing the security enum. The 'Unsecure' value is the default value if not selected and means the object's domain name label is not secured against subdomain takeover. The 'TenantReuse' value is the default value if selected and means the object's domain name label can be reused within the same tenant. The 'SubscriptionReuse' value means the object's domain name label can be reused within the same subscription. The 'ResourceGroupReuse' value means the object's domain name label can be reused within the same resource group. The 'NoReuse' value means the object's domain name label cannot be reused within the same resource group, subscription, or tenant."
+        },
         "dnsNameLabel": {
           "type": "string",
           "description": "The Dns name label for the IP."
@@ -421,14 +1054,15 @@
             {
               "type": "string",
               "enum": [
-                "Public"
+                "Public",
+                "Private"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Specifies if the IP is exposed to the public internet."
+          "description": "Specifies if the IP is exposed to the public internet or private VNET."
         }
       },
       "required": [
@@ -436,6 +1070,58 @@
         "type"
       ],
       "description": "IP address for the container group."
+    },
+    "LogAnalytics": {
+      "type": "object",
+      "properties": {
+        "logType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "ContainerInsights",
+                "ContainerInstanceLogs"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The log type to be used."
+        },
+        "metadata": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata for log analytics."
+        },
+        "workspaceId": {
+          "type": "string",
+          "description": "The workspace id for log analytics"
+        },
+        "workspaceKey": {
+          "type": "string",
+          "description": "The workspace key for log analytics"
+        },
+        "workspaceResourceId": {
+          "type": "string",
+          "description": "The workspace resource id for log analytics"
+        }
+      },
+      "required": [
+        "workspaceId",
+        "workspaceKey"
+      ],
+      "description": "Container group log analytics information."
     },
     "Port": {
       "type": "object",
@@ -486,6 +1172,17 @@
           ],
           "description": "The CPU limit of this container instance."
         },
+        "gpu": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GpuResource"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The GPU resource."
+        },
         "memoryInGB": {
           "oneOf": [
             {
@@ -513,6 +1210,17 @@
             }
           ],
           "description": "The CPU request of this container instance."
+        },
+        "gpu": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GpuResource"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The GPU resource."
         },
         "memoryInGB": {
           "oneOf": [
@@ -562,6 +1270,11 @@
         "requests"
       ],
       "description": "The resource requirements."
+    },
+    "UserAssignedIdentities": {
+      "type": "object",
+      "properties": {},
+      "description": "The list of user identities associated with the container group. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
     },
     "Volume": {
       "type": "object",

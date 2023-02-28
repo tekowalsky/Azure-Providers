@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2019-04-01/Microsoft.Capacity.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-11-01/Microsoft.Capacity.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Capacity",
   "description": "Microsoft Capacity Resource Types",
@@ -11,12 +11,12 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2019-04-01"
+            "2022-11-01"
           ]
         },
         "location": {
           "type": "string",
-          "description": "The Azure Region where the reserved resource lives."
+          "description": "The Azure region where the reserved resource lives."
         },
         "name": {
           "type": "string",
@@ -30,7 +30,8 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "Properties of reservation purchase request"
         },
         "sku": {
           "oneOf": [
@@ -40,7 +41,8 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "The name of sku"
         },
         "type": {
           "type": "string",
@@ -59,9 +61,46 @@
     }
   },
   "definitions": {
+    "AppliedScopeProperties": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "Display name"
+        },
+        "managementGroupId": {
+          "type": "string",
+          "description": "Fully-qualified identifier of the management group where the benefit must be applied."
+        },
+        "resourceGroupId": {
+          "type": "string",
+          "description": "Fully-qualified identifier of the resource group."
+        },
+        "subscriptionId": {
+          "type": "string",
+          "description": "Fully-qualified identifier of the subscription."
+        },
+        "tenantId": {
+          "type": "string",
+          "description": "Tenant ID where the savings plan should apply benefit."
+        }
+      },
+      "description": "Properties specific to applied scope type. Not required if not applicable. Required and need to provide tenantId and managementGroupId if AppliedScopeType is ManagementGroup"
+    },
     "PurchaseRequestProperties": {
       "type": "object",
       "properties": {
+        "appliedScopeProperties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AppliedScopeProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties specific to applied scope type. Not required if not applicable. Required and need to provide tenantId and managementGroupId if AppliedScopeType is ManagementGroup"
+        },
         "appliedScopes": {
           "oneOf": [
             {
@@ -82,7 +121,8 @@
               "type": "string",
               "enum": [
                 "Single",
-                "Shared"
+                "Shared",
+                "ManagementGroup"
               ]
             },
             {
@@ -106,25 +146,11 @@
         },
         "billingScopeId": {
           "type": "string",
-          "description": "Subscription that will be charged for purchasing Reservation"
+          "description": "Subscription that will be charged for purchasing reservation or savings plan"
         },
         "displayName": {
           "type": "string",
-          "description": "Friendly name of the Reservation"
-        },
-        "instanceFlexibility": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "On",
-                "Off"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ]
+          "description": "Friendly name of the reservation"
         },
         "quantity": {
           "oneOf": [
@@ -135,7 +161,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Quantity of the SKUs that are part of the Reservation. Must be greater than zero."
+          "description": "Quantity of the skus that are part of the reservation. Must be greater than zero."
         },
         "renew": {
           "oneOf": [
@@ -184,7 +210,13 @@
                 "PostgreSql",
                 "DedicatedHost",
                 "SapHana",
-                "SqlAzureHybridBenefit"
+                "SqlAzureHybridBenefit",
+                "AVS",
+                "DataFactory",
+                "NetAppStorage",
+                "AzureFiles",
+                "SqlEdge",
+                "VirtualMachineSoftware"
               ]
             },
             {
@@ -192,13 +224,19 @@
             }
           ]
         },
+        "reviewDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "This is the date-time when the Azure hybrid benefit needs to be reviewed."
+        },
         "term": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
                 "P1Y",
-                "P3Y"
+                "P3Y",
+                "P5Y"
               ]
             },
             {
@@ -206,7 +244,8 @@
             }
           ]
         }
-      }
+      },
+      "description": "Properties of reservation purchase request"
     },
     "PurchaseRequestPropertiesReservedResourceProperties": {
       "type": "object",
@@ -234,7 +273,8 @@
         "name": {
           "type": "string"
         }
-      }
+      },
+      "description": "The name of sku"
     }
   }
 }

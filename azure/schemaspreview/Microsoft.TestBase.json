@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2020-12-16-preview/Microsoft.TestBase.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-04-01-preview/Microsoft.TestBase.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.TestBase",
   "description": "Microsoft TestBase Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-12-16-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -93,7 +93,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-12-16-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -143,7 +143,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-12-16-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -223,7 +223,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-12-16-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -666,6 +666,20 @@
     "TargetOSInfo": {
       "type": "object",
       "properties": {
+        "baselineOSs": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies the baseline OSs to be tested."
+        },
         "osUpdateType": {
           "type": "string",
           "description": "Specifies the OS update type to test against, e.g., 'Security updates' or 'Feature updates'."
@@ -832,7 +846,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-12-16-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {
@@ -882,7 +896,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-12-16-preview"
+            "2022-04-01-preview"
           ]
         },
         "location": {
@@ -952,7 +966,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-12-16-preview"
+            "2022-04-01-preview"
           ]
         },
         "name": {

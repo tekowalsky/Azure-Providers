@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-01-01/Microsoft.Migrate.ResourceMover.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-08-01/Microsoft.Migrate.ResourceMover.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Migrate",
   "description": "Microsoft Migrate Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-01"
+            "2022-08-01"
           ]
         },
         "identity": {
@@ -89,7 +89,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-01"
+            "2022-08-01"
           ]
         },
         "name": {
@@ -144,6 +144,21 @@
           "enum": [
             "Microsoft.Compute/availabilitySets"
           ]
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the Resource tags."
         },
         "updateDomain": {
           "oneOf": [
@@ -341,6 +356,21 @@
           "type": "string",
           "description": "Gets or sets load balancer sku (Basic/Standard)."
         },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the Resource tags."
+        },
         "zones": {
           "type": "string",
           "description": "Gets or sets the csv list of zones common for all frontend IP configurations. Note this is given\r\n precedence only if frontend IP configurations settings are not present."
@@ -377,6 +407,10 @@
         "targetRegion": {
           "type": "string",
           "description": "Gets or sets the target region."
+        },
+        "version": {
+          "type": "string",
+          "description": "Gets or sets the version of move collection."
         }
       },
       "required": [
@@ -391,7 +425,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-01-01"
+            "2022-08-01"
           ]
         },
         "name": {
@@ -529,6 +563,21 @@
           "enum": [
             "Microsoft.Network/networkInterfaces"
           ]
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the Resource tags."
         }
       },
       "required": [
@@ -558,6 +607,21 @@
             }
           ],
           "description": "Gets or sets Security rules of network security group."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the Resource tags."
         }
       },
       "required": [
@@ -735,6 +799,21 @@
           "type": "string",
           "description": "Gets or sets public IP sku."
         },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the Resource tags."
+        },
         "zones": {
           "type": "string",
           "description": "Gets or sets public IP zones."
@@ -817,6 +896,10 @@
         }
       ],
       "properties": {
+        "targetResourceGroupName": {
+          "type": "string",
+          "description": "Gets or sets the target resource group name."
+        },
         "targetResourceName": {
           "type": "string",
           "description": "Gets or sets the target Resource name."
@@ -835,6 +918,21 @@
           "enum": [
             "Microsoft.Sql/servers/databases"
           ]
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the Resource tags."
         },
         "zoneRedundant": {
           "oneOf": [
@@ -864,6 +962,21 @@
           "enum": [
             "Microsoft.Sql/servers/elasticPools"
           ]
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the Resource tags."
         },
         "zoneRedundant": {
           "oneOf": [
@@ -951,6 +1064,21 @@
             "Microsoft.Compute/virtualMachines"
           ]
         },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the Resource tags."
+        },
         "targetAvailabilitySetId": {
           "type": "string",
           "description": "Gets or sets the target availability set id for virtual machines not in an availability set at source."
@@ -975,6 +1103,20 @@
         "targetVmSize": {
           "type": "string",
           "description": "Gets or sets the target virtual machine size."
+        },
+        "userManagedIdentities": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets user-managed identities"
         }
       },
       "required": [
@@ -1043,6 +1185,21 @@
             }
           ],
           "description": "Gets or sets List of subnets in a VirtualNetwork."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the Resource tags."
         }
       },
       "required": [

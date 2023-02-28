@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-05-01-preview/Microsoft.BotService.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-06-15-preview/Microsoft.BotService.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.BotService",
   "description": "Microsoft BotService Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2022-06-15-preview"
           ]
         },
         "etag": {
@@ -127,7 +127,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2022-06-15-preview"
           ]
         },
         "etag": {
@@ -246,7 +246,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2022-06-15-preview"
           ]
         },
         "etag": {
@@ -347,7 +347,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2022-06-15-preview"
           ]
         },
         "name": {
@@ -652,7 +652,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2022-06-15-preview"
           ]
         },
         "etag": {
@@ -771,7 +771,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2022-06-15-preview"
           ]
         },
         "etag": {
@@ -872,7 +872,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-05-01-preview"
+            "2022-06-15-preview"
           ]
         },
         "name": {

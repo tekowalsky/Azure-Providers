@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2020-05-12-preview/Microsoft.AgFoodPlatform.json#",
+  "id": "https://schema.management.azure.com/schemas/2021-09-01-preview/Microsoft.AgFoodPlatform.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.AgFoodPlatform",
   "description": "Microsoft AgFoodPlatform Resource Types",
@@ -10,8 +10,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-12-preview"
+            "2021-09-01-preview"
           ]
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Identity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Identity for the resource."
         },
         "location": {
           "type": "string",
@@ -38,31 +49,15 @@
             "oneOf": [
               {
                 "$ref": "#/definitions/farmBeats_extensions_childResource"
+              },
+              {
+                "$ref": "#/definitions/farmBeats_privateEndpointConnections_childResource"
+              },
+              {
+                "$ref": "#/definitions/farmBeats_solutions_childResource"
               }
             ]
           }
-        },
-        "sku": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/Sku"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The resource model definition representing SKU"
-        },
-        "systemData": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/SystemData"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Metadata pertaining to creation and last modification of the resource."
         },
         "tags": {
           "oneOf": [
@@ -98,11 +93,32 @@
     "farmBeats_extensions": {
       "type": "object",
       "properties": {
+        "additionalApiProperties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/ApiProperties"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Additional Api Properties."
+        },
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-12-preview"
+            "2021-09-01-preview"
           ]
+        },
+        "extensionVersion": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 10,
+          "description": "Extension Version."
         },
         "name": {
           "type": "string",
@@ -121,22 +137,196 @@
         "type"
       ],
       "description": "Microsoft.AgFoodPlatform/farmBeats/extensions"
-    }
-  },
-  "definitions": {
-    "FarmBeatsProperties": {
-      "type": "object",
-      "properties": {},
-      "description": "FarmBeats ARM Resource properties."
     },
-    "farmBeats_extensions_childResource": {
+    "farmBeats_privateEndpointConnections": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-05-12-preview"
+            "2021-09-01-preview"
           ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Private endpoint connection name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the private endpoint connection."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.AgFoodPlatform/farmBeats/privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.AgFoodPlatform/farmBeats/privateEndpointConnections"
+    },
+    "farmBeats_solutions": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-09-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z]{3,50}[.][a-zA-Z]{3,100}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Solution Id of the solution."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SolutionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Solution resource properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.AgFoodPlatform/farmBeats/solutions"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.AgFoodPlatform/farmBeats/solutions"
+    }
+  },
+  "definitions": {
+    "ApiProperties": {
+      "type": "object",
+      "properties": {
+        "apiFreshnessTimeInMinutes": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10080
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Interval in minutes for which the weather data for the api needs to be refreshed."
+        }
+      },
+      "description": "Api properties."
+    },
+    "ErrorDetail": {
+      "type": "object",
+      "properties": {},
+      "description": "The error detail."
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ErrorDetail"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The error detail."
+        }
+      },
+      "description": "Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This also follows the OData error response format.)."
+    },
+    "FarmBeatsProperties": {
+      "type": "object",
+      "properties": {
+        "publicNetworkAccess": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Hybrid"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "sensorIntegration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SensorIntegration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Sensor integration request model."
+        }
+      },
+      "description": "FarmBeats ARM Resource properties."
+    },
+    "farmBeats_extensions_childResource": {
+      "type": "object",
+      "properties": {
+        "additionalApiProperties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/ApiProperties"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Additional Api Properties."
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2021-09-01-preview"
+          ]
+        },
+        "extensionVersion": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 10,
+          "description": "Extension Version."
         },
         "name": {
           "type": "string",
@@ -156,112 +346,275 @@
       ],
       "description": "Microsoft.AgFoodPlatform/farmBeats/extensions"
     },
-    "Sku": {
+    "farmBeats_privateEndpointConnections_childResource": {
       "type": "object",
       "properties": {
-        "capacity": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
-        },
-        "family": {
+        "apiVersion": {
           "type": "string",
-          "description": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          "enum": [
+            "2021-09-01-preview"
+          ]
         },
         "name": {
           "type": "string",
-          "description": "The name of the SKU. Ex - P3. It is typically a letter+number code"
+          "description": "Private endpoint connection name."
         },
-        "size": {
-          "type": "string",
-          "description": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
-        },
-        "tier": {
+        "properties": {
           "oneOf": [
             {
-              "type": "string",
-              "enum": [
-                "Free",
-                "Basic",
-                "Standard",
-                "Premium"
-              ]
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT."
+          "description": "Properties of the private endpoint connection."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "privateEndpointConnections"
+          ]
         }
       },
       "required": [
-        "name"
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
       ],
-      "description": "The resource model definition representing SKU"
+      "description": "Microsoft.AgFoodPlatform/farmBeats/privateEndpointConnections"
     },
-    "SystemData": {
+    "farmBeats_solutions_childResource": {
       "type": "object",
       "properties": {
-        "createdAt": {
+        "apiVersion": {
           "type": "string",
-          "format": "date-time",
-          "description": "The timestamp of resource creation (UTC)."
+          "enum": [
+            "2021-09-01-preview"
+          ]
         },
-        "createdBy": {
-          "type": "string",
-          "description": "The identity that created the resource."
-        },
-        "createdByType": {
+        "name": {
           "oneOf": [
             {
               "type": "string",
-              "enum": [
-                "User",
-                "Application",
-                "ManagedIdentity",
-                "Key"
-              ]
+              "pattern": "^[a-zA-Z]{3,50}[.][a-zA-Z]{3,100}$"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The type of identity that created the resource."
+          "description": "Solution Id of the solution."
         },
-        "lastModifiedAt": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The timestamp of resource last modification (UTC)"
-        },
-        "lastModifiedBy": {
-          "type": "string",
-          "description": "The identity that last modified the resource."
-        },
-        "lastModifiedByType": {
+        "properties": {
           "oneOf": [
             {
-              "type": "string",
-              "enum": [
-                "User",
-                "Application",
-                "ManagedIdentity",
-                "Key"
-              ]
+              "$ref": "#/definitions/SolutionProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The type of identity that last modified the resource."
+          "description": "Solution resource properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "solutions"
+          ]
         }
       },
-      "description": "Metadata pertaining to creation and last modification of the resource."
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.AgFoodPlatform/farmBeats/solutions"
+    },
+    "Identity": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "SystemAssigned"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The identity type."
+        }
+      },
+      "description": "Identity for the resource."
+    },
+    "PrivateEndpoint": {
+      "type": "object",
+      "properties": {},
+      "description": "The private endpoint resource."
+    },
+    "PrivateEndpointConnectionProperties": {
+      "type": "object",
+      "properties": {
+        "privateEndpoint": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpoint"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The private endpoint resource."
+        },
+        "privateLinkServiceConnectionState": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateLinkServiceConnectionState"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A collection of information about the state of the connection between service consumer and provider."
+        },
+        "provisioningState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Succeeded",
+                "Creating",
+                "Deleting",
+                "Failed"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The provisioning state of the private endpoint connection resource."
+        }
+      },
+      "required": [
+        "privateLinkServiceConnectionState"
+      ],
+      "description": "Properties of the private endpoint connection."
+    },
+    "PrivateLinkServiceConnectionState": {
+      "type": "object",
+      "properties": {
+        "actionsRequired": {
+          "type": "string",
+          "description": "A message indicating if changes on the service provider require any updates on the consumer."
+        },
+        "description": {
+          "type": "string",
+          "description": "The reason for approval/rejection of the connection."
+        },
+        "status": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Pending",
+                "Approved",
+                "Rejected"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service."
+        }
+      },
+      "description": "A collection of information about the state of the connection between service consumer and provider."
+    },
+    "SensorIntegration": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "string",
+          "description": "Sensor integration enable state. Allowed values are True, None"
+        },
+        "provisioningInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This also follows the OData error response format.)."
+        }
+      },
+      "description": "Sensor integration request model."
+    },
+    "SolutionProperties": {
+      "type": "object",
+      "properties": {
+        "additionalProperties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {}
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Unmatched properties from the message are deserialized this collection"
+        },
+        "marketplacePublisherId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "SaaS application Publisher Id."
+        },
+        "offerId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "SaaS application Offer Id."
+        },
+        "planId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "SaaS application Plan Id."
+        },
+        "saasSubscriptionId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "SaaS subscriptionId of the installed SaaS application."
+        },
+        "saasSubscriptionName": {
+          "type": "string",
+          "minLength": 1,
+          "description": "SaaS subscription name of the installed SaaS application."
+        },
+        "termId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "SaaS application Term Id."
+        }
+      },
+      "required": [
+        "marketplacePublisherId",
+        "offerId",
+        "planId",
+        "saasSubscriptionId",
+        "saasSubscriptionName",
+        "termId"
+      ],
+      "description": "Solution resource properties."
     }
   }
 }

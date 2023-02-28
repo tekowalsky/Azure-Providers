@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-02-01-preview/Microsoft.RecoveryServices.Backup.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-09-30-preview/Microsoft.RecoveryServices.Backup.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.RecoveryServices",
   "description": "Microsoft RecoveryServices Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-02-01-preview"
+            "2022-09-30-preview"
           ]
         },
         "eTag": {
@@ -79,7 +79,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-02-01-preview"
+            "2022-09-30-preview"
           ]
         },
         "eTag": {
@@ -147,7 +147,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-02-01-preview"
+            "2022-09-30-preview"
           ]
         },
         "eTag": {
@@ -209,7 +209,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-02-01-preview"
+            "2022-09-30-preview"
           ]
         },
         "eTag": {
@@ -281,7 +281,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-02-01-preview"
+            "2022-09-30-preview"
           ]
         },
         "eTag": {
@@ -343,7 +343,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-02-01-preview"
+            "2022-09-30-preview"
           ]
         },
         "eTag": {
@@ -405,11 +405,44 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-02-01-preview"
+            "2022-09-30-preview"
           ]
+        },
+        "eTag": {
+          "type": "string",
+          "description": "Optional ETag."
+        },
+        "location": {
+          "type": "string",
+          "description": "Resource location."
         },
         "name": {
           "type": "string"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResourceGuardProxyBase"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
         },
         "type": {
           "type": "string",
@@ -421,9 +454,79 @@
       "required": [
         "apiVersion",
         "name",
+        "properties",
         "type"
       ],
       "description": "Microsoft.RecoveryServices/vaults/backupResourceGuardProxies"
+    },
+    "vaults_backupstorageconfig": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-09-30-preview"
+          ]
+        },
+        "eTag": {
+          "type": "string",
+          "description": "Optional ETag."
+        },
+        "location": {
+          "type": "string",
+          "description": "Resource location."
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^.*/vaultstorageconfig$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BackupResourceConfig"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The resource storage details."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RecoveryServices/vaults/backupstorageconfig"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/backupstorageconfig"
     },
     "vaults_privateEndpointConnections": {
       "type": "object",
@@ -431,7 +534,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-02-01-preview"
+            "2022-09-30-preview"
           ]
         },
         "eTag": {
@@ -661,7 +764,8 @@
                 "SQLDataBase",
                 "AzureFileShare",
                 "SAPHanaDatabase",
-                "SAPAseDatabase"
+                "SAPAseDatabase",
+                "SAPHanaDBInstance"
               ]
             },
             {
@@ -774,10 +878,6 @@
           ],
           "description": "Extended Properties for Azure IaasVM Backup."
         },
-        "friendlyName": {
-          "type": "string",
-          "description": "Friendly name of the VM represented by this backup item."
-        },
         "healthDetails": {
           "oneOf": [
             {
@@ -791,23 +891,6 @@
             }
           ],
           "description": "Health details on this backup item."
-        },
-        "healthStatus": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "Passed",
-                "ActionRequired",
-                "ActionSuggested",
-                "Invalid"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Health status of protected item."
         },
         "kpisHealths": {
           "oneOf": [
@@ -827,15 +910,6 @@
         "lastBackupStatus": {
           "type": "string",
           "description": "Last backup operation status."
-        },
-        "lastBackupTime": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Timestamp of the last backup operation on this backup item."
-        },
-        "protectedItemDataId": {
-          "type": "string",
-          "description": "Data ID of the protected item."
         },
         "protectedItemType": {
           "type": "string",
@@ -865,10 +939,6 @@
         "protectionStatus": {
           "type": "string",
           "description": "Backup status of this backup item."
-        },
-        "virtualMachineId": {
-          "type": "string",
-          "description": "Fully qualified ARM ID of the virtual machine represented by this item."
         }
       },
       "required": [
@@ -879,10 +949,25 @@
     "AzureIaaSVMProtectedItemExtendedInfo": {
       "type": "object",
       "properties": {
+        "newestRecoveryPointInArchive": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The latest backup copy available for this backup item in archive tier"
+        },
         "oldestRecoveryPoint": {
           "type": "string",
           "format": "date-time",
-          "description": "The oldest backup copy available for this backup item."
+          "description": "The oldest backup copy available for this backup item across all tiers."
+        },
+        "oldestRecoveryPointInArchive": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The oldest backup copy available for this backup item in archive tier"
+        },
+        "oldestRecoveryPointInVault": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The oldest backup copy available for this backup item in vault tier"
         },
         "policyInconsistent": {
           "oneOf": [
@@ -939,6 +1024,21 @@
           ],
           "description": "Instant RP retention policy range in days"
         },
+        "policyType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Invalid",
+                "V1",
+                "V2"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
         "retentionPolicy": {
           "oneOf": [
             {
@@ -960,6 +1060,21 @@
             }
           ],
           "description": "Base class for backup schedule."
+        },
+        "tieringPolicy": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/TieringPolicy"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tiering policy to automatically move RPs to another tier\r\nKey is Target Tier, defined in RecoveryPointTierType enum.\r\nTiering policy specifies the criteria to move RP to the target tier."
         },
         "timeZone": {
           "type": "string",
@@ -1144,6 +1259,21 @@
     "AzureStorageContainer": {
       "type": "object",
       "properties": {
+        "acquireStorageAccountLock": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Acquire",
+                "NotAcquire"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether storage account lock is to be acquired for this container or not."
+        },
         "containerType": {
           "type": "string",
           "enum": [
@@ -1204,6 +1334,9 @@
           "$ref": "#/definitions/AzureVmWorkloadSAPHanaDatabaseProtectedItem"
         },
         {
+          "$ref": "#/definitions/AzureVmWorkloadSAPHanaDBInstanceProtectedItem"
+        },
+        {
           "$ref": "#/definitions/AzureVmWorkloadSQLDatabaseProtectedItem"
         }
       ],
@@ -1218,10 +1351,6 @@
             }
           ],
           "description": "Additional information on Azure Workload for SQL specific backup item."
-        },
-        "friendlyName": {
-          "type": "string",
-          "description": "Friendly name of the DB represented by this backup item."
         },
         "kpisHealths": {
           "oneOf": [
@@ -1326,10 +1455,6 @@
           ],
           "description": "Backup state of this backup item."
         },
-        "protectionStatus": {
-          "type": "string",
-          "description": "Backup status of this backup item."
-        },
         "serverName": {
           "type": "string",
           "description": "Host/Cluster Name for instance or AG"
@@ -1343,12 +1468,31 @@
     "AzureVmWorkloadProtectedItemExtendedInfo": {
       "type": "object",
       "properties": {
+        "newestRecoveryPointInArchive": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The latest backup copy available for this backup item in archive tier"
+        },
         "oldestRecoveryPoint": {
           "type": "string",
           "format": "date-time",
-          "description": "The oldest backup copy available for this backup item."
+          "description": "The oldest backup copy available for this backup item across all tiers."
+        },
+        "oldestRecoveryPointInArchive": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The oldest backup copy available for this backup item in archive tier"
+        },
+        "oldestRecoveryPointInVault": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The oldest backup copy available for this backup item in vault tier"
         },
         "policyState": {
+          "type": "string",
+          "description": "Indicates consistency of policy object and policy applied to this backup item."
+        },
+        "recoveryModel": {
           "type": "string",
           "description": "Indicates consistency of policy object and policy applied to this backup item."
         },
@@ -1430,7 +1574,8 @@
                 "SQLDataBase",
                 "AzureFileShare",
                 "SAPHanaDatabase",
-                "SAPAseDatabase"
+                "SAPAseDatabase",
+                "SAPHanaDBInstance"
               ]
             },
             {
@@ -1474,6 +1619,21 @@
         "protectedItemType"
       ],
       "description": "Azure VM workload-specific protected item representing SAP HANA Database."
+    },
+    "AzureVmWorkloadSAPHanaDBInstanceProtectedItem": {
+      "type": "object",
+      "properties": {
+        "protectedItemType": {
+          "type": "string",
+          "enum": [
+            "AzureVmWorkloadSAPHanaDBInstance"
+          ]
+        }
+      },
+      "required": [
+        "protectedItemType"
+      ],
+      "description": "Azure VM workload-specific protected item representing SAP HANA DBInstance."
     },
     "AzureVmWorkloadSQLDatabaseProtectedItem": {
       "type": "object",
@@ -1582,7 +1742,8 @@
                 "SQLDataBase",
                 "AzureFileShare",
                 "SAPHanaDatabase",
-                "SAPAseDatabase"
+                "SAPAseDatabase",
+                "SAPHanaDBInstance"
               ]
             },
             {
@@ -1596,6 +1757,21 @@
         "containerType"
       ],
       "description": "Container for the workloads running inside Azure Compute or Classic Compute."
+    },
+    "AzureWorkloadContainerAutoProtectionIntent": {
+      "type": "object",
+      "properties": {
+        "protectionIntentItemType": {
+          "type": "string",
+          "enum": [
+            "AzureWorkloadContainerAutoProtectionIntent"
+          ]
+        }
+      },
+      "required": [
+        "protectionIntentItemType"
+      ],
+      "description": "Azure workload specific protection intent item."
     },
     "AzureWorkloadContainerExtendedInfo": {
       "type": "object",
@@ -1652,7 +1828,8 @@
                 "SAPHanaSystem",
                 "SAPHanaDatabase",
                 "SAPAseSystem",
-                "SAPAseDatabase"
+                "SAPAseDatabase",
+                "SAPHanaDBInstance"
               ]
             },
             {
@@ -1666,6 +1843,107 @@
         "protectionIntentItemType"
       ],
       "description": "Azure Workload SQL Auto Protection intent item."
+    },
+    "BackupResourceConfig": {
+      "type": "object",
+      "properties": {
+        "crossRegionRestoreFlag": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Opt in details of Cross Region Restore feature."
+        },
+        "dedupState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Invalid",
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Vault Dedup state."
+        },
+        "storageModelType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Invalid",
+                "GeoRedundant",
+                "LocallyRedundant",
+                "ZoneRedundant",
+                "ReadAccessGeoZoneRedundant"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Storage type."
+        },
+        "storageType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Invalid",
+                "GeoRedundant",
+                "LocallyRedundant",
+                "ZoneRedundant",
+                "ReadAccessGeoZoneRedundant"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Storage type."
+        },
+        "storageTypeState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Invalid",
+                "Locked",
+                "Unlocked"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Locked or Unlocked. Once a machine is registered against a resource, the storageTypeState is always Locked."
+        },
+        "xcoolState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Invalid",
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Vault x-cool state."
+        }
+      },
+      "description": "The resource storage details."
     },
     "BackupResourceEncryptionConfig": {
       "type": "object",
@@ -1715,7 +1993,9 @@
                 "PartiallySucceeded",
                 "PartiallyFailed",
                 "Failed",
-                "Succeeded"
+                "Succeeded",
+                "Initialized",
+                "FirstInitialization"
               ]
             },
             {
@@ -1747,6 +2027,17 @@
             }
           ],
           "description": "Enabled or Disabled."
+        },
+        "isSoftDeleteFeatureStateEditable": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Is soft delete feature state editable"
         },
         "resourceGuardOperationRequests": {
           "oneOf": [
@@ -1905,6 +2196,25 @@
         }
       },
       "description": "Daily retention schedule."
+    },
+    "DailySchedule": {
+      "type": "object",
+      "properties": {
+        "scheduleRunTimes": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of times of day this schedule has to be run."
+        }
+      }
     },
     "Day": {
       "type": "object",
@@ -2272,6 +2582,10 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ]
+        },
+        "linuxVmApplicationName": {
+          "type": "string",
+          "description": "Linux VM name"
         }
       },
       "description": "Extended Properties for Azure IaasVM Backup."
@@ -2451,6 +2765,38 @@
       ],
       "description": "Azure VM (Mercury) workload-specific backup policy."
     },
+    "HourlySchedule": {
+      "type": "object",
+      "properties": {
+        "interval": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Interval at which backup needs to be triggered. For hourly the value\r\n can be 4/6/8/12"
+        },
+        "scheduleWindowDuration": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "To specify duration of the backup window"
+        },
+        "scheduleWindowStartTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "To specify start time of the backup window"
+        }
+      }
+    },
     "IaaSVMContainer": {
       "type": "object",
       "oneOf": [
@@ -2465,7 +2811,7 @@
         "containerType": {
           "type": "string",
           "enum": [
-            "IaaSVMContainer"
+            "IaasVMContainer"
           ]
         },
         "resourceGroup": {
@@ -2809,7 +3155,8 @@
                 "SQLDataBase",
                 "AzureFileShare",
                 "SAPHanaDatabase",
-                "SAPAseDatabase"
+                "SAPAseDatabase",
+                "SAPHanaDBInstance"
               ]
             },
             {
@@ -3176,28 +3523,6 @@
         }
       ],
       "properties": {
-        "backupManagementType": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "Invalid",
-                "AzureIaasVM",
-                "MAB",
-                "DPM",
-                "AzureBackupServer",
-                "AzureSql",
-                "AzureStorage",
-                "AzureWorkload",
-                "DefaultBackup"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Type of backup management for the backed up item."
-        },
         "backupSetName": {
           "type": "string",
           "description": "Name of the backup set the backup item belongs to"
@@ -3230,6 +3555,17 @@
         "deferredDeleteTimeRemaining": {
           "type": "string",
           "description": "Time remaining before the DS marked for deferred delete is permanently deleted"
+        },
+        "isArchiveEnabled": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Flag to identify whether datasource is protected in archive"
         },
         "isDeferredDeleteScheduleUpcoming": {
           "oneOf": [
@@ -3273,37 +3609,38 @@
           "type": "string",
           "description": "ID of the backup policy with which this item is backed up."
         },
-        "sourceResourceId": {
+        "policyName": {
           "type": "string",
-          "description": "ARM ID of the resource to be backed up."
+          "description": "Name of the policy used for protection"
         },
-        "workloadType": {
+        "resourceGuardOperationRequests": {
           "oneOf": [
             {
-              "type": "string",
-              "enum": [
-                "Invalid",
-                "VM",
-                "FileFolder",
-                "AzureSqlDb",
-                "SQLDB",
-                "Exchange",
-                "Sharepoint",
-                "VMwareVM",
-                "SystemState",
-                "Client",
-                "GenericDataSource",
-                "SQLDataBase",
-                "AzureFileShare",
-                "SAPHanaDatabase",
-                "SAPAseDatabase"
-              ]
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Type of workload this item represents."
+          "description": "ResourceGuardOperationRequests on which LAC check will be performed"
+        },
+        "softDeleteRetentionPeriod": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Soft delete retention period in days"
+        },
+        "sourceResourceId": {
+          "type": "string",
+          "description": "ARM ID of the resource to be backed up."
         }
       },
       "description": "Base class for backup items."
@@ -3364,6 +3701,10 @@
           "type": "string",
           "description": "Status of health of the container."
         },
+        "protectableObjectType": {
+          "type": "string",
+          "description": "Type of the protectable object associated with this container"
+        },
         "registrationStatus": {
           "type": "string",
           "description": "Status of registration of the container with the Recovery Services Vault."
@@ -3379,6 +3720,9 @@
         },
         {
           "$ref": "#/definitions/AzureResourceProtectionIntent"
+        },
+        {
+          "$ref": "#/definitions/AzureWorkloadContainerAutoProtectionIntent"
         }
       ],
       "properties": {
@@ -3470,9 +3814,61 @@
             }
           ],
           "description": "Number of items associated with this policy."
+        },
+        "resourceGuardOperationRequests": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "ResourceGuard Operation Requests"
         }
       },
       "description": "Base class for backup policy. Workload-specific backup policies are derived from this class."
+    },
+    "ResourceGuardOperationDetail": {
+      "type": "object",
+      "properties": {
+        "defaultResourceRequest": {
+          "type": "string"
+        },
+        "vaultCriticalOperation": {
+          "type": "string"
+        }
+      }
+    },
+    "ResourceGuardProxyBase": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "lastUpdatedTime": {
+          "type": "string"
+        },
+        "resourceGuardOperationDetails": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ResourceGuardOperationDetail"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "resourceGuardResourceId": {
+          "type": "string"
+        }
+      }
     },
     "ResourceHealthDetails": {
       "type": "object",
@@ -3538,6 +3934,9 @@
         },
         {
           "$ref": "#/definitions/SimpleSchedulePolicy"
+        },
+        {
+          "$ref": "#/definitions/SimpleSchedulePolicyV2"
         }
       ],
       "properties": {},
@@ -3604,6 +4003,16 @@
     "SimpleSchedulePolicy": {
       "type": "object",
       "properties": {
+        "hourlySchedule": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/HourlySchedule"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
         "schedulePolicyType": {
           "type": "string",
           "enum": [
@@ -3640,7 +4049,8 @@
               "enum": [
                 "Invalid",
                 "Daily",
-                "Weekly"
+                "Weekly",
+                "Hourly"
               ]
             },
             {
@@ -3680,6 +4090,68 @@
       ],
       "description": "Simple policy schedule."
     },
+    "SimpleSchedulePolicyV2": {
+      "type": "object",
+      "properties": {
+        "dailySchedule": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DailySchedule"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "hourlySchedule": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/HourlySchedule"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "schedulePolicyType": {
+          "type": "string",
+          "enum": [
+            "SimpleSchedulePolicyV2"
+          ]
+        },
+        "scheduleRunFrequency": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Invalid",
+                "Daily",
+                "Weekly",
+                "Hourly"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Frequency of the schedule operation of this policy."
+        },
+        "weeklySchedule": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/WeeklySchedule"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schedulePolicyType"
+      ],
+      "description": "The V2 policy schedule for IaaS that supports hourly backups."
+    },
     "SubProtectionPolicy": {
       "type": "object",
       "properties": {
@@ -3693,7 +4165,9 @@
                 "Differential",
                 "Log",
                 "CopyOnlyFull",
-                "Incremental"
+                "Incremental",
+                "SnapshotFull",
+                "SnapshotCopyOnlyFull"
               ]
             },
             {
@@ -3723,9 +4197,76 @@
             }
           ],
           "description": "Base class for backup schedule."
+        },
+        "tieringPolicy": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/TieringPolicy"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tiering policy to automatically move RPs to another tier.\r\nKey is Target Tier, defined in RecoveryPointTierType enum.\r\nTiering policy specifies the criteria to move RP to the target tier."
         }
       },
       "description": "Sub-protection policy which includes schedule and retention"
+    },
+    "TieringPolicy": {
+      "type": "object",
+      "properties": {
+        "duration": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Number of days/weeks/months/years to retain backups in current tier before tiering.\r\nUsed only if TieringMode is set to TierAfter"
+        },
+        "durationType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Invalid",
+                "Days",
+                "Weeks",
+                "Months",
+                "Years"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Retention duration type: days/weeks/months/years\r\nUsed only if TieringMode is set to TierAfter."
+        },
+        "tieringMode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Invalid",
+                "TierRecommended",
+                "TierAfter",
+                "DoNotTier"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tiering Mode to control automatic tiering of recovery points. Supported values are:\r\n1. TierRecommended: Tier all recovery points recommended to be tiered\r\n2. TierAfter: Tier all recovery points after a fixed period, as specified in duration + durationType below.\r\n3. DoNotTier: Do not tier any recovery points."
+        }
+      },
+      "description": "Tiering Policy for a target tier.\r\nIf the policy is not specified for a given target tier, service retains the existing configured tiering policy for that tier"
     },
     "vaults_backupFabrics_protectionContainers_protectedItems_childResource": {
       "type": "object",
@@ -3733,7 +4274,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-02-01-preview"
+            "2022-09-30-preview"
           ]
         },
         "eTag": {
@@ -3893,6 +4434,47 @@
         }
       },
       "description": "Weekly retention schedule."
+    },
+    "WeeklySchedule": {
+      "type": "object",
+      "properties": {
+        "scheduleRunDays": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Sunday",
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday"
+                ]
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "scheduleRunTimes": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of times of day this schedule has to be run."
+        }
+      }
     },
     "WorkloadInquiryDetails": {
       "type": "object",

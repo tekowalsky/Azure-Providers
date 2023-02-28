@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2016-05-16/Microsoft.AnalysisServices.json#",
+  "id": "https://schema.management.azure.com/schemas/2017-08-01/Microsoft.AnalysisServices.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.AnalysisServices",
   "description": "Microsoft AnalysisServices Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2016-05-16"
+            "2017-08-01"
           ]
         },
         "location": {
@@ -99,11 +99,33 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "An array of administrator user identities"
+          "description": "An array of administrator user identities."
         },
         "backupBlobContainerUri": {
           "type": "string",
-          "description": "The container URI of backup blob."
+          "description": "The SAS container URI to the backup container."
+        },
+        "gatewayDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GatewayDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The gateway details."
+        },
+        "ipV4FirewallSettings": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IPv4FirewallSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An array of firewall rules."
         },
         "managedMode": {
           "oneOf": [
@@ -117,6 +139,21 @@
           ],
           "description": "The managed mode of the server (0 = not managed, 1 = managed)."
         },
+        "querypoolConnectionMode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "All",
+                "ReadOnly"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "How the read-write server's participation in the query pool is controlled.<br/>It can have the following values: <ul><li>readOnly - indicates that the read-write server is intended not to participate in query operations</li><li>all - indicates that the read-write server can participate in query operations</li></ul>Specifying readOnly when capacity is 1 results in error."
+        },
         "serverMonitorMode": {
           "oneOf": [
             {
@@ -128,9 +165,79 @@
             }
           ],
           "description": "The server monitor mode for AS server"
+        },
+        "sku": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResourceSku"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Represents the SKU name and Azure pricing tier for Analysis Services resource."
         }
       },
       "description": "Properties of Analysis Services resource."
+    },
+    "GatewayDetails": {
+      "type": "object",
+      "properties": {
+        "gatewayResourceId": {
+          "type": "string",
+          "description": "Gateway resource to be associated with the server."
+        }
+      },
+      "description": "The gateway details."
+    },
+    "IPv4FirewallRule": {
+      "type": "object",
+      "properties": {
+        "firewallRuleName": {
+          "type": "string",
+          "description": "The rule name."
+        },
+        "rangeEnd": {
+          "type": "string",
+          "description": "The end range of IPv4."
+        },
+        "rangeStart": {
+          "type": "string",
+          "description": "The start range of IPv4."
+        }
+      },
+      "description": "The detail of firewall rule."
+    },
+    "IPv4FirewallSettings": {
+      "type": "object",
+      "properties": {
+        "enablePowerBIService": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The indicator of enabling PBI service."
+        },
+        "firewallRules": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IPv4FirewallRule"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An array of firewall rules."
+        }
+      },
+      "description": "An array of firewall rules."
     },
     "ResourceSku": {
       "type": "object",
@@ -193,7 +300,7 @@
           "description": "An array of administrator user identities."
         }
       },
-      "description": "An array of administrator user identities"
+      "description": "An array of administrator user identities."
     }
   }
 }
