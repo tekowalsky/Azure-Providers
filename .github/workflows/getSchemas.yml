@@ -48,12 +48,12 @@ jobs:
           fetch-depth: 0
           submodules: true
 
-      - name: Break Git Cache Links
-        run: |
-          git rm --cached terraform/terraform-plugin-sdk
-          git rm --cached terraform/terraform-provider-azurerm
-          git rm --cached terraform/terraform-provider-tfe
-        continue-on-error: true
+      # - name: Break Git Cache Links
+      #   run: |
+      #     git rm --cached terraform/terraform-plugin-sdk
+      #     git rm --cached terraform/terraform-provider-azurerm
+      #     git rm --cached terraform/terraform-provider-tfe
+      #   continue-on-error: true
 
       - name: Clear old data
         run: |
@@ -62,17 +62,8 @@ jobs:
           fi
           cp ./myrepo/README.md ./
           cd ./myrepo
-          if [ -d ./azure ]; then
-            rm -rf ./azure
-          fi
-          if [ -d ./terraform ]; then
-            rm -rf ./terraform
-          fi
-          if [ -d ./github ]; then
-            rm -rf ./github
-          fi
-          rm -rf ./*
-          rm -rf ./*.*
+          rm -rf *
+          rm -rf *.*
           cp ../README.md ./
           rm -rf ../README.md
           cd ..
@@ -88,13 +79,13 @@ jobs:
           mkdir ./viewdefinition
           cd ..
           for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]' ; do
-            cp -ur $dir/. ./az/schemas/
+            cp -r $dir/. ./az/schemas/
           done
           for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]-preview' ; do
-            cp -ur $dir/. './az/schemaspreview/'
+            cp -r $dir/. './az/schemaspreview/'
           done
           for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]-privatepreview' ; do
-            cp -ur $dir/. './az/schemaspreview/'
+            cp -r $dir/. './az/schemaspreview/'
           done
           cp -r ./azure-resource-manager-schemas/schemas/common/. ./az/common/
           cp -r ./azure-resource-manager-schemas/schemas/viewdefinition/. ./az/viewdefinition/
@@ -105,10 +96,10 @@ jobs:
           cd ./myrepo
           mkdir ./azure
           cd ./azure
-          cp -ur ../../az/schemas/. ./schemas/
-          cp -ur ../../az/schemaspreview/. ./schemaspreview/
-          cp -ur ../../az/common/. ./common/
-          cp -ur ../../az/viewdefinition/. ./viewdefinition/
+          cp -r ../../az/schemas/. ./schemas/
+          cp -r ../../az/schemaspreview/. ./schemaspreview/
+          cp -r ../../az/common/. ./common/
+          cp -r ../../az/viewdefinition/. ./viewdefinition/
           cd ..
         continue-on-error: true
 
@@ -117,9 +108,9 @@ jobs:
           cd ./myrepo
           mkdir ./terraform
           cd ./terraform
-          cp -ru ../../terraform/terraform-plugin-sdk .
-          cp -ru ../../terraform/terraform-provider-azurerm .
-          cp -ru ../../terraform/terraform-provider-tfe .
+          cp -r ../../terraform/terraform-plugin-sdk .
+          cp -r ../../terraform/terraform-provider-azurerm .
+          cp -r ../../terraform/terraform-provider-tfe .
           cd ..
         continue-on-error: true
 
