@@ -30,7 +30,7 @@ jobs:
           repository: hashicorp/terraform-plugin-sdk
           path: ./terraform/terraform-plugin-sdk
           fetch-depth: 0
-          # submodules: true
+          submodules: true
           
       - name: Checkout HashiCorp Azurerm Provider Repo
         uses: actions/checkout@v3
@@ -38,7 +38,7 @@ jobs:
           repository: hashicorp/terraform-provider-azurerm
           path: ./terraform/terraform-provider-azurerm
           fetch-depth: 0
-          # submodules: true
+          submodules: true
           
       - name: Checkout HashiCorp TFE Provider Repo
         uses: actions/checkout@v3
@@ -46,7 +46,7 @@ jobs:
           repository: hashicorp/terraform-provider-tfe
           path: ./terraform/terraform-provider-tfe
           fetch-depth: 0
-          # submodules: true
+          submodules: true
 
       # - name: Break Git Cache Links
       #   run: |
@@ -62,7 +62,8 @@ jobs:
           fi
           cp ./myrepo/README.md ./
           cd ./myrepo
-          rm -rf *
+          rm -rf ./azure
+          rm -rf ./terraform
           rm -rf *.*
           cp ../README.md ./
           rm -rf ../README.md
@@ -108,9 +109,18 @@ jobs:
           cd ./myrepo
           mkdir ./terraform
           cd ./terraform
-          cp -r ../../terraform/terraform-plugin-sdk .
-          cp -r ../../terraform/terraform-provider-azurerm .
-          cp -r ../../terraform/terraform-provider-tfe .
+          mkdir terraform-plugin-sdk
+          cd terraform-plugin-sdk
+          cp -r ../../terraform/terraform-plugin-sdk/* .
+          cd ..
+          mkdir terraform-provider-azurerm
+          cd terraform-provider-azurerm
+          cp -r ../../terraform/terraform-provider-azurerm/* .
+          cd ..
+          mkdir terraform-provider-tfe
+          cd terraform-provider-tfe
+          cp -r ../../terraform/terraform-provider-tfe/* .
+          cd ..
           cd ..
         continue-on-error: true
 
