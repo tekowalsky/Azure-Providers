@@ -32,7 +32,7 @@ jobs:
           cp ./myrepo/README.md ./README.md.bak
           cd ./myrepo
           ls -l
-          rm -rf ./.
+          rm -rf ./**
           cp ../README.md.bak ./README.md
           rm -rf ../README.md.bak
           echo "* @tekowalsky" > ./CODEOWNERS
