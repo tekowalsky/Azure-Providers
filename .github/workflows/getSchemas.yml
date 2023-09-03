@@ -143,6 +143,7 @@ jobs:
           git config user.email github-actions@github.com
           git add ./README.md
           git add ./CODEOWNERS
+          git add ./lastSchemasUpdate.txt
           git add ./azure/**
           git add ./terraform/**
           git commit -m "Schema Lists updated by getSchemas workflow"
