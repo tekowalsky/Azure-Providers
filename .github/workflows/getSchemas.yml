@@ -114,8 +114,8 @@ jobs:
         run: |
           # cd ./myrepo
           echo "Creating a temporary directory to hold HashiCorp files in the root."
-          mkdir ./terraform
-          cd ./terraform
+          mkdir ./terraform-tmp
+          cd ./terraform-tmp
 
           mkdir terraform-plugin-sdk
           mkdir ../myrepo/terraform/terraform-plugin-sdk
@@ -151,6 +151,8 @@ jobs:
           cd ..  # return to root
           rm -rf ./myrepo/terraform/**/.git
           rm -rf ./myrepo/terraform/**/.github
+          rm -rf ./terraform-tmp
+          rm -rf ./terraform
           rm -rf ./**/.gitmodules
 
       - name: Commit ARM and Hashicorp Schema Files
