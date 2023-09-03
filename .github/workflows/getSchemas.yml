@@ -82,27 +82,27 @@ jobs:
         run: |
           echo "Setup ARM Schema directories"
           date > ./myrepo/lastSchemasUpdate.txt
-          cd ./myrepo  # added line
-          mkdir ./azure  # added line
-          cd ./azure  # added line
+          cd ./myrepo
+          mkdir ./azure
+          cd ./azure
           mkdir ./schemas
           mkdir ./schemaspreview
           mkdir ./common
           mkdir ./viewdefinition
           cd ..
-          cd ..  # added line (to go back to root)
+          cd ..  # to go back to root
           echo "Consolidate ARM Schema Files"
           for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]' ; do
-            cp -r $dir/. ./myrepo/azure/schemas/  # added line
+            cp -r $dir/. ./myrepo/azure/schemas/
           done
           for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]-preview' ; do
-            cp -r $dir/. ./myrepo/azure/schemaspreview/ # added line
+            cp -r $dir/. ./myrepo/azure/schemaspreview/
           done
           for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]-privatepreview' ; do
-            cp -r $dir/. ./myrepo/azure/schemaspreview/ # added line
+            cp -r $dir/. ./myrepo/azure/schemaspreview/
           done
-          cp -r ./azure-resource-manager-schemas/schemas/common/. ./myrepo/azure/common/  # added line
-          cp -r ./azure-resource-manager-schemas/schemas/viewdefinition/. ./myrepo/azure/viewdefinition/  # added line
+          cp -r ./azure-resource-manager-schemas/schemas/common/. ./myrepo/azure/common/
+          cp -r ./azure-resource-manager-schemas/schemas/viewdefinition/. ./myrepo/azure/viewdefinition/
 
       - name: Copy HashiCorp Files
         if: ${{ success() }}
@@ -113,20 +113,24 @@ jobs:
           mkdir terraform-plugin-sdk
           mkdir terraform-provider-azurerm
           mkdir terraform-provider-tfe
-          cd ..  # added line (return to ./myrepo root)
-          cd ..  # added line (return to root)
-          cp -r ./terraform/terraform-plugin-sdk/. ./myrepo/terraform/terraform-plugin-sdk/  # added line
-          cp -r ./terraform/terraform-provider-azurerm/. ./myrepo/terraform/terraform-provider-azurerm/  # added line
-          cp -r ./terraform/terraform-provider-tfe/. ./myrepo/terraform/terraform-provider-tfe/  # added line
+          cd ..  # return to ./myrepo root
+          cd ..  # return to root
+          cp -r ./terraform/terraform-plugin-sdk/. ./myrepo/terraform/terraform-plugin-sdk/
+          cp -r ./terraform/terraform-provider-azurerm/. ./myrepo/terraform/terraform-provider-azurerm/
+          cp -r ./terraform/terraform-provider-tfe/. ./myrepo/terraform/terraform-provider-tfe/
 
       - name: Commit ARM and Hashicorp Schema Files
         if: ${{ success() }}
         run: |
           cd ./myrepo
+          ls -l > ./ls.txt
           git config user.name GetSchemas-Workflow
           git config user.email github-actions@github.com
-          git add ./azure
-          git add ./terraform
+          git add ./README.md
+          git add ./CODEOWNERS
+          git add ./ls.txt
+          git add ./azure/**
+          git add ./terraform/**
           git commit -m "Schema Lists updated by getSchemas workflow"
           git push
           cd ..
