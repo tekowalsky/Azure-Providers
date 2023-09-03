@@ -154,41 +154,43 @@ jobs:
           cd ./myrepo
           cd ./terraform
           $("Category Resource Attribute Type") | export-csv ./tf_resources.csv
-          get-childitem "./terraform-provider-azurerm/" | ?{$_.PSIsContainer -eq $true} | {
+          get-childitem "./terraform-provider-azurerm/" | %{
             $D=$_
-            $D | %{
-              $Dr = $_
-              $P = $("$(($Dr.PSPath).split("::")[1])"+"/parse")
-              $AzF = get-childitem -Path "$($P)" -File -Include "*.go" -Exclude "*_test.go"
-              $S = $(($Dr.PSPath).split("::")[1]).split("/")
-              $cnt = ($S.count) - 1
-              $Cat = $S[$($cnt)]
-              $T = 0
-              $DSfiles | %{
-                $F = $_
-                $Fn = ($F.name).split(".")[0].replace("_","")
-                $C = get-content $F
-                $C | %{
-                  $R = $_
-                  $L = $("type "+"$($Cat)")
-                  if($T -eq "1"){
-                    if($R -eq "}"){
-                      $T = "0"
-                    } else {
-                      $dL = $("$($Cat)"+" $($R)")
-                      $dL | export-csv -append ./tf_resources.csv
+            if($D.PSIsContainer -eq $true){
+              $D | %{
+                $Dr = $_
+                $P = $("$(($Dr.PSPath).split("::")[1])"+"/parse")
+                $AzF = get-childitem -Path "$($P)" -File -Include "*.go" -Exclude "*_test.go"
+                $S = $(($Dr.PSPath).split("::")[1]).split("/")
+                $cnt = ($S.count) - 1
+                $Cat = $S[$($cnt)]
+                $T = 0
+                $DSfiles | %{
+                  $F = $_
+                  $Fn = ($F.name).split(".")[0].replace("_","")
+                  $C = get-content $F
+                  $C | %{
+                    $R = $_
+                    $L = $("type "+"$($Cat)")
+                    if($T -eq "1"){
+                      if($R -eq "}"){
+                        $T = "0"
+                      } else {
+                        $dL = $("$($Cat)"+" $($R)")
+                        $dL | export-csv -append ./tf_resources.csv
+                      }
+                    }
+                    if($R -like "$($L)*"){
+                      $T = "1"
                     }
                   }
-                  if($R -like "$($L)*"){
-                    $T = "1"
-                  }
                 }
-              }
-              $Resfiles | %{
-                $F = $_
-                $C = get-content $F
-                $C | %{
-                  $R = $_
+                $Resfiles | %{
+                  $F = $_
+                  $C = get-content $F
+                  $C | %{
+                    $R = $_
+                  }
                 }
               }
             }
