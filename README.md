@@ -8,7 +8,7 @@
 
 ## Purpose
 
-This is a small convenience project to check Terraform provider support for currently available Azure resource types.  This workflow collects Azure resource provider and resource type lists from the Microsoft Azure ARM schema repository and matches them to Hashicorp Azurerm provider schemas from Hashicorp repositories.  
+This is a small convenience project to check Terraform provider support for currently available Azure resource types.  This workflow collects Azure resource provider and resource type lists from the Microsoft Azure ARM schema repository and matches them to Hashicorp Azurerm provider schemas from Hashicorp repositories.  Also collects the current Hashicorp TFE provider schema, and Hashicorp Terraform SDK.
 
 ## Output
 

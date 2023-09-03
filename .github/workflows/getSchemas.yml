@@ -14,7 +14,7 @@ on:
     - cron:  '30 5,17 * * *'
 
 jobs:
-  Update:
+  Update_Schemas:
     name: Update Schema Lists
     runs-on: ubuntu-latest
 
@@ -28,6 +28,7 @@ jobs:
           fetch-depth: 0
 
       - name: Clear old data
+        if: ${{ success() }}
         run: |
           cp ./myrepo/README.md ./README.md.bak
           cd ./myrepo
@@ -41,6 +42,7 @@ jobs:
         continue-on-error: true
   
       - name: Checkout ARM Schemas
+        if: ${{ success() }}
         uses: actions/checkout@v3
         with:
           repository: Azure/azure-resource-manager-schemas
@@ -49,6 +51,7 @@ jobs:
           # submodules: true
 
       - name: Checkout HashiCorp Plugin SDK Repo
+        if: ${{ success() }}
         uses: actions/checkout@v3
         with:
           repository: hashicorp/terraform-plugin-sdk
@@ -57,6 +60,7 @@ jobs:
           submodules: true
           
       - name: Checkout HashiCorp Azurerm Provider Repo
+        if: ${{ success() }}
         uses: actions/checkout@v3
         with:
           repository: hashicorp/terraform-provider-azurerm
@@ -65,6 +69,7 @@ jobs:
           submodules: true
           
       - name: Checkout HashiCorp TFE Provider Repo
+        if: ${{ success() }}
         uses: actions/checkout@v3
         with:
           repository: hashicorp/terraform-provider-tfe
@@ -72,22 +77,14 @@ jobs:
           fetch-depth: 0
           submodules: true
 
-      # - name: Break Git Cache Links
-      #   run: |
-      #     git rm --cached terraform/terraform-plugin-sdk
-      #     git rm --cached terraform/terraform-provider-azurerm
-      #     git rm --cached terraform/terraform-provider-tfe
-      #   continue-on-error: true
-
       - name: ARM Schema Files
+        if: ${{ success() }}
         run: |
           echo "Setup ARM Schema directories"
           date > ./myrepo/lastSchemasUpdate.txt
           cd ./myrepo  # added line
           mkdir ./azure  # added line
-          # mkdir ./az
           cd ./azure  # added line
-          # cd ./az
           mkdir ./schemas
           mkdir ./schemaspreview
           mkdir ./common
@@ -97,35 +94,18 @@ jobs:
           echo "Consolidate ARM Schema Files"
           for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]' ; do
             cp -r $dir/. ./myrepo/azure/schemas/  # added line
-            # cp -r $dir/. ./az/schemas/
           done
           for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]-preview' ; do
             cp -r $dir/. ./myrepo/azure/schemaspreview/ # added line
-            # cp -r $dir/. './az/schemaspreview/'
           done
           for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]-privatepreview' ; do
             cp -r $dir/. ./myrepo/azure/schemaspreview/ # added line
-            # cp -r $dir/. './az/schemaspreview/'
           done
           cp -r ./azure-resource-manager-schemas/schemas/common/. ./myrepo/azure/common/  # added line
           cp -r ./azure-resource-manager-schemas/schemas/viewdefinition/. ./myrepo/azure/viewdefinition/  # added line
-          # cp -r ./azure-resource-manager-schemas/schemas/common/. ./az/common/
-          # cp -r ./azure-resource-manager-schemas/schemas/viewdefinition/. ./az/viewdefinition/
-        # continue-on-error: true
-
-      # - name: Consolidate ARM Schema Files
-      #   run: |
-      #     cd ./myrepo
-      #     mkdir ./azure
-      #     cd ./azure
-      #     cp -r ../../az/schemas/. ./schemas/
-      #     cp -r ../../az/schemaspreview/. ./schemaspreview/
-      #     cp -r ../../az/common/. ./common/
-      #     cp -r ../../az/viewdefinition/. ./viewdefinition/
-      #     cd ..
-      #   continue-on-error: true
 
       - name: Copy HashiCorp Files
+        if: ${{ success() }}
         run: |
           cd ./myrepo
           mkdir ./terraform
@@ -133,24 +113,11 @@ jobs:
           mkdir terraform-plugin-sdk
           mkdir terraform-provider-azurerm
           mkdir terraform-provider-tfe
-          # cd terraform-plugin-sdk
           cd ..  # added line (return to ./myrepo root)
           cd ..  # added line (return to root)
           cp -r ./terraform/terraform-plugin-sdk/. ./myrepo/terraform/terraform-plugin-sdk/  # added line
-          # cp -r ../../terraform/terraform-plugin-sdk/* .
-          # cd ..
-          # mkdir terraform-provider-azurerm
-          # cd terraform-provider-azurerm
           cp -r ./terraform/terraform-provider-azurerm/. ./myrepo/terraform/terraform-provider-azurerm/  # added line
-          # cp -r ../../terraform/terraform-provider-azurerm/* .
-          # cd ..
-          # mkdir terraform-provider-tfe
-          # cd terraform-provider-tfe
           cp -r ./terraform/terraform-provider-tfe/. ./myrepo/terraform/terraform-provider-tfe/  # added line
-          # cp -r ../../terraform/terraform-provider-tfe/* .
-          # cd ..
-          # cd ..
-        # continue-on-error: true
 
       - name: Commit ARM and Hashicorp Schema Files
         if: ${{ success() }}
@@ -167,7 +134,4 @@ jobs:
       - name: Force cleanup of runner
         if: ${{ always() }}
         run: |
-          rm -r ./myrepo
-          rm -r ./azure-resource-manager-schemas
-          rm -r ./terraform
-          sudo shutdown -r now
+          rm -rf ./**
