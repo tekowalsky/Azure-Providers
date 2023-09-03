@@ -32,17 +32,19 @@ jobs:
         run: |
           cp ./myrepo/README.md ./README.md.bak
           cd ./myrepo
-          ls -l
+          git config user.name GetSchemas-Workflow
+          git config user.email github-actions@github.com
           git rm --cached terraform/terraform-plugin-sdk
           git rm --cached terraform/terraform-provider-azurerm
           git rm --cached terraform/terraform-provider-tfe
           rm -rf ./**
           cp ../README.md.bak ./README.md
-          rm -rf ../README.md.bak
           echo "* @tekowalsky" > ./CODEOWNERS
-          ls -l
+          git commit -m "Clear old data"
+          git push
           cd ..
-        continue-on-error: true
+          rm -rf ./README.md.bak
+        # continue-on-error: true
 
       - name: Checkout ARM Schemas
         if: ${{ success() }}
@@ -142,12 +144,6 @@ jobs:
         if: ${{ success() }}
         run: |
           cd ./myrepo
-          ls -l ./terraform
-          git rm --cached ./terraform/terraform-plugin-sdk
-          git rm --cached ./terraform/terraform-provider-azurerm
-          git rm --cached ./terraform/terraform-provider-tfe
-          rm -rf ./terraform/**/.git
-          ls -l ./terraform
           git config user.name GetSchemas-Workflow
           git config user.email github-actions@github.com
           git add ./README.md
