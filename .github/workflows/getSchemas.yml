@@ -27,6 +27,19 @@ jobs:
           ref: schemas
           fetch-depth: 0
 
+      - name: Clear old data
+        run: |
+          cp ./myrepo/README.md ./README.md.bak
+          cd ./myrepo
+          ls -l
+          rm -rf ./.
+          cp ../README.md.bak ./README.md
+          rm -rf ../README.md.bak
+          echo "* @tekowalsky" > ./CODEOWNERS
+          ls -l
+          cd ..
+        continue-on-error: true
+  
       - name: Checkout ARM Schemas
         uses: actions/checkout@v3
         with:
@@ -66,54 +79,51 @@ jobs:
       #     git rm --cached terraform/terraform-provider-tfe
       #   continue-on-error: true
 
-      - name: Clear old data
+      - name: ARM Schema Files
         run: |
-          if [ -d ./az ]; then
-            rm -rf ./az
-          fi
-          cp ./myrepo/README.md ./
-          cd ./myrepo
-          rm -rf ./azure
-          rm -rf ./terraform
-          rm -rf *.*
-          cp ../README.md ./
-          rm -rf ../README.md
-          cd ..
-        continue-on-error: true
-
-      - name: Collect ARM Schema Files
-        run: |
-          mkdir ./az
-          cd ./az
+          echo "Setup ARM Schema directories"
+          date > ./myrepo/lastSchemasUpdate.txt
+          cd ./myrepo  # added line
+          mkdir ./azure  # added line
+          # mkdir ./az
+          cd ./azure  # added line
+          # cd ./az
           mkdir ./schemas
           mkdir ./schemaspreview
           mkdir ./common
           mkdir ./viewdefinition
           cd ..
+          cd ..  # added line (to go back to root)
+          echo "Consolidate ARM Schema Files"
           for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]' ; do
-            cp -r $dir/. ./az/schemas/
+            cp -r $dir/. ./myrepo/azure/schemas/  # added line
+            # cp -r $dir/. ./az/schemas/
           done
           for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]-preview' ; do
-            cp -r $dir/. './az/schemaspreview/'
+            cp -r $dir/. ./myrepo/azure/schemaspreview/ # added line
+            # cp -r $dir/. './az/schemaspreview/'
           done
           for dir in './azure-resource-manager-schemas/schemas/20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]-privatepreview' ; do
-            cp -r $dir/. './az/schemaspreview/'
+            cp -r $dir/. ./myrepo/azure/schemaspreview/ # added line
+            # cp -r $dir/. './az/schemaspreview/'
           done
-          cp -r ./azure-resource-manager-schemas/schemas/common/. ./az/common/
-          cp -r ./azure-resource-manager-schemas/schemas/viewdefinition/. ./az/viewdefinition/
-        continue-on-error: true
+          cp -r ./azure-resource-manager-schemas/schemas/common/. ./myrepo/azure/common/  # added line
+          cp -r ./azure-resource-manager-schemas/schemas/viewdefinition/. ./myrepo/azure/viewdefinition/  # added line
+          # cp -r ./azure-resource-manager-schemas/schemas/common/. ./az/common/
+          # cp -r ./azure-resource-manager-schemas/schemas/viewdefinition/. ./az/viewdefinition/
+        # continue-on-error: true
 
-      - name: Consolidate ARM Schema Files
-        run: |
-          cd ./myrepo
-          mkdir ./azure
-          cd ./azure
-          cp -r ../../az/schemas/. ./schemas/
-          cp -r ../../az/schemaspreview/. ./schemaspreview/
-          cp -r ../../az/common/. ./common/
-          cp -r ../../az/viewdefinition/. ./viewdefinition/
-          cd ..
-        continue-on-error: true
+      # - name: Consolidate ARM Schema Files
+      #   run: |
+      #     cd ./myrepo
+      #     mkdir ./azure
+      #     cd ./azure
+      #     cp -r ../../az/schemas/. ./schemas/
+      #     cp -r ../../az/schemaspreview/. ./schemaspreview/
+      #     cp -r ../../az/common/. ./common/
+      #     cp -r ../../az/viewdefinition/. ./viewdefinition/
+      #     cd ..
+      #   continue-on-error: true
 
       - name: Copy HashiCorp Files
         run: |
@@ -121,28 +131,43 @@ jobs:
           mkdir ./terraform
           cd ./terraform
           mkdir terraform-plugin-sdk
-          cd terraform-plugin-sdk
-          cp -r ../../terraform/terraform-plugin-sdk/* .
-          cd ..
           mkdir terraform-provider-azurerm
-          cd terraform-provider-azurerm
-          cp -r ../../terraform/terraform-provider-azurerm/* .
-          cd ..
           mkdir terraform-provider-tfe
-          cd terraform-provider-tfe
-          cp -r ../../terraform/terraform-provider-tfe/* .
-          cd ..
-          cd ..
-        continue-on-error: true
+          # cd terraform-plugin-sdk
+          cd ..  # added line (return to ./myrepo root)
+          cd ..  # added line (return to root)
+          cp -r ./terraform/terraform-plugin-sdk/. ./myrepo/terraform/terraform-plugin-sdk/  # added line
+          # cp -r ../../terraform/terraform-plugin-sdk/* .
+          # cd ..
+          # mkdir terraform-provider-azurerm
+          # cd terraform-provider-azurerm
+          cp -r ./terraform/terraform-provider-azurerm/. ./myrepo/terraform/terraform-provider-azurerm/  # added line
+          # cp -r ../../terraform/terraform-provider-azurerm/* .
+          # cd ..
+          # mkdir terraform-provider-tfe
+          # cd terraform-provider-tfe
+          cp -r ./terraform/terraform-provider-tfe/. ./myrepo/terraform/terraform-provider-tfe/  # added line
+          # cp -r ../../terraform/terraform-provider-tfe/* .
+          # cd ..
+          # cd ..
+        # continue-on-error: true
 
       - name: Commit ARM and Hashicorp Schema Files
+        if: ${{ success() }}
         run: |
           cd ./myrepo
-          date > ./azure/ARMschemaDate.txt
-          date > ./terraform/hashiDate.txt
           git config user.name GetSchemas-Workflow
           git config user.email github-actions@github.com
           git add ./azure
           git add ./terraform
           git commit -m "Schema Lists updated by getSchemas workflow"
           git push
+          cd ..
+
+      - name: Force cleanup of runner
+        if: ${{ always() }}
+        run: |
+          rm -r ./myrepo
+          rm -r ./azure-resource-manager-schemas
+          rm -r ./terraform
+          sudo shutdown -r now
