@@ -119,6 +119,7 @@ jobs:
           echo "Creating a temporary directory to hold HashiCorp files in the root."
           mkdir ./terraform-tmp
           cd ./terraform-tmp
+          mkdir ../myrepo/terraform
 
           mkdir terraform-plugin-sdk
           mkdir ../myrepo/terraform/terraform-plugin-sdk
