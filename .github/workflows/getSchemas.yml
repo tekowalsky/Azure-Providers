@@ -112,33 +112,46 @@ jobs:
       - name: Copy HashiCorp Files
         if: ${{ success() }}
         run: |
-          cd ./myrepo
+          # cd ./myrepo
+          echo "Creating a temporary directory to hold HashiCorp files in the root."
           mkdir ./terraform
           cd ./terraform
+
           mkdir terraform-plugin-sdk
+          mkdir ../myrepo/terraform/terraform-plugin-sdk
           cd terraform-plugin-sdk
-          for dir in '../../../terraform/terraform-plugin-sdk' ; do
+          for dir in '../../terraform/terraform-plugin-sdk' ; do
             cp -r $dir/. .
           done
           cd .. # return to ./terraform
+          cp -r ./terraform-plugin-sdk/** ../myrepo/terraform/terraform-plugin-sdk/
           # cp -r ./terraform/terraform-plugin-sdk/. ./myrepo/terraform/terraform-plugin-sdk/
+
           mkdir terraform-provider-azurerm
+          mkdir ../myrepo/terraform/terraform-provider-azurerm
           cd terraform-provider-azurerm
-          for dir in '../../../terraform/terraform-provider-azurerm' ; do
+          for dir in '../../terraform/terraform-provider-azurerm' ; do
             cp -r $dir/. .
           done
           cd .. # return to ./terraform
+          cp -r ./terraform-provider-azurerm/** ../myrepo/terraform/terraform-provider-azurerm/
           # cp -r ./terraform/terraform-provider-azurerm/. ./myrepo/terraform/terraform-provider-azurerm/
+
           mkdir terraform-provider-tfe
+          mkdir ../myrepo/terraform/terraform-provider-tfe
           cd terraform-provider-tfe
-          for dir in '../../../terraform/terraform-provider-tfe' ; do
+          for dir in '../../terraform/terraform-provider-tfe' ; do
             cp -r $dir/. .
           done
-          cd .. # return to ./myrepo/terraform
-          ls -l
+          cd .. # return to ./terraform
+          cp -r ./terraform-provider-tfe/** ../myrepo/terraform/terraform-provider-tfe/
           # cp -r ./terraform/terraform-provider-tfe/. ./myrepo/terraform/terraform-provider-tfe/
-          cd ..  # return to ./myrepo root
+
+          # cd ..  # return to ./myrepo root
           cd ..  # return to root
+          rm -rf ./myrepo/terraform/**/.git
+          rm -rf ./myrepo/terraform/**/.github
+          rm -rf ./**/.gitmodules
 
       - name: Commit ARM and Hashicorp Schema Files
         if: ${{ success() }}
