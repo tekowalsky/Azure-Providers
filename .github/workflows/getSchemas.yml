@@ -33,6 +33,9 @@ jobs:
           cp ./myrepo/README.md ./README.md.bak
           cd ./myrepo
           ls -l
+          git rm --cached terraform/terraform-plugin-sdk
+          git rm --cached terraform/terraform-provider-azurerm
+          git rm --cached terraform/terraform-provider-tfe
           rm -rf ./**
           cp ../README.md.bak ./README.md
           rm -rf ../README.md.bak
@@ -40,7 +43,7 @@ jobs:
           ls -l
           cd ..
         continue-on-error: true
-  
+
       - name: Checkout ARM Schemas
         if: ${{ success() }}
         uses: actions/checkout@v3
@@ -77,6 +80,15 @@ jobs:
           fetch-depth: 0
           submodules: true
 
+      - name: Break Git Cache Links
+        run: |
+          git rm --cached ./terraform/terraform-plugin-sdk
+          git rm --cached ./terraform/terraform-provider-azurerm
+          git rm --cached ./terraform/terraform-provider-tfe
+          rm -rf ./terraform/**/.git
+          ls -l ./terraform
+        # continue-on-error: true
+          
       - name: ARM Schema Files
         if: ${{ success() }}
         run: |
