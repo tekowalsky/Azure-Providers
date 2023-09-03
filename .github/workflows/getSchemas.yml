@@ -165,7 +165,7 @@ jobs:
                 $cnt = ($S.count) - 1
                 $Cat = $S[$($cnt)]
                 $T = 0
-                $DSfiles | %{
+                $AzF | %{
                   $F = $_
                   $Fn = ($F.name).split(".")[0].replace("_","")
                   $C = get-content $F
@@ -196,6 +196,7 @@ jobs:
             }
           }
         shell: pwsh
+        continue-on-error: true
 
       - name: Commit ARM and Hashicorp Schema Files
         if: ${{ success() }}
