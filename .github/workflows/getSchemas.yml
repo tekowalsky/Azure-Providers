@@ -32,16 +32,6 @@ jobs:
         run: |
           cp ./myrepo/README.md ./README.md.bak
           cd ./myrepo
-          if [ -d ./terraform ]; then
-            git config user.name GetSchemas-Workflow
-            git config user.email github-actions@github.com
-            for dir in './terraform' ; do
-              git rm -r --cached $dir
-              git rm -r $dir
-            done
-            git commit -m "Clear old data"
-            git push  
-          fi
           rm -rf ./**
           cp ../README.md.bak ./README.md
           echo "* @tekowalsky" > ./CODEOWNERS
