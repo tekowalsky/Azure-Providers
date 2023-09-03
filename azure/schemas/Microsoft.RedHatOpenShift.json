@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-09-04/Microsoft.RedHatOpenShift.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-04-01/Microsoft.RedHatOpenShift.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.RedHatOpenShift",
   "description": "Microsoft RedHatOpenShift Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-09-04"
+            "2023-04-01"
           ]
         },
         "location": {
@@ -98,7 +98,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-09-04"
+            "2023-04-01"
           ]
         },
         "name": {
@@ -147,7 +147,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-09-04"
+            "2023-04-01"
           ]
         },
         "name": {
@@ -196,7 +196,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-09-04"
+            "2023-04-01"
           ]
         },
         "name": {
@@ -245,7 +245,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-09-04"
+            "2023-04-01"
           ]
         },
         "name": {
@@ -440,6 +440,21 @@
     "NetworkProfile": {
       "type": "object",
       "properties": {
+        "outboundType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Loadbalancer",
+                "UserDefinedRouting"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The OutboundType used for egress traffic."
+        },
         "podCidr": {
           "type": "string",
           "description": "The CIDR used for OpenShift/Kubernetes Pods."
@@ -576,7 +591,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-09-04"
+            "2023-04-01"
           ]
         },
         "name": {
@@ -625,7 +640,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-09-04"
+            "2023-04-01"
           ]
         },
         "name": {
@@ -674,7 +689,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-09-04"
+            "2023-04-01"
           ]
         },
         "name": {
@@ -723,7 +738,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-09-04"
+            "2023-04-01"
           ]
         },
         "name": {

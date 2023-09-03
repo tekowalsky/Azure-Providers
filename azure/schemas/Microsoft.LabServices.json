@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-08-01/Microsoft.LabServices.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-06-07/Microsoft.LabServices.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.LabServices",
   "description": "Microsoft LabServices Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01"
+            "2023-06-07"
           ]
         },
         "identity": {
@@ -92,7 +92,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01"
+            "2023-06-07"
           ]
         },
         "name": {
@@ -141,7 +141,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01"
+            "2023-06-07"
           ]
         },
         "location": {
@@ -215,7 +215,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01"
+            "2023-06-07"
           ]
         },
         "name": {
@@ -264,7 +264,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01"
+            "2023-06-07"
           ]
         },
         "name": {
@@ -664,7 +664,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01"
+            "2023-06-07"
           ]
         },
         "name": {
@@ -801,7 +801,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01"
+            "2023-06-07"
           ]
         },
         "name": {
@@ -850,7 +850,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01"
+            "2023-06-07"
           ]
         },
         "name": {

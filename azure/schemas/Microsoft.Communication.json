@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2020-08-20/Microsoft.Communication.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-03-31/Microsoft.Communication.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Communication",
   "description": "Microsoft Communication Resource Types",
@@ -10,12 +10,12 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-08-20"
+            "2023-03-31"
           ]
         },
         "location": {
           "type": "string",
-          "description": "The Azure location where the CommunicationService is running."
+          "description": "The geo-location where the resource lives"
         },
         "name": {
           "oneOf": [
@@ -42,16 +42,84 @@
           ],
           "description": "A class that describes the properties of the CommunicationService."
         },
-        "systemData": {
+        "tags": {
           "oneOf": [
             {
-              "$ref": "#/definitions/SystemData"
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Metadata pertaining to creation and last modification of the resource."
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Communication/communicationServices"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Communication/communicationServices"
+    },
+    "emailServices": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-31"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]+$",
+              "minLength": 1,
+              "maxLength": 63
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the EmailService resource."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/EmailServiceProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A class that describes the properties of the EmailService."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/emailServices_domains_childResource"
+              }
+            ]
+          }
         },
         "tags": {
           "oneOf": [
@@ -66,12 +134,125 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Tags of the service which is a list of key value pairs that describe the resource."
+          "description": "Resource tags."
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.Communication/communicationServices"
+            "Microsoft.Communication/emailServices"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Communication/emailServices"
+    },
+    "emailServices_domains": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-31"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 253,
+          "description": "The name of the Domains resource."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DomainProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A class that describes the properties of a Domains resource."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/emailServices_domains_senderUsernames_childResource"
+              }
+            ]
+          }
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Communication/emailServices/domains"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Communication/emailServices/domains"
+    },
+    "emailServices_domains_senderUsernames": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-31"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 253,
+          "description": "The valid sender Username."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SenderUsernameProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A class that describes the properties of a SenderUsername resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Communication/emailServices/domains/senderUsernames"
           ]
         }
       },
@@ -81,7 +262,7 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Communication/communicationServices"
+      "description": "Microsoft.Communication/emailServices/domains/senderUsernames"
     }
   },
   "definitions": {
@@ -91,6 +272,20 @@
         "dataLocation": {
           "type": "string",
           "description": "The location where the communication service stores its data at rest."
+        },
+        "linkedDomains": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of email Domain resource Ids."
         }
       },
       "required": [
@@ -98,63 +293,175 @@
       ],
       "description": "A class that describes the properties of the CommunicationService."
     },
-    "SystemData": {
+    "DomainProperties": {
       "type": "object",
       "properties": {
-        "createdAt": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The timestamp of resource creation (UTC)."
-        },
-        "createdBy": {
-          "type": "string",
-          "description": "The identity that created the resource."
-        },
-        "createdByType": {
+        "domainManagement": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
-                "User",
-                "Application",
-                "ManagedIdentity",
-                "Key"
+                "AzureManaged",
+                "CustomerManaged",
+                "CustomerManagedInExchangeOnline"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "The type of identity that created the resource."
+          ]
         },
-        "lastModifiedAt": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The timestamp of resource last modification (UTC)"
-        },
-        "lastModifiedBy": {
-          "type": "string",
-          "description": "The identity that last modified the resource."
-        },
-        "lastModifiedByType": {
+        "userEngagementTracking": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
-                "User",
-                "Application",
-                "ManagedIdentity",
-                "Key"
+                "Disabled",
+                "Enabled"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "The type of identity that last modified the resource."
+          ]
         }
       },
-      "description": "Metadata pertaining to creation and last modification of the resource."
+      "required": [
+        "domainManagement"
+      ],
+      "description": "A class that describes the properties of a Domains resource."
+    },
+    "EmailServiceProperties": {
+      "type": "object",
+      "properties": {
+        "dataLocation": {
+          "type": "string",
+          "description": "The location where the email service stores its data at rest."
+        }
+      },
+      "required": [
+        "dataLocation"
+      ],
+      "description": "A class that describes the properties of the EmailService."
+    },
+    "emailServices_domains_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-31"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 253,
+          "description": "The name of the Domains resource."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DomainProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A class that describes the properties of a Domains resource."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "domains"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Communication/emailServices/domains"
+    },
+    "emailServices_domains_senderUsernames_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-31"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 253,
+          "description": "The valid sender Username."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SenderUsernameProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A class that describes the properties of a SenderUsername resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "senderUsernames"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Communication/emailServices/domains/senderUsernames"
+    },
+    "SenderUsernameProperties": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "The display name for the senderUsername."
+        },
+        "username": {
+          "type": "string",
+          "description": "A sender senderUsername to be used when sending emails."
+        }
+      },
+      "required": [
+        "username"
+      ],
+      "description": "A class that describes the properties of a SenderUsername resource."
     }
   }
 }

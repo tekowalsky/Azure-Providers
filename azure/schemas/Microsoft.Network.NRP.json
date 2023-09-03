@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-07-01/Microsoft.Network.NRP.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-05-01/Microsoft.Network.NRP.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Network",
   "description": "Microsoft Network Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -107,7 +107,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -150,7 +150,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -213,7 +213,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -275,7 +275,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -351,7 +351,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -424,7 +424,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -496,7 +496,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -539,7 +539,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "extendedLocation": {
@@ -626,7 +626,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -688,7 +688,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -746,7 +746,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -808,7 +808,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -894,7 +894,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -937,7 +937,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -990,7 +990,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -1033,7 +1033,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -1105,7 +1105,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -1148,7 +1148,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -1220,7 +1220,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -1263,7 +1263,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -1346,7 +1346,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -1389,7 +1389,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -1475,7 +1475,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -1518,7 +1518,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -1568,7 +1568,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -1630,7 +1630,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -1692,7 +1692,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "extendedLocation": {
@@ -1789,7 +1789,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -1832,7 +1832,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -1875,7 +1875,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -1938,7 +1938,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -2025,7 +2025,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "extendedLocation": {
@@ -2108,7 +2108,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -2151,7 +2151,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -2232,7 +2232,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -2271,7 +2271,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -2320,7 +2320,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -2359,7 +2359,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -2398,7 +2398,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -2447,7 +2447,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -2504,7 +2504,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -2531,7 +2531,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -2593,7 +2593,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -2665,7 +2665,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -2708,7 +2708,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -2754,6 +2754,9 @@
               },
               {
                 "$ref": "#/definitions/networkVirtualAppliances_inboundSecurityRules_childResource"
+              },
+              {
+                "$ref": "#/definitions/networkVirtualAppliances_networkVirtualApplianceConnections_childResource"
               }
             ]
           }
@@ -2794,7 +2797,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -2831,13 +2834,56 @@
       ],
       "description": "Microsoft.Network/networkVirtualAppliances/inboundSecurityRules"
     },
+    "networkVirtualAppliances_networkVirtualApplianceConnections": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-05-01"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "description": "Resource ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the NVA connection."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/NetworkVirtualApplianceConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the NetworkVirtualApplianceConnection subresource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceConnections"
+    },
     "networkVirtualAppliances_virtualApplianceSites": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -2880,7 +2926,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -2958,7 +3004,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -3016,7 +3062,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -3078,7 +3124,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -3117,7 +3163,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -3179,7 +3225,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "extendedLocation": {
@@ -3262,7 +3308,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -3305,7 +3351,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "extendedLocation": {
@@ -3388,7 +3434,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -3431,7 +3477,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "extendedLocation": {
@@ -3529,7 +3575,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "extendedLocation": {
@@ -3627,7 +3673,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -3699,7 +3745,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -3746,7 +3792,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -3818,7 +3864,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -3861,7 +3907,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -3923,7 +3969,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -3995,7 +4041,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -4038,7 +4084,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -4128,7 +4174,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -4171,7 +4217,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -4214,7 +4260,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -4257,7 +4303,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -4300,7 +4346,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -4343,7 +4389,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -4386,7 +4432,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -4429,7 +4475,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "extendedLocation": {
@@ -4512,7 +4558,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -4555,7 +4601,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "extendedLocation": {
@@ -4641,7 +4687,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -4684,7 +4730,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -4727,7 +4773,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -4789,7 +4835,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -4861,7 +4907,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -4904,7 +4950,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -4966,7 +5012,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -5041,7 +5087,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -5084,7 +5130,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -5127,7 +5173,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -5199,7 +5245,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -5242,7 +5288,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -5306,7 +5352,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -5347,7 +5393,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -5388,7 +5434,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -6192,25 +6238,32 @@
       "properties": {
         "customErrorPageUrl": {
           "type": "string",
-          "description": "Error page URL of the application gateway customer error."
+          "description": "Error page URL of the application gateway custom error."
         },
         "statusCode": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
+                "HttpStatus400",
                 "HttpStatus403",
-                "HttpStatus502"
+                "HttpStatus404",
+                "HttpStatus405",
+                "HttpStatus408",
+                "HttpStatus500",
+                "HttpStatus502",
+                "HttpStatus503",
+                "HttpStatus504"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Status code of the application gateway customer error."
+          "description": "Status code of the application gateway custom error."
         }
       },
-      "description": "Customer error of an application gateway."
+      "description": "Custom error of an application gateway."
     },
     "ApplicationGatewayFirewallDisabledRuleGroup": {
       "type": "object",
@@ -7194,7 +7247,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Custom port which will be used for probing the backend servers. The valid value ranges from 1 to 65535. In case not set, port from http settings will be used. This property is valid for Standard_v2 and WAF_v2 only."
+          "description": "Custom port which will be used for probing the backend servers. The valid value ranges from 1 to 65535. In case not set, port from http settings will be used. This property is valid for Basic, Standard_v2 and WAF_v2 only."
         },
         "protocol": {
           "oneOf": [
@@ -8206,8 +8259,8 @@
                 "WAF_Medium",
                 "WAF_Large",
                 "Standard_v2",
-                "Standard_Basic",
-                "WAF_v2"
+                "WAF_v2",
+                "Basic"
               ]
             },
             {
@@ -8225,7 +8278,7 @@
                 "WAF",
                 "Standard_v2",
                 "WAF_v2",
-                "Standard_Basic"
+                "Basic"
               ]
             },
             {
@@ -8474,7 +8527,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -8863,6 +8916,20 @@
             }
           ],
           "description": "List of FQDN Tags for this rule."
+        },
+        "httpHeadersToInsert": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FirewallPolicyHttpHeaderToInsert"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of HTTP/S headers to insert."
         },
         "protocols": {
           "oneOf": [
@@ -9934,6 +10001,21 @@
           "type": "string",
           "description": "The location of the backend address pool."
         },
+        "syncMode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Automatic",
+                "Manual"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Backend address synchronous mode for the backend pool."
+        },
         "tunnelInterfaces": {
           "oneOf": [
             {
@@ -10077,6 +10159,18 @@
           ],
           "description": "Enable/Disable IP Connect feature of the Bastion Host resource."
         },
+        "enableKerberos": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Enable/Disable Kerberos feature of the Bastion Host resource."
+        },
         "enableShareableLink": {
           "oneOf": [
             {
@@ -10115,6 +10209,16 @@
           ],
           "description": "IP configuration of the Bastion Host resource."
         },
+        "networkAcls": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BastionHostPropertiesFormatNetworkAcls"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
         "scaleUnits": {
           "oneOf": [
             {
@@ -10127,9 +10231,39 @@
             }
           ],
           "description": "The scale units for the Bastion Host resource."
+        },
+        "virtualNetwork": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SubResource"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Reference to another subresource."
         }
       },
       "description": "Properties of the Bastion Host."
+    },
+    "BastionHostPropertiesFormatNetworkAcls": {
+      "type": "object",
+      "properties": {
+        "ipRules": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IPRule"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Sets the IP ACL rules for Developer Bastion Host."
+        }
+      }
     },
     "BgpConnectionProperties": {
       "type": "object",
@@ -10991,7 +11125,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -12524,7 +12658,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -12567,7 +12701,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -12610,7 +12744,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -12941,7 +13075,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -13085,7 +13219,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -13301,7 +13435,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -13368,7 +13502,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -13411,7 +13545,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -13524,6 +13658,20 @@
         }
       },
       "description": "Properties of the FirewallPolicyFilterRuleCollectionAction."
+    },
+    "FirewallPolicyHttpHeaderToInsert": {
+      "type": "object",
+      "properties": {
+        "headerName": {
+          "type": "string",
+          "description": "Contains the name of the header"
+        },
+        "headerValue": {
+          "type": "string",
+          "description": "Contains the value of the header"
+        }
+      },
+      "description": "name and value of HTTP/S header to insert"
     },
     "FirewallPolicyInsights": {
       "type": "object",
@@ -14559,6 +14707,54 @@
       },
       "description": "Gateway load balancer tunnel interface of a load balancer backend address pool."
     },
+    "GroupByUserSession": {
+      "type": "object",
+      "properties": {
+        "groupByVariables": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GroupByVariable"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of group by clause variables."
+        }
+      },
+      "required": [
+        "groupByVariables"
+      ],
+      "description": "Define user session identifier group by clauses."
+    },
+    "GroupByVariable": {
+      "type": "object",
+      "properties": {
+        "variableName": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "ClientAddr",
+                "GeoLocation",
+                "None"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "User Session clause variable."
+        }
+      },
+      "required": [
+        "variableName"
+      ],
+      "description": "Define user session group by clause variables."
+    },
     "HTTPHeader": {
       "type": "object",
       "properties": {
@@ -15315,6 +15511,15 @@
       },
       "description": "The IpGroups property information."
     },
+    "IPRule": {
+      "type": "object",
+      "properties": {
+        "addressPrefix": {
+          "type": "string",
+          "description": "Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed."
+        }
+      }
+    },
     "IpsecPolicy": {
       "type": "object",
       "properties": {
@@ -15582,8 +15787,7 @@
               "enum": [
                 "None",
                 "Up",
-                "Down",
-                "Drain"
+                "Down"
               ]
             },
             {
@@ -15779,7 +15983,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -15822,7 +16026,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -16889,7 +17093,8 @@
               "enum": [
                 "None",
                 "MaxConnections",
-                "Floating"
+                "Floating",
+                "AcceleratedConnections"
               ]
             },
             {
@@ -16897,6 +17102,24 @@
             }
           ],
           "description": "Auxiliary mode of Network Interface resource."
+        },
+        "auxiliarySku": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "A1",
+                "A2",
+                "A4",
+                "A8"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Auxiliary sku of Network Interface resource."
         },
         "disableTcpStateTracking": {
           "oneOf": [
@@ -17024,7 +17247,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -17206,7 +17429,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -17245,7 +17468,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -17284,7 +17507,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -17323,7 +17546,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -17362,7 +17585,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -17401,7 +17624,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -17448,7 +17671,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -17685,7 +17908,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -17722,9 +17945,95 @@
       ],
       "description": "Microsoft.Network/networkSecurityGroups/securityRules"
     },
+    "NetworkVirtualApplianceConnectionProperties": {
+      "type": "object",
+      "properties": {
+        "asn": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4294967295
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Network Virtual Appliance ASN."
+        },
+        "bgpPeerAddress": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of bgpPeerAddresses for the NVA instances"
+        },
+        "enableInternetSecurity": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Enable internet security."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the resource."
+        },
+        "routingConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RoutingConfigurationNfv"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "NFV version of Routing Configuration indicating the associated and propagated route tables for this connection."
+        },
+        "tunnelIdentifier": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4294967295
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Unique identifier for the connection."
+        }
+      },
+      "description": "Properties of the NetworkVirtualApplianceConnection subresource."
+    },
     "NetworkVirtualAppliancePropertiesFormat": {
       "type": "object",
       "properties": {
+        "additionalNics": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/VirtualApplianceAdditionalNicProperties"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Details required for Additional Network Interface."
+        },
         "bootStrapConfigurationBlobs": {
           "oneOf": [
             {
@@ -17827,7 +18136,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -17864,13 +18173,56 @@
       ],
       "description": "Microsoft.Network/networkVirtualAppliances/inboundSecurityRules"
     },
+    "networkVirtualAppliances_networkVirtualApplianceConnections_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-05-01"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "description": "Resource ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the NVA connection."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/NetworkVirtualApplianceConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the NetworkVirtualApplianceConnection subresource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "networkVirtualApplianceConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceConnections"
+    },
     "networkVirtualAppliances_virtualApplianceSites_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -17918,7 +18270,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -17976,7 +18328,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -18038,7 +18390,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -18743,6 +19095,18 @@
           ],
           "description": "If the action type is block, customer can override the response status code."
         },
+        "fileUploadEnforcement": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": true
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether allow WAF to enforce file upload limits."
+        },
         "fileUploadLimitInMb": {
           "oneOf": [
             {
@@ -18754,6 +19118,17 @@
             }
           ],
           "description": "Maximum file upload size in Mb for WAF."
+        },
+        "logScrubbing": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicySettingsLogScrubbing"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "To scrub sensitive log fields"
         },
         "maxRequestBodySizeInKb": {
           "oneOf": [
@@ -18793,6 +19168,29 @@
           ],
           "description": "Whether to allow WAF to check request Body."
         },
+        "requestBodyEnforcement": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": true
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether allow WAF to enforce request body limits."
+        },
+        "requestBodyInspectLimitInKB": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Max inspection limit in KB for request body inspection for WAF."
+        },
         "state": {
           "oneOf": [
             {
@@ -18810,6 +19208,41 @@
         }
       },
       "description": "Defines contents of a web application firewall global configuration."
+    },
+    "PolicySettingsLogScrubbing": {
+      "type": "object",
+      "properties": {
+        "scrubbingRules": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/WebApplicationFirewallScrubbingRules"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The rules that are applied to the logs for scrubbing."
+        },
+        "state": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Disabled",
+                "Enabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "State of the log scrubbing config. Default value is Enabled."
+        }
+      },
+      "description": "To scrub sensitive log fields"
     },
     "PrivateDnsZoneConfig": {
       "type": "object",
@@ -19015,7 +19448,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -19399,7 +19832,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -19569,6 +20002,40 @@
       },
       "description": "The list of RouteTables to advertise the routes to."
     },
+    "PropagatedRouteTableNfv": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RoutingConfigurationNfvSubResource"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of resource ids of all the RouteTables."
+        },
+        "labels": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of labels."
+        }
+      },
+      "description": "Nfv version of the list of RouteTables to advertise the routes to."
+    },
     "PublicIPAddress": {
       "type": "object",
       "properties": {
@@ -19651,6 +20118,23 @@
         "domainNameLabel": {
           "type": "string",
           "description": "The domain name label. The concatenation of the domain name label and the regionalized DNS zone make up the fully qualified domain name associated with the public IP address. If a domain name label is specified, an A DNS record is created for the public IP in the Microsoft Azure DNS system."
+        },
+        "domainNameLabelScope": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "TenantReuse",
+                "SubscriptionReuse",
+                "ResourceGroupReuse",
+                "NoReuse"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The domain name label scope. If a domain name label and a domain name label scope are specified, an A DNS record is created for the public IP in the Microsoft Azure DNS system with a hashed value includes in FQDN."
         },
         "fqdn": {
           "type": "string",
@@ -20302,7 +20786,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -20568,7 +21052,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -20665,6 +21149,66 @@
         }
       },
       "description": "Routing Configuration indicating the associated and propagated route tables for this connection."
+    },
+    "RoutingConfigurationNfv": {
+      "type": "object",
+      "properties": {
+        "associatedRouteTable": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RoutingConfigurationNfvSubResource"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Reference to RouteTableV3 associated with the connection."
+        },
+        "inboundRouteMap": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RoutingConfigurationNfvSubResource"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Reference to RouteTableV3 associated with the connection."
+        },
+        "outboundRouteMap": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RoutingConfigurationNfvSubResource"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Reference to RouteTableV3 associated with the connection."
+        },
+        "propagatedRouteTables": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PropagatedRouteTableNfv"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Nfv version of the list of RouteTables to advertise the routes to."
+        }
+      },
+      "description": "NFV version of Routing Configuration indicating the associated and propagated route tables for this connection."
+    },
+    "RoutingConfigurationNfvSubResource": {
+      "type": "object",
+      "properties": {
+        "resourceUri": {
+          "type": "string",
+          "description": "Resource ID."
+        }
+      },
+      "description": "Reference to RouteTableV3 associated with the connection."
     },
     "RoutingIntentProperties": {
       "type": "object",
@@ -21017,6 +21561,7 @@
       "required": [
         "access",
         "direction",
+        "priority",
         "protocol"
       ],
       "description": "Security rule resource."
@@ -21037,7 +21582,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -21383,7 +21928,7 @@
           ],
           "description": "List of address prefixes for the subnet."
         },
-        "applicationGatewayIpConfigurations": {
+        "applicationGatewayIPConfigurations": {
           "oneOf": [
             {
               "type": "array",
@@ -21396,6 +21941,17 @@
             }
           ],
           "description": "Application gateway IP configurations of virtual network resource."
+        },
+        "defaultOutboundAccess": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Set this property to false to disable default outbound connectivity for all VMs in the subnet. This property can only be set at the time of subnet creation and cannot be updated for an existing subnet."
         },
         "delegations": {
           "oneOf": [
@@ -21644,6 +22200,27 @@
         "remoteAddressRanges"
       ],
       "description": "An traffic selector policy for a virtual network gateway connection."
+    },
+    "VirtualApplianceAdditionalNicProperties": {
+      "type": "object",
+      "properties": {
+        "hasPublicIp": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Flag (true or false) for Intent for Public Ip on additional nic"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of additional nic"
+        }
+      },
+      "description": "Network Virtual Appliance Additional NIC properties."
     },
     "VirtualApplianceSiteProperties": {
       "type": "object",
@@ -22052,7 +22629,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -22095,7 +22672,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -22138,7 +22715,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -22181,7 +22758,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -22224,7 +22801,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -22267,7 +22844,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -22310,7 +22887,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -22448,6 +23025,49 @@
         "properties"
       ],
       "description": "A common class for general resource information."
+    },
+    "VirtualNetworkGatewayAutoScaleBounds": {
+      "type": "object",
+      "properties": {
+        "max": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Maximum Scale Units for Autoscale configuration"
+        },
+        "min": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Minimum scale Units for Autoscale configuration"
+        }
+      }
+    },
+    "VirtualNetworkGatewayAutoScaleConfiguration": {
+      "type": "object",
+      "properties": {
+        "bounds": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/VirtualNetworkGatewayAutoScaleBounds"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        }
+      },
+      "description": "Virtual Network Gateway Autoscale Configuration details"
     },
     "VirtualNetworkGatewayConnectionPropertiesFormat": {
       "type": "object",
@@ -22983,6 +23603,21 @@
           ],
           "description": "ActiveActive flag."
         },
+        "adminState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Property to indicate if the Express Route Gateway serves traffic when there are multiple Express Route Gateways in the vnet."
+        },
         "allowRemoteVnetTraffic": {
           "oneOf": [
             {
@@ -23004,6 +23639,17 @@
             }
           ],
           "description": "Configures this gateway to accept traffic from remote Virtual WAN networks."
+        },
+        "autoScaleConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/VirtualNetworkGatewayAutoScaleConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Virtual Network Gateway Autoscale Configuration details"
         },
         "bgpSettings": {
           "oneOf": [
@@ -23283,7 +23929,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -23631,7 +24277,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -23674,7 +24320,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -23892,7 +24538,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -24708,7 +25354,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -24751,7 +25397,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -25139,7 +25785,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01"
+            "2023-05-01"
           ]
         },
         "id": {
@@ -25594,6 +26240,20 @@
           ],
           "description": "Type of Actions."
         },
+        "groupByUserSession": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GroupByUserSession"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of user session identifier group by clauses."
+        },
         "matchConditions": {
           "oneOf": [
             {
@@ -25624,12 +26284,39 @@
           ],
           "description": "Priority of the rule. Rules with a lower value will be evaluated before rules with a higher value."
         },
+        "rateLimitDuration": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "OneMin",
+                "FiveMins"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Duration over which Rate Limit policy will be applied. Applies only when ruleType is RateLimitRule."
+        },
+        "rateLimitThreshold": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Rate Limit threshold to apply in case ruleType is RateLimitRule. Must be greater than or equal to 1"
+        },
         "ruleType": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
                 "MatchRule",
+                "RateLimitRule",
                 "Invalid"
               ]
             },
@@ -25638,6 +26325,21 @@
             }
           ],
           "description": "The rule type."
+        },
+        "state": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Disabled",
+                "Enabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Describes if the custom rule is in enabled or disabled state. Defaults to Enabled if not specified."
         }
       },
       "required": [
@@ -25692,6 +26394,69 @@
         "managedRules"
       ],
       "description": "Defines web application firewall policy properties."
+    },
+    "WebApplicationFirewallScrubbingRules": {
+      "type": "object",
+      "properties": {
+        "matchVariable": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "RequestHeaderNames",
+                "RequestCookieNames",
+                "RequestArgNames",
+                "RequestPostArgNames",
+                "RequestJSONArgNames",
+                "RequestIPAddress"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The variable to be scrubbed from the logs."
+        },
+        "selector": {
+          "type": "string",
+          "description": "When matchVariable is a collection, operator used to specify which elements in the collection this rule applies to."
+        },
+        "selectorMatchOperator": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Equals",
+                "EqualsAny"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "When matchVariable is a collection, operate on the selector to specify which elements in the collection this rule applies to."
+        },
+        "state": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Defines the state of log scrubbing rule. Default value is Enabled."
+        }
+      },
+      "required": [
+        "matchVariable",
+        "selectorMatchOperator"
+      ],
+      "description": "Allow certain variables to be scrubbed on WAF logs"
     }
   }
 }

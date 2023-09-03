@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-10-01-preview/Microsoft.ContainerInstance.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-02-01-preview/Microsoft.ContainerInstance.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.ContainerInstance",
   "description": "Microsoft ContainerInstance Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01-preview"
+            "2023-02-01-preview"
           ]
         },
         "identity": {
@@ -122,16 +122,6 @@
       ],
       "description": "The properties of the Azure File volume. Azure File shares are mounted as volumes."
     },
-    "ConfidentialComputeProperties": {
-      "type": "object",
-      "properties": {
-        "ccePolicy": {
-          "type": "string",
-          "description": "The base64 encoded confidential compute enforcement policy"
-        }
-      },
-      "description": "The properties for confidential container group"
-    },
     "Container": {
       "type": "object",
       "properties": {
@@ -235,17 +225,6 @@
     "ContainerGroupPropertiesProperties": {
       "type": "object",
       "properties": {
-        "confidentialComputeProperties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/ConfidentialComputeProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The properties for confidential container group"
-        },
         "containers": {
           "oneOf": [
             {
@@ -361,20 +340,16 @@
           ],
           "description": "The operating system type required by the containers in the container group."
         },
-        "priority": {
+        "provisioningTimeoutInSeconds": {
           "oneOf": [
             {
-              "type": "string",
-              "enum": [
-                "Regular",
-                "Spot"
-              ]
+              "type": "integer"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The priority of the container group."
+          "description": "Time in seconds in which a container group deployment would timeout and fail. The allowed maximum value is 1800 seconds. If value is not provided, property is given maximum value by default."
         },
         "restartPolicy": {
           "oneOf": [
@@ -398,8 +373,7 @@
               "type": "string",
               "enum": [
                 "Standard",
-                "Dedicated",
-                "Confidential"
+                "Dedicated"
               ]
             },
             {
@@ -712,6 +686,17 @@
             }
           ],
           "description": "The resource requirements."
+        },
+        "securityContext": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SecurityContextDefinition"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The security context for the container."
         },
         "volumeMounts": {
           "oneOf": [
@@ -1307,6 +1292,105 @@
         "requests"
       ],
       "description": "The resource requirements."
+    },
+    "SecurityContextCapabilitiesDefinition": {
+      "type": "object",
+      "properties": {
+        "add": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The capabilities to add to the container."
+        },
+        "drop": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The capabilities to drop from the container."
+        }
+      },
+      "description": "The capabilities to add or drop from a container."
+    },
+    "SecurityContextDefinition": {
+      "type": "object",
+      "properties": {
+        "allowPrivilegeEscalation": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A boolean value indicating whether the init process can elevate its privileges"
+        },
+        "capabilities": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SecurityContextCapabilitiesDefinition"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The capabilities to add or drop from a container."
+        },
+        "privileged": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The flag to determine if the container permissions is elevated to Privileged."
+        },
+        "runAsGroup": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Sets the User GID for the container."
+        },
+        "runAsUser": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Sets the User UID for the container."
+        },
+        "seccompProfile": {
+          "type": "string",
+          "description": "a base64 encoded string containing the contents of the JSON in the seccomp profile"
+        }
+      },
+      "description": "The security context for the container."
     },
     "UserAssignedIdentities": {
       "type": "object",

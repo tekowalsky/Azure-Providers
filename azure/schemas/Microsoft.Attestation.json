@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2020-10-01/Microsoft.Attestation.json#",
+  "id": "https://schema.management.azure.com/schemas/2021-06-01/Microsoft.Attestation.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Attestation",
   "description": "Microsoft Attestation Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-10-01"
+            "2021-06-01"
           ]
         },
         "location": {
@@ -87,7 +87,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-10-01"
+            "2021-06-01"
           ]
         },
         "name": {
@@ -128,7 +128,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-10-01"
+            "2021-06-01"
           ]
         },
         "name": {
@@ -173,6 +173,36 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ]
+        },
+        "publicNetworkAccess": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Controls whether traffic from the public network is allowed to access the Attestation Provider APIs."
+        },
+        "tpmAttestationAuthentication": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The setting that controls whether authentication is enabled or disabled for TPM Attestation REST APIs."
         }
       },
       "description": "Client supplied parameters used to create a new attestation provider."

@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-08-01-preview/Microsoft.SignalRService.WebPubSub.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-06-01-preview/Microsoft.SignalRService.WebPubSub.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.SignalRService",
   "description": "Microsoft SignalRService Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01-preview"
+            "2023-06-01-preview"
           ]
         },
         "identity": {
@@ -24,12 +24,36 @@
           ],
           "description": "A class represent managed identities used for request and response"
         },
+        "kind": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "WebPubSub",
+                "SocketIO"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
         "location": {
           "type": "string",
-          "description": "The GEO location of the resource. e.g. West US | East US | North Central US | South Central US."
+          "description": "The geo-location where the resource lives"
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]$",
+              "minLength": 3,
+              "maxLength": 63
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "The name of the resource."
         },
         "properties": {
@@ -58,6 +82,9 @@
               },
               {
                 "$ref": "#/definitions/webPubSub_privateEndpointConnections_childResource"
+              },
+              {
+                "$ref": "#/definitions/webPubSub_replicas_childResource"
               },
               {
                 "$ref": "#/definitions/webPubSub_sharedPrivateLinkResources_childResource"
@@ -89,7 +116,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Tags of the service which is a list of key value pairs that describe the resource."
+          "description": "Resource tags."
         },
         "type": {
           "type": "string",
@@ -100,6 +127,7 @@
       },
       "required": [
         "apiVersion",
+        "location",
         "name",
         "properties",
         "type"
@@ -112,7 +140,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -151,7 +179,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -190,7 +218,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -229,12 +257,12 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
           "type": "string",
-          "description": "The name of the private endpoint connection"
+          "description": "The name of the private endpoint connection associated with the Azure resource."
         },
         "properties": {
           "oneOf": [
@@ -262,13 +290,92 @@
       ],
       "description": "Microsoft.SignalRService/webPubSub/privateEndpointConnections"
     },
+    "webPubSub_replicas": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]$",
+              "minLength": 3,
+              "maxLength": 63
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the replica."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ReplicaProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "sku": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResourceSku"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The billing information of the resource."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.SignalRService/webPubSub/replicas"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.SignalRService/webPubSub/replicas"
+    },
     "webPubSub_sharedPrivateLinkResources": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -754,6 +861,10 @@
       },
       "description": "Connection state of the private endpoint connection"
     },
+    "ReplicaProperties": {
+      "type": "object",
+      "properties": {}
+    },
     "ResourceLogCategory": {
       "type": "object",
       "properties": {
@@ -1066,13 +1177,13 @@
           "oneOf": [
             {
               "type": "boolean",
-              "default": true
+              "default": false
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Request client certificate during TLS handshake if enabled"
+          "description": "Request client certificate during TLS handshake if enabled. Not supported for free tier. Any input will be ignored for free tier."
         }
       },
       "description": "TLS settings for the resource"
@@ -1083,7 +1194,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -1122,7 +1233,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -1161,7 +1272,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -1200,12 +1311,12 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
           "type": "string",
-          "description": "The name of the private endpoint connection"
+          "description": "The name of the private endpoint connection associated with the Azure resource."
         },
         "properties": {
           "oneOf": [
@@ -1233,13 +1344,92 @@
       ],
       "description": "Microsoft.SignalRService/webPubSub/privateEndpointConnections"
     },
+    "webPubSub_replicas_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]$",
+              "minLength": 3,
+              "maxLength": 63
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the replica."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ReplicaProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "sku": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResourceSku"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The billing information of the resource."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "replicas"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.SignalRService/webPubSub/replicas"
+    },
     "webPubSub_sharedPrivateLinkResources_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {

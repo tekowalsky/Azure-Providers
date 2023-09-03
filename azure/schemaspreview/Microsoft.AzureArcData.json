@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-06-15-preview/Microsoft.AzureArcData.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-01-15-preview/Microsoft.AzureArcData.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.AzureArcData",
   "description": "Microsoft AzureArcData Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-06-15-preview"
+            "2023-01-15-preview"
           ]
         },
         "extendedLocation": {
@@ -90,7 +90,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-06-15-preview"
+            "2023-01-15-preview"
           ]
         },
         "name": {
@@ -129,7 +129,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-06-15-preview"
+            "2023-01-15-preview"
           ]
         },
         "extendedLocation": {
@@ -210,7 +210,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-06-15-preview"
+            "2023-01-15-preview"
           ]
         },
         "extendedLocation": {
@@ -242,6 +242,16 @@
             }
           ],
           "description": "Properties of sqlManagedInstance."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/sqlManagedInstances_failoverGroups_childResource"
+              }
+            ]
+          }
         },
         "sku": {
           "oneOf": [
@@ -285,13 +295,52 @@
       ],
       "description": "Microsoft.AzureArcData/sqlManagedInstances"
     },
+    "sqlManagedInstances_failoverGroups": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-01-15-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the Failover Group"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FailoverGroupProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of a failover group resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.AzureArcData/sqlManagedInstances/failoverGroups"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.AzureArcData/sqlManagedInstances/failoverGroups"
+    },
     "sqlServerInstances": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-06-15-preview"
+            "2023-01-15-preview"
           ]
         },
         "location": {
@@ -360,7 +409,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-06-15-preview"
+            "2023-01-15-preview"
           ]
         },
         "location": {
@@ -829,7 +878,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-06-15-preview"
+            "2023-01-15-preview"
           ]
         },
         "name": {
@@ -885,6 +934,205 @@
         }
       },
       "description": "The complex type of the extended location."
+    },
+    "FailoverGroupProperties": {
+      "type": "object",
+      "properties": {
+        "additionalProperties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {}
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Unmatched properties from the message are deserialized this collection"
+        },
+        "partnerManagedInstanceId": {
+          "type": "string",
+          "description": "The resource ID of the partner SQL managed instance."
+        },
+        "spec": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FailoverGroupSpec"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The specifications of the failover group resource."
+        },
+        "status": {
+          "type": "object",
+          "properties": {},
+          "description": "The status of the failover group custom resource."
+        }
+      },
+      "required": [
+        "partnerManagedInstanceId",
+        "spec"
+      ],
+      "description": "The properties of a failover group resource."
+    },
+    "FailoverGroupSpec": {
+      "type": "object",
+      "properties": {
+        "additionalProperties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {}
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Unmatched properties from the message are deserialized this collection"
+        },
+        "partnerMI": {
+          "type": "string",
+          "description": "The name of the partner SQL managed instance."
+        },
+        "partnerMirroringCert": {
+          "type": "string",
+          "description": "The mirroring endpoint public certificate for the partner SQL managed instance. Only PEM format is supported."
+        },
+        "partnerMirroringURL": {
+          "type": "string",
+          "description": "The mirroring endpoint URL of the partner SQL managed instance."
+        },
+        "partnerSyncMode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "async",
+                "sync"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The partner sync mode of the SQL managed instance."
+        },
+        "role": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "force-primary-allow-data-loss",
+                "force-secondary"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The role of the SQL managed instance in this failover group."
+        },
+        "sharedName": {
+          "type": "string",
+          "description": "The shared name of the failover group for this SQL managed instance. Both SQL managed instance and its partner have to use the same shared name."
+        },
+        "sourceMI": {
+          "type": "string",
+          "description": "The name of the SQL managed instance with this failover group role."
+        }
+      },
+      "required": [
+        "role"
+      ],
+      "description": "The specifications of the failover group resource."
+    },
+    "K8sActiveDirectory": {
+      "type": "object",
+      "properties": {
+        "accountName": {
+          "type": "string",
+          "description": "Account name for AAD"
+        },
+        "connector": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/K8sActiveDirectoryConnector"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "encryptionTypes": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An array of encryption types"
+        },
+        "keytabSecret": {
+          "type": "string",
+          "description": "Keytab secret used to authenticate with Active Directory."
+        }
+      },
+      "description": "The kubernetes active directory information."
+    },
+    "K8sActiveDirectoryConnector": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the connector"
+        },
+        "namespace": {
+          "type": "string",
+          "description": "Name space of the connector"
+        }
+      }
+    },
+    "K8sNetworkSettings": {
+      "type": "object",
+      "properties": {
+        "forceencryption": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "If 1, then SQL Server forces all connections to be encrypted. By default, this option is 0"
+        },
+        "tlsciphers": {
+          "type": "string",
+          "description": "Specifies which ciphers are allowed by SQL Server for TLS"
+        },
+        "tlsprotocols": {
+          "type": "string",
+          "description": "A comma-separated list of which TLS protocols are allowed by SQL Server"
+        }
+      },
+      "description": "The kubernetes network settings information."
     },
     "K8sResourceRequirements": {
       "type": "object",
@@ -1003,6 +1251,105 @@
         }
       },
       "description": "The kubernetes scheduling options. It describes restrictions used to help Kubernetes select appropriate nodes to host the database service"
+    },
+    "K8sSecurity": {
+      "type": "object",
+      "properties": {
+        "activeDirectory": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/K8sActiveDirectory"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The kubernetes active directory information."
+        },
+        "additionalProperties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {}
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Unmatched properties from the message are deserialized this collection"
+        },
+        "adminLoginSecret": {
+          "type": "string",
+          "description": "Admin login secret key"
+        },
+        "serviceCertificateSecret": {
+          "type": "string",
+          "description": "Service certificate secret used"
+        },
+        "transparentDataEncryption": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/K8stransparentDataEncryption"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Transparent data encryption information."
+        }
+      },
+      "description": "The kubernetes security information."
+    },
+    "K8sSettings": {
+      "type": "object",
+      "properties": {
+        "additionalProperties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {}
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Unmatched properties from the message are deserialized this collection"
+        },
+        "network": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/K8sNetworkSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The kubernetes network settings information."
+        }
+      },
+      "description": "The kubernetes settings information."
+    },
+    "K8stransparentDataEncryption": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "description": "Transparent data encryption mode. Can be Service Managed, Customer managed or disabled"
+        },
+        "protectorSecret": {
+          "type": "string",
+          "description": "Protector secret for customer managed Transparent data encryption mode"
+        }
+      },
+      "description": "Transparent data encryption information."
     },
     "KeytabInformation": {
       "type": "object",
@@ -1232,6 +1579,28 @@
             }
           ],
           "description": "The kubernetes scheduling information."
+        },
+        "security": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/K8sSecurity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The kubernetes security information."
+        },
+        "settings": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/K8sSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The kubernetes settings information."
         }
       },
       "description": "The kubernetes spec information."
@@ -1388,6 +1757,45 @@
         "name"
       ],
       "description": "The resource model definition representing SKU for Azure Managed Instance - Azure Arc"
+    },
+    "sqlManagedInstances_failoverGroups_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-01-15-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the Failover Group"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FailoverGroupProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of a failover group resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "failoverGroups"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.AzureArcData/sqlManagedInstances/failoverGroups"
     },
     "SqlServerDatabaseResourceProperties": {
       "type": "object",
@@ -1660,7 +2068,8 @@
                 "Standard",
                 "Web",
                 "Developer",
-                "Express"
+                "Express",
+                "Business Intelligence"
               ]
             },
             {
@@ -1789,7 +2198,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-06-15-preview"
+            "2023-01-15-preview"
           ]
         },
         "location": {

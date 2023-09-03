@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-09-01/Dynatrace.Observability.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-04-27/Dynatrace.Observability.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Dynatrace.Observability",
   "description": "Dynatrace Observability Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-09-01"
+            "2023-04-27"
           ]
         },
         "identity": {
@@ -93,7 +93,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-09-01"
+            "2023-04-27"
           ]
         },
         "name": {
@@ -132,7 +132,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-09-01"
+            "2023-04-27"
           ]
         },
         "name": {
@@ -441,6 +441,21 @@
             }
           ],
           "description": "List of filtering tags to be used for capturing metrics. If empty, all resources will be captured. If only Exclude action is specified, the rules will apply to the list of all available resources. If Include actions are specified, the rules will only include resources with the associated tags."
+        },
+        "sendingMetrics": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Flag specifying if metrics from Azure resources should be sent for the Monitor resource."
         }
       },
       "description": "Set of rules for sending metrics for the Monitor resource."
@@ -548,7 +563,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-09-01"
+            "2023-04-27"
           ]
         },
         "name": {
@@ -587,7 +602,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-09-01"
+            "2023-04-27"
           ]
         },
         "name": {

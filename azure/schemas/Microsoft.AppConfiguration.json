@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-05-01/Microsoft.AppConfiguration.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-03-01/Microsoft.AppConfiguration.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.AppConfiguration",
   "description": "Microsoft AppConfiguration Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "identity": {
@@ -62,6 +62,9 @@
               },
               {
                 "$ref": "#/definitions/configurationStores_keyValues_childResource"
+              },
+              {
+                "$ref": "#/definitions/configurationStores_replicas_childResource"
               }
             ]
           }
@@ -126,7 +129,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
@@ -165,7 +168,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
@@ -197,6 +200,45 @@
         "type"
       ],
       "description": "Microsoft.AppConfiguration/configurationStores/privateEndpointConnections"
+    },
+    "configurationStores_replicas": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The location of the replica."
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the replica."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.AppConfiguration/configurationStores/replicas"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.AppConfiguration/configurationStores/replicas"
     }
   },
   "definitions": {
@@ -289,7 +331,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
@@ -328,7 +370,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
@@ -360,6 +402,45 @@
         "type"
       ],
       "description": "Microsoft.AppConfiguration/configurationStores/privateEndpointConnections"
+    },
+    "configurationStores_replicas_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The location of the replica."
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the replica."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "replicas"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.AppConfiguration/configurationStores/replicas"
     },
     "EncryptionProperties": {
       "type": "object",

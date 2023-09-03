@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-11-15/Microsoft.DocumentDB.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-04-15/Microsoft.DocumentDB.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.DocumentDB",
   "description": "Microsoft DocumentDB Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "identity": {
@@ -99,7 +99,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -148,7 +148,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "identity": {
@@ -286,7 +286,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -357,7 +357,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -425,7 +425,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -490,7 +490,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -555,7 +555,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -626,7 +626,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -694,7 +694,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -759,7 +759,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -824,7 +824,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -895,7 +895,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -963,7 +963,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -1028,7 +1028,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -1093,7 +1093,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -1132,7 +1132,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -1171,7 +1171,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -1206,7 +1206,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -1245,7 +1245,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -1286,7 +1286,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -1360,7 +1360,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -1399,7 +1399,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -1476,7 +1476,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -1534,7 +1534,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -1599,7 +1599,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -1657,7 +1657,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -1715,7 +1715,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -1780,7 +1780,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -1819,7 +1819,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -1858,7 +1858,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -1926,7 +1926,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -2028,6 +2028,67 @@
           "description": "Describes the ServerVersion of an a MongoDB account."
         }
       }
+    },
+    "AuthenticationMethodLdapProperties": {
+      "type": "object",
+      "properties": {
+        "connectionTimeoutInMs": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Timeout for connecting to the LDAP server in miliseconds. The default is 5000 ms."
+        },
+        "searchBaseDistinguishedName": {
+          "type": "string",
+          "description": "Distinguished name of the object to start the recursive search of users from."
+        },
+        "searchFilterTemplate": {
+          "type": "string",
+          "description": "Template to use for searching. Defaults to (cn=%s) where %s will be replaced by the username used to login."
+        },
+        "serverCertificates": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Certificate"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "serverHostname": {
+          "type": "string",
+          "description": "Hostname of the LDAP server."
+        },
+        "serverPort": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Port of the LDAP server."
+        },
+        "serviceUserDistinguishedName": {
+          "type": "string",
+          "description": "Distinguished name of the look up user account, who can look up user details on authentication."
+        },
+        "serviceUserPassword": {
+          "type": "string",
+          "description": "Password of the look up user."
+        }
+      },
+      "description": "Ldap authentication method properties. This feature is in preview."
     },
     "AutoscaleSettings": {
       "type": "object",
@@ -2195,7 +2256,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -2237,6 +2298,27 @@
         "type"
       ],
       "description": "Microsoft.DocumentDB/cassandraClusters/dataCenters"
+    },
+    "CassandraError": {
+      "type": "object",
+      "properties": {
+        "additionalErrorInfo": {
+          "type": "string",
+          "description": "Additional information about the error."
+        },
+        "code": {
+          "type": "string",
+          "description": "The code of error that occurred."
+        },
+        "message": {
+          "type": "string",
+          "description": "The message of the error."
+        },
+        "target": {
+          "type": "string",
+          "description": "The target resource of the error."
+        }
+      }
     },
     "CassandraKeyspaceCreateUpdateProperties": {
       "type": "object",
@@ -2571,7 +2653,8 @@
               "type": "string",
               "enum": [
                 "None",
-                "Cassandra"
+                "Cassandra",
+                "Ldap"
               ]
             },
             {
@@ -2665,7 +2748,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Number of hours to wait between taking a backup of the cluster. To disable backups, set this property to 0."
+          "description": "(Deprecated) Number of hours to wait between taking a backup of the cluster."
         },
         "initialCassandraAdminPassword": {
           "type": "string",
@@ -2675,6 +2758,16 @@
           "oneOf": [
             {
               "$ref": "#/definitions/SeedNode"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "provisionError": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CassandraError"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -2893,6 +2986,17 @@
     "ContinuousModeBackupPolicy": {
       "type": "object",
       "properties": {
+        "continuousModeProperties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ContinuousModeProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Configuration values for periodic mode backup"
+        },
         "type": {
           "type": "string",
           "enum": [
@@ -2904,6 +3008,27 @@
         "type"
       ],
       "description": "The object representing continuous mode backup policy."
+    },
+    "ContinuousModeProperties": {
+      "type": "object",
+      "properties": {
+        "tier": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Continuous7Days",
+                "Continuous30Days"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Enum to indicate type of Continuous backup mode."
+        }
+      },
+      "description": "Configuration values for periodic mode backup"
     },
     "CorsPolicy": {
       "type": "object",
@@ -3258,7 +3383,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Indicates the minimum allowed Tls version. The default is Tls 1.0, except for Cassandra and Mongo API's, which only work with Tls 1.2."
+          "description": "Indicates the minimum allowed Tls version. The default value is Tls 1.2. Cassandra and Mongo APIs only work with Tls 1.2."
         },
         "networkAclBypass": {
           "oneOf": [
@@ -3295,7 +3420,8 @@
               "type": "string",
               "enum": [
                 "Enabled",
-                "Disabled"
+                "Disabled",
+                "SecuredByPerimeter"
               ]
             },
             {
@@ -3347,7 +3473,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -3405,7 +3531,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -3463,7 +3589,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -3523,7 +3649,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -3583,7 +3709,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -3641,7 +3767,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -3699,7 +3825,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -3759,7 +3885,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -3819,7 +3945,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -3877,7 +4003,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -3935,7 +4061,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -3995,7 +4121,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -4055,7 +4181,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -4094,7 +4220,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -4133,7 +4259,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -4163,7 +4289,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -4202,7 +4328,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -4243,7 +4369,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -4301,7 +4427,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -4340,7 +4466,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -4398,7 +4524,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -4456,7 +4582,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -4516,7 +4642,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -4574,7 +4700,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -4632,7 +4758,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -4692,7 +4818,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -4731,7 +4857,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "name": {
@@ -4770,7 +4896,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -4828,7 +4954,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-15"
+            "2023-04-15"
           ]
         },
         "location": {
@@ -4909,6 +5035,17 @@
     "DataCenterResourceProperties": {
       "type": "object",
       "properties": {
+        "authenticationMethodLdapProperties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AuthenticationMethodLdapProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Ldap authentication method properties. This feature is in preview."
+        },
         "availabilityZone": {
           "oneOf": [
             {
@@ -4918,7 +5055,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "If the azure data center has Availability Zone support, apply it to the Virtual Machine ScaleSet that host the cassandra data center virtual machines."
+          "description": "If the data center has Availability Zone support, apply it to the Virtual Machine ScaleSet that host the cassandra data center virtual machines."
         },
         "backupStorageCustomerKeyUri": {
           "type": "string",
@@ -4931,6 +5068,17 @@
         "dataCenterLocation": {
           "type": "string",
           "description": "The region this data center should be created in."
+        },
+        "deallocated": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether the data center has been deallocated."
         },
         "delegatedSubnetId": {
           "type": "string",
@@ -4945,7 +5093,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Number of disk used for data centers. Default value is 4."
+          "description": "Number of disks attached to each node. Default is 4."
         },
         "diskSku": {
           "type": "string",
@@ -4965,6 +5113,16 @@
             }
           ],
           "description": "The number of nodes the data center should have. This is the desired number. After it is set, it may take some time for the data center to be scaled to match. To monitor the number of nodes and their status, use the fetchNodeStatus method on the cluster."
+        },
+        "provisionError": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CassandraError"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
         },
         "provisioningState": {
           "oneOf": [

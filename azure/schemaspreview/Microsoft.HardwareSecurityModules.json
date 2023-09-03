@@ -1,55 +1,67 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2018-10-31-preview/Microsoft.HardwareSecurityModules.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-08-31-preview/Microsoft.HardwareSecurityModules.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.HardwareSecurityModules",
   "description": "Microsoft HardwareSecurityModules Resource Types",
   "resourceDefinitions": {
-    "dedicatedHSMs": {
+    "cloudHsmClusters": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-10-31-preview"
+            "2022-08-31-preview"
           ]
         },
         "location": {
           "type": "string",
-          "description": "The supported Azure location where the dedicated HSM should be created."
+          "description": "The geo-location where the resource lives"
         },
         "name": {
           "oneOf": [
             {
               "type": "string",
-              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+              "pattern": "^[a-zA-Z0-9-]{3,24}$",
+              "minLength": 3,
+              "maxLength": 24
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Name of the dedicated Hsm"
+          "description": "The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 24 characters in length."
         },
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/DedicatedHsmProperties"
+              "$ref": "#/definitions/CloudHsmClusterProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Properties of the dedicated hsm"
+          "description": "Properties of a Cloud HSM Cluster."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/cloudHsmClusters_privateEndpointConnections_childResource"
+              }
+            ]
+          }
         },
         "sku": {
           "oneOf": [
             {
-              "$ref": "#/definitions/Sku"
+              "$ref": "#/definitions/CloudHsmClusterSku"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "SKU of the dedicated HSM"
+          "description": "Cloud Hsm Cluster SKU information"
         },
         "tags": {
           "oneOf": [
@@ -64,27 +76,13 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Resource tags"
+          "description": "Resource tags."
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.HardwareSecurityModules/dedicatedHSMs"
+            "Microsoft.HardwareSecurityModules/cloudHsmClusters"
           ]
-        },
-        "zones": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The Dedicated Hsm zones."
         }
       },
       "required": [
@@ -94,105 +92,382 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.HardwareSecurityModules/dedicatedHSMs"
-    }
-  },
-  "definitions": {
-    "ApiEntityReference": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": "The ARM resource id in the form of /subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/..."
-        }
-      },
-      "description": "The API entity reference."
+      "description": "Microsoft.HardwareSecurityModules/cloudHsmClusters"
     },
-    "DedicatedHsmProperties": {
+    "cloudHsmClusters_privateEndpointConnections": {
       "type": "object",
       "properties": {
-        "networkProfile": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-08-31-preview"
+          ]
+        },
+        "etag": {
+          "type": "string",
+          "description": "Modified whenever there is a change in the state of private endpoint connection."
+        },
+        "name": {
           "oneOf": [
             {
-              "$ref": "#/definitions/NetworkProfile"
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$",
+              "minLength": 3,
+              "maxLength": 24
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "Name of the private endpoint connection associated with the Cloud HSM Cluster."
         },
-        "stampId": {
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the private endpoint connection."
+        },
+        "type": {
           "type": "string",
-          "description": "This field will be used when RP does not support Availability zones."
+          "enum": [
+            "Microsoft.HardwareSecurityModules/cloudHsmClusters/privateEndpointConnections"
+          ]
         }
       },
-      "description": "Properties of the dedicated hsm"
-    },
-    "NetworkInterface": {
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.HardwareSecurityModules/cloudHsmClusters/privateEndpointConnections"
+    }
+  },
+  "definitions": {
+    "CloudHsmClusterProperties": {
       "type": "object",
       "properties": {
-        "privateIpAddress": {
+        "autoGeneratedDomainNameLabelScope": {
           "type": "string",
-          "description": "Private Ip address of the interface"
-        }
-      },
-      "description": "The network interface definition."
-    },
-    "NetworkProfile": {
-      "type": "object",
-      "properties": {
-        "networkInterfaces": {
+          "description": "The Cloud HSM Cluster's auto-generated Domain Name Label Scope"
+        },
+        "hsms": {
           "oneOf": [
             {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/NetworkInterface"
+                "$ref": "#/definitions/CloudHsmProperties"
               }
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Specifies the list of resource Ids for the network interfaces associated with the dedicated HSM."
+          "description": "An array of Cloud HSM Cluster's HSMs"
         },
-        "subnet": {
+        "privateEndpointConnections": {
           "oneOf": [
             {
-              "$ref": "#/definitions/ApiEntityReference"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PrivateEndpointConnection"
+              }
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The API entity reference."
-        }
-      }
-    },
-    "Sku": {
-      "type": "object",
-      "properties": {
-        "name": {
+          "description": "List of private endpoint connection resources"
+        },
+        "provisioningState": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
-                "SafeNet Luna Network HSM A790",
-                "payShield10K_LMK1_CPS60",
-                "payShield10K_LMK1_CPS250",
-                "payShield10K_LMK1_CPS2500",
-                "payShield10K_LMK2_CPS60",
-                "payShield10K_LMK2_CPS250",
-                "payShield10K_LMK2_CPS2500"
+                "Provisioning",
+                "Succeeded",
+                "Failed",
+                "Deleting",
+                "Canceled"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "SKU of the dedicated HSM."
+          "description": "The Cloud HSM Cluster's provisioningState."
+        },
+        "publicNetworkAccess": {
+          "type": "string",
+          "description": "The Cloud HSM Cluster public network access"
+        },
+        "securityDomain": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CloudHsmClusterSecurityDomainProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Security domain properties information for Cloud HSM cluster"
         }
       },
-      "description": "SKU of the dedicated HSM"
+      "description": "Properties of a Cloud HSM Cluster."
+    },
+    "CloudHsmClusterSecurityDomainProperties": {
+      "type": "object",
+      "properties": {
+        "activationStatus": {
+          "type": "string",
+          "description": "status of security domain activation"
+        },
+        "fipsState": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "FIPS state information for security domain"
+        }
+      },
+      "description": "Security domain properties information for Cloud HSM cluster"
+    },
+    "CloudHsmClusterSku": {
+      "type": "object",
+      "properties": {
+        "capacity": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Sku capacity"
+        },
+        "family": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "B"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Sku family of the Cloud HSM Cluster"
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Standard_B1",
+                "Standard B10"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Sku name of the Cloud HSM Cluster."
+        }
+      },
+      "required": [
+        "family",
+        "name"
+      ],
+      "description": "Cloud Hsm Cluster SKU information"
+    },
+    "cloudHsmClusters_privateEndpointConnections_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-08-31-preview"
+          ]
+        },
+        "etag": {
+          "type": "string",
+          "description": "Modified whenever there is a change in the state of private endpoint connection."
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$",
+              "minLength": 3,
+              "maxLength": 24
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Name of the private endpoint connection associated with the Cloud HSM Cluster."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the private endpoint connection."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.HardwareSecurityModules/cloudHsmClusters/privateEndpointConnections"
+    },
+    "CloudHsmProperties": {
+      "type": "object",
+      "properties": {
+        "fqdn": {
+          "type": "string",
+          "description": "FQDN of the Cloud HSM"
+        },
+        "state": {
+          "type": "string",
+          "description": "The Cloud HSM State"
+        },
+        "stateMessage": {
+          "type": "string",
+          "description": "The Cloud HSM State message"
+        }
+      },
+      "description": "The Cloud HSM Properties"
+    },
+    "PrivateEndpoint": {
+      "type": "object",
+      "properties": {},
+      "description": "The private endpoint resource."
+    },
+    "PrivateEndpointConnection": {
+      "type": "object",
+      "properties": {
+        "etag": {
+          "type": "string",
+          "description": "Modified whenever there is a change in the state of private endpoint connection."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the private endpoint connection."
+        }
+      },
+      "description": "The private endpoint connection resource."
+    },
+    "PrivateEndpointConnectionProperties": {
+      "type": "object",
+      "properties": {
+        "privateEndpoint": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpoint"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The private endpoint resource."
+        },
+        "privateLinkServiceConnectionState": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateLinkServiceConnectionState"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A collection of information about the state of the connection between service consumer and provider."
+        },
+        "provisioningState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Succeeded",
+                "Creating",
+                "Deleting",
+                "Failed",
+                "Updating",
+                "InternalError",
+                "Canceled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The provisioning state of the private endpoint connection resource."
+        }
+      },
+      "required": [
+        "privateLinkServiceConnectionState"
+      ],
+      "description": "Properties of the private endpoint connection."
+    },
+    "PrivateLinkServiceConnectionState": {
+      "type": "object",
+      "properties": {
+        "actionsRequired": {
+          "type": "string",
+          "description": "A message indicating if changes on the service provider require any updates on the consumer."
+        },
+        "description": {
+          "type": "string",
+          "description": "The reason for approval/rejection of the connection."
+        },
+        "status": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Pending",
+                "Approved",
+                "Rejected"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service."
+        }
+      },
+      "description": "A collection of information about the state of the connection between service consumer and provider."
     }
   }
 }

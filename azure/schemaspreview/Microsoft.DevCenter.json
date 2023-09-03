@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-11-11-preview/Microsoft.DevCenter.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-01-01-preview/Microsoft.DevCenter.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.DevCenter",
   "description": "Microsoft DevCenter Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "identity": {
@@ -102,7 +102,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -141,7 +141,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -180,7 +180,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "location": {
@@ -239,7 +239,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -293,7 +293,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -332,7 +332,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "location": {
@@ -391,7 +391,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "location": {
@@ -463,7 +463,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "identity": {
@@ -532,7 +532,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "location": {
@@ -601,7 +601,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -750,7 +750,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -789,7 +789,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -828,7 +828,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "location": {
@@ -887,7 +887,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -941,7 +941,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -1025,18 +1025,6 @@
         "id": {
           "type": "string",
           "description": "Image ID, or Image version ID. When Image ID is provided, its latest version will be used."
-        },
-        "offer": {
-          "type": "string",
-          "description": "The image offer."
-        },
-        "publisher": {
-          "type": "string",
-          "description": "The image publisher."
-        },
-        "sku": {
-          "type": "string",
-          "description": "The image sku."
         }
       },
       "description": "Image reference information"
@@ -1168,6 +1156,17 @@
         "networkConnectionName": {
           "type": "string",
           "description": "Name of a Network Connection in parent Project of this Pool"
+        },
+        "stopOnDisconnect": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/StopOnDisconnectConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Stop on disconnect configuration settings for Dev Boxes created in this pool."
         }
       },
       "description": "Properties of a Pool"
@@ -1258,6 +1257,18 @@
         "devCenterUri": {
           "type": "string",
           "description": "The URI of the resource."
+        },
+        "maxDevBoxesPerUser": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "When specified, limits the maximum number of Dev Boxes a single user can create across all pools in the project. This will have no effect on existing Dev Boxes when reduced."
         }
       },
       "description": "Properties of a project."
@@ -1268,7 +1279,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "identity": {
@@ -1337,7 +1348,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "location": {
@@ -1396,7 +1407,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-11-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -1543,6 +1554,38 @@
         "name"
       ],
       "description": "The resource model definition representing SKU"
+    },
+    "StopOnDisconnectConfiguration": {
+      "type": "object",
+      "properties": {
+        "gracePeriodMinutes": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The specified time in minutes to wait before stopping a Dev Box once disconnect is detected."
+        },
+        "status": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether the feature to stop the Dev Box on disconnect once the grace period has lapsed is enabled."
+        }
+      },
+      "description": "Stop on disconnect configuration settings for Dev Boxes created in this pool."
     },
     "UserAssignedIdentity": {
       "type": "object",

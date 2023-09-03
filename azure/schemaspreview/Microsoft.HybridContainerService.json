@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-05-01-preview/Microsoft.HybridContainerService.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-09-01-preview/Microsoft.HybridContainerService.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.HybridContainerService",
   "description": "Microsoft HybridContainerService Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01-preview"
+            "2022-09-01-preview"
           ]
         },
         "extendedLocation": {
@@ -39,9 +39,17 @@
           "description": "The geo-location where the resource lives"
         },
         "name": {
-          "type": "string",
-          "minLength": 3,
-          "maxLength": 64,
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]$|^[a-zA-Z0-9][-_a-zA-Z0-9]{0,61}[a-zA-Z0-9]$",
+              "minLength": 1,
+              "maxLength": 63
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Parameter for the name of the provisioned cluster"
         },
         "properties": {
@@ -105,7 +113,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01-preview"
+            "2022-09-01-preview"
           ]
         },
         "extendedLocation": {
@@ -185,7 +193,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01-preview"
+            "2022-09-01-preview"
           ]
         },
         "name": {
@@ -237,7 +245,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01-preview"
+            "2022-09-01-preview"
           ]
         },
         "extendedLocation": {
@@ -308,7 +316,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01-preview"
+            "2022-09-01-preview"
           ]
         },
         "extendedLocation": {
@@ -612,8 +620,7 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "OsType - OsType to be used to specify os type. Choose from Linux and Windows. Default to Linux."
+          ]
         },
         "status": {
           "oneOf": [
@@ -979,8 +986,7 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "OsType - OsType to be used to specify os type. Choose from Linux and Windows. Default to Linux."
+          ]
         },
         "vmSize": {
           "type": "string",
@@ -1253,8 +1259,7 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "OsType - OsType to be used to specify os type. Choose from Linux and Windows. Default to Linux."
+          ]
         },
         "vmSize": {
           "type": "string",
@@ -1401,8 +1406,7 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "OsType - OsType to be used to specify os type. Choose from Linux and Windows. Default to Linux."
+          ]
         },
         "vmSize": {
           "type": "string",
@@ -1702,7 +1706,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01-preview"
+            "2022-09-01-preview"
           ]
         },
         "extendedLocation": {
@@ -1782,7 +1786,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01-preview"
+            "2022-09-01-preview"
           ]
         },
         "name": {
@@ -2044,6 +2048,24 @@
     "VirtualNetworksProperties": {
       "type": "object",
       "properties": {
+        "dnsServers": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Address of the DNS servers associated with the network"
+        },
+        "gateway": {
+          "type": "string",
+          "description": "Address of the Gateway associated with the network"
+        },
         "infraVnetProfile": {
           "oneOf": [
             {
@@ -2053,6 +2075,10 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ]
+        },
+        "ipAddressPrefix": {
+          "type": "string",
+          "description": "IP Address Prefix of the network"
         },
         "vipPool": {
           "oneOf": [
@@ -2099,16 +2125,16 @@
           ],
           "description": "Infra network profile for HCI platform"
         },
-        "kubevirt": {
+        "networkCloud": {
           "oneOf": [
             {
-              "$ref": "#/definitions/VirtualNetworksPropertiesInfraVnetProfileKubevirt"
+              "$ref": "#/definitions/VirtualNetworksPropertiesInfraVnetProfileNetworkCloud"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Infra network profile for KubeVirt platform"
+          "description": "Infra network profile for the NetworkCloud platform"
         },
         "vmware": {
           "oneOf": [
@@ -2141,15 +2167,15 @@
       },
       "description": "Infra network profile for HCI platform"
     },
-    "VirtualNetworksPropertiesInfraVnetProfileKubevirt": {
+    "VirtualNetworksPropertiesInfraVnetProfileNetworkCloud": {
       "type": "object",
       "properties": {
-        "vnetName": {
+        "networkId": {
           "type": "string",
-          "description": "Name of the network in KubeVirt"
+          "description": "The ARM ID of Network Cloud Network Resource to Associate with this VirtualNetwork"
         }
       },
-      "description": "Infra network profile for KubeVirt platform"
+      "description": "Infra network profile for the NetworkCloud platform"
     },
     "VirtualNetworksPropertiesInfraVnetProfileVmware": {
       "type": "object",

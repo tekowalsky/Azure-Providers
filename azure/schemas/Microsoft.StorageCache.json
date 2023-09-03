@@ -1,16 +1,121 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2023-01-01/Microsoft.StorageCache.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-05-01/Microsoft.StorageCache.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.StorageCache",
   "description": "Microsoft StorageCache Resource Types",
   "resourceDefinitions": {
+    "amlFilesystems": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-05-01"
+          ]
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AmlFilesystemIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Managed Identity properties."
+        },
+        "location": {
+          "type": "string",
+          "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-zA-Z][-0-9a-zA-Z_]{0,78}[0-9a-zA-Z]$",
+              "minLength": 2,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AmlFilesystemProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the AML file system."
+        },
+        "sku": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SkuName"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "SKU for the resource."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.StorageCache/amlFilesystems"
+          ]
+        },
+        "zones": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Availability zones for resources. This field should only contain a single element in the array."
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.StorageCache/amlFilesystems"
+    },
     "caches": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-01-01"
+            "2023-05-01"
           ]
         },
         "identity": {
@@ -38,7 +143,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Name of Cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class."
+          "description": "Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class."
         },
         "properties": {
           "oneOf": [
@@ -49,7 +154,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Properties of the Cache."
+          "description": "Properties of the cache."
         },
         "resources": {
           "type": "array",
@@ -70,7 +175,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "SKU for the Cache."
+          "description": "SKU for the cache."
         },
         "tags": {
           "oneOf": [
@@ -108,7 +213,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-01-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -151,6 +256,229 @@
     }
   },
   "definitions": {
+    "AmlFilesystemClientInfo": {
+      "type": "object",
+      "properties": {
+        "containerStorageInterface": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AmlFilesystemContainerStorageInterface"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "AML file system container storage interface information"
+        }
+      },
+      "description": "AML file system client information"
+    },
+    "AmlFilesystemContainerStorageInterface": {
+      "type": "object",
+      "properties": {},
+      "description": "AML file system container storage interface information"
+    },
+    "AmlFilesystemEncryptionSettings": {
+      "type": "object",
+      "properties": {
+        "keyEncryptionKey": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/KeyVaultKeyReference"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Describes a reference to key vault key."
+        }
+      },
+      "description": "AML file system encryption settings."
+    },
+    "AmlFilesystemHsmSettings": {
+      "type": "object",
+      "properties": {
+        "container": {
+          "type": "string",
+          "description": "A fully qualified URL."
+        },
+        "importPrefix": {
+          "type": "string",
+          "default": "/",
+          "description": "Only blobs in the non-logging container that start with this path/prefix get hydrated into the cluster namespace."
+        },
+        "loggingContainer": {
+          "type": "string",
+          "description": "A fully qualified URL."
+        }
+      },
+      "required": [
+        "container",
+        "loggingContainer"
+      ],
+      "description": "AML file system HSM settings."
+    },
+    "AmlFilesystemIdentity": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "UserAssigned",
+                "None"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The type of identity used for the resource."
+        },
+        "userAssignedIdentities": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/UserAssignedIdentitiesValue"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A dictionary where each key is a user assigned identity resource ID, and each key's value is an empty dictionary."
+        }
+      },
+      "description": "Managed Identity properties."
+    },
+    "AmlFilesystemProperties": {
+      "type": "object",
+      "properties": {
+        "clientInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AmlFilesystemClientInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "AML file system client information"
+        },
+        "encryptionSettings": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AmlFilesystemEncryptionSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "AML file system encryption settings."
+        },
+        "filesystemSubnet": {
+          "type": "string",
+          "description": "A fully qualified URL."
+        },
+        "hsm": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AmlFilesystemPropertiesHsm"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Hydration and archive settings and status"
+        },
+        "maintenanceWindow": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AmlFilesystemPropertiesMaintenanceWindow"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Start time of a 30-minute weekly maintenance window."
+        },
+        "storageCapacityTiB": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The size of the AML file system, in TiB. This might be rounded up."
+        }
+      },
+      "required": [
+        "filesystemSubnet",
+        "maintenanceWindow",
+        "storageCapacityTiB"
+      ],
+      "description": "Properties of the AML file system."
+    },
+    "AmlFilesystemPropertiesHsm": {
+      "type": "object",
+      "properties": {
+        "settings": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AmlFilesystemHsmSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "AML file system HSM settings."
+        }
+      },
+      "description": "Hydration and archive settings and status"
+    },
+    "AmlFilesystemPropertiesMaintenanceWindow": {
+      "type": "object",
+      "properties": {
+        "dayOfWeek": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Day of the week on which the maintenance window will occur."
+        },
+        "timeOfDayUTC": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time of day (in UTC) to start the maintenance window."
+        }
+      },
+      "description": "Start time of a 30-minute weekly maintenance window."
+    },
     "BlobNfsTarget": {
       "type": "object",
       "properties": {
@@ -251,7 +579,6 @@
         }
       },
       "required": [
-        "password",
         "username"
       ],
       "description": "Active Directory admin credentials used to join the HPC Cache to a domain."
@@ -296,7 +623,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Describes a reference to Key Vault Key."
+          "description": "Describes a reference to key vault key."
         },
         "rotationToLatestKeyVersionEnabled": {
           "oneOf": [
@@ -307,7 +634,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Specifies whether the service will automatically rotate to the newest version of the key in the Key Vault."
+          "description": "Specifies whether the service will automatically rotate to the newest version of the key in the key vault."
         }
       },
       "description": "Cache encryption settings."
@@ -337,7 +664,7 @@
             {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/UserAssignedIdentitiesValue"
+                "$ref": "#/definitions/UserAssignedIdentitiesValueModel"
               },
               "properties": {}
             },
@@ -509,7 +836,7 @@
           "description": "Availability zones for resources. This field should only contain a single element in the array."
         }
       },
-      "description": "Properties of the Cache."
+      "description": "Properties of the cache."
     },
     "CacheSecuritySettings": {
       "type": "object",
@@ -536,10 +863,10 @@
       "properties": {
         "name": {
           "type": "string",
-          "description": "SKU name for this Cache."
+          "description": "SKU name for this cache."
         }
       },
-      "description": "SKU for the Cache."
+      "description": "SKU for the cache."
     },
     "caches_storageTargets_childResource": {
       "type": "object",
@@ -547,7 +874,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-01-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -616,7 +943,8 @@
         "autoDownloadCertificate": {
           "oneOf": [
             {
-              "type": "boolean"
+              "type": "boolean",
+              "default": false
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -642,7 +970,8 @@
         "encryptLdapConnection": {
           "oneOf": [
             {
-              "type": "boolean"
+              "type": "boolean",
+              "default": false
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -676,7 +1005,8 @@
         "requireValidCertificate": {
           "oneOf": [
             {
-              "type": "boolean"
+              "type": "boolean",
+              "default": false
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -737,7 +1067,7 @@
       "properties": {
         "keyUrl": {
           "type": "string",
-          "description": "The URL referencing a key encryption key in Key Vault."
+          "description": "The URL referencing a key encryption key in key vault."
         },
         "sourceVault": {
           "oneOf": [
@@ -748,14 +1078,14 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Describes a resource Id to source Key Vault."
+          "description": "Describes a resource Id to source key vault."
         }
       },
       "required": [
         "keyUrl",
         "sourceVault"
       ],
-      "description": "Describes a reference to Key Vault Key."
+      "description": "Describes a reference to key vault key."
     },
     "KeyVaultKeyReferenceSourceVault": {
       "type": "object",
@@ -765,14 +1095,14 @@
           "description": "Resource Id."
         }
       },
-      "description": "Describes a resource Id to source Key Vault."
+      "description": "Describes a resource Id to source key vault."
     },
     "NamespaceJunction": {
       "type": "object",
       "properties": {
         "namespacePath": {
           "type": "string",
-          "description": "Namespace path on a Cache for a Storage Target."
+          "description": "Namespace path on a cache for a Storage Target."
         },
         "nfsAccessPolicy": {
           "type": "string",
@@ -962,7 +1292,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Schema for the name of resources served by this provider. Note that objects will contain an odata @id annotation as appropriate. This will contain the complete URL of the object. These names are case-preserving, but not case sensitive."
+          "description": "Schema for the name of resources served by this provider. Note that objects will contain an odata @id annotation as appropriate. This will contain the complete resource id of the object. These names are case-preserving, but not case sensitive."
         },
         "primingManifestUrl": {
           "type": "string",
@@ -974,6 +1304,16 @@
         "primingManifestUrl"
       ],
       "description": "A priming job instance."
+    },
+    "SkuName": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "SKU name for this resource."
+        }
+      },
+      "description": "SKU for the resource."
     },
     "StorageTargetProperties": {
       "type": "object",
@@ -1012,7 +1352,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "List of Cache namespace junctions to target for namespace associations."
+          "description": "List of cache namespace junctions to target for namespace associations."
         },
         "nfs3": {
           "oneOf": [
@@ -1102,7 +1442,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Schema for the name of resources served by this provider. Note that objects will contain an odata @id annotation as appropriate. This will contain the complete URL of the object. These names are case-preserving, but not case sensitive."
+          "description": "Schema for the name of resources served by this provider. Note that objects will contain an odata @id annotation as appropriate. This will contain the complete resource id of the object. These names are case-preserving, but not case sensitive."
         }
       },
       "description": "Storage Target space allocation properties."
@@ -1129,6 +1469,10 @@
       "description": "Properties pertaining to the UnknownTarget"
     },
     "UserAssignedIdentitiesValue": {
+      "type": "object",
+      "properties": {}
+    },
+    "UserAssignedIdentitiesValueModel": {
       "type": "object",
       "properties": {}
     }

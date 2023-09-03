@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-12-27-preview/Microsoft.HybridCompute.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-04-25-preview/Microsoft.HybridCompute.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.HybridCompute",
   "description": "Microsoft HybridCompute Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-27-preview"
+            "2023-04-25-preview"
           ]
         },
         "identity": {
@@ -24,6 +24,23 @@
           ],
           "description": "Identity for the resource."
         },
+        "kind": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "AVS",
+                "HCI",
+                "SCVMM",
+                "VMware"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates which kind of VM fabric the instance is an instance of, such as HCI or SCVMM etc."
+        },
         "location": {
           "type": "string",
           "description": "The geo-location where the resource lives"
@@ -32,9 +49,7 @@
           "oneOf": [
             {
               "type": "string",
-              "pattern": "[a-zA-Z0-9-_\\.]",
-              "minLength": 1,
-              "maxLength": 54
+              "pattern": "[a-zA-Z0-9-_\\.]"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -59,6 +74,9 @@
             "oneOf": [
               {
                 "$ref": "#/definitions/machines_extensions_childResource"
+              },
+              {
+                "$ref": "#/definitions/machines_runCommands_childResource"
               }
             ]
           }
@@ -100,7 +118,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-27-preview"
+            "2023-04-25-preview"
           ]
         },
         "location": {
@@ -153,13 +171,80 @@
       ],
       "description": "Microsoft.HybridCompute/machines/extensions"
     },
+    "machines_runCommands": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-04-25-preview"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "[a-zA-Z0-9-_\\.]"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the run command."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MachineRunCommandProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Describes the properties of a run command."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.HybridCompute/machines/runCommands"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.HybridCompute/machines/runCommands"
+    },
     "privateLinkScopes": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-27-preview"
+            "2023-04-25-preview"
           ]
         },
         "location": {
@@ -228,7 +313,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-27-preview"
+            "2023-04-25-preview"
           ]
         },
         "name": {
@@ -338,6 +423,31 @@
         }
       },
       "description": "Identity for the resource."
+    },
+    "IpAddress": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "Represents the IP Address."
+        },
+        "ipAddressVersion": {
+          "type": "string",
+          "description": "Represents the Ip Address Version."
+        },
+        "subnet": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Subnet"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Describes the subnet."
+        }
+      },
+      "description": "Describes properties of the IP address."
     },
     "LocationData": {
       "type": "object",
@@ -604,6 +714,17 @@
           "type": "string",
           "description": "Specifies whether any MS SQL instance is discovered on the machine."
         },
+        "networkProfile": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/NetworkProfile"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Describes the network information on this machine."
+        },
         "osProfile": {
           "oneOf": [
             {
@@ -645,13 +766,148 @@
       },
       "description": "Describes the properties of a hybrid machine."
     },
+    "MachineRunCommandProperties": {
+      "type": "object",
+      "properties": {
+        "asyncExecution": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Optional. If set to true, provisioning will complete as soon as script starts and will not wait for script to complete."
+        },
+        "errorBlobManagedIdentity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RunCommandManagedIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": " Contains clientId or objectId (use only one, not both) of a user-assigned managed identity that has access to storage blob used in Run Command. Use an empty RunCommandManagedIdentity object in case of system-assigned identity. Make sure the Azure storage blob exists in case of scriptUri, and managed identity has been given access to blob's container with 'Storage Blob Data Reader' role assignment with scriptUri blob and 'Storage Blob Data Contributor' for Append blobs(outputBlobUri, errorBlobUri). In case of user assigned identity, make sure you add it under VM's identity. For more info on managed identity and Run Command, refer https://aka.ms/ManagedIdentity and https://aka.ms/RunCommandManaged."
+        },
+        "errorBlobUri": {
+          "type": "string",
+          "description": "Specifies the Azure storage blob where script error stream will be uploaded. Use a SAS URI with read, append, create, write access OR use managed identity to provide the VM access to the blob. Refer errorBlobManagedIdentity parameter."
+        },
+        "outputBlobManagedIdentity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RunCommandManagedIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": " Contains clientId or objectId (use only one, not both) of a user-assigned managed identity that has access to storage blob used in Run Command. Use an empty RunCommandManagedIdentity object in case of system-assigned identity. Make sure the Azure storage blob exists in case of scriptUri, and managed identity has been given access to blob's container with 'Storage Blob Data Reader' role assignment with scriptUri blob and 'Storage Blob Data Contributor' for Append blobs(outputBlobUri, errorBlobUri). In case of user assigned identity, make sure you add it under VM's identity. For more info on managed identity and Run Command, refer https://aka.ms/ManagedIdentity and https://aka.ms/RunCommandManaged."
+        },
+        "outputBlobUri": {
+          "type": "string",
+          "description": "Specifies the Azure storage blob where script output stream will be uploaded. Use a SAS URI with read, append, create, write access OR use managed identity to provide the VM access to the blob. Refer outputBlobManagedIdentity parameter. "
+        },
+        "parameters": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RunCommandInputParameter"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The parameters used by the script."
+        },
+        "protectedParameters": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RunCommandInputParameter"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The parameters used by the script."
+        },
+        "runAsPassword": {
+          "type": "string",
+          "description": "Specifies the user account password on the machine when executing the run command."
+        },
+        "runAsUser": {
+          "type": "string",
+          "description": "Specifies the user account on the machine when executing the run command."
+        },
+        "source": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MachineRunCommandScriptSource"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Describes the script sources for run command. Use only one of script, scriptUri, commandId."
+        },
+        "timeoutInSeconds": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The timeout in seconds to execute the run command."
+        }
+      },
+      "description": "Describes the properties of a run command."
+    },
+    "MachineRunCommandScriptSource": {
+      "type": "object",
+      "properties": {
+        "commandId": {
+          "type": "string",
+          "description": "Specifies the commandId of predefined built-in script."
+        },
+        "script": {
+          "type": "string",
+          "description": "Specifies the script content to be executed on the machine."
+        },
+        "scriptUri": {
+          "type": "string",
+          "description": "Specifies the script download location. It can be either SAS URI of an Azure storage blob with read access or public URI."
+        },
+        "scriptUriManagedIdentity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RunCommandManagedIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": " Contains clientId or objectId (use only one, not both) of a user-assigned managed identity that has access to storage blob used in Run Command. Use an empty RunCommandManagedIdentity object in case of system-assigned identity. Make sure the Azure storage blob exists in case of scriptUri, and managed identity has been given access to blob's container with 'Storage Blob Data Reader' role assignment with scriptUri blob and 'Storage Blob Data Contributor' for Append blobs(outputBlobUri, errorBlobUri). In case of user assigned identity, make sure you add it under VM's identity. For more info on managed identity and Run Command, refer https://aka.ms/ManagedIdentity and https://aka.ms/RunCommandManaged."
+        }
+      },
+      "description": "Describes the script sources for run command. Use only one of script, scriptUri, commandId."
+    },
     "machines_extensions_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-27-preview"
+            "2023-04-25-preview"
           ]
         },
         "location": {
@@ -703,6 +959,113 @@
         "type"
       ],
       "description": "Microsoft.HybridCompute/machines/extensions"
+    },
+    "machines_runCommands_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-04-25-preview"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "[a-zA-Z0-9-_\\.]"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the run command."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MachineRunCommandProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Describes the properties of a run command."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "runCommands"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.HybridCompute/machines/runCommands"
+    },
+    "NetworkInterface": {
+      "type": "object",
+      "properties": {
+        "ipAddresses": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IpAddress"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of IP addresses in this interface."
+        }
+      },
+      "description": "Describes a network interface."
+    },
+    "NetworkProfile": {
+      "type": "object",
+      "properties": {
+        "networkInterfaces": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/NetworkInterface"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of network interfaces."
+        }
+      },
+      "description": "Describes the network information on this machine."
     },
     "OSProfile": {
       "type": "object",
@@ -848,7 +1211,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-27-preview"
+            "2023-04-25-preview"
           ]
         },
         "name": {
@@ -899,6 +1262,38 @@
       ],
       "description": "State of the private endpoint connection."
     },
+    "RunCommandInputParameter": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The run command parameter name."
+        },
+        "value": {
+          "type": "string",
+          "description": "The run command parameter value."
+        }
+      },
+      "required": [
+        "name",
+        "value"
+      ],
+      "description": "Describes the properties of a run command parameter."
+    },
+    "RunCommandManagedIdentity": {
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "type": "string",
+          "description": "Client Id (GUID value) of the user-assigned managed identity. ObjectId should not be used if this is provided."
+        },
+        "objectId": {
+          "type": "string",
+          "description": "Object Id (GUID value) of the user-assigned managed identity. ClientId should not be used if this is provided."
+        }
+      },
+      "description": " Contains clientId or objectId (use only one, not both) of a user-assigned managed identity that has access to storage blob used in Run Command. Use an empty RunCommandManagedIdentity object in case of system-assigned identity. Make sure the Azure storage blob exists in case of scriptUri, and managed identity has been given access to blob's container with 'Storage Blob Data Reader' role assignment with scriptUri blob and 'Storage Blob Data Contributor' for Append blobs(outputBlobUri, errorBlobUri). In case of user assigned identity, make sure you add it under VM's identity. For more info on managed identity and Run Command, refer https://aka.ms/ManagedIdentity and https://aka.ms/RunCommandManaged."
+    },
     "ServiceStatus": {
       "type": "object",
       "properties": {
@@ -940,6 +1335,16 @@
         }
       },
       "description": "Reports the state and behavior of dependent services."
+    },
+    "Subnet": {
+      "type": "object",
+      "properties": {
+        "addressPrefix": {
+          "type": "string",
+          "description": "Represents address prefix."
+        }
+      },
+      "description": "Describes the subnet."
     }
   }
 }

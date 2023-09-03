@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-12-01/Microsoft.ContainerRegistry.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-07-01/Microsoft.ContainerRegistry.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.ContainerRegistry",
   "description": "Microsoft ContainerRegistry Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-07-01"
           ]
         },
         "identity": {
@@ -57,6 +57,12 @@
           "type": "array",
           "items": {
             "oneOf": [
+              {
+                "$ref": "#/definitions/registries_cacheRules_childResource"
+              },
+              {
+                "$ref": "#/definitions/registries_credentialSets_childResource"
+              },
               {
                 "$ref": "#/definitions/registries_privateEndpointConnections_childResource"
               },
@@ -118,13 +124,122 @@
       ],
       "description": "Microsoft.ContainerRegistry/registries"
     },
+    "registries_cacheRules": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-07-01"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]*$",
+              "minLength": 5,
+              "maxLength": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the cache rule."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CacheRuleProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of a cache rule."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ContainerRegistry/registries/cacheRules"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ContainerRegistry/registries/cacheRules"
+    },
+    "registries_credentialSets": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-07-01"
+          ]
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IdentityProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Managed identity for the resource."
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]*$",
+              "minLength": 5,
+              "maxLength": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the credential set."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CredentialSetProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of a credential set resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ContainerRegistry/registries/credentialSets"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ContainerRegistry/registries/credentialSets"
+    },
     "registries_privateEndpointConnections": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-07-01"
           ]
         },
         "name": {
@@ -163,7 +278,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-07-01"
           ]
         },
         "location": {
@@ -232,7 +347,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-07-01"
           ]
         },
         "name": {
@@ -281,7 +396,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-07-01"
           ]
         },
         "name": {
@@ -330,7 +445,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-07-01"
           ]
         },
         "location": {
@@ -395,6 +510,76 @@
     }
   },
   "definitions": {
+    "AuthCredential": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Credential1"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the credential."
+        },
+        "passwordSecretIdentifier": {
+          "type": "string",
+          "description": "KeyVault Secret URI for accessing the password."
+        },
+        "usernameSecretIdentifier": {
+          "type": "string",
+          "description": "KeyVault Secret URI for accessing the username."
+        }
+      },
+      "description": "Authentication credential stored for an upstream."
+    },
+    "CacheRuleProperties": {
+      "type": "object",
+      "properties": {
+        "credentialSetResourceId": {
+          "type": "string",
+          "description": "The ARM resource ID of the credential store which is associated with the cache rule."
+        },
+        "sourceRepository": {
+          "type": "string",
+          "description": "Source repository pulled from upstream."
+        },
+        "targetRepository": {
+          "type": "string",
+          "description": "Target repository specified in docker pull command.\r\nEg: docker pull myregistry.azurecr.io/{targetRepository}:{tag}"
+        }
+      },
+      "description": "The properties of a cache rule."
+    },
+    "CredentialSetProperties": {
+      "type": "object",
+      "properties": {
+        "authCredentials": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AuthCredential"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of authentication credentials stored for an upstream.\r\nUsually consists of a primary and an optional secondary credential."
+        },
+        "loginServer": {
+          "type": "string",
+          "description": "The credentials are stored for this upstream or login server."
+        }
+      },
+      "description": "The properties of a credential set resource."
+    },
     "EncryptionProperty": {
       "type": "object",
       "properties": {
@@ -449,14 +634,6 @@
     "IdentityProperties": {
       "type": "object",
       "properties": {
-        "principalId": {
-          "type": "string",
-          "description": "The principal ID of resource identity."
-        },
-        "tenantId": {
-          "type": "string",
-          "description": "The tenant ID of resource."
-        },
         "type": {
           "oneOf": [
             {
@@ -721,13 +898,122 @@
       },
       "description": "The quarantine policy for a container registry."
     },
+    "registries_cacheRules_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-07-01"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]*$",
+              "minLength": 5,
+              "maxLength": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the cache rule."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CacheRuleProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of a cache rule."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "cacheRules"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ContainerRegistry/registries/cacheRules"
+    },
+    "registries_credentialSets_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-07-01"
+          ]
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IdentityProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Managed identity for the resource."
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]*$",
+              "minLength": 5,
+              "maxLength": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the credential set."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CredentialSetProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of a credential set resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "credentialSets"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ContainerRegistry/registries/credentialSets"
+    },
     "registries_privateEndpointConnections_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-07-01"
           ]
         },
         "name": {
@@ -766,7 +1052,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-07-01"
           ]
         },
         "location": {
@@ -835,7 +1121,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-07-01"
           ]
         },
         "name": {
@@ -884,7 +1170,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-07-01"
           ]
         },
         "name": {
@@ -933,7 +1219,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-07-01"
           ]
         },
         "location": {
@@ -1390,16 +1676,7 @@
     },
     "UserIdentityProperties": {
       "type": "object",
-      "properties": {
-        "clientId": {
-          "type": "string",
-          "description": "The client id of user assigned identity."
-        },
-        "principalId": {
-          "type": "string",
-          "description": "The principal id of user assigned identity."
-        }
-      }
+      "properties": {}
     },
     "WebhookPropertiesCreateParameters": {
       "type": "object",

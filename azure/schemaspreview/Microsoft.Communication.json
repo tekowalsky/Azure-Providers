@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-07-01-preview/Microsoft.Communication.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-04-01-preview/Microsoft.Communication.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Communication",
   "description": "Microsoft Communication Resource Types",
@@ -10,8 +10,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01-preview"
+            "2023-04-01-preview"
           ]
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ManagedServiceIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Managed service identity (system assigned and/or user assigned identities)"
         },
         "location": {
           "type": "string",
@@ -79,7 +90,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01-preview"
+            "2023-04-01-preview"
           ]
         },
         "location": {
@@ -158,7 +169,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01-preview"
+            "2023-04-01-preview"
           ]
         },
         "location": {
@@ -181,6 +192,16 @@
             }
           ],
           "description": "A class that describes the properties of a Domains resource."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/emailServices_domains_senderUsernames_childResource"
+              }
+            ]
+          }
         },
         "tags": {
           "oneOf": [
@@ -212,6 +233,47 @@
         "type"
       ],
       "description": "Microsoft.Communication/emailServices/domains"
+    },
+    "emailServices_domains_senderUsernames": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 253,
+          "description": "The valid sender Username."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SenderUsernameProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A class that describes the properties of a SenderUsername resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Communication/emailServices/domains/senderUsernames"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Communication/emailServices/domains/senderUsernames"
     }
   },
   "definitions": {
@@ -273,21 +335,6 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ]
-        },
-        "validSenderUsernames": {
-          "oneOf": [
-            {
-              "type": "object",
-              "additionalProperties": {
-                "type": "string"
-              },
-              "properties": {}
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Collection of valid sender usernames. This is a key-value pair where key=username and value=display name."
         }
       },
       "required": [
@@ -314,7 +361,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-07-01-preview"
+            "2023-04-01-preview"
           ]
         },
         "location": {
@@ -368,6 +415,109 @@
         "type"
       ],
       "description": "Microsoft.Communication/emailServices/domains"
+    },
+    "emailServices_domains_senderUsernames_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-04-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 253,
+          "description": "The valid sender Username."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SenderUsernameProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A class that describes the properties of a SenderUsername resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "senderUsernames"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Communication/emailServices/domains/senderUsernames"
+    },
+    "ManagedServiceIdentity": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "SystemAssigned",
+                "UserAssigned",
+                "SystemAssigned,UserAssigned"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "userAssignedIdentities": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/UserAssignedIdentity"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "description": "Managed service identity (system assigned and/or user assigned identities)"
+    },
+    "SenderUsernameProperties": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "The display name for the senderUsername."
+        },
+        "username": {
+          "type": "string",
+          "description": "A sender senderUsername to be used when sending emails."
+        }
+      },
+      "required": [
+        "username"
+      ],
+      "description": "A class that describes the properties of a SenderUsername resource."
+    },
+    "UserAssignedIdentity": {
+      "type": "object",
+      "properties": {},
+      "description": "User assigned identity properties"
     }
   }
 }

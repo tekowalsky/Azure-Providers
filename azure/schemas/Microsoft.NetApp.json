@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-05-01/Microsoft.NetApp.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-11-01/Microsoft.NetApp.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.NetApp",
   "description": "Microsoft NetApp Resource Types",
@@ -10,26 +10,34 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "identity": {
           "oneOf": [
             {
-              "$ref": "#/definitions/Identity"
+              "$ref": "#/definitions/ManagedServiceIdentity"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Identity for the resource."
+          "description": "Managed service identity (system assigned and/or user assigned identities)"
         },
         "location": {
           "type": "string",
           "description": "The geo-location where the resource lives"
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-_]{0,63}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "The name of the NetApp account"
         },
         "properties": {
@@ -99,7 +107,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -158,7 +166,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -237,7 +245,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -339,7 +347,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -347,7 +355,15 @@
           "description": "Resource location"
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-_]{0,63}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "The name of the backup"
         },
         "properties": {
@@ -383,7 +399,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -427,7 +443,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "name": {
@@ -476,7 +492,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -535,7 +551,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -594,7 +610,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -860,6 +876,19 @@
         "password": {
           "type": "string",
           "description": "Plain text password of Active Directory domain administrator, value is masked in the response"
+        },
+        "preferredServersForLdapClient": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)((, ?)(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))?)?$",
+              "maxLength": 32
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Comma separated list of IPv4 addresses of preferred servers for LDAP client. At most two comma separated IPv4 addresses can be passed."
         },
         "securityOperators": {
           "oneOf": [
@@ -1242,47 +1271,6 @@
       },
       "description": "Hourly Schedule properties"
     },
-    "Identity": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "None",
-                "SystemAssigned",
-                "UserAssigned",
-                "SystemAssigned,UserAssigned"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The identity type."
-        },
-        "userAssignedIdentities": {
-          "oneOf": [
-            {
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/UserAssignedIdentity"
-              },
-              "properties": {}
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Gets or sets a list of key value pairs that describe the set of User Assigned identities that will be used with this storage account. The key is the ARM resource identifier of the identity. Only 1 User Assigned identity is permitted here."
-        }
-      },
-      "required": [
-        "type"
-      ],
-      "description": "Identity for the resource."
-    },
     "KeyVaultProperties": {
       "type": "object",
       "properties": {
@@ -1326,6 +1314,46 @@
         }
       },
       "description": "LDAP search scope "
+    },
+    "ManagedServiceIdentity": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "SystemAssigned",
+                "UserAssigned",
+                "SystemAssigned,UserAssigned"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "userAssignedIdentities": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/UserAssignedIdentity"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "description": "Managed service identity (system assigned and/or user assigned identities)"
     },
     "MonthlySchedule": {
       "type": "object",
@@ -1387,7 +1415,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -1446,7 +1474,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -1515,7 +1543,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -1523,7 +1551,15 @@
           "description": "Resource location"
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-_]{0,63}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "The name of the backup"
         },
         "properties": {
@@ -1559,7 +1595,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -1642,7 +1678,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -1686,7 +1722,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "name": {
@@ -1735,7 +1771,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -1794,7 +1830,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -1853,7 +1889,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2022-11-01"
           ]
         },
         "location": {
@@ -2144,7 +2180,7 @@
     "UserAssignedIdentity": {
       "type": "object",
       "properties": {},
-      "description": "UserAssignedIdentity for the resource."
+      "description": "User assigned identity properties"
     },
     "VolumeBackupProperties": {
       "type": "object",
@@ -2174,10 +2210,6 @@
             }
           ],
           "description": "Policy Enforced"
-        },
-        "vaultId": {
-          "type": "string",
-          "description": "Vault Resource ID"
         }
       },
       "description": "Volume Backup Properties"
@@ -2462,6 +2494,18 @@
           ],
           "description": "Specifies if default quota is enabled for the volume."
         },
+        "isLargeVolume": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies whether volume is a Large Volume or Regular Volume."
+        },
         "isRestoring": {
           "oneOf": [
             {
@@ -2643,7 +2687,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "If enabled (true) the volume will contain a read-only snapshot directory which provides access to each of the volume's snapshots (default to true)."
+          "description": "If enabled (true) the volume will contain a read-only snapshot directory which provides access to each of the volume's snapshots (defaults to true)."
         },
         "snapshotId": {
           "type": "string",
@@ -2735,6 +2779,17 @@
             }
           ],
           "description": "Volume Snapshot Properties"
+        },
+        "volumeRelocation": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/VolumeRelocationProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Volume relocation properties"
         }
       },
       "description": "DataProtection type volumes include an object containing details of the replication"
@@ -2815,6 +2870,23 @@
         }
       },
       "description": "Volume Quota Rule properties"
+    },
+    "VolumeRelocationProperties": {
+      "type": "object",
+      "properties": {
+        "relocationRequested": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Has relocation been requested for this volume"
+        }
+      },
+      "description": "Volume relocation properties"
     },
     "VolumeSnapshotProperties": {
       "type": "object",

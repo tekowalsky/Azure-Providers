@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-11-10/Microsoft.HybridCompute.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-12-27/Microsoft.HybridCompute.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.HybridCompute",
   "description": "Microsoft HybridCompute Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-10"
+            "2022-12-27"
           ]
         },
         "identity": {
@@ -29,7 +29,17 @@
           "description": "The geo-location where the resource lives"
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "[a-zA-Z0-9-_\\.]",
+              "minLength": 1,
+              "maxLength": 54
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "The name of the hybrid machine."
         },
         "properties": {
@@ -90,7 +100,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-10"
+            "2022-12-27"
           ]
         },
         "location": {
@@ -149,7 +159,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-10"
+            "2022-12-27"
           ]
         },
         "location": {
@@ -218,7 +228,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-10"
+            "2022-12-27"
           ]
         },
         "name": {
@@ -257,6 +267,31 @@
       "type": "object",
       "properties": {},
       "description": "Configurable properties that the user can set locally via the azcmagent config command, or remotely via ARM."
+    },
+    "AgentUpgrade": {
+      "type": "object",
+      "properties": {
+        "correlationId": {
+          "type": "string",
+          "description": "The correlation ID passed in from RSM per upgrade."
+        },
+        "desiredVersion": {
+          "type": "string",
+          "description": "Specifies the version info w.r.t AgentUpgrade for the machine."
+        },
+        "enableAutomaticUpgrade": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies if RSM should try to upgrade this machine"
+        }
+      },
+      "description": "The info w.r.t Agent Upgrade."
     },
     "CloudMetadata": {
       "type": "object",
@@ -499,6 +534,17 @@
           ],
           "description": "Configurable properties that the user can set locally via the azcmagent config command, or remotely via ARM."
         },
+        "agentUpgrade": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AgentUpgrade"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The info w.r.t Agent Upgrade."
+        },
         "clientPublicKey": {
           "type": "string",
           "description": "Public Key that the client provides to be used during initial resource onboarding"
@@ -605,7 +651,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-10"
+            "2022-12-27"
           ]
         },
         "location": {
@@ -802,7 +848,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-10"
+            "2022-12-27"
           ]
         },
         "name": {

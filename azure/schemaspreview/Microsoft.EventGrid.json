@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-10-15-preview/Microsoft.EventGrid.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-06-01-preview/Microsoft.EventGrid.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.EventGrid",
   "description": "Microsoft EventGrid Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "identity": {
@@ -107,7 +107,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -146,7 +146,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -185,7 +185,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -222,7 +222,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -255,13 +255,504 @@
       ],
       "description": "Microsoft.EventGrid/domains/topics/eventSubscriptions"
     },
+    "namespaces": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IdentityInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The identity information for the resource."
+        },
+        "location": {
+          "type": "string",
+          "description": "Location of the resource."
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]*$",
+              "minLength": 3,
+              "maxLength": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Name of the namespace."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/NamespaceProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the namespace resource."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/namespaces_caCertificates_childResource"
+              },
+              {
+                "$ref": "#/definitions/namespaces_clientGroups_childResource"
+              },
+              {
+                "$ref": "#/definitions/namespaces_clients_childResource"
+              },
+              {
+                "$ref": "#/definitions/namespaces_topics_childResource"
+              },
+              {
+                "$ref": "#/definitions/namespaces_permissionBindings_childResource"
+              },
+              {
+                "$ref": "#/definitions/namespaces_privateEndpointConnections_childResource"
+              },
+              {
+                "$ref": "#/definitions/namespaces_topicSpaces_childResource"
+              }
+            ]
+          }
+        },
+        "sku": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/NamespaceSku"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Represents available Sku pricing tiers."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tags of the resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.EventGrid/namespaces"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces"
+    },
+    "namespaces_caCertificates": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]*$",
+              "minLength": 3,
+              "maxLength": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The CA certificate name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CaCertificateProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of CA certificate."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.EventGrid/namespaces/caCertificates"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces/caCertificates"
+    },
+    "namespaces_clientGroups": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]*$",
+              "minLength": 3,
+              "maxLength": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The client group name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ClientGroupProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of client group."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.EventGrid/namespaces/clientGroups"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces/clientGroups"
+    },
+    "namespaces_clients": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-a-zA-Z0-9:\\._]*$",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The client name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ClientProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of client."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.EventGrid/namespaces/clients"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces/clients"
+    },
+    "namespaces_permissionBindings": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]*$",
+              "minLength": 3,
+              "maxLength": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The permission binding name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PermissionBindingProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of permission binding."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.EventGrid/namespaces/permissionBindings"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces/permissionBindings"
+    },
+    "namespaces_privateEndpointConnections": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the private endpoint connection connection."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the private endpoint connection resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.EventGrid/namespaces/privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces/privateEndpointConnections"
+    },
+    "namespaces_topics": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the namespace topic."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/NamespaceTopicProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the namespace topic."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/namespaces_topics_eventSubscriptions_childResource"
+              }
+            ]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.EventGrid/namespaces/topics"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces/topics"
+    },
+    "namespaces_topicSpaces": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]*$",
+              "minLength": 3,
+              "maxLength": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The topic space name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TopicSpaceProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of topic space."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.EventGrid/namespaces/topicSpaces"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces/topicSpaces"
+    },
+    "namespaces_topics_eventSubscriptions": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the event subscription to be created. Event subscription names must be between 3 and 100 characters in length and use alphanumeric letters only."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SubscriptionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the event subscription."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.EventGrid/namespaces/topics/eventSubscriptions"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces/topics/eventSubscriptions"
+    },
     "partnerConfigurations": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "location": {
@@ -321,7 +812,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "location": {
@@ -329,7 +820,17 @@
           "description": "Location of the resource."
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]*$",
+              "minLength": 3,
+              "maxLength": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the partner destination."
         },
         "properties": {
@@ -380,7 +881,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "location": {
@@ -408,9 +909,6 @@
             "oneOf": [
               {
                 "$ref": "#/definitions/partnerNamespaces_channels_childResource"
-              },
-              {
-                "$ref": "#/definitions/partnerNamespaces_eventChannels_childResource"
               },
               {
                 "$ref": "#/definitions/partnerNamespaces_privateEndpointConnections_childResource"
@@ -455,7 +953,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -488,52 +986,13 @@
       ],
       "description": "Microsoft.EventGrid/partnerNamespaces/channels"
     },
-    "partnerNamespaces_eventChannels": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2021-10-15-preview"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "description": "Name of the event channel."
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/EventChannelProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Properties of the Event Channel."
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "Microsoft.EventGrid/partnerNamespaces/eventChannels"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.EventGrid/partnerNamespaces/eventChannels"
-    },
     "partnerNamespaces_privateEndpointConnections": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -572,7 +1031,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "location": {
@@ -631,7 +1090,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "identity": {
@@ -711,7 +1170,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -750,7 +1209,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "identity": {
@@ -830,7 +1289,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -869,7 +1328,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "extendedLocation": {
@@ -989,7 +1448,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -1028,7 +1487,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -1069,7 +1528,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -1282,6 +1741,7 @@
         },
         "resourceId": {
           "type": "string",
+          "format": "arm-id",
           "description": "The Azure Resource Id that represents the endpoint of the Azure Function destination of an event subscription."
         }
       },
@@ -1313,6 +1773,46 @@
       ],
       "description": "BoolEquals Advanced Filter."
     },
+    "BoolEqualsFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "BoolEquals"
+          ]
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The boolean filter value."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "BoolEquals Filter."
+    },
+    "CaCertificateProperties": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Description for the CA Certificate resource."
+        },
+        "encodedCertificate": {
+          "type": "string",
+          "description": "Base64 encoded PEM (Privacy Enhanced Mail) format certificate data."
+        }
+      },
+      "description": "The properties of CA certificate."
+    },
     "ChannelProperties": {
       "type": "object",
       "properties": {
@@ -1329,7 +1829,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The type of the event channel which represents the  direction flow of events."
+          "description": "The type of the event channel which represents the direction flow of events."
         },
         "expirationTimeIfNotActivatedUtc": {
           "type": "string",
@@ -1372,7 +1872,9 @@
                 "Deleting",
                 "Succeeded",
                 "Canceled",
-                "Failed"
+                "Failed",
+                "IdleDueToMirroredPartnerTopicDeletion",
+                "IdleDueToMirroredPartnerDestinationDeletion"
               ]
             },
             {
@@ -1398,6 +1900,225 @@
         }
       },
       "description": "Properties of the Channel."
+    },
+    "ClientAuthentication": {
+      "type": "object",
+      "properties": {
+        "certificateSubject": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ClientCertificateSubjectDistinguishedName"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "CA certificate subject distinguished name information used by service to authenticate clients.\r\nFor more information, see https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.x509certificates.x500distinguishedname?view=net-6.0#remarks"
+        },
+        "certificateThumbprint": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ClientCertificateThumbprint"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Thumbprints are used by the service to validate the device permission when authentication is done using self signed certificate."
+        }
+      },
+      "description": "The Authentication properties for the client."
+    },
+    "ClientAuthenticationSettings": {
+      "type": "object",
+      "properties": {
+        "alternativeAuthenticationNameSources": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ClientCertificateSubject",
+                  "ClientCertificateDns",
+                  "ClientCertificateUri",
+                  "ClientCertificateIp",
+                  "ClientCertificateEmail"
+                ]
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Alternative authentication name sources related to client authentication settings for namespace resource."
+        }
+      },
+      "description": "Client authentication settings for namespace resource."
+    },
+    "ClientCertificateAuthentication": {
+      "type": "object",
+      "properties": {
+        "allowedThumbprints": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of thumbprints that are allowed during client authentication. This property is required only if the validationScheme is 'ThumbprintMatch'."
+        },
+        "validationScheme": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "SubjectMatchesAuthenticationName",
+                "DnsMatchesAuthenticationName",
+                "UriMatchesAuthenticationName",
+                "IpMatchesAuthenticationName",
+                "EmailMatchesAuthenticationName",
+                "ThumbprintMatch"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The validation scheme used to authenticate the client. Default value is SubjectMatchesAuthenticationName."
+        }
+      },
+      "description": "The certificate authentication properties for the client."
+    },
+    "ClientCertificateSubjectDistinguishedName": {
+      "type": "object",
+      "properties": {
+        "commonName": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 64,
+          "description": "The common name field in the subject name. The allowed limit is 64 characters and it should be specified."
+        },
+        "countryCode": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2,
+          "description": "The country code field in the subject name. If present, the country code should be represented by two-letter code defined in ISO 2166-1 (alpha-2). For example: 'US'."
+        },
+        "organization": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 64,
+          "description": "The organization field in the subject name. If present, the allowed limit is 64 characters."
+        },
+        "organizationUnit": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 32,
+          "description": "The organization unit field in the subject name. If present, the allowed limit is 32 characters."
+        }
+      },
+      "description": "CA certificate subject distinguished name information used by service to authenticate clients.\r\nFor more information, see https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.x509certificates.x500distinguishedname?view=net-6.0#remarks"
+    },
+    "ClientCertificateThumbprint": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "type": "string",
+          "description": "The primary thumbprint used for validation."
+        },
+        "secondary": {
+          "type": "string",
+          "description": "The secondary thumbprint used for validation."
+        }
+      },
+      "description": "Thumbprints are used by the service to validate the device permission when authentication is done using self signed certificate."
+    },
+    "ClientGroupProperties": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Description for the Client Group resource."
+        },
+        "query": {
+          "type": "string",
+          "description": "The grouping query for the clients.\r\nExample : attributes.keyName IN ['a', 'b', 'c']."
+        }
+      },
+      "description": "The properties of client group."
+    },
+    "ClientProperties": {
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {}
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Attributes for the client. Supported values are int, bool, string, string[].\r\nExample:\r\n\"attributes\": { \"room\": \"345\", \"floor\": 12, \"deviceTypes\": [\"Fan\", \"Light\"] }"
+        },
+        "authentication": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ClientAuthentication"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The Authentication properties for the client."
+        },
+        "authenticationName": {
+          "type": "string",
+          "description": "The name presented by the client for authentication. The default value is the name of the resource."
+        },
+        "clientCertificateAuthentication": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ClientCertificateAuthentication"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The certificate authentication properties for the client."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description for the Client resource."
+        },
+        "state": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates if the client is enabled or not. Default value is Enabled."
+        }
+      },
+      "description": "The properties of client."
     },
     "ConnectionState": {
       "type": "object",
@@ -1486,6 +2207,37 @@
       },
       "description": "Delivery attribute mapping details."
     },
+    "DeliveryConfiguration": {
+      "type": "object",
+      "properties": {
+        "deliveryMode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Queue"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Delivery mode of the event subscription."
+        },
+        "queue": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/QueueInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the Queue info for event subscription."
+        }
+      },
+      "description": "Properties of the delivery configuration information of the event subscription."
+    },
     "DeliveryWithResourceIdentity": {
       "type": "object",
       "properties": {
@@ -1568,6 +2320,17 @@
           ],
           "description": "This boolean is used to enable or disable local auth. Default value is false. When the property is set to true, only AAD token will be used to authenticate if user is allowed to publish to the domain."
         },
+        "eventTypeInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/EventTypeInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The event type information for Channels."
+        },
         "inboundIpRules": {
           "oneOf": [
             {
@@ -1609,6 +2372,22 @@
           ],
           "description": "By default, Event Grid expects events to be in the Event Grid event schema. Specifying an input schema mapping enables publishing to Event Grid using a custom input schema. Currently, the only supported type of InputSchemaMapping is 'JsonInputSchemaMapping'."
         },
+        "minimumTlsVersionAllowed": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Minimum TLS version of the publisher allowed to publish to this domain."
+        },
         "publicNetworkAccess": {
           "oneOf": [
             {
@@ -1633,7 +2412,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -1672,7 +2451,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -1711,7 +2490,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -1738,7 +2517,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -1807,113 +2586,18 @@
       },
       "description": "Properties of dynamic delivery attribute mapping."
     },
-    "EventChannelDestination": {
+    "DynamicRoutingEnrichment": {
       "type": "object",
       "properties": {
-        "azureSubscriptionId": {
+        "key": {
           "type": "string",
-          "description": "Azure subscription ID of the customer creating the event channel. The partner topic\r\nassociated with the event channel will be created under this Azure subscription."
+          "description": "Dynamic routing enrichment key."
         },
-        "partnerTopicName": {
+        "value": {
           "type": "string",
-          "description": "Name of the partner topic associated with the event channel."
-        },
-        "resourceGroup": {
-          "type": "string",
-          "description": "Azure Resource Group of the customer creating the event channel. The partner topic\r\nassociated with the event channel will be created under this resource group."
+          "description": "Dynamic routing enrichment value."
         }
-      },
-      "description": "Properties of the destination of an event channel."
-    },
-    "EventChannelFilter": {
-      "type": "object",
-      "properties": {
-        "advancedFilters": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/AdvancedFilter"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "An array of advanced filters that are used for filtering event channels."
-        },
-        "enableAdvancedFilteringOnArrays": {
-          "oneOf": [
-            {
-              "type": "boolean",
-              "default": false
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Allows advanced filters to be evaluated against an array of values instead of expecting a singular value. The default value is either false or null."
-        }
-      },
-      "description": "Filter for the Event Channel."
-    },
-    "EventChannelProperties": {
-      "type": "object",
-      "properties": {
-        "destination": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/EventChannelDestination"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Properties of the destination of an event channel."
-        },
-        "expirationTimeIfNotActivatedUtc": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Expiration time of the event channel. If this timer expires while the corresponding partner topic is never activated,\r\nthe event channel and corresponding partner topic are deleted."
-        },
-        "filter": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/EventChannelFilter"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Filter for the Event Channel."
-        },
-        "partnerTopicFriendlyDescription": {
-          "type": "string",
-          "description": "Friendly description about the topic. This can be set by the publisher/partner to show custom description for the customer partner topic.\r\nThis will be helpful to remove any ambiguity of the origin of creation of the partner topic for the customer."
-        },
-        "source": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/EventChannelSource"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Properties of the source of an event channel."
-        }
-      },
-      "description": "Properties of the Event Channel."
-    },
-    "EventChannelSource": {
-      "type": "object",
-      "properties": {
-        "source": {
-          "type": "string",
-          "description": "The identifier of the resource that's the source of the events.\r\nThis represents a unique resource in the partner's resource model."
-        }
-      },
-      "description": "Properties of the source of an event channel."
+      }
     },
     "EventHubEventSubscriptionDestination": {
       "type": "object",
@@ -1960,6 +2644,7 @@
         },
         "resourceId": {
           "type": "string",
+          "format": "arm-id",
           "description": "The Azure Resource Id that represents the endpoint of an Event Hub destination of an event subscription."
         }
       },
@@ -2242,6 +2927,109 @@
       },
       "description": "Definition of an Extended Location"
     },
+    "Filter": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/NumberInFilter"
+        },
+        {
+          "$ref": "#/definitions/NumberNotInFilter"
+        },
+        {
+          "$ref": "#/definitions/NumberLessThanFilter"
+        },
+        {
+          "$ref": "#/definitions/NumberGreaterThanFilter"
+        },
+        {
+          "$ref": "#/definitions/NumberLessThanOrEqualsFilter"
+        },
+        {
+          "$ref": "#/definitions/NumberGreaterThanOrEqualsFilter"
+        },
+        {
+          "$ref": "#/definitions/BoolEqualsFilter"
+        },
+        {
+          "$ref": "#/definitions/StringInFilter"
+        },
+        {
+          "$ref": "#/definitions/StringNotInFilter"
+        },
+        {
+          "$ref": "#/definitions/StringBeginsWithFilter"
+        },
+        {
+          "$ref": "#/definitions/StringEndsWithFilter"
+        },
+        {
+          "$ref": "#/definitions/StringContainsFilter"
+        },
+        {
+          "$ref": "#/definitions/NumberInRangeFilter"
+        },
+        {
+          "$ref": "#/definitions/NumberNotInRangeFilter"
+        },
+        {
+          "$ref": "#/definitions/StringNotBeginsWithFilter"
+        },
+        {
+          "$ref": "#/definitions/StringNotEndsWithFilter"
+        },
+        {
+          "$ref": "#/definitions/StringNotContainsFilter"
+        },
+        {
+          "$ref": "#/definitions/IsNullOrUndefinedFilter"
+        },
+        {
+          "$ref": "#/definitions/IsNotNullFilter"
+        }
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "The field/property in the event based on which you want to filter."
+        }
+      },
+      "description": "This is the base type that represents a filter. To configure a filter, do not directly instantiate an object of this class. Instead, instantiate\r\nan object of a derived class such as BoolEqualsFilter, NumberInFilter, StringEqualsFilter etc depending on the type of the key based on\r\nwhich you want to filter."
+    },
+    "FiltersConfiguration": {
+      "type": "object",
+      "properties": {
+        "filters": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Filter"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "An array of filters that are used for filtering event subscriptions."
+        },
+        "includedEventTypes": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A list of applicable event types that need to be part of the event subscription. If it is desired to subscribe to all default event types, set the IncludedEventTypes to null."
+        }
+      },
+      "description": "Filters configuration for the Event Subscription."
+    },
     "HybridConnectionEventSubscriptionDestination": {
       "type": "object",
       "properties": {
@@ -2287,6 +3075,7 @@
         },
         "resourceId": {
           "type": "string",
+          "format": "arm-id",
           "description": "The Azure Resource ID of an hybrid connection that is the destination of an event subscription."
         }
       },
@@ -2372,6 +3161,10 @@
           "type": "string",
           "description": "The description for the inline event."
         },
+        "displayName": {
+          "type": "string",
+          "description": "The displayName for the inline event."
+        },
         "documentationUrl": {
           "type": "string",
           "description": "The documentationUrl for the inline event."
@@ -2404,6 +3197,21 @@
       ],
       "description": "IsNotNull Advanced Filter."
     },
+    "IsNotNullFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "IsNotNull"
+          ]
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "IsNotNull Filter."
+    },
     "IsNullOrUndefinedAdvancedFilter": {
       "type": "object",
       "properties": {
@@ -2418,6 +3226,21 @@
         "operatorType"
       ],
       "description": "IsNullOrUndefined Advanced Filter."
+    },
+    "IsNullOrUndefinedFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "IsNullOrUndefined"
+          ]
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "IsNullOrUndefined Filter."
     },
     "JsonField": {
       "type": "object",
@@ -2541,6 +3364,541 @@
       },
       "description": "This can be used to map properties of a source schema (or default values, for certain supported properties) to properties of the EventGridEvent schema."
     },
+    "NamespaceProperties": {
+      "type": "object",
+      "properties": {
+        "inboundIpRules": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/InboundIpRule"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "This can be used to restrict traffic from specific IPs instead of all IPs. Note: These are considered only if PublicNetworkAccess is enabled."
+        },
+        "isZoneRedundant": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Allows the user to specify if the service is zone-redundant. This is a required property and user needs to specify this value explicitly.\r\nOnce specified, this property cannot be updated."
+        },
+        "minimumTlsVersionAllowed": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Minimum TLS version of the publisher allowed to publish to this namespace. Only TLS version 1.2 is supported."
+        },
+        "privateEndpointConnections": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PrivateEndpointConnection"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "publicNetworkAccess": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "This determines if traffic is allowed over public network. By default it is enabled.\r\nYou can further restrict to specific IPs by configuring <seealso cref=\"P:Microsoft.Azure.Events.ResourceProvider.Common.Contracts.PubSub.NamespaceProperties.InboundIpRules\" />."
+        },
+        "topicsConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TopicsConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the Topics Configuration."
+        },
+        "topicSpacesConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TopicSpacesConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the Topic Spaces Configuration."
+        }
+      },
+      "description": "Properties of the namespace resource."
+    },
+    "NamespaceSku": {
+      "type": "object",
+      "properties": {
+        "capacity": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies the number of Throughput Units that defines the capacity for the namespace. The property default value is\r\n1 which signifies 1 Throughput Unit = 1MB/s ingress and 2MB/s egress per namespace. Min capacity is 1 and\r\nmax allowed capacity is 20."
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Standard"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the SKU."
+        }
+      },
+      "description": "Represents available Sku pricing tiers."
+    },
+    "namespaces_caCertificates_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]*$",
+              "minLength": 3,
+              "maxLength": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The CA certificate name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CaCertificateProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of CA certificate."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "caCertificates"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces/caCertificates"
+    },
+    "namespaces_clientGroups_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]*$",
+              "minLength": 3,
+              "maxLength": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The client group name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ClientGroupProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of client group."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "clientGroups"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces/clientGroups"
+    },
+    "namespaces_clients_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-a-zA-Z0-9:\\._]*$",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The client name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ClientProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of client."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "clients"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces/clients"
+    },
+    "namespaces_permissionBindings_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]*$",
+              "minLength": 3,
+              "maxLength": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The permission binding name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PermissionBindingProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of permission binding."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "permissionBindings"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces/permissionBindings"
+    },
+    "namespaces_privateEndpointConnections_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the private endpoint connection connection."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the private endpoint connection resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces/privateEndpointConnections"
+    },
+    "namespaces_topicSpaces_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]*$",
+              "minLength": 3,
+              "maxLength": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The topic space name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TopicSpaceProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of topic space."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "topicSpaces"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces/topicSpaces"
+    },
+    "namespaces_topics_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the namespace topic."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/NamespaceTopicProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the namespace topic."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "topics"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces/topics"
+    },
+    "namespaces_topics_eventSubscriptions_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the event subscription to be created. Event subscription names must be between 3 and 100 characters in length and use alphanumeric letters only."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SubscriptionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the event subscription."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "eventSubscriptions"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.EventGrid/namespaces/topics/eventSubscriptions"
+    },
+    "NamespaceTopicProperties": {
+      "type": "object",
+      "properties": {
+        "eventRetentionInDays": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Event retention for the namespace topic expressed in days. The property default value is 1 day.\r\nMin event retention duration value is 1 day and max event retention duration value is 1 day."
+        },
+        "inputSchema": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "CloudEventSchemaV1_0"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "This determines the format that is expected for incoming events published to the topic."
+        },
+        "publisherType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Custom"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Publisher type of the namespace topic."
+        }
+      },
+      "description": "Properties of the namespace topic."
+    },
     "NumberGreaterThanAdvancedFilter": {
       "type": "object",
       "properties": {
@@ -2567,6 +3925,32 @@
       ],
       "description": "NumberGreaterThan Advanced Filter."
     },
+    "NumberGreaterThanFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "NumberGreaterThan"
+          ]
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The filter value."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "NumberGreaterThan Filter."
+    },
     "NumberGreaterThanOrEqualsAdvancedFilter": {
       "type": "object",
       "properties": {
@@ -2592,6 +3976,32 @@
         "operatorType"
       ],
       "description": "NumberGreaterThanOrEquals Advanced Filter."
+    },
+    "NumberGreaterThanOrEqualsFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "NumberGreaterThanOrEquals"
+          ]
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The filter value."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "NumberGreaterThanOrEquals Filter."
     },
     "NumberInAdvancedFilter": {
       "type": "object",
@@ -2621,6 +4031,35 @@
         "operatorType"
       ],
       "description": "NumberIn Advanced Filter."
+    },
+    "NumberInFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "NumberIn"
+          ]
+        },
+        "values": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of filter values."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "NumberIn Filter."
     },
     "NumberInRangeAdvancedFilter": {
       "type": "object",
@@ -2654,6 +4093,38 @@
       ],
       "description": "NumberInRange Advanced Filter."
     },
+    "NumberInRangeFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "NumberInRange"
+          ]
+        },
+        "values": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of filter values."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "NumberInRange Filter."
+    },
     "NumberLessThanAdvancedFilter": {
       "type": "object",
       "properties": {
@@ -2680,6 +4151,32 @@
       ],
       "description": "NumberLessThan Advanced Filter."
     },
+    "NumberLessThanFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "NumberLessThan"
+          ]
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The filter value."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "NumberLessThan Filter."
+    },
     "NumberLessThanOrEqualsAdvancedFilter": {
       "type": "object",
       "properties": {
@@ -2705,6 +4202,32 @@
         "operatorType"
       ],
       "description": "NumberLessThanOrEquals Advanced Filter."
+    },
+    "NumberLessThanOrEqualsFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "NumberLessThanOrEquals"
+          ]
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The filter value."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "NumberLessThanOrEquals Filter."
     },
     "NumberNotInAdvancedFilter": {
       "type": "object",
@@ -2734,6 +4257,35 @@
         "operatorType"
       ],
       "description": "NumberNotIn Advanced Filter."
+    },
+    "NumberNotInFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "NumberNotIn"
+          ]
+        },
+        "values": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of filter values."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "NumberNotIn Filter."
     },
     "NumberNotInRangeAdvancedFilter": {
       "type": "object",
@@ -2766,6 +4318,38 @@
         "operatorType"
       ],
       "description": "NumberNotInRange Advanced Filter."
+    },
+    "NumberNotInRangeFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "NumberNotInRange"
+          ]
+        },
+        "values": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of filter values."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "NumberNotInRange Filter."
     },
     "Partner": {
       "type": "object",
@@ -2958,25 +4542,6 @@
             }
           ],
           "description": "The immutable Id of the corresponding partner registration."
-        },
-        "provisioningState": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "Creating",
-                "Updating",
-                "Deleting",
-                "Succeeded",
-                "Canceled",
-                "Failed"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Provisioning state of the partner destination."
         }
       },
       "description": "Properties of the Partner Destination."
@@ -3043,6 +4608,22 @@
           ],
           "description": "This can be used to restrict traffic from specific IPs instead of all IPs. Note: These are considered only if PublicNetworkAccess is enabled."
         },
+        "minimumTlsVersionAllowed": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Minimum TLS version of the publisher allowed to publish to this partner namespace."
+        },
         "partnerRegistrationFullyQualifiedId": {
           "type": "string",
           "description": "The fully qualified ARM Id of the partner registration that should be associated with this partner namespace. This takes the following format:\r\n/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/partnerRegistrations/{partnerRegistrationName}."
@@ -3086,7 +4667,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -3119,52 +4700,13 @@
       ],
       "description": "Microsoft.EventGrid/partnerNamespaces/channels"
     },
-    "partnerNamespaces_eventChannels_childResource": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2021-10-15-preview"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "description": "Name of the event channel."
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/EventChannelProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Properties of the Event Channel."
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "eventChannels"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.EventGrid/partnerNamespaces/eventChannels"
-    },
     "partnerNamespaces_privateEndpointConnections_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -3200,44 +4742,6 @@
     "PartnerRegistrationProperties": {
       "type": "object",
       "properties": {
-        "authorizedAzureSubscriptionIds": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "List of Azure subscription Ids that are authorized to create a partner namespace\r\nassociated with this partner registration. This is an optional property. Creating\r\npartner namespaces is always permitted under the same Azure subscription as the one used\r\nfor creating the partner registration."
-        },
-        "customerServiceUri": {
-          "type": "string",
-          "description": "The extension of the customer service URI of the publisher."
-        },
-        "logoUri": {
-          "type": "string",
-          "description": "URI of the logo."
-        },
-        "longDescription": {
-          "type": "string",
-          "description": "Long description for the custom scenarios and integration to be displayed in the portal if needed.\r\nLength of this description should not exceed 2048 characters."
-        },
-        "partnerCustomerServiceExtension": {
-          "type": "string",
-          "description": "The extension of the customer service number of the publisher. Only digits are allowed and number of digits should not exceed 10."
-        },
-        "partnerCustomerServiceNumber": {
-          "type": "string",
-          "description": "The customer service number of the publisher. The expected phone format should start with a '+' sign \r\nfollowed by the country code. The remaining digits are then followed. Only digits and spaces are allowed and its\r\nlength cannot exceed 16 digits including country code. Examples of valid phone numbers are: +1 515 123 4567 and\r\n+966 7 5115 2471. Examples of invalid phone numbers are: +1 (515) 123-4567, 1 515 123 4567 and +966 121 5115 24 7 551 1234 43"
-        },
-        "partnerName": {
-          "type": "string",
-          "description": "Official name of the partner name. For example: \"Contoso\"."
-        },
         "partnerRegistrationImmutableId": {
           "oneOf": [
             {
@@ -3248,39 +4752,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The immutableId of the corresponding partner registration."
-        },
-        "partnerResourceTypeDescription": {
-          "type": "string",
-          "description": "Short description of the partner resource type. The length of this description should not exceed 256 characters."
-        },
-        "partnerResourceTypeDisplayName": {
-          "type": "string",
-          "description": "Display name of the partner resource type."
-        },
-        "partnerResourceTypeName": {
-          "type": "string",
-          "description": "Name of the partner resource type."
-        },
-        "setupUri": {
-          "type": "string",
-          "description": "URI of the partner website that can be used by Azure customers to setup Event Grid\r\nintegration on an event source."
-        },
-        "visibilityState": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "Hidden",
-                "PublicPreview",
-                "GenerallyAvailable"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Visibility state of the partner registration."
+          "description": "The immutableId of the corresponding partner registration.\r\nNote: This property is marked for deprecation and is not supported in any future GA API version"
         }
       },
       "description": "Properties of the partner registration."
@@ -3386,7 +4858,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -3419,6 +4891,39 @@
       ],
       "description": "Microsoft.EventGrid/partnerTopics/eventSubscriptions"
     },
+    "PermissionBindingProperties": {
+      "type": "object",
+      "properties": {
+        "clientGroupName": {
+          "type": "string",
+          "description": "The name of the client group resource that the permission is bound to.\r\nThe client group needs to be a resource under the same namespace the permission binding is a part of."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description for the Permission Binding resource."
+        },
+        "permission": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Publisher",
+                "Subscriber"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The allowed permission."
+        },
+        "topicSpaceName": {
+          "type": "string",
+          "description": "The name of the Topic Space resource that the permission is bound to.\r\nThe Topic space needs to be a resource under the same namespace the permission binding is a part of."
+        }
+      },
+      "description": "The properties of permission binding."
+    },
     "PrivateEndpoint": {
       "type": "object",
       "properties": {
@@ -3428,6 +4933,22 @@
         }
       },
       "description": "PrivateEndpoint information."
+    },
+    "PrivateEndpointConnection": {
+      "type": "object",
+      "properties": {
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the private endpoint connection resource."
+        }
+      }
     },
     "PrivateEndpointConnectionProperties": {
       "type": "object",
@@ -3489,6 +5010,50 @@
         }
       },
       "description": "Properties of the private endpoint connection resource."
+    },
+    "QueueInfo": {
+      "type": "object",
+      "properties": {
+        "deadLetterDestinationWithResourceIdentity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DeadLetterWithResourceIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Information about the deadletter destination with resource identity."
+        },
+        "eventTimeToLive": {
+          "type": "string",
+          "format": "duration",
+          "description": "Time span duration in ISO 8601 format that determines how long messages are available to the subscription from the time the message was published.\r\nThis duration value is expressed using the following format: \\'P(n)Y(n)M(n)DT(n)H(n)M(n)S\\', where:\r\n    - (n) is replaced by the value of each time element that follows the (n).\r\n    - P is the duration (or Period) designator and is always placed at the beginning of the duration.\r\n    - Y is the year designator, and it follows the value for the number of years.\r\n    - M is the month designator, and it follows the value for the number of months.\r\n    - W is the week designator, and it follows the value for the number of weeks.\r\n    - D is the day designator, and it follows the value for the number of days.\r\n    - T is the time designator, and it precedes the time components.\r\n    - H is the hour designator, and it follows the value for the number of hours.\r\n    - M is the minute designator, and it follows the value for the number of minutes.\r\n    - S is the second designator, and it follows the value for the number of seconds.\r\nThis duration value cannot be set greater than the topic’s EventRetentionInDays. It is is an optional field where its minimum value is 1 minute, and its maximum is determined\r\nby topic’s EventRetentionInDays value. The followings are examples of valid values:\r\n    - \\'P0DT23H12M\\' or \\'PT23H12M\\': for duration of 23 hours and 12 minutes.\r\n    - \\'P1D\\' or \\'P1DT0H0M0S\\': for duration of 1 day."
+        },
+        "maxDeliveryCount": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The maximum delivery count of the events."
+        },
+        "receiveLockDurationInSeconds": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Maximum period in seconds in which once the message is in received (by the client) state and waiting to be accepted, released or rejected.\r\nIf this time elapsed after a message has been received by the client and not transitioned into accepted (not processed), released or rejected,\r\nthe message is available for redelivery. This is an optional field, where default is 60 seconds, minimum is 60 seconds and maximum is 300 seconds."
+        }
+      },
+      "description": "Properties of the Queue info for event subscription."
     },
     "ResourceMoveChangeHistory": {
       "type": "object",
@@ -3560,6 +5125,61 @@
       },
       "description": "Information about the retry policy for an event subscription."
     },
+    "RoutingEnrichments": {
+      "type": "object",
+      "properties": {
+        "dynamic": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DynamicRoutingEnrichment"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "static": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StaticRoutingEnrichment"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        }
+      }
+    },
+    "RoutingIdentityInfo": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "SystemAssigned",
+                "UserAssigned"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "userAssignedIdentity": {
+          "type": "string"
+        }
+      },
+      "description": "Routing identity info for topic spaces configuration."
+    },
     "ServiceBusQueueEventSubscriptionDestination": {
       "type": "object",
       "properties": {
@@ -3605,6 +5225,7 @@
         },
         "resourceId": {
           "type": "string",
+          "format": "arm-id",
           "description": "The Azure Resource Id that represents the endpoint of the Service Bus destination of an event subscription."
         }
       },
@@ -3655,6 +5276,7 @@
         },
         "resourceId": {
           "type": "string",
+          "format": "arm-id",
           "description": "The Azure Resource Id that represents the endpoint of the Service Bus Topic destination of an event subscription."
         }
       },
@@ -3708,6 +5330,29 @@
       },
       "description": "Properties of static delivery attribute mapping."
     },
+    "StaticRoutingEnrichment": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Static routing enrichment key."
+        },
+        "valueType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "String"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Static routing enrichment value type. For e.g. this property value can be 'String'."
+        }
+      }
+    },
     "StorageBlobDeadLetterDestination": {
       "type": "object",
       "properties": {
@@ -3743,6 +5388,7 @@
         },
         "resourceId": {
           "type": "string",
+          "format": "arm-id",
           "description": "The Azure Resource ID of the storage account that is the destination of the deadletter events"
         }
       },
@@ -3786,7 +5432,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Storage queue message time to live in seconds."
+          "description": "Storage queue message time to live in seconds. This value cannot be zero or negative with the exception of using -1 to indicate that the Time To Live of the message is Infinite."
         },
         "queueName": {
           "type": "string",
@@ -3794,6 +5440,7 @@
         },
         "resourceId": {
           "type": "string",
+          "format": "arm-id",
           "description": "The Azure Resource ID of the storage account that contains the queue that is the destination of an event subscription."
         }
       },
@@ -3828,6 +5475,35 @@
       ],
       "description": "StringBeginsWith Advanced Filter."
     },
+    "StringBeginsWithFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "StringBeginsWith"
+          ]
+        },
+        "values": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of filter values."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "StringBeginsWith Filter."
+    },
     "StringContainsAdvancedFilter": {
       "type": "object",
       "properties": {
@@ -3856,6 +5532,35 @@
         "operatorType"
       ],
       "description": "StringContains Advanced Filter."
+    },
+    "StringContainsFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "StringContains"
+          ]
+        },
+        "values": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of filter values."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "StringContains Filter."
     },
     "StringEndsWithAdvancedFilter": {
       "type": "object",
@@ -3886,6 +5591,35 @@
       ],
       "description": "StringEndsWith Advanced Filter."
     },
+    "StringEndsWithFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "StringEndsWith"
+          ]
+        },
+        "values": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of filter values."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "StringEndsWith Filter."
+    },
     "StringInAdvancedFilter": {
       "type": "object",
       "properties": {
@@ -3914,6 +5648,35 @@
         "operatorType"
       ],
       "description": "StringIn Advanced Filter."
+    },
+    "StringInFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "StringIn"
+          ]
+        },
+        "values": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of filter values."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "StringIn Filter."
     },
     "StringNotBeginsWithAdvancedFilter": {
       "type": "object",
@@ -3944,6 +5707,35 @@
       ],
       "description": "StringNotBeginsWith Advanced Filter."
     },
+    "StringNotBeginsWithFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "StringNotBeginsWith"
+          ]
+        },
+        "values": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of filter values."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "StringNotBeginsWith Filter."
+    },
     "StringNotContainsAdvancedFilter": {
       "type": "object",
       "properties": {
@@ -3972,6 +5764,35 @@
         "operatorType"
       ],
       "description": "StringNotContains Advanced Filter."
+    },
+    "StringNotContainsFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "StringNotContains"
+          ]
+        },
+        "values": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of filter values."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "StringNotContains Filter."
     },
     "StringNotEndsWithAdvancedFilter": {
       "type": "object",
@@ -4002,6 +5823,35 @@
       ],
       "description": "StringNotEndsWith Advanced Filter."
     },
+    "StringNotEndsWithFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "StringNotEndsWith"
+          ]
+        },
+        "values": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of filter values."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "StringNotEndsWith Filter."
+    },
     "StringNotInAdvancedFilter": {
       "type": "object",
       "properties": {
@@ -4031,6 +5881,77 @@
       ],
       "description": "StringNotIn Advanced Filter."
     },
+    "StringNotInFilter": {
+      "type": "object",
+      "properties": {
+        "operatorType": {
+          "type": "string",
+          "enum": [
+            "StringNotIn"
+          ]
+        },
+        "values": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of filter values."
+        }
+      },
+      "required": [
+        "operatorType"
+      ],
+      "description": "StringNotIn Filter."
+    },
+    "SubscriptionProperties": {
+      "type": "object",
+      "properties": {
+        "deliveryConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DeliveryConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of the delivery configuration information of the event subscription."
+        },
+        "eventDeliverySchema": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "CloudEventSchemaV1_0"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The event delivery schema for the event subscription."
+        },
+        "filtersConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FiltersConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Filters configuration for the Event Subscription."
+        }
+      },
+      "description": "Properties of the event subscription."
+    },
     "SystemTopicProperties": {
       "type": "object",
       "properties": {
@@ -4051,7 +5972,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -4114,6 +6035,17 @@
           ],
           "description": "This boolean is used to enable or disable local auth. Default value is false. When the property is set to true, only AAD token will be used to authenticate if user is allowed to publish to the topic."
         },
+        "eventTypeInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/EventTypeInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The event type information for Channels."
+        },
         "inboundIpRules": {
           "oneOf": [
             {
@@ -4155,6 +6087,22 @@
           ],
           "description": "By default, Event Grid expects events to be in the Event Grid event schema. Specifying an input schema mapping enables publishing to Event Grid using a custom input schema. Currently, the only supported type of InputSchemaMapping is 'JsonInputSchemaMapping'."
         },
+        "minimumTlsVersionAllowed": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Minimum TLS version of the publisher allowed to publish to this topic."
+        },
         "publicNetworkAccess": {
           "oneOf": [
             {
@@ -4173,13 +6121,121 @@
       },
       "description": "Properties of the Topic."
     },
+    "TopicsConfiguration": {
+      "type": "object",
+      "properties": {},
+      "description": "Properties of the Topics Configuration."
+    },
+    "TopicSpaceProperties": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Description for the Topic Space resource."
+        },
+        "topicTemplates": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The topic filters in the topic space.\r\nExample: \"topicTemplates\": [ \r\n              \"devices/foo/bar\",\r\n              \"devices/topic1/+\",\r\n              \"devices/${principal.name}/${principal.attributes.keyName}\" ]."
+        }
+      },
+      "description": "The properties of topic space."
+    },
+    "TopicSpacesConfiguration": {
+      "type": "object",
+      "properties": {
+        "clientAuthentication": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ClientAuthenticationSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Client authentication settings for namespace resource."
+        },
+        "maximumClientSessionsPerAuthenticationName": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The maximum number of sessions per authentication name. The property default value is 1.\r\nMin allowed value is 1 and max allowed value is 100."
+        },
+        "maximumSessionExpiryInHours": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The maximum session expiry in hours. The property default value is 1 hour.\r\nMin allowed value is 1 hour and max allowed value is 8 hours."
+        },
+        "routeTopicResourceId": {
+          "type": "string",
+          "description": "Fully qualified Azure Resource Id for the Event Grid Topic to which events will be routed to from TopicSpaces under a namespace.\r\nThis property should be in the following format '/subscriptions/{subId}/resourcegroups/{resourceGroupName}/providers/microsoft.EventGrid/topics/{topicName}'.\r\nThis topic should reside in the same region where namespace is located."
+        },
+        "routingEnrichments": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RoutingEnrichments"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "routingIdentityInfo": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RoutingIdentityInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Routing identity info for topic spaces configuration."
+        },
+        "state": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Disabled",
+                "Enabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicate if Topic Spaces Configuration is enabled for the namespace. Default is Disabled."
+        }
+      },
+      "description": "Properties of the Topic Spaces Configuration."
+    },
     "topics_eventSubscriptions_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -4218,7 +6274,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-10-15-preview"
+            "2023-06-01-preview"
           ]
         },
         "name": {
@@ -4331,6 +6387,22 @@
             }
           ],
           "description": "Maximum number of events per batch."
+        },
+        "minimumTlsVersionAllowed": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Minimum TLS version that should be supported by webhook endpoint."
         },
         "preferredBatchSizeInKilobytes": {
           "oneOf": [

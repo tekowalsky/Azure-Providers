@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-01-01/Microsoft.Cache.Enterprise.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-07-01/Microsoft.Cache.Enterprise.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Cache",
   "description": "Microsoft Cache Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-01-01"
+            "2023-07-01"
           ]
         },
         "location": {
@@ -108,7 +108,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-01-01"
+            "2023-07-01"
           ]
         },
         "name": {
@@ -147,7 +147,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-01-01"
+            "2023-07-01"
           ]
         },
         "name": {
@@ -507,7 +507,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-01-01"
+            "2023-07-01"
           ]
         },
         "name": {
@@ -546,7 +546,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-01-01"
+            "2023-07-01"
           ]
         },
         "name": {

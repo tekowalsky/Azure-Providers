@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-11-20-preview/Microsoft.ElasticSan.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-12-01-preview/Microsoft.ElasticSan.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.ElasticSan",
   "description": "Microsoft ElasticSan Resource Types",
@@ -10,12 +10,12 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-11-20-preview"
+            "2022-12-01-preview"
           ]
         },
         "location": {
           "type": "string",
-          "description": "The geo-location where the resource lives."
+          "description": "The geo-location where the resource lives"
         },
         "name": {
           "oneOf": [
@@ -48,6 +48,9 @@
             "oneOf": [
               {
                 "$ref": "#/definitions/elasticSans_volumegroups_childResource"
+              },
+              {
+                "$ref": "#/definitions/elasticSans_privateEndpointConnections_childResource"
               }
             ]
           }
@@ -65,7 +68,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Azure resource tags."
+          "description": "Resource tags."
         },
         "type": {
           "type": "string",
@@ -76,11 +79,51 @@
       },
       "required": [
         "apiVersion",
+        "location",
         "name",
         "properties",
         "type"
       ],
       "description": "Microsoft.ElasticSan/elasticSans"
+    },
+    "elasticSans_privateEndpointConnections": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-12-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the Private Endpoint connection."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": " Response for PrivateEndpoint connection properties"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ElasticSan/elasticSans/privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ElasticSan/elasticSans/privateEndpointConnections"
     },
     "elasticSans_volumegroups": {
       "type": "object",
@@ -88,7 +131,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-11-20-preview"
+            "2022-12-01-preview"
           ]
         },
         "name": {
@@ -126,21 +169,6 @@
             ]
           }
         },
-        "tags": {
-          "oneOf": [
-            {
-              "type": "object",
-              "additionalProperties": {
-                "type": "string"
-              },
-              "properties": {}
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Azure resource tags."
-        },
         "type": {
           "type": "string",
           "enum": [
@@ -162,7 +190,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-11-20-preview"
+            "2022-12-01-preview"
           ]
         },
         "name": {
@@ -189,21 +217,6 @@
             }
           ],
           "description": "Volume response properties."
-        },
-        "tags": {
-          "oneOf": [
-            {
-              "type": "object",
-              "additionalProperties": {
-                "type": "string"
-              },
-              "properties": {}
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Azure resource tags."
         },
         "type": {
           "type": "string",
@@ -280,13 +293,52 @@
       ],
       "description": "Elastic San response properties."
     },
+    "elasticSans_privateEndpointConnections_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2022-12-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the Private Endpoint connection."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": " Response for PrivateEndpoint connection properties"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ElasticSan/elasticSans/privateEndpointConnections"
+    },
     "elasticSans_volumegroups_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-11-20-preview"
+            "2022-12-01-preview"
           ]
         },
         "name": {
@@ -314,21 +366,6 @@
           ],
           "description": "VolumeGroup response properties."
         },
-        "tags": {
-          "oneOf": [
-            {
-              "type": "object",
-              "additionalProperties": {
-                "type": "string"
-              },
-              "properties": {}
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Azure resource tags."
-        },
         "type": {
           "type": "string",
           "enum": [
@@ -350,7 +387,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-11-20-preview"
+            "2022-12-01-preview"
           ]
         },
         "name": {
@@ -377,21 +414,6 @@
             }
           ],
           "description": "Volume response properties."
-        },
-        "tags": {
-          "oneOf": [
-            {
-              "type": "object",
-              "additionalProperties": {
-                "type": "string"
-              },
-              "properties": {}
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Azure resource tags."
         },
         "type": {
           "type": "string",
@@ -475,6 +497,87 @@
         }
       },
       "description": "A set of rules governing the network accessibility."
+    },
+    "PrivateEndpoint": {
+      "type": "object",
+      "properties": {},
+      "description": "Response for PrivateEndpoint"
+    },
+    "PrivateEndpointConnectionProperties": {
+      "type": "object",
+      "properties": {
+        "groupIds": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": " List of resources private endpoint is mapped"
+        },
+        "privateEndpoint": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpoint"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Response for PrivateEndpoint"
+        },
+        "privateLinkServiceConnectionState": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateLinkServiceConnectionState"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Response for Private Link Service Connection state"
+        }
+      },
+      "required": [
+        "privateLinkServiceConnectionState"
+      ],
+      "description": " Response for PrivateEndpoint connection properties"
+    },
+    "PrivateLinkServiceConnectionState": {
+      "type": "object",
+      "properties": {
+        "actionsRequired": {
+          "type": "string",
+          "description": "A message indicating if changes on the service provider require any updates on the consumer."
+        },
+        "description": {
+          "type": "string",
+          "description": "The reason for approval/rejection of the connection."
+        },
+        "status": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Pending",
+                "Approved",
+                "Failed",
+                "Rejected"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service."
+        }
+      },
+      "description": "Response for Private Link Service Connection state"
     },
     "Sku": {
       "type": "object",
@@ -667,6 +770,9 @@
           "description": "Iscsi target information"
         }
       },
+      "required": [
+        "sizeGiB"
+      ],
       "description": "Volume response properties."
     }
   }

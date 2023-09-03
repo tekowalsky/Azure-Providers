@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-08-01/Microsoft.Migrate.ResourceMover.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-08-01/Microsoft.Migrate.ResourceMover.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Migrate",
   "description": "Microsoft Migrate Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01"
+            "2023-08-01"
           ]
         },
         "identity": {
@@ -89,7 +89,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01"
+            "2023-08-01"
           ]
         },
         "name": {
@@ -384,6 +384,24 @@
     "MoveCollectionProperties": {
       "type": "object",
       "properties": {
+        "moveRegion": {
+          "type": "string",
+          "description": "Gets or sets the move region which indicates the region where the VM Regional to Zonal move will be conducted."
+        },
+        "moveType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "RegionToRegion",
+                "RegionToZone"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
         "provisioningState": {
           "oneOf": [
             {
@@ -413,10 +431,6 @@
           "description": "Gets or sets the version of move collection."
         }
       },
-      "required": [
-        "sourceRegion",
-        "targetRegion"
-      ],
       "description": "Defines the move collection properties."
     },
     "moveCollections_moveResources_childResource": {
@@ -425,7 +439,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01"
+            "2023-08-01"
           ]
         },
         "name": {
@@ -905,9 +919,6 @@
           "description": "Gets or sets the target Resource name."
         }
       },
-      "required": [
-        "targetResourceName"
-      ],
       "description": "Gets or sets the resource settings."
     },
     "SqlDatabaseResourceSettings": {

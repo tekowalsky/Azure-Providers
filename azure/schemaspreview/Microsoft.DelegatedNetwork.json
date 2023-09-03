@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2020-08-08-preview/Microsoft.DelegatedNetwork.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-06-27-preview/Microsoft.DelegatedNetwork.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.DelegatedNetwork",
   "description": "Microsoft DelegatedNetwork Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-08-08-preview"
+            "2023-06-27-preview"
           ]
         },
         "location": {
@@ -30,6 +30,17 @@
             }
           ],
           "description": "The name of the resource. It must be a minimum of 3 characters, and a maximum of 63."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DelegatedControllerProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of Delegated controller resource."
         },
         "tags": {
           "oneOf": [
@@ -56,6 +67,7 @@
       "required": [
         "apiVersion",
         "name",
+        "properties",
         "type"
       ],
       "description": "Microsoft.DelegatedNetwork/controller"
@@ -66,7 +78,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-08-08-preview"
+            "2023-06-27-preview"
           ]
         },
         "location": {
@@ -86,6 +98,17 @@
             }
           ],
           "description": "The name of the resource. It must be a minimum of 3 characters, and a maximum of 63."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DelegatedSubnetProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of delegated subnet"
         },
         "tags": {
           "oneOf": [
@@ -112,6 +135,7 @@
       "required": [
         "apiVersion",
         "name",
+        "properties",
         "type"
       ],
       "description": "Microsoft.DelegatedNetwork/delegatedSubnets"
@@ -122,7 +146,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-08-08-preview"
+            "2023-06-27-preview"
           ]
         },
         "identity": {
@@ -221,6 +245,68 @@
       },
       "description": "controller details"
     },
+    "DelegatedControllerProperties": {
+      "type": "object",
+      "properties": {
+        "purpose": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "test",
+                "prod"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The purpose of the dnc controller resource."
+        }
+      },
+      "description": "Properties of Delegated controller resource."
+    },
+    "DelegatedSubnetProperties": {
+      "type": "object",
+      "properties": {
+        "allocationBlockPrefixSize": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 24,
+              "maximum": 30
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Defines prefix size of CIDR blocks allocated to nodes in VnetBlock Mode.\r\nDelegated subnet's prefix size should be smaller than this by a minimum of 3."
+        },
+        "controllerDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ControllerDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "controller details"
+        },
+        "subnetDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SubnetDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of orchestrator"
+        }
+      },
+      "description": "Properties of delegated subnet"
+    },
     "OrchestratorIdentity": {
       "type": "object",
       "properties": {
@@ -246,7 +332,7 @@
       "properties": {
         "apiServerEndpoint": {
           "type": "string",
-          "description": "K8s APIServer url"
+          "description": "K8s APIServer url. Either one of apiServerEndpoint or privateLinkResourceId can be specified"
         },
         "clusterRootCA": {
           "type": "string",
@@ -270,11 +356,25 @@
         "orchestratorTenantId": {
           "type": "string",
           "description": "TenantID of server App ID"
+        },
+        "privateLinkResourceId": {
+          "type": "string",
+          "description": "private link arm resource id. Either one of apiServerEndpoint or privateLinkResourceId can be specified"
         }
       },
       "required": [
         "controllerDetails"
       ],
+      "description": "Properties of orchestrator"
+    },
+    "SubnetDetails": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "subnet arm resource id"
+        }
+      },
       "description": "Properties of orchestrator"
     }
   }

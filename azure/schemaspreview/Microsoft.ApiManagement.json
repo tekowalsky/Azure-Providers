@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-04-01-preview/Microsoft.ApiManagement.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-03-01-preview/Microsoft.ApiManagement.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.ApiManagement",
   "description": "Microsoft ApiManagement Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "identity": {
@@ -67,10 +67,10 @@
                 "$ref": "#/definitions/service_apiVersionSets_childResource"
               },
               {
-                "$ref": "#/definitions/service_authorizationServers_childResource"
+                "$ref": "#/definitions/service_authorizationProviders_childResource"
               },
               {
-                "$ref": "#/definitions/service_authorizationProviders_childResource"
+                "$ref": "#/definitions/service_authorizationServers_childResource"
               },
               {
                 "$ref": "#/definitions/service_backends_childResource"
@@ -86,6 +86,9 @@
               },
               {
                 "$ref": "#/definitions/service_diagnostics_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_documentations_childResource"
               },
               {
                 "$ref": "#/definitions/service_templates_childResource"
@@ -143,6 +146,9 @@
               },
               {
                 "$ref": "#/definitions/service_users_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_childResource"
               }
             ]
           }
@@ -210,7 +216,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -244,6 +250,9 @@
                 "$ref": "#/definitions/service_apis_tags_childResource"
               },
               {
+                "$ref": "#/definitions/service_apis_resolvers_childResource"
+              },
+              {
                 "$ref": "#/definitions/service_apis_policies_childResource"
               },
               {
@@ -257,6 +266,9 @@
               },
               {
                 "$ref": "#/definitions/service_apis_tagDescriptions_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_apis_wikis_childResource"
               }
             ]
           }
@@ -282,7 +294,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -331,7 +343,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -393,7 +405,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -442,7 +454,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -491,7 +503,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -545,7 +557,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -592,7 +604,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -629,7 +641,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -676,7 +688,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -719,13 +731,111 @@
       ],
       "description": "Microsoft.ApiManagement/service/apis/releases"
     },
+    "service_apis_resolvers": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Resolver identifier within a GraphQL API. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResolverEntityBaseContract"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "GraphQL API Resolver Entity Base Contract details."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/service_apis_resolvers_policies_childResource"
+              }
+            ]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/apis/resolvers"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/apis/resolvers"
+    },
+    "service_apis_resolvers_policies": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^.*/policy$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The identifier of the Policy."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Policy contract Properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/apis/resolvers/policies"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/apis/resolvers/policies"
+    },
     "service_apis_schemas": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -766,7 +876,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -815,7 +925,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -846,13 +956,59 @@
       ],
       "description": "Microsoft.ApiManagement/service/apis/tags"
     },
+    "service_apis_wikis": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^.*/default$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/WikiContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Wiki contract details"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/apis/wikis"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/apis/wikis"
+    },
     "service_apiVersionSets": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -901,7 +1057,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -960,7 +1116,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1019,7 +1175,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1068,7 +1224,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1117,7 +1273,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1158,7 +1314,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1207,7 +1363,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1256,7 +1412,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1306,7 +1462,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1314,6 +1470,21 @@
           "minLength": 1,
           "maxLength": 80,
           "description": "Content item identifier."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {}
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
         },
         "type": {
           "type": "string",
@@ -1325,6 +1496,7 @@
       "required": [
         "apiVersion",
         "name",
+        "properties",
         "type"
       ],
       "description": "Microsoft.ApiManagement/service/contentTypes/contentItems"
@@ -1335,7 +1507,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1378,13 +1550,62 @@
       ],
       "description": "Microsoft.ApiManagement/service/diagnostics"
     },
+    "service_documentations": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Documentation identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DocumentationContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Markdown documentation details."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/documentations"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/documentations"
+    },
     "service_gateways": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1441,7 +1662,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1482,7 +1703,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1531,7 +1752,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1572,7 +1793,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1623,7 +1844,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1652,7 +1873,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1706,7 +1927,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1754,7 +1975,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1802,7 +2023,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1858,7 +2079,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1885,7 +2106,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1914,7 +2135,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1962,7 +2183,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -2009,7 +2230,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -2058,7 +2279,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -2099,7 +2320,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -2237,7 +2458,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "type": {
@@ -2259,7 +2480,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "id": {
@@ -2302,7 +2523,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -2337,6 +2558,15 @@
               },
               {
                 "$ref": "#/definitions/service_products_policies_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_products_wikis_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_products_apiLinks_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_products_groupLinks_childResource"
               }
             ]
           }
@@ -2356,13 +2586,62 @@
       ],
       "description": "Microsoft.ApiManagement/service/products"
     },
+    "service_products_apiLinks": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product-API link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProductApiLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product-API link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/products/apiLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/products/apiLinks"
+    },
     "service_products_apis": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -2385,13 +2664,62 @@
       ],
       "description": "Microsoft.ApiManagement/service/products/apis"
     },
+    "service_products_groupLinks": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product-Group link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProductGroupLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product-group link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/products/groupLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/products/groupLinks"
+    },
     "service_products_groups": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -2420,7 +2748,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -2467,7 +2795,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -2498,13 +2826,59 @@
       ],
       "description": "Microsoft.ApiManagement/service/products/tags"
     },
+    "service_products_wikis": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^.*/default$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/WikiContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Wiki contract details"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/products/wikis"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/products/wikis"
+    },
     "service_schemas": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -2545,7 +2919,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -2593,7 +2967,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -2621,6 +2995,22 @@
           ],
           "description": "Tag contract Properties."
         },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/service_tags_apiLinks_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_tags_operationLinks_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_tags_productLinks_childResource"
+              }
+            ]
+          }
+        },
         "type": {
           "type": "string",
           "enum": [
@@ -2636,13 +3026,160 @@
       ],
       "description": "Microsoft.ApiManagement/service/tags"
     },
+    "service_tags_apiLinks": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-API link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TagApiLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-API link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/tags/apiLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/tags/apiLinks"
+    },
+    "service_tags_operationLinks": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-operation link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TagOperationLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-operation link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/tags/operationLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/tags/operationLinks"
+    },
+    "service_tags_productLinks": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-product link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TagProductLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-product link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/tags/productLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/tags/productLinks"
+    },
     "service_templates": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -2704,7 +3241,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -2754,7 +3291,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -2788,6 +3325,1278 @@
         "type"
       ],
       "description": "Microsoft.ApiManagement/service/users"
+    },
+    "service_workspaces": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Workspace identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/WorkspaceContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Workspace entity properties."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/service_workspaces_policies_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_namedValues_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_schemas_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_notifications_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_policyFragments_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_groups_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_subscriptions_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_apiVersionSets_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_apis_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_products_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_tags_childResource"
+              }
+            ]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces"
+    },
+    "service_workspaces_apis": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApiCreateOrUpdateProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "API Create or Update Properties."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/service_workspaces_apis_releases_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_apis_operations_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_apis_policies_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_apis_schemas_childResource"
+              }
+            ]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/apis"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/apis"
+    },
+    "service_workspaces_apis_operations": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Operation identifier within an API. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OperationContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Operation Contract Properties"
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/service_workspaces_apis_operations_policies_childResource"
+              }
+            ]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/apis/operations"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/apis/operations"
+    },
+    "service_workspaces_apis_operations_policies": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^.*/policy$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The identifier of the Policy."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Policy contract Properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/apis/operations/policies"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/apis/operations/policies"
+    },
+    "service_workspaces_apis_policies": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^.*/policy$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The identifier of the Policy."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Policy contract Properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/apis/policies"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/apis/policies"
+    },
+    "service_workspaces_apis_releases": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Release identifier within an API. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApiReleaseContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "API Release details"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/apis/releases"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/apis/releases"
+    },
+    "service_workspaces_apis_schemas": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Schema id identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SchemaContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "API Schema create or update contract Properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/apis/schemas"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/apis/schemas"
+    },
+    "service_workspaces_apiVersionSets": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Api Version Set identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApiVersionSetContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of an API Version Set."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/apiVersionSets"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/apiVersionSets"
+    },
+    "service_workspaces_groups": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Group identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GroupCreateParametersProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Parameters supplied to the Create Group operation."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/service_workspaces_groups_users_childResource"
+              }
+            ]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/groups"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/groups"
+    },
+    "service_workspaces_groups_users": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "User identifier. Must be unique in the current API Management service instance."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/groups/users"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/groups/users"
+    },
+    "service_workspaces_namedValues": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Identifier of the NamedValue."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/NamedValueCreateContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "NamedValue Contract properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/namedValues"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/namedValues"
+    },
+    "service_workspaces_notifications": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "RequestPublisherNotificationMessage",
+                "PurchasePublisherNotificationMessage",
+                "NewApplicationNotificationMessage",
+                "BCC",
+                "NewIssuePublisherNotificationMessage",
+                "AccountClosedPublisher",
+                "QuotaLimitApproachingPublisherNotificationMessage"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Notification Name Identifier."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/service_workspaces_notifications_recipientUsers_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_notifications_recipientEmails_childResource"
+              }
+            ]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/notifications"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/notifications"
+    },
+    "service_workspaces_notifications_recipientEmails": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Email identifier."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/notifications/recipientEmails"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/notifications/recipientEmails"
+    },
+    "service_workspaces_notifications_recipientUsers": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "User identifier. Must be unique in the current API Management service instance."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/notifications/recipientUsers"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/notifications/recipientUsers"
+    },
+    "service_workspaces_policies": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^.*/policy$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The identifier of the Policy."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Policy contract Properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/policies"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/policies"
+    },
+    "service_workspaces_policyFragments": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "(^[\\w]+$)|(^[\\w][\\w\\-]+[\\w]$)",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A resource identifier."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyFragmentContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Policy fragment contract properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/policyFragments"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/policyFragments"
+    },
+    "service_workspaces_products": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Product identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProductContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product profile."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/service_workspaces_products_apiLinks_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_products_groupLinks_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_products_policies_childResource"
+              }
+            ]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/products"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/products"
+    },
+    "service_workspaces_products_apiLinks": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product-API link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProductApiLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product-API link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/products/apiLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/products/apiLinks"
+    },
+    "service_workspaces_products_groupLinks": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product-Group link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProductGroupLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product-group link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/products/groupLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/products/groupLinks"
+    },
+    "service_workspaces_products_policies": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^.*/policy$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The identifier of the Policy."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Policy contract Properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/products/policies"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/products/policies"
+    },
+    "service_workspaces_schemas": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Schema id identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GlobalSchemaContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Schema create or update contract Properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/schemas"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/schemas"
+    },
+    "service_workspaces_subscriptions": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Subscription entity Identifier. The entity represents the association between a user and a product in API Management."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SubscriptionCreateParameterProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Parameters supplied to the Create subscription operation."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/subscriptions"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/subscriptions"
+    },
+    "service_workspaces_tags": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TagContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag contract Properties."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/service_workspaces_tags_apiLinks_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_tags_operationLinks_childResource"
+              },
+              {
+                "$ref": "#/definitions/service_workspaces_tags_productLinks_childResource"
+              }
+            ]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/tags"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/tags"
+    },
+    "service_workspaces_tags_apiLinks": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-API link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TagApiLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-API link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/tags/apiLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/tags/apiLinks"
+    },
+    "service_workspaces_tags_operationLinks": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-operation link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TagOperationLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-operation link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/tags/operationLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/tags/operationLinks"
+    },
+    "service_workspaces_tags_productLinks": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-product link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TagProductLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-product link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ApiManagement/service/workspaces/tags/productLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/tags/productLinks"
     }
   },
   "definitions": {
@@ -2941,14 +4750,15 @@
                 "http",
                 "soap",
                 "websocket",
-                "graphql"
+                "graphql",
+                "odata"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Type of API to create. \n * `http` creates a REST API \n * `soap` creates a SOAP pass-through API  \n * `websocket` creates websocket API \n * `graphql` creates GraphQL API."
+          "description": "Type of API to create. \n * `http` creates a REST API \n * `soap` creates a SOAP pass-through API  \n * `websocket` creates websocket API \n * `graphql` creates GraphQL API. \n New types can be added in the future."
         },
         "apiVersion": {
           "type": "string",
@@ -3022,14 +4832,16 @@
                 "openapi+json",
                 "openapi-link",
                 "openapi+json-link",
-                "graphql-link"
+                "graphql-link",
+                "odata",
+                "odata-link"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Format of the Content in which the API is getting imported."
+          "description": "Format of the Content in which the API is getting imported. New formats can be added in the future."
         },
         "isCurrent": {
           "oneOf": [
@@ -3138,7 +4950,8 @@
                 "http",
                 "soap",
                 "websocket",
-                "graphql"
+                "graphql",
+                "odata"
               ]
             },
             {
@@ -3279,6 +5092,17 @@
           ],
           "description": "List of Certificates that need to be installed in the API Management service. Max supported certificates that can be installed is 10."
         },
+        "configurationApi": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ConfigurationApi"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Information regarding the Configuration API of the API Management service."
+        },
         "customProperties": {
           "oneOf": [
             {
@@ -3292,7 +5116,22 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Custom properties of the API Management service.</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TripleDes168` will disable the cipher TLS_RSA_WITH_3DES_EDE_CBC_SHA for all TLS(1.0, 1.1 and 1.2).</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls11` can be used to disable just TLS 1.1.</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls10` can be used to disable TLS 1.0 on an API Management service.</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls11` can be used to disable just TLS 1.1 for communications with backends.</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls10` can be used to disable TLS 1.0 for communications with backends.</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Protocols.Server.Http2` can be used to enable HTTP2 protocol on an API Management service.</br>Not specifying any of these properties on PATCH operation will reset omitted properties' values to their defaults. For all the settings except Http2 the default value is `True` if the service was created on or before April 1st 2018 and `False` otherwise. Http2 setting's default value is `False`.</br></br>You can disable any of next ciphers by using settings `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.[cipher_name]`: TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_256_CBC_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA256, TLS_RSA_WITH_AES_256_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA. For example, `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TLS_RSA_WITH_AES_128_CBC_SHA256`:`false`. The default value is `true` for them.  Note: next ciphers can't be disabled since they are required by Azure CloudService internal components: TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384"
+          "description": "Custom properties of the API Management service.</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TripleDes168` will disable the cipher TLS_RSA_WITH_3DES_EDE_CBC_SHA for all TLS(1.0, 1.1 and 1.2).</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls11` can be used to disable just TLS 1.1.</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls10` can be used to disable TLS 1.0 on an API Management service.</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls11` can be used to disable just TLS 1.1 for communications with backends.</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls10` can be used to disable TLS 1.0 for communications with backends.</br>Setting `Microsoft.WindowsAzure.ApiManagement.Gateway.Protocols.Server.Http2` can be used to enable HTTP2 protocol on an API Management service.</br>Not specifying any of these properties on PATCH operation will reset omitted properties' values to their defaults. For all the settings except Http2 the default value is `True` if the service was created on or before April 1, 2018 and `False` otherwise. Http2 setting's default value is `False`.</br></br>You can disable any of the following ciphers by using settings `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.[cipher_name]`: TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_256_CBC_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA256, TLS_RSA_WITH_AES_256_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA. For example, `Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TLS_RSA_WITH_AES_128_CBC_SHA256`:`false`. The default value is `true` for them.</br> Note: The following ciphers can't be disabled since they are required by internal platform components: TLS_AES_256_GCM_SHA384,TLS_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256"
+        },
+        "developerPortalStatus": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Status of developer portal in this API Management service."
         },
         "disableGateway": {
           "oneOf": [
@@ -3331,6 +5170,21 @@
             }
           ],
           "description": "Custom hostname configuration of the API Management service."
+        },
+        "legacyPortalStatus": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Status of legacy portal in the API Management service."
         },
         "natGatewayState": {
           "oneOf": [
@@ -4057,9 +5911,40 @@
       ],
       "description": "Authorization header information."
     },
+    "BackendCircuitBreaker": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CircuitBreakerRule"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The rules for tripping the backend."
+        }
+      },
+      "description": "The configuration of the backend circuit breaker"
+    },
     "BackendContractProperties": {
       "type": "object",
       "properties": {
+        "circuitBreaker": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BackendCircuitBreaker"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The configuration of the backend circuit breaker"
+        },
         "credentials": {
           "oneOf": [
             {
@@ -4511,6 +6396,114 @@
       ],
       "description": "SSL certificate information."
     },
+    "CircuitBreakerFailureCondition": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The threshold for opening the circuit."
+        },
+        "errorReasons": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The error reasons which are considered as failure."
+        },
+        "interval": {
+          "type": "string",
+          "format": "duration",
+          "description": "The interval during which the failures are counted."
+        },
+        "percentage": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The threshold for opening the circuit."
+        },
+        "statusCodeRanges": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FailureStatusCodeRange"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The status code ranges which are considered as failure."
+        }
+      },
+      "description": "The trip conditions of the circuit breaker"
+    },
+    "CircuitBreakerRule": {
+      "type": "object",
+      "properties": {
+        "failureCondition": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CircuitBreakerFailureCondition"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The trip conditions of the circuit breaker"
+        },
+        "name": {
+          "type": "string",
+          "description": "The rule name."
+        },
+        "tripDuration": {
+          "type": "string",
+          "format": "duration",
+          "description": "The duration for which the circuit will be tripped."
+        }
+      },
+      "description": "Rule configuration to trip the backend."
+    },
+    "ConfigurationApi": {
+      "type": "object",
+      "properties": {
+        "legacyApi": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indication whether or not the legacy Configuration API (v1) should be exposed on the API Management service. Value is optional but must be 'Enabled' or 'Disabled'. If 'Disabled', legacy Configuration API (v1) will not be available for self-hosted gateways. Default value is 'Enabled'."
+        }
+      },
+      "description": "Information regarding the Configuration API of the API Management service."
+    },
     "ContentTypeContractProperties": {
       "type": "object",
       "properties": {
@@ -4723,6 +6716,20 @@
       ],
       "description": "Diagnostic Entity Properties"
     },
+    "DocumentationContractProperties": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "Markdown documentation content."
+        },
+        "title": {
+          "type": "string",
+          "description": "documentation title."
+        }
+      },
+      "description": "Markdown documentation details."
+    },
     "EmailTemplateParametersContractProperties": {
       "type": "object",
       "properties": {
@@ -4801,6 +6808,38 @@
         }
       },
       "description": "Email Template Update Contract properties."
+    },
+    "FailureStatusCodeRange": {
+      "type": "object",
+      "properties": {
+        "max": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 200,
+              "maximum": 599
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The maximum http status code."
+        },
+        "min": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 200,
+              "maximum": 599
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The minimum http status code."
+        }
+      },
+      "description": "The failure http status code range"
     },
     "GatewayCertificateAuthorityContractProperties": {
       "type": "object",
@@ -5076,7 +7115,8 @@
                 "Portal",
                 "Management",
                 "Scm",
-                "DeveloperPortal"
+                "DeveloperPortal",
+                "ConfigurationApi"
               ]
             },
             {
@@ -6226,6 +8266,19 @@
       },
       "description": "A collection of information about the state of the connection between service consumer and provider."
     },
+    "ProductApiLinkContractProperties": {
+      "type": "object",
+      "properties": {
+        "apiId": {
+          "type": "string",
+          "description": "Full resource Id of an API."
+        }
+      },
+      "required": [
+        "apiId"
+      ],
+      "description": "Product-API link entity properties."
+    },
     "ProductContractProperties": {
       "type": "object",
       "properties": {
@@ -6298,6 +8351,19 @@
         "displayName"
       ],
       "description": "Product profile."
+    },
+    "ProductGroupLinkContractProperties": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "type": "string",
+          "description": "Full resource Id of a group."
+        }
+      },
+      "required": [
+        "groupId"
+      ],
+      "description": "Product-group link entity properties."
     },
     "RegistrationDelegationSettingsProperties": {
       "type": "object",
@@ -6447,6 +8513,29 @@
       },
       "description": "Operation request details."
     },
+    "ResolverEntityBaseContract": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "maxLength": 1000,
+          "description": "Description of the resolver. May include HTML formatting tags."
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300,
+          "description": "Resolver Name."
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300,
+          "description": "Path is type/field being resolved."
+        }
+      },
+      "description": "GraphQL API Resolver Entity Base Contract details."
+    },
     "ResourceLocationDataContract": {
       "type": "object",
       "properties": {
@@ -6566,7 +8655,7 @@
       "properties": {
         "contentType": {
           "type": "string",
-          "description": "Must be a valid a media type used in a Content-Type header as defined in the RFC 2616. Media type of the schema document (e.g. application/json, application/xml). </br> - `Swagger` Schema use `application/vnd.ms-azure-apim.swagger.definitions+json` </br> - `WSDL` Schema use `application/vnd.ms-azure-apim.xsd+xml` </br> - `OpenApi` Schema use `application/vnd.oai.openapi.components+json` </br> - `WADL Schema` use `application/vnd.ms-azure-apim.wadl.grammars+xml`."
+          "description": "Must be a valid a media type used in a Content-Type header as defined in the RFC 2616. Media type of the schema document (e.g. application/json, application/xml). </br> - `Swagger` Schema use `application/vnd.ms-azure-apim.swagger.definitions+json` </br> - `WSDL` Schema use `application/vnd.ms-azure-apim.xsd+xml` </br> - `OpenApi` Schema use `application/vnd.oai.openapi.components+json` </br> - `WADL Schema` use `application/vnd.ms-azure-apim.wadl.grammars+xml` </br> - `OData Schema` use `application/vnd.ms-azure-apim.odata.schema`."
         },
         "document": {
           "oneOf": [
@@ -6612,7 +8701,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -6653,7 +8742,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -6702,7 +8791,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -6751,7 +8840,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -6800,7 +8889,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -6849,7 +8938,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -6890,7 +8979,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -6932,7 +9021,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -6969,7 +9058,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7011,7 +9100,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7054,13 +9143,96 @@
       ],
       "description": "Microsoft.ApiManagement/service/apis/releases"
     },
+    "service_apis_resolvers_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Resolver identifier within a GraphQL API. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResolverEntityBaseContract"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "GraphQL API Resolver Entity Base Contract details."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "resolvers"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/apis/resolvers"
+    },
+    "service_apis_resolvers_policies_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "policy"
+          ],
+          "description": "The identifier of the Policy."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Policy contract Properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "policies"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/apis/resolvers/policies"
+    },
     "service_apis_schemas_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7101,7 +9273,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7150,7 +9322,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7181,13 +9353,54 @@
       ],
       "description": "Microsoft.ApiManagement/service/apis/tags"
     },
+    "service_apis_wikis_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "default"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/WikiContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Wiki contract details"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "wikis"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/apis/wikis"
+    },
     "service_apiVersionSets_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7236,7 +9449,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7285,7 +9498,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7334,7 +9547,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7383,7 +9596,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7432,7 +9645,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7473,7 +9686,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7522,7 +9735,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7571,7 +9784,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7611,7 +9824,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7619,6 +9832,21 @@
           "minLength": 1,
           "maxLength": 80,
           "description": "Content item identifier."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {}
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
         },
         "type": {
           "type": "string",
@@ -7630,6 +9858,7 @@
       "required": [
         "apiVersion",
         "name",
+        "properties",
         "type"
       ],
       "description": "Microsoft.ApiManagement/service/contentTypes/contentItems"
@@ -7640,7 +9869,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7683,13 +9912,62 @@
       ],
       "description": "Microsoft.ApiManagement/service/diagnostics"
     },
+    "service_documentations_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Documentation identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DocumentationContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Markdown documentation details."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "documentations"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/documentations"
+    },
     "service_gateways_apis_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7730,7 +10008,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7779,7 +10057,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7820,7 +10098,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7861,7 +10139,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7902,7 +10180,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7931,7 +10209,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -7985,7 +10263,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8033,7 +10311,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8081,7 +10359,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8124,7 +10402,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8151,7 +10429,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8180,7 +10458,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8228,7 +10506,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8270,7 +10548,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8319,7 +10597,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8360,7 +10638,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8483,7 +10761,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "type": {
@@ -8505,7 +10783,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "id": {
@@ -8542,13 +10820,62 @@
       ],
       "description": "Microsoft.ApiManagement/service/privateEndpointConnections"
     },
+    "service_products_apiLinks_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product-API link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProductApiLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product-API link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "apiLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/products/apiLinks"
+    },
     "service_products_apis_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8577,7 +10904,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8612,13 +10939,62 @@
       ],
       "description": "Microsoft.ApiManagement/service/products"
     },
+    "service_products_groupLinks_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product-Group link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProductGroupLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product-group link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "groupLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/products/groupLinks"
+    },
     "service_products_groups_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8647,7 +11023,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8689,7 +11065,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8720,13 +11096,54 @@
       ],
       "description": "Microsoft.ApiManagement/service/products/tags"
     },
+    "service_products_wikis_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "default"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/WikiContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Wiki contract details"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "wikis"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/products/wikis"
+    },
     "service_schemas_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8767,7 +11184,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8809,13 +11226,62 @@
       ],
       "description": "Microsoft.ApiManagement/service/subscriptions"
     },
+    "service_tags_apiLinks_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-API link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TagApiLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-API link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "apiLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/tags/apiLinks"
+    },
     "service_tags_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8858,13 +11324,111 @@
       ],
       "description": "Microsoft.ApiManagement/service/tags"
     },
+    "service_tags_operationLinks_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-operation link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TagOperationLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-operation link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "operationLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/tags/operationLinks"
+    },
+    "service_tags_productLinks_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-product link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TagProductLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-product link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "productLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/tags/productLinks"
+    },
     "service_templates_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8926,7 +11490,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -8976,7 +11540,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -9010,6 +11574,1134 @@
         "type"
       ],
       "description": "Microsoft.ApiManagement/service/users"
+    },
+    "service_workspaces_apis_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApiCreateOrUpdateProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "API Create or Update Properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "apis"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/apis"
+    },
+    "service_workspaces_apis_operations_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Operation identifier within an API. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OperationContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Operation Contract Properties"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "operations"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/apis/operations"
+    },
+    "service_workspaces_apis_operations_policies_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "policy"
+          ],
+          "description": "The identifier of the Policy."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Policy contract Properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "policies"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/apis/operations/policies"
+    },
+    "service_workspaces_apis_policies_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "policy"
+          ],
+          "description": "The identifier of the Policy."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Policy contract Properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "policies"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/apis/policies"
+    },
+    "service_workspaces_apis_releases_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Release identifier within an API. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApiReleaseContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "API Release details"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "releases"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/apis/releases"
+    },
+    "service_workspaces_apis_schemas_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Schema id identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SchemaContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "API Schema create or update contract Properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "schemas"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/apis/schemas"
+    },
+    "service_workspaces_apiVersionSets_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Api Version Set identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApiVersionSetContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of an API Version Set."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "apiVersionSets"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/apiVersionSets"
+    },
+    "service_workspaces_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Workspace identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/WorkspaceContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Workspace entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "workspaces"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces"
+    },
+    "service_workspaces_groups_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Group identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GroupCreateParametersProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Parameters supplied to the Create Group operation."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "groups"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/groups"
+    },
+    "service_workspaces_groups_users_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "User identifier. Must be unique in the current API Management service instance."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "users"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/groups/users"
+    },
+    "service_workspaces_namedValues_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Identifier of the NamedValue."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/NamedValueCreateContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "NamedValue Contract properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "namedValues"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/namedValues"
+    },
+    "service_workspaces_notifications_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "RequestPublisherNotificationMessage",
+                "PurchasePublisherNotificationMessage",
+                "NewApplicationNotificationMessage",
+                "BCC",
+                "NewIssuePublisherNotificationMessage",
+                "AccountClosedPublisher",
+                "QuotaLimitApproachingPublisherNotificationMessage"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Notification Name Identifier."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "notifications"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/notifications"
+    },
+    "service_workspaces_notifications_recipientEmails_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Email identifier."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "recipientEmails"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/notifications/recipientEmails"
+    },
+    "service_workspaces_notifications_recipientUsers_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "User identifier. Must be unique in the current API Management service instance."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "recipientUsers"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/notifications/recipientUsers"
+    },
+    "service_workspaces_policies_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "policy"
+          ],
+          "description": "The identifier of the Policy."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Policy contract Properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "policies"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/policies"
+    },
+    "service_workspaces_policyFragments_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "(^[\\w]+$)|(^[\\w][\\w\\-]+[\\w]$)",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A resource identifier."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyFragmentContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Policy fragment contract properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "policyFragments"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/policyFragments"
+    },
+    "service_workspaces_products_apiLinks_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product-API link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProductApiLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product-API link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "apiLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/products/apiLinks"
+    },
+    "service_workspaces_products_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Product identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProductContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product profile."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "products"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/products"
+    },
+    "service_workspaces_products_groupLinks_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product-Group link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProductGroupLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Product-group link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "groupLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/products/groupLinks"
+    },
+    "service_workspaces_products_policies_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "policy"
+          ],
+          "description": "The identifier of the Policy."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Policy contract Properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "policies"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/products/policies"
+    },
+    "service_workspaces_schemas_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Schema id identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GlobalSchemaContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Schema create or update contract Properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "schemas"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/schemas"
+    },
+    "service_workspaces_subscriptions_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Subscription entity Identifier. The entity represents the association between a user and a product in API Management."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SubscriptionCreateParameterProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Parameters supplied to the Create subscription operation."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "subscriptions"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/subscriptions"
+    },
+    "service_workspaces_tags_apiLinks_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-API link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TagApiLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-API link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "apiLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/tags/apiLinks"
+    },
+    "service_workspaces_tags_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TagContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag contract Properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "tags"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/tags"
+    },
+    "service_workspaces_tags_operationLinks_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-operation link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TagOperationLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-operation link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "operationLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/tags/operationLinks"
+    },
+    "service_workspaces_tags_productLinks_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-01-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[^*#&+:<>?]+$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-product link identifier. Must be unique in the current API Management service instance."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TagProductLinkContractProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Tag-product link entity properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "productLinks"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.ApiManagement/service/workspaces/tags/productLinks"
     },
     "SubscriptionCreateParameterProperties": {
       "type": "object",
@@ -9108,6 +12800,19 @@
       },
       "description": "Subscriptions delegation settings properties."
     },
+    "TagApiLinkContractProperties": {
+      "type": "object",
+      "properties": {
+        "apiId": {
+          "type": "string",
+          "description": "Full resource Id of an API."
+        }
+      },
+      "required": [
+        "apiId"
+      ],
+      "description": "Tag-API link entity properties."
+    },
     "TagContractProperties": {
       "type": "object",
       "properties": {
@@ -9141,6 +12846,32 @@
         }
       },
       "description": "Parameters supplied to the Create TagDescription operation."
+    },
+    "TagOperationLinkContractProperties": {
+      "type": "object",
+      "properties": {
+        "operationId": {
+          "type": "string",
+          "description": "Full resource Id of an API operation."
+        }
+      },
+      "required": [
+        "operationId"
+      ],
+      "description": "Tag-operation link entity properties."
+    },
+    "TagProductLinkContractProperties": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "string",
+          "description": "Full resource Id of a product."
+        }
+      },
+      "required": [
+        "productId"
+      ],
+      "description": "Tag-product link entity properties."
     },
     "TermsOfServiceProperties": {
       "type": "object",
@@ -9334,6 +13065,53 @@
         }
       },
       "description": "Configuration of a virtual network to which API Management service is deployed."
+    },
+    "WikiContractProperties": {
+      "type": "object",
+      "properties": {
+        "documents": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/WikiDocumentationContract"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Collection wiki documents included into this wiki."
+        }
+      },
+      "description": "Wiki contract details"
+    },
+    "WikiDocumentationContract": {
+      "type": "object",
+      "properties": {
+        "documentationId": {
+          "type": "string",
+          "description": "Documentation Identifier"
+        }
+      },
+      "description": "Wiki documentation details."
+    },
+    "WorkspaceContractProperties": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Description of the workspace."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Name of the workspace."
+        }
+      },
+      "required": [
+        "displayName"
+      ],
+      "description": "Workspace entity properties."
     },
     "X509CertificateName": {
       "type": "object",

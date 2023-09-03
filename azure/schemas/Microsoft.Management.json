@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-04-01/Microsoft.Management.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-04-01/Microsoft.Management.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Management",
   "description": "Microsoft Management Resource Types",
@@ -11,7 +11,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-04-01"
+            "2023-04-01"
           ]
         },
         "name": {
@@ -63,7 +63,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-04-01"
+            "2023-04-01"
           ]
         },
         "name": {
@@ -109,7 +109,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-04-01"
+            "2023-04-01"
           ]
         },
         "name": {
@@ -207,7 +207,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-04-01"
+            "2023-04-01"
           ]
         },
         "name": {
@@ -248,7 +248,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-04-01"
+            "2023-04-01"
           ]
         },
         "name": {

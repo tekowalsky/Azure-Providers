@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2020-09-01-preview/Microsoft.Devices.Provisioning.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-03-01-preview/Microsoft.Devices.Provisioning.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Devices",
   "description": "Microsoft Devices Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-09-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "etag": {
@@ -20,13 +20,13 @@
         "identity": {
           "oneOf": [
             {
-              "$ref": "#/definitions/ArmIdentity"
+              "$ref": "#/definitions/ManagedServiceIdentity"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The set of ARM identities associated with the IoT DPS resource."
+          "description": "Managed service identity (system assigned and/or user assigned identities)"
         },
         "location": {
           "type": "string",
@@ -46,6 +46,10 @@
             }
           ],
           "description": "the service specific properties of a provisioning service, including keys, linked iot hubs, current state, and system generated properties such as hostname and idScope"
+        },
+        "resourcegroup": {
+          "type": "string",
+          "description": "The resource group of the resource."
         },
         "resources": {
           "type": "array",
@@ -70,6 +74,10 @@
             }
           ],
           "description": "List of possible provisioning service SKUs."
+        },
+        "subscriptionid": {
+          "type": "string",
+          "description": "The subscription id of the resource."
         },
         "tags": {
           "oneOf": [
@@ -109,16 +117,23 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-09-01-preview"
+            "2023-03-01-preview"
           ]
-        },
-        "certificate": {
-          "type": "string",
-          "description": "Base-64 representation of the X509 leaf certificate .cer file or just .pem file content."
         },
         "name": {
           "type": "string",
           "description": "The name of the certificate create or update."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CertificateProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The description of an X509 CA Certificate."
         },
         "type": {
           "type": "string",
@@ -130,6 +145,7 @@
       "required": [
         "apiVersion",
         "name",
+        "properties",
         "type"
       ],
       "description": "Microsoft.Devices/provisioningServices/certificates"
@@ -140,7 +156,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-09-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -175,80 +191,34 @@
     }
   },
   "definitions": {
-    "ArmIdentity": {
+    "CertificateProperties": {
       "type": "object",
       "properties": {
-        "identityType": {
-          "type": "string",
-          "description": "Identity type. Only allowed values are SystemAssigned and UserAssigned. Comma separated if both for ex: SystemAssigned,UserAssigned."
-        },
-        "userAssignedIdentities": {
+        "certificate": {
           "oneOf": [
             {
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/ArmUserIdentity"
-              },
-              "properties": {}
+              "type": "string",
+              "pattern": "^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The set of UserAssigned identities associated with the IoT DPS resource."
-        }
-      },
-      "description": "The set of ARM identities associated with the IoT DPS resource."
-    },
-    "ArmUserIdentity": {
-      "type": "object",
-      "properties": {},
-      "description": "The ARM UserAssigned identity information"
-    },
-    "EncryptionKeyIdentity": {
-      "type": "object",
-      "properties": {
-        "userAssignedIdentity": {
-          "type": "string",
-          "description": "The user assigned identity."
-        }
-      },
-      "description": "The properties of the identity used to access the key encryption key in KeyVault."
-    },
-    "EncryptionPropertiesDescription": {
-      "type": "object",
-      "properties": {
-        "identity": {
+          "description": "base-64 representation of X509 certificate .cer file or just .pem file content."
+        },
+        "isVerified": {
           "oneOf": [
             {
-              "$ref": "#/definitions/EncryptionKeyIdentity"
+              "type": "boolean"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The properties of the identity used to access the key encryption key in KeyVault."
-        },
-        "keySource": {
-          "type": "string",
-          "description": "The source of the encryption key. Typically, Microsoft.KeyVault"
-        },
-        "keyVaultProperties": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/KeyVaultKeyProperties"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The properties of the encryption key configured in KeyVault."
+          "description": "Determines whether certificate has been verified."
         }
       },
-      "description": "The customer-managed encryption key (CMK) properties for the IoT DPS instance."
+      "description": "The description of an X509 CA Certificate."
     },
     "IotDpsPropertiesDescription": {
       "type": "object",
@@ -283,16 +253,16 @@
           ],
           "description": "List of authorization keys for a provisioning service."
         },
-        "encryption": {
+        "enableDataResidency": {
           "oneOf": [
             {
-              "$ref": "#/definitions/EncryptionPropertiesDescription"
+              "type": "boolean"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The customer-managed encryption key (CMK) properties for the IoT DPS instance."
+          "description": "Optional.\nIndicates if the DPS instance has Data Residency enabled, removing the cross geo-pair disaster recovery."
         },
         "iotHubs": {
           "oneOf": [
@@ -321,6 +291,10 @@
             }
           ],
           "description": "The IP filter rules."
+        },
+        "portalOperationsHostName": {
+          "type": "string",
+          "description": "Portal endpoint to enable CORS for this provisioning service."
         },
         "privateEndpointConnections": {
           "oneOf": [
@@ -504,15 +478,45 @@
       ],
       "description": "The IP filter rules for a provisioning Service."
     },
-    "KeyVaultKeyProperties": {
+    "ManagedServiceIdentity": {
       "type": "object",
       "properties": {
-        "keyIdentifier": {
-          "type": "string",
-          "description": "The identifier of the key."
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "SystemAssigned",
+                "UserAssigned",
+                "SystemAssigned,UserAssigned"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "userAssignedIdentities": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/UserAssignedIdentity"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
         }
       },
-      "description": "The properties of the KeyVault key."
+      "required": [
+        "type"
+      ],
+      "description": "Managed service identity (system assigned and/or user assigned identities)"
     },
     "PrivateEndpoint": {
       "type": "object",
@@ -611,16 +615,23 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-09-01-preview"
+            "2023-03-01-preview"
           ]
-        },
-        "certificate": {
-          "type": "string",
-          "description": "Base-64 representation of the X509 leaf certificate .cer file or just .pem file content."
         },
         "name": {
           "type": "string",
           "description": "The name of the certificate create or update."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CertificateProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The description of an X509 CA Certificate."
         },
         "type": {
           "type": "string",
@@ -632,6 +643,7 @@
       "required": [
         "apiVersion",
         "name",
+        "properties",
         "type"
       ],
       "description": "Microsoft.Devices/provisioningServices/certificates"
@@ -642,7 +654,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-09-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -715,6 +727,11 @@
         "rights"
       ],
       "description": "Description of the shared access key."
+    },
+    "UserAssignedIdentity": {
+      "type": "object",
+      "properties": {},
+      "description": "User assigned identity properties"
     }
   }
 }

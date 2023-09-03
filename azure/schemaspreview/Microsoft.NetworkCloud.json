@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-12-12-preview/Microsoft.NetworkCloud.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-05-01-preview/Microsoft.NetworkCloud.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.NetworkCloud",
   "description": "Microsoft NetworkCloud Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -87,7 +87,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -164,7 +164,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "location": {
@@ -230,7 +230,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -323,7 +323,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -400,7 +400,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -477,7 +477,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -548,13 +548,13 @@
       ],
       "description": "Microsoft.NetworkCloud/clusters/metricsConfigurations"
     },
-    "defaultCniNetworks": {
+    "kubernetesClusters": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -581,17 +581,27 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The name of the default CNI network."
+          "description": "The name of the Kubernetes cluster."
         },
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/DefaultCniNetworkProperties"
+              "$ref": "#/definitions/KubernetesClusterProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ]
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/kubernetesClusters_agentPools_childResource"
+              }
+            ]
+          }
         },
         "tags": {
           "oneOf": [
@@ -611,7 +621,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.NetworkCloud/defaultCniNetworks"
+            "Microsoft.NetworkCloud/kubernetesClusters"
           ]
         }
       },
@@ -623,15 +633,15 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.NetworkCloud/defaultCniNetworks"
+      "description": "Microsoft.NetworkCloud/kubernetesClusters"
     },
-    "hybridAksClusters": {
+    "kubernetesClusters_agentPools": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -652,18 +662,18 @@
           "oneOf": [
             {
               "type": "string",
-              "pattern": "^([a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9])$"
+              "pattern": "^([a-zA-Z0-9][a-zA-Z0-9-_]{0,28}[a-zA-Z0-9])$"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The name of the Hybrid AKS cluster."
+          "description": "The name of the Kubernetes cluster agent pool."
         },
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/HybridAksClusterProperties"
+              "$ref": "#/definitions/AgentPoolProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -688,19 +698,18 @@
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.NetworkCloud/hybridAksClusters"
+            "Microsoft.NetworkCloud/kubernetesClusters/agentPools"
           ]
         }
       },
       "required": [
         "apiVersion",
-        "extendedLocation",
         "location",
         "name",
         "properties",
         "type"
       ],
-      "description": "Microsoft.NetworkCloud/hybridAksClusters"
+      "description": "Microsoft.NetworkCloud/kubernetesClusters/agentPools"
     },
     "l2Networks": {
       "type": "object",
@@ -708,7 +717,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -785,7 +794,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -862,7 +871,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -939,7 +948,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -1016,7 +1025,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -1093,7 +1102,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -1180,7 +1189,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -1257,7 +1266,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -1278,7 +1287,7 @@
           "oneOf": [
             {
               "type": "string",
-              "pattern": "^([a-zA-Z0-9][a-zA-Z0-9]{0,28}[a-zA-Z0-9])$"
+              "pattern": "^([a-zA-Z0-9][a-zA-Z0-9-_]{0,62}[a-zA-Z0-9])$"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -1330,6 +1339,28 @@
     }
   },
   "definitions": {
+    "AadConfiguration": {
+      "type": "object",
+      "properties": {
+        "adminGroupObjectIds": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of Azure Active Directory group object IDs that will have an administrative role on the Kubernetes cluster."
+        }
+      },
+      "required": [
+        "adminGroupObjectIds"
+      ]
+    },
     "AdministrativeCredentials": {
       "type": "object",
       "properties": {
@@ -1348,6 +1379,243 @@
         "password",
         "username"
       ]
+    },
+    "AdministratorConfiguration": {
+      "type": "object",
+      "properties": {
+        "adminUsername": {
+          "type": "string",
+          "description": "The user name for the administrator that will be applied to the operating systems that run Kubernetes nodes. If not supplied, a user name will be chosen by the service."
+        },
+        "sshPublicKeys": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SshPublicKey"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The SSH configuration for the operating systems that run the nodes in the Kubernetes cluster. In some cases, specification of public keys may be required to produce a working environment."
+        }
+      }
+    },
+    "AgentOptions": {
+      "type": "object",
+      "properties": {
+        "hugepagesCount": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The number of hugepages to allocate."
+        },
+        "hugepagesSize": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "2M",
+                "1G"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The size of the hugepages to allocate."
+        }
+      },
+      "required": [
+        "hugepagesCount"
+      ]
+    },
+    "AgentPoolProperties": {
+      "type": "object",
+      "properties": {
+        "administratorConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AdministratorConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "agentOptions": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AgentOptions"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "attachedNetworkConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AttachedNetworkConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "availabilityZones": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of availability zones of the Network Cloud cluster used for the provisioning of nodes in this agent pool. If not specified, all availability zones will be used."
+        },
+        "count": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The number of virtual machines that use this configuration."
+        },
+        "labels": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/KubernetesLabel"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The labels applied to the nodes in this agent pool."
+        },
+        "mode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "System",
+                "User",
+                "NotApplicable"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The selection of how this agent pool is utilized, either as a system pool or a user pool. System pools run the features and critical services for the Kubernetes Cluster, while user pools are dedicated to user workloads. Every Kubernetes cluster must contain at least one system node pool with at least one node."
+        },
+        "taints": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/KubernetesLabel"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The taints applied to the nodes in this agent pool."
+        },
+        "upgradeSettings": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AgentPoolUpgradeSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "vmSkuName": {
+          "type": "string",
+          "description": "The name of the VM SKU that determines the size of resources allocated for node VMs."
+        }
+      },
+      "required": [
+        "count",
+        "mode",
+        "vmSkuName"
+      ]
+    },
+    "AgentPoolUpgradeSettings": {
+      "type": "object",
+      "properties": {
+        "maxSurge": {
+          "type": "string",
+          "default": "1",
+          "description": "The maximum number or percentage of nodes that are surged during upgrade. This can either be set to an integer (e.g. '5') or a percentage (e.g. '50%'). If a percentage is specified, it is the percentage of the total agent pool size at the time of the upgrade. For percentages, fractional nodes are rounded up. If not specified, the default is 1."
+        }
+      }
+    },
+    "AttachedNetworkConfiguration": {
+      "type": "object",
+      "properties": {
+        "l2Networks": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/L2NetworkAttachmentConfiguration"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of Layer 2 Networks and related configuration for attachment."
+        },
+        "l3Networks": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/L3NetworkAttachmentConfiguration"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of Layer 3 Networks and related configuration for attachment."
+        },
+        "trunkedNetworks": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TrunkedNetworkAttachmentConfiguration"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of Trunked Networks and related configuration for attachment."
+        }
+      }
     },
     "BareMetalMachineConfigurationData": {
       "type": "object",
@@ -1548,26 +1816,6 @@
           ],
           "description": "The MAC address of a NIC connected to the PXE network."
         },
-        "hardwareInventory": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/HardwareInventory"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ]
-        },
-        "hardwareValidationStatus": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/HardwareValidationStatus"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ]
-        },
         "machineDetails": {
           "type": "string",
           "maxLength": 256,
@@ -1626,44 +1874,132 @@
         "serialNumber"
       ]
     },
-    "BgpPeer": {
+    "BgpAdvertisement": {
       "type": "object",
       "properties": {
-        "asNumber": {
-          "oneOf": [
-            {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 4294967295
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The ASN (Autonomous System Number) of the BGP peer."
-        },
-        "password": {
+        "advertiseToFabric": {
           "oneOf": [
             {
               "type": "string",
-              "pattern": "^[a-zA-Z0-9]{0,80}$",
-              "maxLength": 80
+              "enum": [
+                "True",
+                "False"
+              ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The password for this peering neighbor. It defaults to no password if not specified."
+          "description": "The indicator of if this advertisement is also made to the network fabric associated with the Network Cloud Cluster. This field is ignored if fabricPeeringEnabled is set to False."
         },
-        "peerIp": {
-          "type": "string",
-          "description": "The IPv4 or IPv6 address to peer with the associated CNI Network. The IP version type will drive a peering with the same version type from the Default CNI Network. For example, IPv4 to IPv4 or IPv6 to IPv6."
+        "communities": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The names of the BGP communities to be associated with the announcement, utilizing a BGP community string in 1234:1234 format."
+        },
+        "ipAddressPools": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The names of the IP address pools associated with this announcement."
+        },
+        "peers": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The names of the BGP peers to limit this advertisement to. If no values are specified, all BGP peers will receive this advertisement."
         }
       },
       "required": [
-        "asNumber",
-        "peerIp"
+        "ipAddressPools"
       ]
+    },
+    "BgpServiceLoadBalancerConfiguration": {
+      "type": "object",
+      "properties": {
+        "bgpAdvertisements": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BgpAdvertisement"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The association of IP address pools to the communities and peers, allowing for announcement of IPs."
+        },
+        "bgpPeers": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ServiceLoadBalancerBgpPeer"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of additional BgpPeer entities that the Kubernetes cluster will peer with. All peering must be explicitly defined."
+        },
+        "fabricPeeringEnabled": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "True",
+                "False"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The indicator to specify if the load balancer peers with the network fabric."
+        },
+        "ipAddressPools": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IpAddressPool"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of pools of IP addresses that can be allocated to Load Balancer services."
+        }
+      }
     },
     "BmcKeySetProperties": {
       "type": "object",
@@ -1745,99 +2081,6 @@
             }
           ],
           "description": "The indicator of whether the platform default endpoints are allowed for the egress traffic."
-        }
-      }
-    },
-    "ClusterCapacity": {
-      "type": "object",
-      "properties": {
-        "availableApplianceStorageGB": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The remaining appliance-based storage in GB available for workload use."
-        },
-        "availableCoreCount": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The remaining number of cores that are available in this cluster for workload use."
-        },
-        "availableHostStorageGB": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The remaining machine or host-based storage in GB available for workload use."
-        },
-        "availableMemoryGB": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The remaining memory in GB that are available in this cluster for workload use."
-        },
-        "totalApplianceStorageGB": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The total appliance-based storage in GB supported by this cluster for workload use."
-        },
-        "totalCoreCount": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The total number of cores that are supported by this cluster for workload use."
-        },
-        "totalHostStorageGB": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The total machine or host-based storage in GB supported by this cluster for workload use."
-        },
-        "totalMemoryGB": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The total memory supported by this cluster for workload use."
         }
       }
     },
@@ -1937,16 +2180,6 @@
           "type": "string",
           "description": "The resource ID of the Log Analytics Workspace that will be used for storing relevant logs."
         },
-        "clusterCapacity": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/ClusterCapacity"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ]
-        },
         "clusterLocation": {
           "type": "string",
           "maxLength": 256,
@@ -2022,7 +2255,6 @@
       },
       "required": [
         "aggregatorOrSingleRackDefinition",
-        "analyticsWorkspaceId",
         "clusterType",
         "clusterVersion",
         "networkFabricId"
@@ -2034,7 +2266,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -2111,7 +2343,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -2188,7 +2420,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {
@@ -2259,107 +2491,6 @@
       ],
       "description": "Microsoft.NetworkCloud/clusters/metricsConfigurations"
     },
-    "CniBgpConfiguration": {
-      "type": "object",
-      "properties": {
-        "bgpPeers": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/BgpPeer"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The list of BgpPeer entities that the Hybrid AKS cluster will peer with in addition to peering that occurs automatically with the switch fabric."
-        },
-        "communityAdvertisements": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/CommunityAdvertisement"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The list of prefix community advertisement properties. Each prefix community specifies a prefix, and the\ncommunities that should be associated with that prefix when it is announced."
-        },
-        "nodeMeshPassword": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[a-zA-Z0-9]{0,80}$",
-              "maxLength": 80
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The password of the Calico node mesh. It defaults to a randomly-generated string when not provided."
-        },
-        "serviceExternalPrefixes": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The subnet blocks in CIDR format for Kubernetes service external IPs to be advertised over BGP."
-        },
-        "serviceLoadBalancerPrefixes": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The subnet blocks in CIDR format for Kubernetes load balancers. Load balancer IPs will only be advertised if they\nare within one of these blocks."
-        }
-      }
-    },
-    "CommunityAdvertisement": {
-      "type": "object",
-      "properties": {
-        "communities": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The list of community strings to announce with this prefix."
-        },
-        "subnetPrefix": {
-          "type": "string",
-          "description": "The subnet in CIDR format for which properties should be advertised."
-        }
-      },
-      "required": [
-        "communities",
-        "subnetPrefix"
-      ]
-    },
     "ConsoleProperties": {
       "type": "object",
       "properties": {
@@ -2399,64 +2530,53 @@
         "sshPublicKey"
       ]
     },
-    "DefaultCniNetworkProperties": {
+    "ControlPlaneNodeConfiguration": {
       "type": "object",
       "properties": {
-        "cniBgpConfiguration": {
+        "administratorConfiguration": {
           "oneOf": [
             {
-              "$ref": "#/definitions/CniBgpConfiguration"
+              "$ref": "#/definitions/AdministratorConfiguration"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ]
         },
-        "ipAllocationType": {
+        "availabilityZones": {
           "oneOf": [
             {
-              "type": "string",
-              "enum": [
-                "IPV4",
-                "IPV6",
-                "DualStack"
-              ]
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The type of the IP address allocation."
+          "description": "The list of availability zones of the Network Cloud cluster to be used for the provisioning of nodes in the control plane. If not specified, all availability zones will be used."
         },
-        "ipv4ConnectedPrefix": {
-          "type": "string",
-          "description": "The IPV4 prefix (CIDR) assigned to this default CNI network. It is required when the IP allocation type\nis IPV4 or DualStack."
-        },
-        "ipv6ConnectedPrefix": {
-          "type": "string",
-          "description": "The IPV6 prefix (CIDR) assigned to this default CNI network. It is required when the IP allocation type\nis IPV6 or DualStack."
-        },
-        "l3IsolationDomainId": {
-          "type": "string",
-          "description": "The resource ID of the Network Fabric l3IsolationDomain."
-        },
-        "vlan": {
+        "count": {
           "oneOf": [
             {
               "type": "integer",
-              "minimum": 1,
-              "maximum": 4094
+              "minimum": 1
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The VLAN from the l3IsolationDomain that is used for this network."
+          "description": "The number of virtual machines that use this configuration."
+        },
+        "vmSkuName": {
+          "type": "string",
+          "description": "The name of the VM SKU supplied during creation."
         }
       },
       "required": [
-        "l3IsolationDomainId",
-        "vlan"
+        "count",
+        "vmSkuName"
       ]
     },
     "EgressEndpoint": {
@@ -2528,66 +2648,6 @@
         "type"
       ]
     },
-    "HardwareInventory": {
-      "type": "object",
-      "properties": {}
-    },
-    "HardwareValidationStatus": {
-      "type": "object",
-      "properties": {}
-    },
-    "HybridAksClusterProperties": {
-      "type": "object",
-      "properties": {
-        "associatedNetworkIds": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The list of resource IDs for the workload networks associated with the Hybrid AKS cluster. It can be any of l2Networks, l3Networks, or trunkedNetworks resources. This field will also contain one cloudServicesNetwork and one defaultCniNetwork."
-        },
-        "controlPlaneCount": {
-          "oneOf": [
-            {
-              "type": "integer",
-              "minimum": 1
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The number of control plane node VMs."
-        },
-        "hybridAksProvisionedClusterId": {
-          "type": "string",
-          "description": "The resource ID of the Hybrid AKS cluster that this additional information is for."
-        },
-        "workerCount": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The number of worker node VMs."
-        }
-      },
-      "required": [
-        "associatedNetworkIds",
-        "controlPlaneCount",
-        "hybridAksProvisionedClusterId",
-        "workerCount"
-      ]
-    },
     "ImageRepositoryCredentials": {
       "type": "object",
       "properties": {
@@ -2612,12 +2672,213 @@
         "username"
       ]
     },
+    "InitialAgentPoolConfiguration": {
+      "type": "object",
+      "properties": {
+        "administratorConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AdministratorConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "agentOptions": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AgentOptions"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "attachedNetworkConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AttachedNetworkConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "availabilityZones": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of availability zones of the Network Cloud cluster used for the provisioning of nodes in this agent pool. If not specified, all availability zones will be used."
+        },
+        "count": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The number of virtual machines that use this configuration."
+        },
+        "labels": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/KubernetesLabel"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The labels applied to the nodes in this agent pool."
+        },
+        "mode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "System",
+                "User",
+                "NotApplicable"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The selection of how this agent pool is utilized, either as a system pool or a user pool. System pools run the features and critical services for the Kubernetes Cluster, while user pools are dedicated to user workloads. Every Kubernetes cluster must contain at least one system node pool with at least one node."
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^([a-zA-Z0-9][a-zA-Z0-9-_]{0,28}[a-zA-Z0-9])$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name that will be used for the agent pool resource representing this agent pool."
+        },
+        "taints": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/KubernetesLabel"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The taints applied to the nodes in this agent pool."
+        },
+        "upgradeSettings": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AgentPoolUpgradeSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "vmSkuName": {
+          "type": "string",
+          "description": "The name of the VM SKU that determines the size of resources allocated for node VMs."
+        }
+      },
+      "required": [
+        "count",
+        "mode",
+        "name",
+        "vmSkuName"
+      ]
+    },
+    "IpAddressPool": {
+      "type": "object",
+      "properties": {
+        "addresses": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of IP address ranges. Each range can be a either a subnet in CIDR format or an explicit start-end range of IP addresses."
+        },
+        "autoAssign": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "True",
+                "False"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The indicator to determine if automatic allocation from the pool should occur."
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z0-9]([a-z0-9.-]{0,61}[a-z0-9]){0,1}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name used to identify this IP address pool for association with a BGP advertisement."
+        },
+        "onlyUseHostIps": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "True",
+                "False"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The indicator to prevent the use of IP addresses ending with .0 and .255 for this pool. Enabling this option will only use IP addresses between .1 and .254 inclusive."
+        }
+      },
+      "required": [
+        "addresses",
+        "name"
+      ]
+    },
     "KeySetUser": {
       "type": "object",
       "properties": {
         "azureUserName": {
           "type": "string",
-          "description": "The Azure Active Directory user name (email name)."
+          "description": "The user name that will be used for access."
         },
         "description": {
           "type": "string",
@@ -2640,6 +2901,208 @@
         "sshPublicKey"
       ]
     },
+    "KubernetesClusterProperties": {
+      "type": "object",
+      "properties": {
+        "aadConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AadConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "administratorConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AdministratorConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "controlPlaneNodeConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ControlPlaneNodeConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "initialAgentPoolConfigurations": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/InitialAgentPoolConfiguration"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The agent pools that are created with this Kubernetes cluster for running critical system services and workloads. This data in this field is only used during creation, and the field will be empty following the creation of the Kubernetes Cluster. After creation, the management of agent pools is done using the agentPools sub-resource."
+        },
+        "kubernetesVersion": {
+          "type": "string",
+          "description": "The Kubernetes version for this cluster. Accepts n.n, n.n.n, and n.n.n-n format. The interpreted version used will be resolved into this field after creation or update."
+        },
+        "managedResourceGroupConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ManagedResourceGroupConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "networkConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/NetworkConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        }
+      },
+      "required": [
+        "controlPlaneNodeConfiguration",
+        "initialAgentPoolConfigurations",
+        "kubernetesVersion",
+        "networkConfiguration"
+      ]
+    },
+    "kubernetesClusters_agentPools_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-05-01-preview"
+          ]
+        },
+        "extendedLocation": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ExtendedLocation"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^([a-zA-Z0-9][a-zA-Z0-9-_]{0,28}[a-zA-Z0-9])$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the Kubernetes cluster agent pool."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AgentPoolProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "agentPools"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.NetworkCloud/kubernetesClusters/agentPools"
+    },
+    "KubernetesLabel": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "The name of the label or taint."
+        },
+        "value": {
+          "type": "string",
+          "description": "The value of the label or taint."
+        }
+      },
+      "required": [
+        "key",
+        "value"
+      ]
+    },
+    "L2NetworkAttachmentConfiguration": {
+      "type": "object",
+      "properties": {
+        "networkId": {
+          "type": "string",
+          "description": "The resource ID of the network that is being configured for attachment."
+        },
+        "pluginType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "DPDK",
+                "SRIOV",
+                "OSDevice",
+                "MACVLAN",
+                "IPVLAN"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The indicator of how this network will be utilized by the Kubernetes cluster."
+        }
+      },
+      "required": [
+        "networkId"
+      ]
+    },
     "L2NetworkProperties": {
       "type": "object",
       "properties": {
@@ -2657,7 +3120,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The network plugin type for Hybrid AKS."
+          "description": "Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS."
         },
         "interfaceName": {
           "oneOf": [
@@ -2681,6 +3144,51 @@
         "l2IsolationDomainId"
       ]
     },
+    "L3NetworkAttachmentConfiguration": {
+      "type": "object",
+      "properties": {
+        "ipamEnabled": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "True",
+                "False"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The indication of whether this network will or will not perform IP address management and allocate IP addresses when attached."
+        },
+        "networkId": {
+          "type": "string",
+          "description": "The resource ID of the network that is being configured for attachment."
+        },
+        "pluginType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "DPDK",
+                "SRIOV",
+                "OSDevice",
+                "MACVLAN",
+                "IPVLAN"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The indicator of how this network will be utilized by the Kubernetes cluster."
+        }
+      },
+      "required": [
+        "networkId"
+      ]
+    },
     "L3NetworkProperties": {
       "type": "object",
       "properties": {
@@ -2697,7 +3205,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The indicator of whether or not to disable IPAM allocation on the network attachment definition injected into the Hybrid AKS Cluster."
+          "description": "Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The indicator of whether or not to disable IPAM allocation on the network attachment definition injected into the Hybrid AKS Cluster."
         },
         "hybridAksPluginType": {
           "oneOf": [
@@ -2713,7 +3221,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The network plugin type for Hybrid AKS."
+          "description": "Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS."
         },
         "interfaceName": {
           "oneOf": [
@@ -2844,6 +3352,75 @@
         "ipAllocationMethod"
       ]
     },
+    "NetworkConfiguration": {
+      "type": "object",
+      "properties": {
+        "attachedNetworkConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AttachedNetworkConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "bgpServiceLoadBalancerConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BgpServiceLoadBalancerConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "cloudServicesNetworkId": {
+          "type": "string",
+          "description": "The resource ID of the associated Cloud Services network."
+        },
+        "cniNetworkId": {
+          "type": "string",
+          "description": "The resource ID of the Layer 3 network that is used for creation of the Container Networking Interface network."
+        },
+        "dnsServiceIp": {
+          "type": "string",
+          "description": "The IP address assigned to the Kubernetes DNS service. It must be within the Kubernetes service address range specified in service CIDR."
+        },
+        "podCidrs": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The CIDR notation IP ranges from which to assign pod IPs. One IPv4 CIDR is expected for single-stack networking. Two CIDRs, one for each IP family (IPv4/IPv6), is expected for dual-stack networking."
+        },
+        "serviceCidrs": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The CIDR notation IP ranges from which to assign service IPs. One IPv4 CIDR is expected for single-stack networking. Two CIDRs, one for each IP family (IPv4/IPv6), is expected for dual-stack networking."
+        }
+      },
+      "required": [
+        "cloudServicesNetworkId",
+        "cniNetworkId"
+      ]
+    },
     "OsDisk": {
       "type": "object",
       "properties": {
@@ -2904,7 +3481,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The zone name used for this rack when created."
+          "description": "The zone name used for this rack when created. Availability zones are used for workload placement."
         },
         "bareMetalMachineConfigurationData": {
           "oneOf": [
@@ -2998,6 +3575,121 @@
         "rackSkuId"
       ]
     },
+    "ServiceLoadBalancerBgpPeer": {
+      "type": "object",
+      "properties": {
+        "bfdEnabled": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "True",
+                "False"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The indicator of BFD enablement for this BgpPeer."
+        },
+        "bgpMultiHop": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "True",
+                "False"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The indicator to enable multi-hop peering support."
+        },
+        "holdTime": {
+          "type": "string",
+          "description": "The requested BGP hold time value. This field uses ISO 8601 duration format, for example P1H."
+        },
+        "keepAliveTime": {
+          "type": "string",
+          "description": "The requested BGP keepalive time value. This field uses ISO 8601 duration format, for example P1H."
+        },
+        "myAsn": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4294967295
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The autonomous system number used for the local end of the BGP session."
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z0-9]([a-z0-9.-]{0,61}[a-z0-9]){0,1}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name used to identify this BGP peer for association with a BGP advertisement."
+        },
+        "password": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]{0,80}$",
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The authentication password for routers enforcing TCP MD5 authenticated sessions."
+        },
+        "peerAddress": {
+          "type": "string",
+          "description": "The IPv4 or IPv6 address used to connect this BGP session."
+        },
+        "peerAsn": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4294967295
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The autonomous system number expected from the remote end of the BGP session."
+        },
+        "peerPort": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "default": "179"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The port used to connect this BGP session."
+        }
+      },
+      "required": [
+        "name",
+        "peerAddress",
+        "peerAsn"
+      ]
+    },
     "ServicePrincipalInformation": {
       "type": "object",
       "properties": {
@@ -3031,7 +3723,7 @@
         "keyData": {
           "type": "string",
           "minLength": 1,
-          "description": "The public ssh key of the user."
+          "description": "The SSH public key data."
         }
       },
       "required": [
@@ -3166,6 +3858,36 @@
         "osDisk"
       ]
     },
+    "TrunkedNetworkAttachmentConfiguration": {
+      "type": "object",
+      "properties": {
+        "networkId": {
+          "type": "string",
+          "description": "The resource ID of the network that is being configured for attachment."
+        },
+        "pluginType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "DPDK",
+                "SRIOV",
+                "OSDevice",
+                "MACVLAN",
+                "IPVLAN"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The indicator of how this network will be utilized by the Kubernetes cluster."
+        }
+      },
+      "required": [
+        "networkId"
+      ]
+    },
     "TrunkedNetworkProperties": {
       "type": "object",
       "properties": {
@@ -3183,7 +3905,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The network plugin type for Hybrid AKS."
+          "description": "Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS."
         },
         "interfaceName": {
           "oneOf": [
@@ -3546,7 +4268,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-12-preview"
+            "2023-05-01-preview"
           ]
         },
         "extendedLocation": {

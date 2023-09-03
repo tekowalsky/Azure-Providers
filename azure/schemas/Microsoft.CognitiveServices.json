@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-12-01/Microsoft.CognitiveServices.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-05-01/Microsoft.CognitiveServices.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.CognitiveServices",
   "description": "Microsoft CognitiveServices Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-05-01"
           ]
         },
         "identity": {
@@ -120,7 +120,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-05-01"
           ]
         },
         "kind": {
@@ -193,7 +193,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -210,6 +210,17 @@
             }
           ],
           "description": "Properties of Cognitive Services account deployment."
+        },
+        "sku": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Sku"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The resource model definition representing SKU"
         },
         "type": {
           "type": "string",
@@ -232,7 +243,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -275,7 +286,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-05-01"
           ]
         },
         "kind": {
@@ -358,7 +369,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -548,7 +559,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-05-01"
           ]
         },
         "kind": {
@@ -621,7 +632,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -638,6 +649,17 @@
             }
           ],
           "description": "Properties of Cognitive Services account deployment."
+        },
+        "sku": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Sku"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The resource model definition representing SKU"
         },
         "type": {
           "type": "string",
@@ -660,7 +682,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -855,7 +877,8 @@
               "enum": [
                 "Web",
                 "ConnectedContainer",
-                "DisconnectedContainer"
+                "DisconnectedContainer",
+                "ProvisionedWeb"
               ]
             },
             {
@@ -888,7 +911,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-12-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -940,9 +963,13 @@
           "type": "string",
           "description": "Deployment model name."
         },
+        "source": {
+          "type": "string",
+          "description": "Optional. Deployment model source ARM resource ID."
+        },
         "version": {
           "type": "string",
-          "description": "Deployment model version."
+          "description": "Optional. Deployment model version. If version is not specified, a default version will be assigned. The default version is different for different models and might change when there is new version available for a model. Default version for a model could be found from list models API."
         }
       },
       "description": "Properties of Cognitive Services account deployment model."
@@ -975,6 +1002,22 @@
             }
           ],
           "description": "Properties of Cognitive Services account deployment model."
+        },
+        "versionUpgradeOption": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "OnceNewDefaultVersionAvailable",
+                "OnceCurrentVersionExpired",
+                "NoAutoUpgrade"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Deployment model version upgrade option."
         }
       },
       "description": "Properties of Cognitive Services account deployment."

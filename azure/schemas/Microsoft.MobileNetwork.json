@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-11-01/Microsoft.MobileNetwork.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-06-01/Microsoft.MobileNetwork.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.MobileNetwork",
   "description": "Microsoft MobileNetwork Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "location": {
@@ -100,7 +100,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "location": {
@@ -168,7 +168,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "location": {
@@ -236,7 +236,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "location": {
@@ -304,7 +304,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "location": {
@@ -372,7 +372,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "location": {
@@ -440,7 +440,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "identity": {
@@ -452,7 +452,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Managed service identity (system assigned and/or user assigned identities)"
+          "description": "Managed service identity (User assigned identity)"
         },
         "location": {
           "type": "string",
@@ -486,6 +486,12 @@
           "type": "array",
           "items": {
             "oneOf": [
+              {
+                "$ref": "#/definitions/packetCoreControlPlanes_diagnosticsPackages_childResource"
+              },
+              {
+                "$ref": "#/definitions/packetCoreControlPlanes_packetCaptures_childResource"
+              },
               {
                 "$ref": "#/definitions/packetCoreControlPlanes_packetCoreDataPlanes_childResource"
               }
@@ -523,13 +529,97 @@
       ],
       "description": "Microsoft.MobileNetwork/packetCoreControlPlanes"
     },
+    "packetCoreControlPlanes_diagnosticsPackages": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+              "maxLength": 64
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the diagnostics package."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.MobileNetwork/packetCoreControlPlanes/diagnosticsPackages"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.MobileNetwork/packetCoreControlPlanes/diagnosticsPackages"
+    },
+    "packetCoreControlPlanes_packetCaptures": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+              "maxLength": 64
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the packet capture session."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PacketCapturePropertiesFormat"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Packet capture session properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.MobileNetwork/packetCoreControlPlanes/packetCaptures"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.MobileNetwork/packetCoreControlPlanes/packetCaptures"
+    },
     "packetCoreControlPlanes_packetCoreDataPlanes": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "location": {
@@ -607,7 +697,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "location": {
@@ -675,7 +765,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "identity": {
@@ -687,7 +777,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Managed service identity (system assigned and/or user assigned identities)"
+          "description": "Managed service identity (User assigned identity)"
         },
         "location": {
           "type": "string",
@@ -764,7 +854,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -1201,6 +1291,19 @@
       ],
       "description": "Reference to a data network resource."
     },
+    "DiagnosticsUploadConfiguration": {
+      "type": "object",
+      "properties": {
+        "storageAccountContainerUrl": {
+          "type": "string",
+          "description": "The Storage Account Container URL to upload diagnostics to."
+        }
+      },
+      "required": [
+        "storageAccountContainerUrl"
+      ],
+      "description": "Configuration for uploading packet core diagnostics."
+    },
     "HttpsServerCertificate": {
       "type": "object",
       "properties": {
@@ -1213,6 +1316,27 @@
         "certificateUrl"
       ],
       "description": "HTTPS server certificate configuration."
+    },
+    "Installation": {
+      "type": "object",
+      "properties": {
+        "desiredState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Uninstalled",
+                "Installed"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The desired installation state."
+        }
+      },
+      "description": "The installation state of the packet core."
     },
     "InterfaceProperties": {
       "type": "object",
@@ -1314,9 +1438,7 @@
               "type": "string",
               "enum": [
                 "None",
-                "SystemAssigned",
-                "UserAssigned",
-                "SystemAssigned,UserAssigned"
+                "UserAssigned"
               ]
             },
             {
@@ -1343,7 +1465,7 @@
       "required": [
         "type"
       ],
-      "description": "Managed service identity (system assigned and/or user assigned identities)"
+      "description": "Managed service identity (User assigned identity)"
     },
     "MobileNetworkPropertiesFormat": {
       "type": "object",
@@ -1392,7 +1514,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "location": {
@@ -1460,7 +1582,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "location": {
@@ -1528,7 +1650,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "location": {
@@ -1596,7 +1718,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "location": {
@@ -1664,7 +1786,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "location": {
@@ -1794,6 +1916,68 @@
       },
       "description": "The network address and port translation settings to use for the attached data network."
     },
+    "PacketCapturePropertiesFormat": {
+      "type": "object",
+      "properties": {
+        "bytesToCapturePerPacket": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4294967295,
+              "default": "0"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Number of bytes captured per packet, the remaining bytes are truncated. The default \"0\" means the entire packet is captured."
+        },
+        "networkInterfaces": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of network interfaces to capture on."
+        },
+        "timeLimitInSeconds": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 18000,
+              "default": "18000"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Maximum duration of the capture session in seconds."
+        },
+        "totalBytesPerSession": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4294967295,
+              "default": "67108864"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Maximum size of the capture output."
+        }
+      },
+      "description": "Packet capture session properties."
+    },
     "PacketCoreControlPlanePropertiesFormat": {
       "type": "object",
       "properties": {
@@ -1814,7 +1998,8 @@
               "type": "string",
               "enum": [
                 "5GC",
-                "EPC"
+                "EPC",
+                "EPC + 5GC"
               ]
             },
             {
@@ -1822,6 +2007,28 @@
             }
           ],
           "description": "The core network technology generation (5G core or EPC / 4G core)."
+        },
+        "diagnosticsUpload": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DiagnosticsUploadConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Configuration for uploading packet core diagnostics."
+        },
+        "installation": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Installation"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The installation state of the packet core."
         },
         "interopSettings": {
           "type": "object",
@@ -1872,8 +2079,6 @@
                 "G0",
                 "G1",
                 "G2",
-                "G3",
-                "G4",
                 "G5",
                 "G10"
               ]
@@ -1900,7 +2105,7 @@
         },
         "version": {
           "type": "string",
-          "description": "The version of the packet core software that is deployed."
+          "description": "The desired version of the packet core software."
         }
       },
       "required": [
@@ -1912,13 +2117,97 @@
       ],
       "description": "Packet core control plane properties."
     },
+    "packetCoreControlPlanes_diagnosticsPackages_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+              "maxLength": 64
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the diagnostics package."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "diagnosticsPackages"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "type"
+      ],
+      "description": "Microsoft.MobileNetwork/packetCoreControlPlanes/diagnosticsPackages"
+    },
+    "packetCoreControlPlanes_packetCaptures_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-01"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+              "maxLength": 64
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the packet capture session."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PacketCapturePropertiesFormat"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Packet capture session properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "packetCaptures"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.MobileNetwork/packetCoreControlPlanes/packetCaptures"
+    },
     "packetCoreControlPlanes_packetCoreDataPlanes_attachedDataNetworks_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "location": {
@@ -1986,7 +2275,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "location": {
@@ -2727,7 +3016,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -2794,7 +3083,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Interval for the UE periodic registration update procedure, in seconds."
+          "description": "UE periodic registration update timer (5G) or UE periodic tracking area update timer (4G), in seconds."
         },
         "rfspIndex": {
           "oneOf": [

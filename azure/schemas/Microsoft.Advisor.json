@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2020-01-01/Microsoft.Advisor.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-01-01/Microsoft.Advisor.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Advisor",
   "description": "Microsoft Advisor Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01"
+            "2023-01-01"
           ]
         },
         "name": {
@@ -45,14 +45,60 @@
         "type"
       ],
       "description": "Microsoft.Advisor/configurations"
-    },
+    }
+  },
+  "subscription_resourceDefinitions": {
+    "configurations": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-01-01"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "default"
+          ],
+          "description": "Advisor configuration name. Value must be 'default'"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ConfigDataProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Configuration data properties"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Advisor/configurations"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.Advisor/configurations"
+    }
+  },
+  "unknown_resourceDefinitions": {
     "recommendations_suppressions": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-01-01"
+            "2023-01-01"
           ]
         },
         "name": {
@@ -73,7 +119,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.Advisor/suppressions"
+            "Microsoft.Advisor/recommendations/suppressions"
           ]
         }
       },
@@ -83,51 +129,7 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Advisor/suppressions"
-    }
-  },
-  "subscription_resourceDefinitions": {
-    "configurations": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2020-01-01"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "enum": [
-            "default"
-          ],
-          "description": "Advisor configuration name. Value must be 'default'"
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/ConfigDataProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Configuration data properties"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "Microsoft.Advisor/configurations"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.Advisor/configurations"
+      "description": "Microsoft.Advisor/recommendations/suppressions"
     }
   },
   "definitions": {
@@ -147,6 +149,25 @@
             }
           ],
           "description": "Advisor digest configuration. Valid only for subscriptions"
+        },
+        "duration": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "7",
+                "14",
+                "21",
+                "30",
+                "60",
+                "90"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Minimum duration for Advisor low CPU utilization evaluation. Valid only for subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90."
         },
         "exclude": {
           "oneOf": [

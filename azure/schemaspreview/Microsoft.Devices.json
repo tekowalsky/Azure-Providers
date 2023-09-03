@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-04-30-preview/Microsoft.Devices.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-06-30-preview/Microsoft.Devices.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Devices",
   "description": "Microsoft Devices Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-30-preview"
+            "2023-06-30-preview"
           ]
         },
         "etag": {
@@ -108,7 +108,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-30-preview"
+            "2023-06-30-preview"
           ]
         },
         "name": {
@@ -155,7 +155,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-30-preview"
+            "2023-06-30-preview"
           ]
         },
         "name": {
@@ -194,7 +194,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-30-preview"
+            "2023-06-30-preview"
           ]
         },
         "name": {
@@ -684,6 +684,22 @@
           ],
           "description": "The IP filter rules."
         },
+        "ipVersion": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "ipv4",
+                "ipv6",
+                "ipv4ipv6"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "This property specifies the IP Version the hub is currently utilizing."
+        },
         "messagingEndpoints": {
           "oneOf": [
             {
@@ -860,7 +876,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-30-preview"
+            "2023-06-30-preview"
           ]
         },
         "name": {
@@ -907,7 +923,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-04-30-preview"
+            "2023-06-30-preview"
           ]
         },
         "name": {
@@ -1314,11 +1330,11 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Method used to authenticate against the cosmos DB sql collection endpoint."
+          "description": "Method used to authenticate against the cosmos DB sql container endpoint."
         },
-        "collectionName": {
+        "containerName": {
           "type": "string",
-          "description": "The name of the cosmos DB sql collection in the cosmos DB database."
+          "description": "The name of the cosmos DB sql container in the cosmos DB database."
         },
         "databaseName": {
           "type": "string",
@@ -1330,7 +1346,7 @@
         },
         "id": {
           "type": "string",
-          "description": "Id of the cosmos DB sql collection endpoint"
+          "description": "Id of the cosmos DB sql container endpoint"
         },
         "identity": {
           "oneOf": [
@@ -1357,11 +1373,11 @@
         },
         "partitionKeyName": {
           "type": "string",
-          "description": "The name of the partition key associated with this cosmos DB sql collection if one exists. This is an optional parameter."
+          "description": "The name of the partition key associated with this cosmos DB sql container if one exists. This is an optional parameter."
         },
         "partitionKeyTemplate": {
           "type": "string",
-          "description": "The template for generating a synthetic partition key value for use with this cosmos DB sql collection. The template must include at least one of the following placeholders: {iothub}, {deviceid}, {DD}, {MM}, and {YYYY}. Any one placeholder may be specified at most once, but order and non-placeholder components are arbitrary. This parameter is only required if PartitionKeyName is specified."
+          "description": "The template for generating a synthetic partition key value for use with this cosmos DB sql container. The template must include at least one of the following placeholders: {iothub}, {deviceid}, {DD}, {MM}, and {YYYY}. Any one placeholder may be specified at most once, but order and non-placeholder components are arbitrary. This parameter is only required if PartitionKeyName is specified."
         },
         "primaryKey": {
           "type": "string",
@@ -1381,17 +1397,17 @@
         }
       },
       "required": [
-        "collectionName",
+        "containerName",
         "databaseName",
         "endpointUri",
         "name"
       ],
-      "description": "The properties related to a cosmos DB sql collection endpoint."
+      "description": "The properties related to a cosmos DB sql container endpoint."
     },
     "RoutingEndpoints": {
       "type": "object",
       "properties": {
-        "cosmosDBSqlCollections": {
+        "cosmosDBSqlContainers": {
           "oneOf": [
             {
               "type": "array",
@@ -1403,7 +1419,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The list of Cosmos DB collection endpoints that IoT hub routes messages to, based on the routing rules."
+          "description": "The list of Cosmos DB container endpoints that IoT hub routes messages to, based on the routing rules."
         },
         "eventHubs": {
           "oneOf": [

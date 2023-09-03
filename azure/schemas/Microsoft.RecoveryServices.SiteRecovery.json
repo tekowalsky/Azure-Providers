@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-10-01/Microsoft.RecoveryServices.SiteRecovery.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-06-01/Microsoft.RecoveryServices.SiteRecovery.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.RecoveryServices",
   "description": "Microsoft RecoveryServices Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -49,7 +49,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -104,7 +104,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -143,7 +143,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -198,7 +198,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -237,7 +237,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -276,7 +276,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -315,7 +315,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -354,7 +354,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -393,7 +393,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -432,7 +432,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -471,7 +471,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -510,7 +510,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -549,7 +549,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -3827,7 +3827,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -3866,7 +3866,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -3905,7 +3905,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -3944,7 +3944,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -3983,7 +3983,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -4022,7 +4022,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-06-01"
           ]
         },
         "name": {
@@ -4192,6 +4192,10 @@
     "VMwareCbtEnableMigrationInput": {
       "type": "object",
       "properties": {
+        "confidentialVmKeyVaultId": {
+          "type": "string",
+          "description": "The confidential VM key vault Id for ADE installation."
+        },
         "dataMoverRunAsAccountId": {
           "type": "string",
           "description": "The data mover run as account Id."
@@ -4338,6 +4342,17 @@
           "type": "string",
           "description": "The target VM name."
         },
+        "targetVmSecurityProfile": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/VMwareCbtSecurityProfileProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "VMwareCbt security profile input."
+        },
         "targetVmSize": {
           "type": "string",
           "description": "The target VM size."
@@ -4428,6 +4443,44 @@
         "instanceType"
       ],
       "description": "VMware Cbt policy creation input."
+    },
+    "VMwareCbtSecurityProfileProperties": {
+      "type": "object",
+      "properties": {
+        "isTargetVmConfidentialEncryptionEnabled": {
+          "type": "string",
+          "description": "A value indicating whether confidential compute encryption to be enabled."
+        },
+        "isTargetVmIntegrityMonitoringEnabled": {
+          "type": "string",
+          "description": "A value indicating whether integrity monitoring to be enabled."
+        },
+        "isTargetVmSecureBootEnabled": {
+          "type": "string",
+          "description": "A value indicating whether secure boot to be enabled."
+        },
+        "isTargetVmTpmEnabled": {
+          "type": "string",
+          "description": "A value indicating whether trusted platform module to be enabled."
+        },
+        "targetVmSecurityType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "TrustedLaunch",
+                "ConfidentialVM"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The target VM security type."
+        }
+      },
+      "description": "VMwareCbt security profile input."
     },
     "VMwareV2FabricCreationInput": {
       "type": "object",

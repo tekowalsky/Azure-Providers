@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2018-08-01/Microsoft.Network.TrafficManager.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-04-01/Microsoft.Network.TrafficManager.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Network",
   "description": "Microsoft Network Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-08-01"
+            "2022-04-01"
           ]
         },
         "id": {
@@ -88,7 +88,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-08-01"
+            "2022-04-01"
           ]
         },
         "id": {
@@ -131,7 +131,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-08-01"
+            "2022-04-01"
           ]
         },
         "id": {
@@ -174,7 +174,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-08-01"
+            "2022-04-01"
           ]
         },
         "id": {
@@ -219,7 +219,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-08-01"
+            "2022-04-01"
           ]
         },
         "name": {
@@ -297,6 +297,21 @@
     "EndpointProperties": {
       "type": "object",
       "properties": {
+        "alwaysServe": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "If Always Serve is enabled, probing for endpoint health will be disabled and endpoints will be included in the traffic routing method."
+        },
         "customHeaders": {
           "oneOf": [
             {
@@ -325,7 +340,8 @@
                 "Degraded",
                 "Disabled",
                 "Inactive",
-                "Stopped"
+                "Stopped",
+                "Unmonitored"
               ]
             },
             {
@@ -768,7 +784,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-08-01"
+            "2022-04-01"
           ]
         },
         "id": {
@@ -811,7 +827,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-08-01"
+            "2022-04-01"
           ]
         },
         "id": {
@@ -854,7 +870,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-08-01"
+            "2022-04-01"
           ]
         },
         "id": {

@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-05-01/Microsoft.AVS.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-03-01/Microsoft.AVS.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.AVS",
   "description": "Microsoft AVS Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "identity": {
@@ -29,7 +29,15 @@
           "description": "Resource location"
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the private cloud"
         },
         "properties": {
@@ -119,11 +127,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the addon for the private cloud"
         },
         "properties": {
@@ -158,11 +174,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the ExpressRoute Circuit Authorization in the private cloud"
         },
         "type": {
@@ -185,11 +209,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the cloud link resource"
         },
         "properties": {
@@ -224,11 +256,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the cluster in the private cloud"
         },
         "properties": {
@@ -288,11 +328,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the datastore in the private cloud cluster"
         },
         "properties": {
@@ -327,11 +375,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy"
         },
         "properties": {
@@ -366,11 +422,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the global reach connection in the private cloud"
         },
         "properties": {
@@ -405,11 +469,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the HCX Enterprise Site in the private cloud"
         },
         "type": {
@@ -432,11 +504,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the user-invoked script execution resource"
         },
         "properties": {
@@ -471,7 +551,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
@@ -510,7 +590,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
@@ -549,7 +629,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
@@ -588,7 +668,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
@@ -627,7 +707,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
@@ -666,7 +746,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
@@ -705,7 +785,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
@@ -1291,6 +1371,20 @@
           ],
           "description": "The properties of customer managed encryption key"
         },
+        "extendedNetworkBlocks": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Array of additional networks noncontiguous with networkBlock. Networks must be unique and non-overlapping across VNet in your subscription, on-premise, and this privateCloud networkBlock attribute. Make sure the CIDR format conforms to (A.B.C.D/X)."
+        },
         "identitySources": {
           "oneOf": [
             {
@@ -1366,11 +1460,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the addon for the private cloud"
         },
         "properties": {
@@ -1405,11 +1507,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the ExpressRoute Circuit Authorization in the private cloud"
         },
         "type": {
@@ -1432,11 +1542,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the cloud link resource"
         },
         "properties": {
@@ -1471,11 +1589,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the cluster in the private cloud"
         },
         "properties": {
@@ -1522,11 +1648,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the datastore in the private cloud cluster"
         },
         "properties": {
@@ -1561,11 +1695,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy"
         },
         "properties": {
@@ -1600,11 +1742,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the global reach connection in the private cloud"
         },
         "properties": {
@@ -1639,11 +1789,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the HCX Enterprise Site in the private cloud"
         },
         "type": {
@@ -1666,11 +1824,19 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-05-01"
+            "2023-03-01"
           ]
         },
         "name": {
-          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
           "description": "Name of the user-invoked script execution resource"
         },
         "properties": {

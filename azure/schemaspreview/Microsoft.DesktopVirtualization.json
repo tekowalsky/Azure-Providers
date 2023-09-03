@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-10-14-preview/Microsoft.DesktopVirtualization.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-07-07-preview/Microsoft.DesktopVirtualization.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.DesktopVirtualization",
   "description": "Microsoft DesktopVirtualization Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-14-preview"
+            "2023-07-07-preview"
           ]
         },
         "identity": {
@@ -137,7 +137,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-14-preview"
+            "2023-07-07-preview"
           ]
         },
         "name": {
@@ -189,7 +189,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-14-preview"
+            "2023-07-07-preview"
           ]
         },
         "identity": {
@@ -319,7 +319,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-14-preview"
+            "2023-07-07-preview"
           ]
         },
         "name": {
@@ -371,7 +371,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-14-preview"
+            "2023-07-07-preview"
           ]
         },
         "name": {
@@ -410,7 +410,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-14-preview"
+            "2023-07-07-preview"
           ]
         },
         "identity": {
@@ -476,6 +476,9 @@
             "oneOf": [
               {
                 "$ref": "#/definitions/scalingPlans_pooledSchedules_childResource"
+              },
+              {
+                "$ref": "#/definitions/scalingPlans_personalSchedules_childResource"
               }
             ]
           }
@@ -531,13 +534,65 @@
       ],
       "description": "Microsoft.DesktopVirtualization/scalingPlans"
     },
+    "scalingPlans_personalSchedules": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-07-07-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "description": "The name of the ScalingPlanSchedule"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ScalingPlanPersonalScheduleProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A ScalingPlanPersonalSchedule."
+        },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DesktopVirtualization/scalingPlans/personalSchedules"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DesktopVirtualization/scalingPlans/personalSchedules"
+    },
     "scalingPlans_pooledSchedules": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-14-preview"
+            "2023-07-07-preview"
           ]
         },
         "name": {
@@ -589,7 +644,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-14-preview"
+            "2023-07-07-preview"
           ]
         },
         "identity": {
@@ -716,7 +771,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-14-preview"
+            "2023-07-07-preview"
           ]
         },
         "name": {
@@ -830,6 +885,17 @@
         "hostPoolArmPath": {
           "type": "string",
           "description": "HostPool arm path of ApplicationGroup."
+        },
+        "showInFeed": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Boolean representing whether the applicationGroup is show in the feed."
         }
       },
       "required": [
@@ -844,7 +910,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-14-preview"
+            "2023-07-07-preview"
           ]
         },
         "name": {
@@ -1188,7 +1254,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-14-preview"
+            "2023-07-07-preview"
           ]
         },
         "name": {
@@ -1240,7 +1306,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-14-preview"
+            "2023-07-07-preview"
           ]
         },
         "name": {
@@ -1695,6 +1761,379 @@
       },
       "description": "Scaling plan reference to hostpool."
     },
+    "ScalingPlanPersonalScheduleProperties": {
+      "type": "object",
+      "properties": {
+        "daysOfWeek": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday"
+                ]
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Set of days of the week on which this schedule is active."
+        },
+        "offPeakActionOnDisconnect": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "Deallocate",
+                "Hibernate"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Action to be taken after a user disconnect during the off-peak period."
+        },
+        "offPeakActionOnLogoff": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "Deallocate",
+                "Hibernate"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Action to be taken after a logoff during the off-peak period."
+        },
+        "offPeakMinutesToWaitOnDisconnect": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time in minutes to wait before performing the desired session handling action when a user disconnects during the off-peak period."
+        },
+        "offPeakMinutesToWaitOnLogoff": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time in minutes to wait before performing the desired session handling action when a user logs off during the off-peak period."
+        },
+        "offPeakStartTime": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Time"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time for a scaling action to occur."
+        },
+        "offPeakStartVMOnConnect": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enable",
+                "Disable"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The desired configuration of Start VM On Connect for the hostpool during the off-peak phase."
+        },
+        "peakActionOnDisconnect": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "Deallocate",
+                "Hibernate"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Action to be taken after a user disconnect during the peak period."
+        },
+        "peakActionOnLogoff": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "Deallocate",
+                "Hibernate"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Action to be taken after a logoff during the peak period."
+        },
+        "peakMinutesToWaitOnDisconnect": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time in minutes to wait before performing the desired session handling action when a user disconnects during the peak period."
+        },
+        "peakMinutesToWaitOnLogoff": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time in minutes to wait before performing the desired session handling action when a user logs off during the peak period."
+        },
+        "peakStartTime": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Time"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time for a scaling action to occur."
+        },
+        "peakStartVMOnConnect": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enable",
+                "Disable"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The desired configuration of Start VM On Connect for the hostpool during the peak phase."
+        },
+        "rampDownActionOnDisconnect": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "Deallocate",
+                "Hibernate"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Action to be taken after a user disconnect during the ramp down period."
+        },
+        "rampDownActionOnLogoff": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "Deallocate",
+                "Hibernate"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Action to be taken after a logoff during the ramp down period."
+        },
+        "rampDownMinutesToWaitOnDisconnect": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time in minutes to wait before performing the desired session handling action when a user disconnects during the ramp down period."
+        },
+        "rampDownMinutesToWaitOnLogoff": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time in minutes to wait before performing the desired session handling action when a user logs off during the ramp down period."
+        },
+        "rampDownStartTime": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Time"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time for a scaling action to occur."
+        },
+        "rampDownStartVMOnConnect": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enable",
+                "Disable"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The desired configuration of Start VM On Connect for the hostpool during the ramp down phase."
+        },
+        "rampUpActionOnDisconnect": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "Deallocate",
+                "Hibernate"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Action to be taken after a user disconnect during the ramp up period."
+        },
+        "rampUpActionOnLogoff": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "Deallocate",
+                "Hibernate"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Action to be taken after a logoff during the ramp up period."
+        },
+        "rampUpAutoStartHosts": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "None",
+                "WithAssignedUser",
+                "All"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The desired startup behavior during the ramp up period for personal vms in the hostpool."
+        },
+        "rampUpMinutesToWaitOnDisconnect": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time in minutes to wait before performing the desired session handling action when a user disconnects during the ramp up period."
+        },
+        "rampUpMinutesToWaitOnLogoff": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time in minutes to wait before performing the desired session handling action when a user logs off during the ramp up period."
+        },
+        "rampUpStartTime": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Time"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The time for a scaling action to occur."
+        },
+        "rampUpStartVMOnConnect": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enable",
+                "Disable"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The desired configuration of Start VM On Connect for the hostpool during the ramp up phase. If this is disabled, session hosts must be turned on using rampUpAutoStartHosts or by turning them on manually."
+        }
+      },
+      "description": "A ScalingPlanPersonalSchedule."
+    },
     "ScalingPlanPooledScheduleProperties": {
       "type": "object",
       "properties": {
@@ -1988,13 +2427,65 @@
       ],
       "description": "Scaling plan properties."
     },
+    "scalingPlans_personalSchedules_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-07-07-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "description": "The name of the ScalingPlanSchedule"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ScalingPlanPersonalScheduleProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A ScalingPlanPersonalSchedule."
+        },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "personalSchedules"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DesktopVirtualization/scalingPlans/personalSchedules"
+    },
     "scalingPlans_pooledSchedules_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-14-preview"
+            "2023-07-07-preview"
           ]
         },
         "name": {
@@ -2413,7 +2904,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-14-preview"
+            "2023-07-07-preview"
           ]
         },
         "name": {

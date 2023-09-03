@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-10-01/Microsoft.App.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-05-01/Microsoft.App.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.App",
   "description": "Microsoft App Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "extendedLocation": {
@@ -96,7 +96,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -155,7 +155,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -194,7 +194,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -233,7 +233,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "extendedLocation": {
@@ -261,6 +261,10 @@
         "location": {
           "type": "string",
           "description": "The geo-location where the resource lives"
+        },
+        "managedBy": {
+          "type": "string",
+          "description": "The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if it is removed from the template since it is managed by another resource."
         },
         "name": {
           "type": "string",
@@ -327,7 +331,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -366,7 +370,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -399,13 +403,91 @@
       ],
       "description": "Microsoft.App/containerApps/sourcecontrols"
     },
+    "jobs": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-05-01"
+          ]
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ManagedServiceIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Managed service identity (system assigned and/or user assigned identities)"
+        },
+        "location": {
+          "type": "string",
+          "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[-\\w\\._\\(\\)]+$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Job Name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/JobProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Container Apps Job resource specific properties."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.App/jobs"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.App/jobs"
+    },
     "managedEnvironments": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "kind": {
@@ -439,6 +521,9 @@
                 "$ref": "#/definitions/managedEnvironments_certificates_childResource"
               },
               {
+                "$ref": "#/definitions/managedEnvironments_managedCertificates_childResource"
+              },
+              {
                 "$ref": "#/definitions/managedEnvironments_daprComponents_childResource"
               },
               {
@@ -446,17 +531,6 @@
               }
             ]
           }
-        },
-        "sku": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/EnvironmentSkuProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Managed Environment resource SKU properties."
         },
         "tags": {
           "oneOf": [
@@ -495,7 +569,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -554,7 +628,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -587,13 +661,72 @@
       ],
       "description": "Microsoft.App/managedEnvironments/daprComponents"
     },
+    "managedEnvironments_managedCertificates": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-05-01"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the Managed Certificate."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ManagedCertificateProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Certificate resource specific properties"
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.App/managedEnvironments/managedCertificates"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.App/managedEnvironments/managedCertificates"
+    },
     "managedEnvironments_storages": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -740,7 +873,7 @@
       "properties": {
         "destination": {
           "type": "string",
-          "description": "Logs destination"
+          "description": "Logs destination, can be 'log-analytics', 'azure-monitor' or 'none'"
         },
         "logAnalyticsConfiguration": {
           "oneOf": [
@@ -751,7 +884,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Log analytics configuration"
+          "description": "Log Analytics configuration, must only be provided when destination is configured as 'log-analytics'"
         }
       },
       "description": "Configuration of application logs"
@@ -1027,6 +1160,10 @@
           "type": "string",
           "description": "Client Secret."
         },
+        "kind": {
+          "type": "string",
+          "description": "Kind of auth github does for deploying the template"
+        },
         "subscriptionId": {
           "type": "string",
           "description": "Subscription Id."
@@ -1223,6 +1360,17 @@
             }
           ],
           "description": "Collection of secrets used by a Container app"
+        },
+        "service": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Service"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Container App to be a dev service"
         }
       },
       "description": "Non versioned Container App configuration properties that define the mutable settings of a Container app"
@@ -1275,7 +1423,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -1334,7 +1482,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -1373,7 +1521,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -1743,9 +1891,9 @@
           ],
           "description": "Container App versioned application definition.\nDefines the desired state of an immutable revision.\nAny changes to this section Will result in a new revision being created"
         },
-        "workloadProfileType": {
+        "workloadProfileName": {
           "type": "string",
-          "description": "Workload profile type for container apps to execute."
+          "description": "Workload profile name for container apps to execute on."
         }
       },
       "description": "ContainerApp resource specific properties"
@@ -1756,7 +1904,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -1795,7 +1943,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -1886,7 +2034,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "allow credential or not"
+          "description": "Specifies whether the resource allows credentials"
         },
         "allowedHeaders": {
           "oneOf": [
@@ -1900,7 +2048,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "allowed HTTP headers"
+          "description": "Specifies the content for the access-control-allow-headers header"
         },
         "allowedMethods": {
           "oneOf": [
@@ -1914,7 +2062,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "allowed HTTP methods"
+          "description": "Specifies the content for the access-control-allow-methods header"
         },
         "allowedOrigins": {
           "oneOf": [
@@ -1928,7 +2076,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "allowed origins"
+          "description": "Specifies the content for the access-control-allow-origins header"
         },
         "exposeHeaders": {
           "oneOf": [
@@ -1942,7 +2090,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "expose HTTP headers "
+          "description": "Specifies the content for the access-control-expose-headers header "
         },
         "maxAge": {
           "oneOf": [
@@ -1953,7 +2101,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "max time client can cache the result"
+          "description": "Specifies the content for the access-control-max-age header"
         }
       },
       "required": [
@@ -1981,7 +2129,7 @@
         },
         "certificateId": {
           "type": "string",
-          "description": "Resource Id of the Certificate to be bound to this hostname."
+          "description": "Resource Id of the Certificate to be bound to this hostname. Must exist in the Managed Environment."
         },
         "name": {
           "type": "string",
@@ -2271,6 +2419,11 @@
       },
       "description": "Dapr Component resource specific properties"
     },
+    "DaprConfiguration": {
+      "type": "object",
+      "properties": {},
+      "description": "Configuration properties Dapr component"
+    },
     "DaprMetadata": {
       "type": "object",
       "properties": {
@@ -2319,30 +2472,6 @@
         }
       },
       "description": "The configuration settings of the Azure Active Directory default authorization policy."
-    },
-    "EnvironmentSkuProperties": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "Consumption",
-                "Premium"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Name of the Sku."
-        }
-      },
-      "required": [
-        "name"
-      ],
-      "description": "Managed Environment resource SKU properties."
     },
     "EnvironmentVar": {
       "type": "object",
@@ -2515,6 +2644,10 @@
         "contextPath": {
           "type": "string",
           "description": "Context path"
+        },
+        "githubPersonalAccessToken": {
+          "type": "string",
+          "description": "One time Github PAT to configure github environment"
         },
         "image": {
           "type": "string",
@@ -2916,6 +3049,17 @@
           ],
           "description": "Rules to restrict incoming IP address."
         },
+        "stickySessions": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IngressStickySessions"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Sticky Sessions for Single Revision Mode"
+        },
         "targetPort": {
           "oneOf": [
             {
@@ -2960,6 +3104,27 @@
         }
       },
       "description": "Container App Ingress configuration."
+    },
+    "IngressStickySessions": {
+      "type": "object",
+      "properties": {
+        "affinity": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "sticky",
+                "none"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Sticky Session Affinity."
+        }
+      },
+      "description": "Sticky Sessions for Single Revision Mode"
     },
     "InitContainer": {
       "type": "object",
@@ -3080,6 +3245,389 @@
       ],
       "description": "Rule to restrict incoming IP address."
     },
+    "JobConfiguration": {
+      "type": "object",
+      "properties": {
+        "eventTriggerConfig": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/JobConfigurationEventTriggerConfig"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Trigger configuration of an event driven job."
+        },
+        "manualTriggerConfig": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/JobConfigurationManualTriggerConfig"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Manual trigger configuration for a single execution job. Properties replicaCompletionCount and parallelism would be set to 1 by default"
+        },
+        "registries": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RegistryCredentials"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Collection of private container registry credentials used by a Container apps job"
+        },
+        "replicaRetryLimit": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Maximum number of retries before failing the job."
+        },
+        "replicaTimeout": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Maximum number of seconds a replica is allowed to run."
+        },
+        "scheduleTriggerConfig": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/JobConfigurationScheduleTriggerConfig"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Cron formatted repeating trigger schedule (\"* * * * *\") for cronjobs. Properties completions and parallelism would be set to 1 by default"
+        },
+        "secrets": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Secret"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Collection of secrets used by a Container Apps Job"
+        },
+        "triggerType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Schedule",
+                "Event",
+                "Manual"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Trigger type of the job."
+        }
+      },
+      "required": [
+        "replicaTimeout",
+        "triggerType"
+      ],
+      "description": "Non versioned Container Apps Job configuration properties"
+    },
+    "JobConfigurationEventTriggerConfig": {
+      "type": "object",
+      "properties": {
+        "parallelism": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Number of parallel replicas of a job that can run at a given time."
+        },
+        "replicaCompletionCount": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Minimum number of successful replica completions before overall job completion."
+        },
+        "scale": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/JobScale"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Scaling configurations for event driven jobs."
+        }
+      },
+      "description": "Trigger configuration of an event driven job."
+    },
+    "JobConfigurationManualTriggerConfig": {
+      "type": "object",
+      "properties": {
+        "parallelism": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Number of parallel replicas of a job that can run at a given time."
+        },
+        "replicaCompletionCount": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Minimum number of successful replica completions before overall job completion."
+        }
+      },
+      "description": "Manual trigger configuration for a single execution job. Properties replicaCompletionCount and parallelism would be set to 1 by default"
+    },
+    "JobConfigurationScheduleTriggerConfig": {
+      "type": "object",
+      "properties": {
+        "cronExpression": {
+          "type": "string",
+          "description": "Cron formatted repeating schedule (\"* * * * *\") of a Cron Job."
+        },
+        "parallelism": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Number of parallel replicas of a job that can run at a given time."
+        },
+        "replicaCompletionCount": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Minimum number of successful replica completions before overall job completion."
+        }
+      },
+      "required": [
+        "cronExpression"
+      ],
+      "description": "Cron formatted repeating trigger schedule (\"* * * * *\") for cronjobs. Properties completions and parallelism would be set to 1 by default"
+    },
+    "JobProperties": {
+      "type": "object",
+      "properties": {
+        "configuration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/JobConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Non versioned Container Apps Job configuration properties"
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "Resource ID of environment."
+        },
+        "template": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/JobTemplate"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Container Apps Job versioned application definition. Defines the desired state of an immutable revision. Any changes to this section Will result in a new revision being created"
+        },
+        "workloadProfileName": {
+          "type": "string",
+          "description": "Workload profile name for container apps to execute on."
+        }
+      },
+      "description": "Container Apps Job resource specific properties."
+    },
+    "JobScale": {
+      "type": "object",
+      "properties": {
+        "maxExecutions": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "default": "100"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Maximum number of job executions that are created for a trigger, default 100."
+        },
+        "minExecutions": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "default": "0"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Minimum number of job executions that are created for a trigger, default 0"
+        },
+        "pollingInterval": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Interval to check each event source in seconds. Defaults to 30s"
+        },
+        "rules": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/JobScaleRule"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Scaling rules."
+        }
+      },
+      "description": "Scaling configurations for event driven jobs."
+    },
+    "JobScaleRule": {
+      "type": "object",
+      "properties": {
+        "auth": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ScaleRuleAuth"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Authentication secrets for the scale rule."
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {},
+          "description": "Metadata properties to describe the scale rule."
+        },
+        "name": {
+          "type": "string",
+          "description": "Scale Rule Name"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of the scale rule\neg: azure-servicebus, redis etc."
+        }
+      },
+      "description": "Scaling rule."
+    },
+    "JobTemplate": {
+      "type": "object",
+      "properties": {
+        "containers": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Container"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of container definitions for the Container App."
+        },
+        "initContainers": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/InitContainer"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of specialized containers that run before app containers."
+        },
+        "volumes": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Volume"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of volume definitions for the Container App."
+        }
+      },
+      "description": "Container Apps Job versioned application definition. Defines the desired state of an immutable revision. Any changes to this section Will result in a new revision being created"
+    },
     "JwtClaimChecks": {
       "type": "object",
       "properties": {
@@ -3114,6 +3662,11 @@
       },
       "description": "The configuration settings of the checks that should be made while validating the JWT Claims."
     },
+    "KedaConfiguration": {
+      "type": "object",
+      "properties": {},
+      "description": "Configuration properties Keda component"
+    },
     "LogAnalyticsConfiguration": {
       "type": "object",
       "properties": {
@@ -3126,7 +3679,7 @@
           "description": "Log analytics customer key"
         }
       },
-      "description": "Log analytics configuration"
+      "description": "Log Analytics configuration, must only be provided when destination is configured as 'log-analytics'"
     },
     "Login": {
       "type": "object",
@@ -3222,29 +3775,31 @@
       },
       "description": "The configuration settings of the login flow, including the scopes that should be requested."
     },
-    "ManagedEnvironmentOutboundSettings": {
+    "ManagedCertificateProperties": {
       "type": "object",
       "properties": {
-        "outBoundType": {
+        "domainControlValidation": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
-                "LoadBalancer",
-                "UserDefinedRouting"
+                "CNAME",
+                "HTTP",
+                "TXT"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "Selected type of domain control validation for managed certificates."
         },
-        "virtualNetworkApplianceIp": {
+        "subjectName": {
           "type": "string",
-          "description": "Virtual Appliance IP used as the Egress controller for the Environment"
+          "description": "Subject name of the certificate."
         }
       },
-      "description": "Configuration used to control the Environment Egress outbound traffic"
+      "description": "Certificate resource specific properties"
     },
     "ManagedEnvironmentProperties": {
       "type": "object",
@@ -3278,6 +3833,43 @@
         "daprAIInstrumentationKey": {
           "type": "string",
           "description": "Azure Monitor instrumentation key used by Dapr to export Service to Service communication telemetry"
+        },
+        "daprConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DaprConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Configuration properties Dapr component"
+        },
+        "infrastructureResourceGroup": {
+          "type": "string",
+          "description": "Name of the platform-managed resource group created for the Managed Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be created in the same subscription as the subnet."
+        },
+        "kedaConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/KedaConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Configuration properties Keda component"
+        },
+        "peerAuthentication": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ManagedEnvironmentPropertiesPeerAuthentication"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Peer authentication settings for the Managed Environment"
         },
         "vnetConfiguration": {
           "oneOf": [
@@ -3318,6 +3910,23 @@
       },
       "description": "Managed environment resource specific properties"
     },
+    "ManagedEnvironmentPropertiesPeerAuthentication": {
+      "type": "object",
+      "properties": {
+        "mtls": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Mtls"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Configuration properties for mutual TLS authentication"
+        }
+      },
+      "description": "Peer authentication settings for the Managed Environment"
+    },
     "ManagedEnvironmentStorageProperties": {
       "type": "object",
       "properties": {
@@ -3341,7 +3950,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -3400,7 +4009,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -3433,13 +4042,72 @@
       ],
       "description": "Microsoft.App/managedEnvironments/daprComponents"
     },
+    "managedEnvironments_managedCertificates_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-05-01"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the Managed Certificate."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ManagedCertificateProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Certificate resource specific properties"
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "managedCertificates"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.App/managedEnvironments/managedCertificates"
+    },
     "managedEnvironments_storages_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -3511,6 +4179,23 @@
         "type"
       ],
       "description": "Managed service identity (system assigned and/or user assigned identities)"
+    },
+    "Mtls": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Boolean indicating whether the mutual TLS authentication is enabled"
+        }
+      },
+      "description": "Configuration properties for mutual TLS authentication"
     },
     "Nonce": {
       "type": "object",
@@ -3816,18 +4501,26 @@
       "properties": {
         "secretRef": {
           "type": "string",
-          "description": "Name of the Container App secret from which to pull the auth params."
+          "description": "Name of the secret from which to pull the auth params."
         },
         "triggerParameter": {
           "type": "string",
           "description": "Trigger Parameter that uses the secret"
         }
       },
-      "description": "Auth Secrets for Container App Scale Rule"
+      "description": "Auth Secrets for Scale Rule"
     },
     "Secret": {
       "type": "object",
       "properties": {
+        "identity": {
+          "type": "string",
+          "description": "Resource ID of a managed identity to authenticate with Azure Key Vault, or System to use a system-assigned identity."
+        },
+        "keyVaultUrl": {
+          "type": "string",
+          "description": "Azure Key Vault URL pointing to the secret referenced by the container app."
+        },
         "name": {
           "type": "string",
           "description": "Secret Name."
@@ -3838,6 +4531,47 @@
         }
       },
       "description": "Secret definition."
+    },
+    "SecretVolumeItem": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to project secret to. If no path is provided, path defaults to name of secret listed in secretRef."
+        },
+        "secretRef": {
+          "type": "string",
+          "description": "Name of the Container App secret from which to pull the secret value."
+        }
+      },
+      "description": "Secret to be added to volume."
+    },
+    "Service": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Dev ContainerApp service type"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "description": "Container App to be a dev service"
+    },
+    "ServiceBind": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the service bind"
+        },
+        "serviceId": {
+          "type": "string",
+          "description": "Resource id of the target service"
+        }
+      },
+      "description": "Configuration to bind a ContainerApp to a dev ContainerApp Service"
     },
     "SourceControlProperties": {
       "type": "object",
@@ -3944,6 +4678,31 @@
             }
           ],
           "description": "Container App scaling configurations."
+        },
+        "serviceBinds": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ServiceBind"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of container app services bound to the app"
+        },
+        "terminationGracePeriodSeconds": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Optional duration in seconds the Container App Instance needs to terminate gracefully. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). If this value is nil, the default grace period will be used instead. Set this value longer than the expected cleanup time for your process. Defaults to 30 seconds."
         },
         "volumes": {
           "oneOf": [
@@ -4055,7 +4814,7 @@
         },
         "infrastructureSubnetId": {
           "type": "string",
-          "description": "Resource ID of a subnet for infrastructure components. This subnet must be in the same VNET as the subnet defined in runtimeSubnetId. Must not overlap with any other provided IP ranges."
+          "description": "Resource ID of a subnet for infrastructure components. Must not overlap with any other provided IP ranges."
         },
         "internal": {
           "oneOf": [
@@ -4066,18 +4825,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Boolean indicating the environment only has an internal load balancer. These environments do not have a public static IP resource. They must provide runtimeSubnetId and infrastructureSubnetId if enabling this property"
-        },
-        "outboundSettings": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/ManagedEnvironmentOutboundSettings"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Configuration used to control the Environment Egress outbound traffic"
+          "description": "Boolean indicating the environment only has an internal load balancer. These environments do not have a public static IP resource. They must provide infrastructureSubnetId if enabling this property"
         },
         "platformReservedCidr": {
           "type": "string",
@@ -4086,10 +4834,6 @@
         "platformReservedDnsIP": {
           "type": "string",
           "description": " An IP address from the IP range defined by platformReservedCidr that will be reserved for the internal DNS server."
-        },
-        "runtimeSubnetId": {
-          "type": "string",
-          "description": "Resource ID of a subnet that Container App containers are injected into. This subnet must be in the same VNET as the subnet defined in infrastructureSubnetId. Must not overlap with any other provided IP ranges."
         }
       },
       "description": "Configuration properties for apps environment to join a Virtual Network"
@@ -4097,13 +4841,31 @@
     "Volume": {
       "type": "object",
       "properties": {
+        "mountOptions": {
+          "type": "string",
+          "description": "Mount options used while mounting the AzureFile. Must be a comma-separated string."
+        },
         "name": {
           "type": "string",
           "description": "Volume name."
         },
+        "secrets": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SecretVolumeItem"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of secrets to be added in volume. If no secrets are provided, all secrets in collection will be added to volume."
+        },
         "storageName": {
           "type": "string",
-          "description": "Name of storage resource. No need to provide for EmptyDir."
+          "description": "Name of storage resource. No need to provide for EmptyDir and Secret."
         },
         "storageType": {
           "oneOf": [
@@ -4111,7 +4873,8 @@
               "type": "string",
               "enum": [
                 "AzureFile",
-                "EmptyDir"
+                "EmptyDir",
+                "Secret"
               ]
             },
             {
@@ -4129,6 +4892,10 @@
         "mountPath": {
           "type": "string",
           "description": "Path within the container at which the volume should be mounted.Must not contain ':'."
+        },
+        "subPath": {
+          "type": "string",
+          "description": "Path within the volume from which the container's volume should be mounted. Defaults to \"\" (volume's root)."
         },
         "volumeName": {
           "type": "string",
@@ -4162,14 +4929,17 @@
           ],
           "description": "The minimum capacity."
         },
+        "name": {
+          "type": "string",
+          "description": "Workload profile name for container apps to execute on."
+        },
         "workloadProfileType": {
           "type": "string",
-          "description": "Workload profile type for container apps to execute."
+          "description": "Workload profile type for container apps to execute on."
         }
       },
       "required": [
-        "maximumCount",
-        "minimumCount",
+        "name",
         "workloadProfileType"
       ],
       "description": "Workload profile to scope container app execution."

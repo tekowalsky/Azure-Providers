@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-10-01-preview/Microsoft.ServiceFabric.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-03-01-preview/Microsoft.ServiceFabric.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.ServiceFabric",
   "description": "Microsoft ServiceFabric Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "location": {
@@ -97,6 +97,7 @@
         "location",
         "name",
         "properties",
+        "sku",
         "type"
       ],
       "description": "Microsoft.ServiceFabric/managedClusters"
@@ -107,7 +108,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "identity": {
@@ -197,7 +198,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "location": {
@@ -266,7 +267,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "location": {
@@ -345,7 +346,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "location": {
@@ -414,7 +415,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1204,6 +1205,11 @@
           ],
           "description": "Custom Network Security Rules that are applied to the Virtual Network of the cluster."
         },
+        "publicIPPrefixId": {
+          "type": "string",
+          "format": "arm-id",
+          "description": "Specify the resource id of a public IP prefix that the load balancer will allocate a public IP address from. Only supports IPv4."
+        },
         "serviceEndpoints": {
           "oneOf": [
             {
@@ -1273,7 +1279,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "identity": {
@@ -1353,7 +1359,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "location": {
@@ -1422,7 +1428,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "location": {
@@ -1491,7 +1497,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "location": {
@@ -1560,7 +1566,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01-preview"
+            "2023-03-01-preview"
           ]
         },
         "name": {
@@ -1928,6 +1934,17 @@
           ],
           "description": "Enable or disable the Host Encryption for the virtual machines on the node type. This will enable the encryption for all the disks including Resource/Temp disk at host itself. Default: The Encryption at host will be disabled unless this property is set to true for the resource."
         },
+        "enableNodePublicIP": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies whether each node is allocated its own public IP address. This is only supported on secondary node types with custom Load Balancers."
+        },
         "enableOverProvisioning": {
           "oneOf": [
             {
@@ -2029,6 +2046,11 @@
           ],
           "description": "Indicates if scale set associated with the node type can be composed of multiple placement groups."
         },
+        "natGatewayId": {
+          "type": "string",
+          "format": "arm-id",
+          "description": "Specifies the resource id of a NAT Gateway to attach to the subnet of this node type. Node type must use custom load balancer."
+        },
         "networkSecurityRules": {
           "oneOf": [
             {
@@ -2057,6 +2079,31 @@
             }
           ],
           "description": "The placement tags applied to nodes in the node type, which can be used to indicate where certain services (workload) should run."
+        },
+        "secureBootEnabled": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies whether secure boot should be enabled on the nodeType. Can only be used with TrustedLaunch SecurityType"
+        },
+        "securityType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "TrustedLaunch"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies the security type of the nodeType. Only TrustedLaunch is currently supported."
         },
         "spotRestoreTimeout": {
           "type": "string",
@@ -2117,6 +2164,17 @@
         "vmImageOffer": {
           "type": "string",
           "description": "The offer type of the Azure Virtual Machines Marketplace image. For example, UbuntuServer or WindowsServer."
+        },
+        "vmImagePlan": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/VmImagePlan"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use. In the Azure portal, find the marketplace image that you want to use and then click Want to deploy programmatically, Get Started ->. Enter any required information and then click Save."
         },
         "vmImagePublisher": {
           "type": "string",
@@ -2190,6 +2248,11 @@
             }
           ],
           "description": "Specifies the actions to be performed on the vms before bootstrapping the service fabric runtime."
+        },
+        "vmSharedGalleryImageId": {
+          "type": "string",
+          "format": "arm-id",
+          "description": "Indicates the resource id of the vm shared galleries image. This parameter is used for custom vm image."
         },
         "vmSize": {
           "type": "string",
@@ -3026,6 +3089,28 @@
         "vaultCertificates"
       ],
       "description": "Specifies set of certificates that should be installed onto the virtual machines."
+    },
+    "VmImagePlan": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The plan ID."
+        },
+        "product": {
+          "type": "string",
+          "description": "Specifies the product of the image from the marketplace. This is the same value as Offer under the imageReference element."
+        },
+        "promotionCode": {
+          "type": "string",
+          "description": "The promotion code."
+        },
+        "publisher": {
+          "type": "string",
+          "description": "The publisher ID."
+        }
+      },
+      "description": "Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use. In the Azure portal, find the marketplace image that you want to use and then click Want to deploy programmatically, Get Started ->. Enter any required information and then click Save."
     },
     "VmManagedIdentity": {
       "type": "object",

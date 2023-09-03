@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-02-01/Microsoft.SignalRService.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-02-01/Microsoft.SignalRService.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.SignalRService",
   "description": "Microsoft SignalRService Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-02-01"
+            "2023-02-01"
           ]
         },
         "identity": {
@@ -123,7 +123,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-02-01"
+            "2023-02-01"
           ]
         },
         "name": {
@@ -162,7 +162,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-02-01"
+            "2023-02-01"
           ]
         },
         "name": {
@@ -201,7 +201,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-02-01"
+            "2023-02-01"
           ]
         },
         "name": {
@@ -240,7 +240,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-02-01"
+            "2023-02-01"
           ]
         },
         "name": {
@@ -630,11 +630,11 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Optional, integer. The unit count of the resource. 1 by default.\r\n\r\nIf present, following values are allowed:\r\n    Free: 1\r\n    Standard: 1,2,5,10,20,50,100"
+          "description": "Optional, integer. The unit count of the resource. 1 by default.\r\n\r\nIf present, following values are allowed:\r\n    Free: 1;\r\n    Standard: 1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100;\r\n    Premium:  1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100;"
         },
         "name": {
           "type": "string",
-          "description": "The name of the SKU. Required.\r\n\r\nAllowed values: Standard_S1, Free_F1"
+          "description": "The name of the SKU. Required.\r\n\r\nAllowed values: Standard_S1, Free_F1, Premium_P1"
         },
         "tier": {
           "oneOf": [
@@ -657,6 +657,26 @@
         "name"
       ],
       "description": "The billing information of the resource."
+    },
+    "ServerlessSettings": {
+      "type": "object",
+      "properties": {
+        "connectionTimeoutInSeconds": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 120,
+              "default": "30"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets Client Connection Timeout. Optional to be set.\r\nValue in seconds.\r\nDefault value is 30 seconds.\r\nCustomer should set the timeout to a shorter period if messages are expected to be sent in shorter intervals,\r\nand want the client to disconnect more quickly after the last message is sent.\r\nYou can set the timeout to a longer period if messages are expected to be sent in longer intervals,\r\nand they want to keep the same client connection alive during this session.\r\nThe service considers the client disconnected if it hasn't received a message (including keep-alive) in this interval."
+        }
+      },
+      "description": "Serverless settings."
     },
     "ServerlessUpstreamSettings": {
       "type": "object",
@@ -902,6 +922,17 @@
           ],
           "description": "Resource log configuration of a Microsoft.SignalRService resource."
         },
+        "serverless": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ServerlessSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Serverless settings."
+        },
         "tls": {
           "oneOf": [
             {
@@ -951,7 +982,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-02-01"
+            "2023-02-01"
           ]
         },
         "name": {
@@ -990,7 +1021,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-02-01"
+            "2023-02-01"
           ]
         },
         "name": {
@@ -1029,7 +1060,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-02-01"
+            "2023-02-01"
           ]
         },
         "name": {
@@ -1068,7 +1099,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-02-01"
+            "2023-02-01"
           ]
         },
         "name": {

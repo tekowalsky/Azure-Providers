@@ -509,6 +509,27 @@
                   "$ref": "https://schema.management.azure.com/schemas/2017-04-01-preview/Microsoft.Aadiam.json#/tenant_resourceDefinitions/diagnosticSettings"
                 },
                 {
+                  "$ref": "https://schema.management.azure.com/schemas/2016-07-12-preview/Microsoft.Advisor.json#/unknown_resourceDefinitions/recommendations_suppressions"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2017-03-31/Microsoft.Advisor.json#/unknown_resourceDefinitions/recommendations_suppressions"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2017-04-19/Microsoft.Advisor.json#/unknown_resourceDefinitions/recommendations_suppressions"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2020-01-01/Microsoft.Advisor.json#/unknown_resourceDefinitions/recommendations_suppressions"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2022-09-01/Microsoft.Advisor.json#/unknown_resourceDefinitions/recommendations_suppressions"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2022-10-01/Microsoft.Advisor.json#/unknown_resourceDefinitions/recommendations_suppressions"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2023-01-01/Microsoft.Advisor.json#/unknown_resourceDefinitions/recommendations_suppressions"
+                },
+                {
                   "$ref": "https://schema.management.azure.com/schemas/2022-11-16-preview/Microsoft.AppComplianceAutomation.json#/tenant_resourceDefinitions/reports"
                 },
                 {
@@ -585,6 +606,9 @@
                 },
                 {
                   "$ref": "https://schema.management.azure.com/schemas/2022-04-01-preview/Microsoft.Authorization.Authz.json#/unknown_resourceDefinitions/roleEligibilityScheduleRequests"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2022-05-01-preview/Microsoft.Authorization.Authz.json#/unknown_resourceDefinitions/roleDefinitions"
                 },
                 {
                   "$ref": "https://schema.management.azure.com/schemas/2017-09-01/Microsoft.Authorization.json#/resourceDefinitions/roleAssignments"
@@ -710,6 +734,24 @@
                   "$ref": "https://schema.management.azure.com/schemas/2022-10-05-preview/Microsoft.CostManagement.json#/tenant_resourceDefinitions/views"
                 },
                 {
+                  "$ref": "https://schema.management.azure.com/schemas/2023-03-01/Microsoft.CostManagement.json#/tenant_resourceDefinitions/scheduledActions"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2023-03-01/Microsoft.CostManagement.json#/tenant_resourceDefinitions/views"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2023-04-01-preview/Microsoft.CostManagement.json#/tenant_resourceDefinitions/scheduledActions"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2023-04-01-preview/Microsoft.CostManagement.json#/tenant_resourceDefinitions/views"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2023-08-01/Microsoft.CostManagement.json#/tenant_resourceDefinitions/scheduledActions"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2023-08-01/Microsoft.CostManagement.json#/tenant_resourceDefinitions/views"
+                },
+                {
                   "$ref": "https://schema.management.azure.com/schemas/2015-01-14-preview/Microsoft.Intune.json#/tenant_resourceDefinitions/locations_androidPolicies"
                 },
                 {
@@ -788,6 +830,15 @@
                   "$ref": "https://schema.management.azure.com/schemas/2021-04-01/Microsoft.Management.json#/tenant_resourceDefinitions/managementGroups_subscriptions"
                 },
                 {
+                  "$ref": "https://schema.management.azure.com/schemas/2023-04-01/Microsoft.Management.json#/tenant_resourceDefinitions/managementGroups"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2023-04-01/Microsoft.Management.json#/tenant_resourceDefinitions/managementGroups_settings"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2023-04-01/Microsoft.Management.json#/tenant_resourceDefinitions/managementGroups_subscriptions"
+                },
+                {
                   "$ref": "https://schema.management.azure.com/schemas/2018-02-01/Microsoft.ManagementPartner.json#/tenant_resourceDefinitions/partners"
                 },
                 {
@@ -861,6 +912,21 @@
                 },
                 {
                   "$ref": "https://schema.management.azure.com/schemas/2022-09-01/Microsoft.Marketplace.json#/tenant_resourceDefinitions/privateStores_requestApprovals"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2023-01-01/Microsoft.Marketplace.json#/tenant_resourceDefinitions/privateStores"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2023-01-01/Microsoft.Marketplace.json#/tenant_resourceDefinitions/privateStores_adminRequestApprovals"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2023-01-01/Microsoft.Marketplace.json#/tenant_resourceDefinitions/privateStores_collections"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2023-01-01/Microsoft.Marketplace.json#/tenant_resourceDefinitions/privateStores_collections_offers"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2023-01-01/Microsoft.Marketplace.json#/tenant_resourceDefinitions/privateStores_requestApprovals"
                 },
                 {
                   "$ref": "https://schema.management.azure.com/schemas/2021-05-01-preview/Microsoft.Network.NRP.json#/tenant_resourceDefinitions/managementGroups_networkManagerConnections"
@@ -990,6 +1056,12 @@
                 },
                 {
                   "$ref": "https://schema.management.azure.com/schemas/2022-03-01/Microsoft.Web.json#/tenant_resourceDefinitions/sourcecontrols"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2022-09-01/Microsoft.Web.json#/tenant_resourceDefinitions/publishingUsers"
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2022-09-01/Microsoft.Web.json#/tenant_resourceDefinitions/sourcecontrols"
                 }
               ]
             }

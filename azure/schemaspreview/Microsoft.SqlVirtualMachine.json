@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-08-01-preview/Microsoft.SqlVirtualMachine.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-01-01-preview/Microsoft.SqlVirtualMachine.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.SqlVirtualMachine",
   "description": "Microsoft SqlVirtualMachine Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "location": {
@@ -79,7 +79,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -118,7 +118,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "identity": {
@@ -249,8 +249,8 @@
             {
               "type": "string",
               "enum": [
-                "SYNCHRONOUS_COMMIT",
-                "ASYNCHRONOUS_COMMIT"
+                "Synchronous_Commit",
+                "Asynchronous_Commit"
               ]
             },
             {
@@ -264,8 +264,8 @@
             {
               "type": "string",
               "enum": [
-                "AUTOMATIC",
-                "MANUAL"
+                "Automatic",
+                "Manual"
               ]
             },
             {
@@ -279,9 +279,9 @@
             {
               "type": "string",
               "enum": [
-                "NO",
-                "ALL",
-                "READ_ONLY"
+                "No",
+                "All",
+                "Read_Only"
               ]
             },
             {
@@ -295,8 +295,8 @@
             {
               "type": "string",
               "enum": [
-                "PRIMARY",
-                "SECONDARY"
+                "Primary",
+                "Secondary"
               ]
             },
             {
@@ -506,6 +506,21 @@
     "AutoPatchingSettings": {
       "type": "object",
       "properties": {
+        "additionalVmPatch": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "NotSet",
+                "MicrosoftUpdate"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Additional Patch to be enable or enabled on the SQL Virtual Machine."
+        },
         "dayOfWeek": {
           "oneOf": [
             {
@@ -1049,6 +1064,17 @@
             }
           ],
           "description": "Logical Unit Numbers for the disks."
+        },
+        "useStoragePool": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Use storage pool to build a drive if true or not provided"
         }
       },
       "description": "Set disk storage settings for SQL Server."
@@ -1187,6 +1213,17 @@
         "persistFolderPath": {
           "type": "string",
           "description": "SQL Server tempdb persist folder location"
+        },
+        "useStoragePool": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Use storage pool to build a drive if true or not provided"
         }
       },
       "description": "Set tempDb storage settings for SQL Server."
@@ -1233,7 +1270,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-01-preview"
+            "2023-01-01-preview"
           ]
         },
         "name": {
@@ -1387,7 +1424,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "SQL Server Management type."
+          "description": "SQL Server Management type. NOTE: This parameter is not used anymore. API will automatically detect the Sql Management, refrain from using it."
         },
         "sqlServerLicenseType": {
           "oneOf": [
@@ -1482,6 +1519,18 @@
             }
           ],
           "description": "Disk configuration to apply to SQL Server."
+        },
+        "enableStorageConfigBlade": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Enable SQL IaaS Agent storage configuration blade in Azure Portal."
         },
         "sqlDataSettings": {
           "oneOf": [
@@ -1597,6 +1646,17 @@
         "fileShareWitnessPath": {
           "type": "string",
           "description": "Optional path for fileshare witness."
+        },
+        "isSqlServiceAccountGmsa": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The flag to check if SQL service account is GMSA."
         },
         "ouPath": {
           "type": "string",

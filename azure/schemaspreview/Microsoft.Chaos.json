@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-10-01-preview/Microsoft.Chaos.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-04-15-preview/Microsoft.Chaos.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Chaos",
   "description": "Microsoft Chaos Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01-preview"
+            "2023-04-15-preview"
           ]
         },
         "identity": {
@@ -22,7 +22,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The managed identity of a resource."
+          "description": "The identity of a resource."
         },
         "location": {
           "type": "string",
@@ -91,7 +91,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01-preview"
+            "2023-04-15-preview"
           ]
         },
         "location": {
@@ -157,7 +157,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01-preview"
+            "2023-04-15-preview"
           ]
         },
         "name": {
@@ -434,49 +434,9 @@
       ],
       "description": "A map to describe the settings of an action."
     },
-    "ResourceIdentity": {
+    "ListSelector": {
       "type": "object",
       "properties": {
-        "type": {
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "None",
-                "SystemAssigned"
-              ]
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "String of the resource identity type."
-        }
-      },
-      "required": [
-        "type"
-      ],
-      "description": "The managed identity of a resource."
-    },
-    "Selector": {
-      "type": "object",
-      "properties": {
-        "filter": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/Filter"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Model that represents available filter types that can be applied to a targets list."
-        },
-        "id": {
-          "type": "string",
-          "minLength": 1,
-          "description": "String of the selector ID."
-        },
         "targets": {
           "oneOf": [
             {
@@ -492,27 +452,139 @@
           "description": "List of Target references."
         },
         "type": {
+          "type": "string",
+          "enum": [
+            "List"
+          ]
+        }
+      },
+      "required": [
+        "targets",
+        "type"
+      ],
+      "description": "Model that represents a list selector."
+    },
+    "QuerySelector": {
+      "type": "object",
+      "properties": {
+        "queryString": {
+          "type": "string",
+          "description": "Azure Resource Graph (ARG) Query Language query for target resources."
+        },
+        "subscriptionIds": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Subscription id list to scope resource query."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Query"
+          ]
+        }
+      },
+      "required": [
+        "queryString",
+        "subscriptionIds",
+        "type"
+      ],
+      "description": "Model that represents a query selector."
+    },
+    "ResourceIdentity": {
+      "type": "object",
+      "properties": {
+        "type": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
-                "Percent",
-                "Random",
-                "Tag",
-                "List"
+                "None",
+                "SystemAssigned",
+                "UserAssigned"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Enum of the selector type."
+          "description": "String of the resource identity type."
+        },
+        "userAssignedIdentities": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/UserAssignedIdentity"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
         }
       },
       "required": [
-        "id",
-        "targets",
         "type"
+      ],
+      "description": "The identity of a resource."
+    },
+    "Selector": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/ListSelector"
+        },
+        {
+          "$ref": "#/definitions/QuerySelector"
+        }
+      ],
+      "properties": {
+        "additionalProperties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {}
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Unmatched properties from the message are deserialized this collection"
+        },
+        "filter": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Filter"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Model that represents available filter types that can be applied to a targets list."
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "String of the selector ID."
+        }
+      },
+      "required": [
+        "id"
       ],
       "description": "Model that represents a selector in the Experiment resource."
     },
@@ -633,7 +705,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-10-01-preview"
+            "2023-04-15-preview"
           ]
         },
         "name": {
@@ -661,6 +733,11 @@
         "type"
       ],
       "description": "Microsoft.Chaos/targets/capabilities"
+    },
+    "UserAssignedIdentity": {
+      "type": "object",
+      "properties": {},
+      "description": "User assigned identity properties"
     }
   }
 }

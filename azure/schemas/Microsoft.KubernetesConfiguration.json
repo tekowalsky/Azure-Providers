@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-11-01/Microsoft.KubernetesConfiguration.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-05-01/Microsoft.KubernetesConfiguration.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.KubernetesConfiguration",
   "description": "Microsoft KubernetesConfiguration Resource Types",
@@ -11,7 +11,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "identity": {
@@ -83,7 +83,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -133,7 +133,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -536,6 +536,10 @@
           "default": "default",
           "description": "The namespace to which this configuration is installed to. Maximum of 253 lower case alphanumeric characters, hyphen and period only."
         },
+        "reconciliationWaitDuration": {
+          "type": "string",
+          "description": "Maximum duration to wait for flux configuration reconciliation. E.g PT1H, PT5M, P1D"
+        },
         "scope": {
           "oneOf": [
             {
@@ -578,6 +582,17 @@
             }
           ],
           "description": "Whether this configuration should suspend its reconciliation of its kustomizations and sources."
+        },
+        "waitForReconciliation": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether flux configuration deployment should wait for cluster to reconcile the kustomizations."
         }
       },
       "description": "Properties to create a Flux Configuration resource"
@@ -711,6 +726,17 @@
           "default": "",
           "description": "The path in the source reference to reconcile on the cluster."
         },
+        "postBuild": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PostBuildDefinition"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The postBuild definitions defining variable substitutions for this Kustomization after kustomize build."
+        },
         "prune": {
           "oneOf": [
             {
@@ -757,6 +783,18 @@
             }
           ],
           "description": "The maximum time to attempt to reconcile the Kustomization on the cluster."
+        },
+        "wait": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": true
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Enable/disable health check for all Kubernetes objects created by this Kustomization."
         }
       },
       "description": "The Kustomization defining how to reconcile the artifact pulled by the source type on the cluster."
@@ -801,6 +839,41 @@
         "publisher"
       ],
       "description": "Plan for the resource."
+    },
+    "PostBuildDefinition": {
+      "type": "object",
+      "properties": {
+        "substitute": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Key/value pairs holding the variables to be substituted in this Kustomization."
+        },
+        "substituteFrom": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SubstituteFromDefinition"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Array of ConfigMaps/Secrets from which the variables are substituted for this Kustomization."
+        }
+      },
+      "description": "The postBuild definitions defining variable substitutions for this Kustomization after kustomize build."
     },
     "RepositoryRefDefinition": {
       "type": "object",
@@ -1002,6 +1075,32 @@
         }
       },
       "description": "Properties to create a Source Control Configuration resource"
+    },
+    "SubstituteFromDefinition": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Define whether it is ConfigMap or Secret that holds the variables to be used in substitution."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the ConfigMap/Secret that holds the variables to be used in substitution."
+        },
+        "optional": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Set to True to proceed without ConfigMap/Secret, if it is not present."
+        }
+      },
+      "description": "Array of ConfigMaps/Secrets from which the variables are substituted for this Kustomization."
     },
     "SystemData": {
       "type": "object",

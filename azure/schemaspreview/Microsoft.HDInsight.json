@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2018-06-01-preview/Microsoft.HDInsight.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-08-15-preview/Microsoft.HDInsight.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.HDInsight",
   "description": "Microsoft HDInsight Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2023-08-15-preview"
           ]
         },
         "identity": {
@@ -52,6 +52,9 @@
               },
               {
                 "$ref": "#/definitions/clusters_extensions_childResource"
+              },
+              {
+                "$ref": "#/definitions/clusters_privateEndpointConnections_childResource"
               }
             ]
           }
@@ -76,6 +79,20 @@
           "enum": [
             "Microsoft.HDInsight/clusters"
           ]
+        },
+        "zones": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The availability zones."
         }
       },
       "required": [
@@ -92,7 +109,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2023-08-15-preview"
           ]
         },
         "etag": {
@@ -219,7 +236,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2023-08-15-preview"
           ]
         },
         "type": {
@@ -234,6 +251,45 @@
         "type"
       ],
       "description": "Microsoft.HDInsight/clusters/extensions"
+    },
+    "clusters_privateEndpointConnections": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-08-15-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the private endpoint connection."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The private endpoint connection properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.HDInsight/clusters/privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.HDInsight/clusters/privateEndpointConnections"
     }
   },
   "definitions": {
@@ -382,6 +438,20 @@
             }
           ],
           "description": "The list of install script actions."
+        },
+        "privateLinkConfigurations": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PrivateLinkConfiguration"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The private link configurations."
         },
         "sshEndpoints": {
           "oneOf": [
@@ -732,6 +802,20 @@
           ],
           "description": "The type of operating system."
         },
+        "privateLinkConfigurations": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PrivateLinkConfiguration"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The private link configurations."
+        },
         "securityProfile": {
           "oneOf": [
             {
@@ -831,7 +915,7 @@
             {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/Componentsc51ht8schemasclusteridentitypropertiesuserassignedidentitiesadditionalproperties"
+                "$ref": "#/definitions/UserAssignedIdentity"
               },
               "properties": {}
             },
@@ -850,7 +934,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2023-08-15-preview"
           ]
         },
         "etag": {
@@ -967,7 +1051,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2018-06-01-preview"
+            "2023-08-15-preview"
           ]
         },
         "type": {
@@ -983,14 +1067,44 @@
       ],
       "description": "Microsoft.HDInsight/clusters/extensions"
     },
-    "Componentsc51ht8schemasclusteridentitypropertiesuserassignedidentitiesadditionalproperties": {
+    "clusters_privateEndpointConnections_childResource": {
       "type": "object",
       "properties": {
-        "tenantId": {
+        "apiVersion": {
           "type": "string",
-          "description": "The tenant id of user assigned identity."
+          "enum": [
+            "2023-08-15-preview"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the private endpoint connection."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The private endpoint connection properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "privateEndpointConnections"
+          ]
         }
-      }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.HDInsight/clusters/privateEndpointConnections"
     },
     "ComputeIsolationProperties": {
       "type": "object",
@@ -1143,6 +1257,77 @@
       },
       "description": "The hardware profile."
     },
+    "IPConfiguration": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of private link IP configuration."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IPConfigurationProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The private link ip configuration properties."
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "description": "The ip configurations for the private link service."
+    },
+    "IPConfigurationProperties": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates whether this IP configuration is primary for the corresponding NIC."
+        },
+        "privateIPAddress": {
+          "type": "string",
+          "description": "The IP address."
+        },
+        "privateIPAllocationMethod": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "dynamic",
+                "static"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The method that private IP address is allocated."
+        },
+        "subnet": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResourceId"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The azure resource id."
+        }
+      },
+      "description": "The private link ip configuration properties."
+    },
     "KafkaRestProperties": {
       "type": "object",
       "properties": {
@@ -1203,6 +1388,21 @@
     "NetworkProperties": {
       "type": "object",
       "properties": {
+        "outboundDependenciesManagedType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Managed",
+                "External"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A value to describe how the outbound dependencies of a HDInsight cluster are managed. 'Managed' means that the outbound dependencies are managed by the HDInsight service. 'External' means that the outbound dependencies are managed by a customer specific solution."
+        },
         "privateLink": {
           "oneOf": [
             {
@@ -1252,6 +1452,123 @@
         }
       },
       "description": "The Linux operation systems profile."
+    },
+    "PrivateEndpointConnectionProperties": {
+      "type": "object",
+      "properties": {
+        "privateLinkServiceConnectionState": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateLinkServiceConnectionState"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The private link service connection state."
+        }
+      },
+      "required": [
+        "privateLinkServiceConnectionState"
+      ],
+      "description": "The private endpoint connection properties."
+    },
+    "PrivateLinkConfiguration": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of private link configuration."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateLinkConfigurationProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The private link configuration properties."
+        }
+      },
+      "required": [
+        "name",
+        "properties"
+      ],
+      "description": "The private link configuration."
+    },
+    "PrivateLinkConfigurationProperties": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "type": "string",
+          "description": "The HDInsight private linkable sub-resource name to apply the private link configuration to. For example, 'headnode', 'gateway', 'edgenode'."
+        },
+        "ipConfigurations": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IPConfiguration"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The IP configurations for the private link service."
+        }
+      },
+      "required": [
+        "groupId",
+        "ipConfigurations"
+      ],
+      "description": "The private link configuration properties."
+    },
+    "PrivateLinkServiceConnectionState": {
+      "type": "object",
+      "properties": {
+        "actionsRequired": {
+          "type": "string",
+          "description": "Whether there is further actions."
+        },
+        "description": {
+          "type": "string",
+          "description": "The optional description of the status."
+        },
+        "status": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Approved",
+                "Rejected",
+                "Pending",
+                "Removed"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The concrete private link service connection."
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "description": "The private link service connection state."
+    },
+    "ResourceId": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The azure resource id."
+        }
+      },
+      "description": "The azure resource id."
     },
     "Role": {
       "type": "object",
@@ -1543,6 +1860,17 @@
           "type": "string",
           "description": "The container in the storage account, only to be specified for WASB storage accounts."
         },
+        "enableSecureChannel": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Enable secure channel or not, it's an optional field. Default value is false when cluster version < 5.1 and true when cluster version >= 5.1 , "
+        },
         "fileshare": {
           "type": "string",
           "description": "The file share name."
@@ -1604,6 +1932,16 @@
         }
       },
       "description": "The storage profile."
+    },
+    "UserAssignedIdentity": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "string",
+          "description": "The tenant id of user assigned identity."
+        }
+      },
+      "description": "The User Assigned Identity"
     },
     "VirtualNetworkProfile": {
       "type": "object",

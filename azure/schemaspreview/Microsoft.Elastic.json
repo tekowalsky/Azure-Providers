@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-09-01-preview/Microsoft.Elastic.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-07-01-preview/Microsoft.Elastic.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Elastic",
   "description": "Microsoft Elastic Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-09-01-preview"
+            "2023-07-01-preview"
           ]
         },
         "identity": {
@@ -101,7 +101,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-09-01-preview"
+            "2023-07-01-preview"
           ]
         },
         "name": {
@@ -141,12 +141,12 @@
       "properties": {
         "business": {
           "type": "string",
-          "maxLength": 50,
+          "maxLength": 64,
           "description": "Business of the company"
         },
         "country": {
           "type": "string",
-          "maxLength": 50,
+          "maxLength": 64,
           "description": "Country of the company location."
         },
         "domain": {
@@ -161,7 +161,7 @@
         },
         "state": {
           "type": "string",
-          "maxLength": 50,
+          "maxLength": 64,
           "description": "State of the company location."
         }
       },
@@ -360,6 +360,17 @@
           ],
           "description": "Elastic Resource Properties."
         },
+        "generateApiKey": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Flag to determine if User API Key has to be generated and shared."
+        },
         "liftrResourceCategory": {
           "oneOf": [
             {
@@ -435,7 +446,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-09-01-preview"
+            "2023-07-01-preview"
           ]
         },
         "name": {
@@ -497,7 +508,7 @@
         },
         "companyName": {
           "type": "string",
-          "maxLength": 50,
+          "maxLength": 64,
           "description": "Company name of the user"
         },
         "emailAddress": {

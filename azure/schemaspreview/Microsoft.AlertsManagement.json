@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2021-08-08-preview/Microsoft.AlertsManagement.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-05-01-preview/Microsoft.AlertsManagement.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.AlertsManagement",
   "description": "Microsoft AlertsManagement Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2021-08-08-preview"
+            "2023-05-01-preview"
           ]
         },
         "location": {
@@ -84,6 +84,9 @@
         },
         {
           "$ref": "#/definitions/RemoveAllActionGroups"
+        },
+        {
+          "$ref": "#/definitions/CorrelateAlerts"
         }
       ],
       "properties": {},
@@ -258,6 +261,78 @@
         }
       },
       "description": "Condition to trigger an alert processing rule."
+    },
+    "CorrelateAlerts": {
+      "type": "object",
+      "properties": {
+        "actionType": {
+          "type": "string",
+          "enum": [
+            "CorrelateAlerts"
+          ]
+        },
+        "correlateBy": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CorrelateBy"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of conditions for the alerts correlations."
+        },
+        "correlationInterval": {
+          "type": "string",
+          "description": "The required duration (in ISO8601 format) for the alerts correlation."
+        },
+        "notificationsForCorrelatedAlerts": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "NotifyAlways",
+                "SuppressAlways"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates how to handle child alerts notifications."
+        },
+        "priority": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The priority of this correlation."
+        }
+      },
+      "required": [
+        "actionType",
+        "correlateBy",
+        "correlationInterval",
+        "priority"
+      ],
+      "description": "Add logic for alerts correlation."
+    },
+    "CorrelateBy": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string",
+          "description": "The JPath of the property that the alerts should be correlated by."
+        }
+      },
+      "description": "The logic for the correlation."
     },
     "DailyRecurrence": {
       "type": "object",

@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2023-01-01/Microsoft.DataProtection.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-05-01/Microsoft.DataProtection.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.DataProtection",
   "description": "Microsoft DataProtection Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-01-01"
+            "2023-05-01"
           ]
         },
         "eTag": {
@@ -56,6 +56,9 @@
               },
               {
                 "$ref": "#/definitions/backupVaults_backupInstances_childResource"
+              },
+              {
+                "$ref": "#/definitions/backupVaults_backupResourceGuardProxies_childResource"
               }
             ]
           }
@@ -107,7 +110,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-01-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -172,7 +175,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-01-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -216,13 +219,71 @@
       ],
       "description": "Microsoft.DataProtection/backupVaults/backupPolicies"
     },
+    "backupVaults_backupResourceGuardProxies": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-05-01"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9]*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "name of the resource guard proxy"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResourceGuardProxyBase"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "ResourceGuardProxyBase object, used in ResourceGuardProxyBaseResource"
+        },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DataProtection/backupVaults/backupResourceGuardProxies"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DataProtection/backupVaults/backupResourceGuardProxies"
+    },
     "resourceGuards": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-01-01"
+            "2023-05-01"
           ]
         },
         "eTag": {
@@ -570,6 +631,16 @@
           "type": "string",
           "description": "Gets or sets the Backup Instance friendly name."
         },
+        "identityDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IdentityDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
         "objectType": {
           "type": "string"
         },
@@ -736,7 +807,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-01-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -801,7 +872,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-01-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -844,6 +915,64 @@
         "type"
       ],
       "description": "Microsoft.DataProtection/backupVaults/backupPolicies"
+    },
+    "backupVaults_backupResourceGuardProxies_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-05-01"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9]*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "name of the resource guard proxy"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResourceGuardProxyBase"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "ResourceGuardProxyBase object, used in ResourceGuardProxyBaseResource"
+        },
+        "systemData": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SystemData"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Metadata pertaining to creation and last modification of the resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "backupResourceGuardProxies"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DataProtection/backupVaults/backupResourceGuardProxies"
     },
     "BaseBackupPolicy": {
       "type": "object",
@@ -892,6 +1021,16 @@
         "name"
       ],
       "description": "BasePolicy Rule"
+    },
+    "BaseResourceProperties": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/DefaultResourceProperties"
+        }
+      ],
+      "properties": {},
+      "description": "Properties which are specific to datasource/datasourceSets"
     },
     "BlobBackupDatasourceParameters": {
       "type": "object",
@@ -953,6 +1092,26 @@
       ],
       "properties": {},
       "description": "Options to copy"
+    },
+    "CrossRegionRestoreSettings": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Disabled",
+                "Enabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "CrossRegionRestore state."
+        }
+      }
     },
     "CrossSubscriptionRestoreSettings": {
       "type": "object",
@@ -1018,6 +1177,17 @@
           "type": "string",
           "description": "Unique identifier of the resource in the context of parent."
         },
+        "resourceProperties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BaseResourceProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties which are specific to datasource/datasourceSets"
+        },
         "resourceType": {
           "type": "string",
           "description": "Resource Type of Datasource."
@@ -1054,6 +1224,17 @@
         "resourceName": {
           "type": "string",
           "description": "Unique identifier of the resource in the context of parent."
+        },
+        "resourceProperties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BaseResourceProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties which are specific to datasource/datasourceSets"
         },
         "resourceType": {
           "type": "string",
@@ -1157,6 +1338,21 @@
       },
       "description": "Day of the week"
     },
+    "DefaultResourceProperties": {
+      "type": "object",
+      "properties": {
+        "objectType": {
+          "type": "string",
+          "enum": [
+            "DefaultResourceProperties"
+          ]
+        }
+      },
+      "required": [
+        "objectType"
+      ],
+      "description": "Default source properties"
+    },
     "DeleteOption": {
       "type": "object",
       "oneOf": [
@@ -1180,7 +1376,22 @@
       "properties": {
         "type": {
           "type": "string",
-          "description": "The identityType which can be either SystemAssigned or None"
+          "description": "The identityType which can be either SystemAssigned, UserAssigned, 'SystemAssigned,UserAssigned' or None"
+        },
+        "userAssignedIdentities": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/UserAssignedIdentity"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the user assigned identities."
         }
       },
       "description": "Identity details"
@@ -1188,6 +1399,16 @@
     "FeatureSettings": {
       "type": "object",
       "properties": {
+        "crossRegionRestoreSettings": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CrossRegionRestoreSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
         "crossSubscriptionRestoreSettings": {
           "oneOf": [
             {
@@ -1201,6 +1422,26 @@
         }
       },
       "description": "Class containing feature settings of vault"
+    },
+    "IdentityDetails": {
+      "type": "object",
+      "properties": {
+        "userAssignedIdentityArmUrl": {
+          "type": "string",
+          "description": "ARM URL for User Assigned Identity."
+        },
+        "useSystemAssignedIdentity": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies if the BI is protected by System Identity."
+        }
+      }
     },
     "ImmediateCopyOption": {
       "type": "object",
@@ -1242,6 +1483,20 @@
     "KubernetesClusterBackupDatasourceParameters": {
       "type": "object",
       "properties": {
+        "backupHookReferences": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/NamespacedNameResource"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the backup hook references. This property sets the hook reference to be executed during backup."
+        },
         "excludedNamespaces": {
           "oneOf": [
             {
@@ -1254,7 +1509,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets the exclude namespaces property. This property sets the namespaces to be excluded during restore."
+          "description": "Gets or sets the exclude namespaces property. This property sets the namespaces to be excluded during backup."
         },
         "excludedResourceTypes": {
           "oneOf": [
@@ -1268,7 +1523,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets the exclude resource types property. This property sets the resource types to be excluded during restore."
+          "description": "Gets or sets the exclude resource types property. This property sets the resource types to be excluded during backup."
         },
         "includeClusterScopeResources": {
           "oneOf": [
@@ -1279,7 +1534,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets the include cluster resources property. This property if enabled will include cluster scope resources during restore."
+          "description": "Gets or sets the include cluster resources property. This property if enabled will include cluster scope resources during backup."
         },
         "includedNamespaces": {
           "oneOf": [
@@ -1293,7 +1548,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets the include namespaces property. This property sets the namespaces to be included during restore."
+          "description": "Gets or sets the include namespaces property. This property sets the namespaces to be included during backup."
         },
         "includedResourceTypes": {
           "oneOf": [
@@ -1307,7 +1562,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets the include resource types property. This property sets the resource types to be included during restore."
+          "description": "Gets or sets the include resource types property. This property sets the resource types to be included during backup."
         },
         "labelSelectors": {
           "oneOf": [
@@ -1321,7 +1576,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets the LabelSelectors property. This property sets the resource with such label selectors to be included during restore."
+          "description": "Gets or sets the LabelSelectors property. This property sets the resource with such label selectors to be included during backup."
         },
         "objectType": {
           "type": "string",
@@ -1338,7 +1593,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets the volume snapshot property. This property if enabled will take volume snapshots during restore."
+          "description": "Gets or sets the volume snapshot property. This property if enabled will take volume snapshots during backup."
         }
       },
       "required": [
@@ -1364,6 +1619,20 @@
         }
       },
       "description": "Monitoring Settings"
+    },
+    "NamespacedNameResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the resource"
+        },
+        "namespace": {
+          "type": "string",
+          "description": "Namespace in which the resource exists"
+        }
+      },
+      "description": "Class to refer resources which contains namespace and name"
     },
     "PolicyInfo": {
       "type": "object",
@@ -1440,6 +1709,46 @@
           "description": "List of critical operations which are not protected by this resourceGuard"
         }
       }
+    },
+    "ResourceGuardOperationDetail": {
+      "type": "object",
+      "properties": {
+        "defaultResourceRequest": {
+          "type": "string"
+        },
+        "vaultCriticalOperation": {
+          "type": "string"
+        }
+      },
+      "description": "VaultCritical Operation protected by a resource guard"
+    },
+    "ResourceGuardProxyBase": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "lastUpdatedTime": {
+          "type": "string"
+        },
+        "resourceGuardOperationDetails": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ResourceGuardOperationDetail"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "resourceGuardResourceId": {
+          "type": "string"
+        }
+      },
+      "description": "ResourceGuardProxyBase object, used in ResourceGuardProxyBaseResource"
     },
     "RetentionTag": {
       "type": "object",
@@ -1994,6 +2303,11 @@
       ],
       "properties": {},
       "description": "Trigger context"
+    },
+    "UserAssignedIdentity": {
+      "type": "object",
+      "properties": {},
+      "description": "User assigned identity properties"
     }
   }
 }

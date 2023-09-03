@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-11-01-preview/Microsoft.DataProtection.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-04-01-preview/Microsoft.DataProtection.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.DataProtection",
   "description": "Microsoft DataProtection Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01-preview"
+            "2023-04-01-preview"
           ]
         },
         "eTag": {
@@ -110,12 +110,12 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01-preview"
+            "2023-04-01-preview"
           ]
         },
         "name": {
           "type": "string",
-          "description": "The name of the backup instance"
+          "description": "The name of the backup instance."
         },
         "properties": {
           "oneOf": [
@@ -175,7 +175,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01-preview"
+            "2023-04-01-preview"
           ]
         },
         "name": {
@@ -225,11 +225,20 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01-preview"
+            "2023-04-01-preview"
           ]
         },
         "name": {
-          "type": "string"
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9]*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "name of the resource guard proxy"
         },
         "properties": {
           "oneOf": [
@@ -239,7 +248,8 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "ResourceGuardProxyBase object, used in ResourceGuardProxyBaseResource"
         },
         "systemData": {
           "oneOf": [
@@ -273,23 +283,12 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01-preview"
+            "2023-04-01-preview"
           ]
         },
         "eTag": {
           "type": "string",
           "description": "Optional ETag."
-        },
-        "identity": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/DppIdentityDetails"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Identity details"
         },
         "location": {
           "type": "string",
@@ -632,6 +631,16 @@
           "type": "string",
           "description": "Gets or sets the Backup Instance friendly name."
         },
+        "identityDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IdentityDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
         "objectType": {
           "type": "string"
         },
@@ -739,6 +748,17 @@
     "BackupVault": {
       "type": "object",
       "properties": {
+        "featureSettings": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FeatureSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Class containing feature settings of vault"
+        },
         "monitoringSettings": {
           "oneOf": [
             {
@@ -787,12 +807,12 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01-preview"
+            "2023-04-01-preview"
           ]
         },
         "name": {
           "type": "string",
-          "description": "The name of the backup instance"
+          "description": "The name of the backup instance."
         },
         "properties": {
           "oneOf": [
@@ -852,7 +872,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01-preview"
+            "2023-04-01-preview"
           ]
         },
         "name": {
@@ -902,11 +922,20 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01-preview"
+            "2023-04-01-preview"
           ]
         },
         "name": {
-          "type": "string"
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9]*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "name of the resource guard proxy"
         },
         "properties": {
           "oneOf": [
@@ -916,7 +945,8 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "ResourceGuardProxyBase object, used in ResourceGuardProxyBaseResource"
         },
         "systemData": {
           "oneOf": [
@@ -1052,6 +1082,48 @@
       ],
       "properties": {},
       "description": "Options to copy"
+    },
+    "CrossRegionRestoreSettings": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Disabled",
+                "Enabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "CrossRegionRestore state."
+        }
+      }
+    },
+    "CrossSubscriptionRestoreSettings": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Disabled",
+                "PermanentlyDisabled",
+                "Enabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "CrossSubscriptionRestore state."
+        }
+      },
+      "description": "CrossSubscriptionRestore Settings"
     },
     "CustomCopyOption": {
       "type": "object",
@@ -1257,10 +1329,72 @@
       "properties": {
         "type": {
           "type": "string",
-          "description": "The identityType which can be either SystemAssigned or None"
+          "description": "The identityType which can be either SystemAssigned, UserAssigned, 'SystemAssigned,UserAssigned' or None"
+        },
+        "userAssignedIdentities": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/UserAssignedIdentityDetails"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the user assigned identities."
         }
       },
       "description": "Identity details"
+    },
+    "FeatureSettings": {
+      "type": "object",
+      "properties": {
+        "crossRegionRestoreSettings": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CrossRegionRestoreSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "crossSubscriptionRestoreSettings": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CrossSubscriptionRestoreSettings"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "CrossSubscriptionRestore Settings"
+        }
+      },
+      "description": "Class containing feature settings of vault"
+    },
+    "IdentityDetails": {
+      "type": "object",
+      "properties": {
+        "userAssignedIdentityArmUrl": {
+          "type": "string",
+          "description": "ARM URL for User Assigned Identity."
+        },
+        "useSystemAssignedIdentity": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Specifies if the BI is protected by System Identity."
+        }
+      }
     },
     "ImmediateCopyOption": {
       "type": "object",
@@ -1510,7 +1644,8 @@
         "vaultCriticalOperation": {
           "type": "string"
         }
-      }
+      },
+      "description": "VaultCritical Operation protected by a resource guard"
     },
     "ResourceGuardProxyBase": {
       "type": "object",
@@ -1537,7 +1672,8 @@
         "resourceGuardResourceId": {
           "type": "string"
         }
-      }
+      },
+      "description": "ResourceGuardProxyBase object, used in ResourceGuardProxyBaseResource"
     },
     "RetentionTag": {
       "type": "object",
@@ -1903,7 +2039,7 @@
               "type": "string",
               "enum": [
                 "ArchiveStore",
-                "SnapshotStore",
+                "OperationalStore",
                 "VaultStore"
               ]
             },
@@ -1964,7 +2100,7 @@
         "lastModifiedAt": {
           "type": "string",
           "format": "date-time",
-          "description": "The type of identity that last modified the resource."
+          "description": "The timestamp of resource last modification (UTC)"
         },
         "lastModifiedBy": {
           "type": "string",
@@ -2092,6 +2228,11 @@
       ],
       "properties": {},
       "description": "Trigger context"
+    },
+    "UserAssignedIdentityDetails": {
+      "type": "object",
+      "properties": {},
+      "description": "User Assigned Identity Details"
     }
   }
 }

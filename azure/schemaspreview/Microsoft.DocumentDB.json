@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-08-15-preview/Microsoft.DocumentDB.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-03-15-preview/Microsoft.DocumentDB.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.DocumentDB",
   "description": "Microsoft DocumentDB Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -99,7 +99,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -148,7 +148,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -292,7 +292,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -377,7 +377,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -456,7 +456,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -532,7 +532,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -608,7 +608,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -687,7 +687,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -763,7 +763,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -802,7 +802,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -871,7 +871,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -953,7 +953,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -1032,7 +1032,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -1108,7 +1108,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -1184,7 +1184,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -1266,7 +1266,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -1345,7 +1345,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -1421,7 +1421,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -1497,7 +1497,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -1536,7 +1536,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -1575,7 +1575,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -1610,7 +1610,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -1649,7 +1649,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -1690,7 +1690,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -1775,7 +1775,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -1814,7 +1814,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -1902,7 +1902,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -1971,7 +1971,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -2047,7 +2047,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -2116,7 +2116,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -2185,7 +2185,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -2261,7 +2261,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -2300,7 +2300,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -2339,7 +2339,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -2418,7 +2418,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -2487,6 +2487,134 @@
         "type"
       ],
       "description": "Microsoft.DocumentDB/databaseAccounts/tables/throughputSettings"
+    },
+    "mongoClusters": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-15-preview"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(-[a-z0-9]+)*",
+              "minLength": 3,
+              "maxLength": 40
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the mongo cluster."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MongoClusterProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of a mongo cluster."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/mongoClusters_firewallRules_childResource"
+              }
+            ]
+          }
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DocumentDB/mongoClusters"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DocumentDB/mongoClusters"
+    },
+    "mongoClusters_firewallRules": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-15-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9][-_.a-zA-Z0-9]*",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the mongo cluster firewall rule."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FirewallRuleProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of a mongo cluster firewall rule."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DocumentDB/mongoClusters/firewallRules"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DocumentDB/mongoClusters/firewallRules"
     }
   },
   "definitions": {
@@ -2535,6 +2663,17 @@
     "AuthenticationMethodLdapProperties": {
       "type": "object",
       "properties": {
+        "connectionTimeoutInMs": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Timeout for connecting to the LDAP server in miliseconds. The default is 5000 ms."
+        },
         "searchBaseDistinguishedName": {
           "type": "string",
           "description": "Distinguished name of the object to start the recursive search of users from."
@@ -2770,7 +2909,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -2812,6 +2951,27 @@
         "type"
       ],
       "description": "Microsoft.DocumentDB/cassandraClusters/dataCenters"
+    },
+    "CassandraError": {
+      "type": "object",
+      "properties": {
+        "additionalErrorInfo": {
+          "type": "string",
+          "description": "Additional information about the error."
+        },
+        "code": {
+          "type": "string",
+          "description": "The code of error that occurred."
+        },
+        "message": {
+          "type": "string",
+          "description": "The message of the error."
+        },
+        "target": {
+          "type": "string",
+          "description": "The target resource of the error."
+        }
+      }
     },
     "CassandraKeyspaceCreateUpdateProperties": {
       "type": "object",
@@ -3156,17 +3316,19 @@
           "oneOf": [
             {
               "type": "integer",
-              "default": "1"
+              "minimum": 1,
+              "maximum": 2
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Version of the client encryption policy definition. Please note, user passed value is ignored. Default policy version is 1."
+          "description": "Version of the client encryption policy definition. Supported versions are 1 and 2. Version 2 supports id and partition key path encryption. "
         }
       },
       "required": [
-        "includedPaths"
+        "includedPaths",
+        "policyFormatVersion"
       ],
       "description": "Cosmos DB client encryption policy."
     },
@@ -3201,7 +3363,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Which authentication method Cassandra should use to authenticate clients. 'None' turns off authentication, so should not be used except in emergencies. 'Cassandra' is the default password based authentication. The default is 'Cassandra'. 'Ldap' is in preview."
+          "description": "Which authentication method Cassandra should use to authenticate clients. 'None' turns off authentication, so should not be used except in emergencies. 'Cassandra' is the default password based authentication. The default is 'Cassandra'."
         },
         "cassandraAuditLoggingEnabled": {
           "oneOf": [
@@ -3288,7 +3450,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Number of hours to wait between taking a backup of the cluster."
+          "description": "(Deprecated) Number of hours to wait between taking a backup of the cluster."
         },
         "initialCassandraAdminPassword": {
           "type": "string",
@@ -3298,6 +3460,16 @@
           "oneOf": [
             {
               "$ref": "#/definitions/SeedNode"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "provisionError": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CassandraError"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -3799,7 +3971,8 @@
               "type": "string",
               "enum": [
                 "Default",
-                "Restore"
+                "Restore",
+                "PointInTimeRestore"
               ]
             },
             {
@@ -3880,6 +4053,17 @@
             }
           ],
           "description": "Enables automatic failover of the write region in the rare event that the region is unavailable due to an outage. Automatic failover will result in a new write region for the account and is chosen based on the failover priorities configured for the account."
+        },
+        "enableBurstCapacity": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Flag to indicate enabling/disabling of Burst Capacity Preview feature on the account"
         },
         "enableCassandraConnector": {
           "oneOf": [
@@ -3990,6 +4174,22 @@
           ],
           "description": "An array that contains the georeplication locations enabled for the Cosmos DB account."
         },
+        "minimalTlsVersion": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Tls",
+                "Tls11",
+                "Tls12"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates the minimum allowed Tls version. The default is Tls 1.0, except for Cassandra and Mongo API's, which only work with Tls 1.2."
+        },
         "networkAclBypass": {
           "oneOf": [
             {
@@ -4077,7 +4277,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -4146,7 +4346,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -4215,7 +4415,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -4286,7 +4486,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -4357,7 +4557,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -4426,7 +4626,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -4497,7 +4697,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -4536,7 +4736,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -4605,7 +4805,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -4674,7 +4874,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -4743,7 +4943,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -4814,7 +5014,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -4885,7 +5085,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -4954,7 +5154,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -5023,7 +5223,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -5094,7 +5294,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -5165,7 +5365,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -5204,7 +5404,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -5243,7 +5443,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -5273,7 +5473,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -5312,7 +5512,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -5353,7 +5553,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -5422,7 +5622,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -5461,7 +5661,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -5530,7 +5730,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -5599,7 +5799,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -5670,7 +5870,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -5739,7 +5939,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -5808,7 +6008,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -5879,7 +6079,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -5918,7 +6118,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "name": {
@@ -5957,7 +6157,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -6026,7 +6226,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-08-15-preview"
+            "2023-03-15-preview"
           ]
         },
         "identity": {
@@ -6138,7 +6338,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "If the data center has Availability Zone feature, apply it to the Virtual Machine ScaleSet that host the cassandra data center virtual machines."
+          "description": "If the data center has Availability Zone support, apply it to the Virtual Machine ScaleSet that host the cassandra data center virtual machines."
         },
         "backupStorageCustomerKeyUri": {
           "type": "string",
@@ -6151,6 +6351,17 @@
         "dataCenterLocation": {
           "type": "string",
           "description": "The region this data center should be created in."
+        },
+        "deallocated": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether the data center has been deallocated."
         },
         "delegatedSubnetId": {
           "type": "string",
@@ -6165,7 +6376,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Number of disk used for data centers. Default value is 4."
+          "description": "Number of disks attached to each node. Default is 4."
         },
         "diskSku": {
           "type": "string",
@@ -6185,6 +6396,16 @@
             }
           ],
           "description": "The number of nodes the data center should have. This is the desired number. After it is set, it may take some time for the data center to be scaled to match. To monitor the number of nodes and their status, use the fetchNodeStatus method on the cluster."
+        },
+        "provisionError": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CassandraError"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
         },
         "provisioningState": {
           "oneOf": [
@@ -6305,6 +6526,40 @@
         }
       }
     },
+    "FirewallRuleProperties": {
+      "type": "object",
+      "properties": {
+        "endIpAddress": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The end IP address of the mongo cluster firewall rule. Must be IPv4 format."
+        },
+        "startIpAddress": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The start IP address of the mongo cluster firewall rule. Must be IPv4 format."
+        }
+      },
+      "required": [
+        "endIpAddress",
+        "startIpAddress"
+      ],
+      "description": "The properties of a mongo cluster firewall rule."
+    },
     "GraphResource": {
       "type": "object",
       "properties": {
@@ -6383,9 +6638,36 @@
     "GremlinDatabaseResource": {
       "type": "object",
       "properties": {
+        "createMode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Default",
+                "Restore",
+                "PointInTimeRestore"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Enum to indicate the mode of resource creation."
+        },
         "id": {
           "type": "string",
           "description": "Name of the Cosmos DB Gremlin database"
+        },
+        "restoreParameters": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResourceRestoreParameters"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Parameters to indicate the information about the restore."
         }
       },
       "required": [
@@ -6473,6 +6755,22 @@
           ],
           "description": "The conflict resolution policy for the container."
         },
+        "createMode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Default",
+                "Restore",
+                "PointInTimeRestore"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Enum to indicate the mode of resource creation."
+        },
         "defaultTtl": {
           "oneOf": [
             {
@@ -6509,6 +6807,17 @@
             }
           ],
           "description": "The configuration of the partition key to be used for partitioning data into multiple partitions"
+        },
+        "restoreParameters": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResourceRestoreParameters"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Parameters to indicate the information about the restore."
         },
         "uniqueKeyPolicy": {
           "oneOf": [
@@ -6823,6 +7132,168 @@
       },
       "description": "Identity for the resource."
     },
+    "MaterializedViewDefinition": {
+      "type": "object",
+      "properties": {
+        "definition": {
+          "type": "string",
+          "description": "The definition should be an SQL query which would be used to fetch data from the source container to populate into the Materialized View container."
+        },
+        "sourceCollectionId": {
+          "type": "string",
+          "description": "The name of the source container on which the Materialized View will be created."
+        }
+      },
+      "required": [
+        "definition",
+        "sourceCollectionId"
+      ],
+      "description": "Materialized View definition for the container."
+    },
+    "MongoClusterProperties": {
+      "type": "object",
+      "properties": {
+        "administratorLogin": {
+          "type": "string",
+          "description": "The administrator's login for the mongo cluster."
+        },
+        "administratorLoginPassword": {
+          "type": "string",
+          "format": "password",
+          "description": "The password of the administrator login."
+        },
+        "clusterStatus": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Ready",
+                "Provisioning",
+                "Updating",
+                "Starting",
+                "Stopping",
+                "Stopped",
+                "Dropping"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A status of the mongo cluster."
+        },
+        "createMode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Default",
+                "Restore",
+                "PointInTimeRestore"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The mode to create a mongo cluster."
+        },
+        "nodeGroupSpecs": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/NodeGroupSpec"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of node group specifications for the cluster. Must include one node group spec with kind = 'Shard'."
+        },
+        "restoreParameters": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MongoClusterRestoreParameters"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Parameters used for restore operations"
+        },
+        "serverVersion": {
+          "type": "string",
+          "description": "The Mongo DB server version. Defaults to the latest available version if not specified."
+        }
+      },
+      "description": "The properties of a mongo cluster."
+    },
+    "MongoClusterRestoreParameters": {
+      "type": "object",
+      "properties": {
+        "pointInTimeUTC": {
+          "type": "string",
+          "format": "date-time",
+          "description": "UTC point in time to restore a mongo cluster"
+        },
+        "sourceResourceId": {
+          "type": "string",
+          "description": "Resource ID to locate the source cluster to restore"
+        }
+      },
+      "description": "Parameters used for restore operations"
+    },
+    "mongoClusters_firewallRules_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-03-15-preview"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9][-_.a-zA-Z0-9]*",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of the mongo cluster firewall rule."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FirewallRuleProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of a mongo cluster firewall rule."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "firewallRules"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.DocumentDB/mongoClusters/firewallRules"
+    },
     "MongoDBCollectionCreateUpdateProperties": {
       "type": "object",
       "properties": {
@@ -6874,7 +7345,8 @@
               "type": "string",
               "enum": [
                 "Default",
-                "Restore"
+                "Restore",
+                "PointInTimeRestore"
               ]
             },
             {
@@ -6973,7 +7445,8 @@
               "type": "string",
               "enum": [
                 "Default",
-                "Restore"
+                "Restore",
+                "PointInTimeRestore"
               ]
             },
             {
@@ -7175,6 +7648,63 @@
         }
       },
       "description": "Azure Cosmos DB Mongo User Definition resource object."
+    },
+    "NodeGroupSpec": {
+      "type": "object",
+      "properties": {
+        "diskSizeGB": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The disk storage size for the node group in GB. Example values: 128, 256, 512, 1024."
+        },
+        "enableHa": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether high availability is enabled on the node group."
+        },
+        "kind": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Shard"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The node type deployed in the node group."
+        },
+        "nodeCount": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The number of nodes in the node group."
+        },
+        "sku": {
+          "type": "string",
+          "description": "The resource sku for the node group. This defines the size of CPU and memory that is provisioned for each node. Example values: 'M30', 'M40'."
+        }
+      },
+      "description": "Specification for a node group."
     },
     "PeriodicModeBackupPolicy": {
       "type": "object",
@@ -7456,6 +7986,10 @@
           "format": "date-time",
           "description": "Time to which the account has to be restored (ISO-8601 format)."
         },
+        "sourceBackupLocation": {
+          "type": "string",
+          "description": "The source backup location for restore."
+        },
         "tablesToRestore": {
           "oneOf": [
             {
@@ -7647,7 +8181,8 @@
               "type": "string",
               "enum": [
                 "Default",
-                "Restore"
+                "Restore",
+                "PointInTimeRestore"
               ]
             },
             {
@@ -7681,6 +8216,17 @@
             }
           ],
           "description": "Cosmos DB indexing policy"
+        },
+        "materializedViewDefinition": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MaterializedViewDefinition"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Materialized View definition for the container."
         },
         "partitionKey": {
           "oneOf": [
@@ -7761,7 +8307,8 @@
               "type": "string",
               "enum": [
                 "Default",
-                "Restore"
+                "Restore",
+                "PointInTimeRestore"
               ]
             },
             {
@@ -8073,9 +8620,36 @@
     "TableResource": {
       "type": "object",
       "properties": {
+        "createMode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Default",
+                "Restore",
+                "PointInTimeRestore"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Enum to indicate the mode of resource creation."
+        },
         "id": {
           "type": "string",
           "description": "Name of the Cosmos DB table"
+        },
+        "restoreParameters": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ResourceRestoreParameters"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Parameters to indicate the information about the restore."
         }
       },
       "required": [
@@ -8204,6 +8778,7 @@
       "properties": {
         "id": {
           "type": "string",
+          "format": "arm-id",
           "description": "Resource ID of a subnet, for example: /subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/subnets/{subnetName}."
         },
         "ignoreMissingVNetServiceEndpoint": {

@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-03-01/Microsoft.DomainRegistration.json#",
+  "id": "https://schema.management.azure.com/schemas/2022-09-01/Microsoft.DomainRegistration.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.DomainRegistration",
   "description": "Microsoft DomainRegistration Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01"
+            "2022-09-01"
           ]
         },
         "kind": {
@@ -86,7 +86,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01"
+            "2022-09-01"
           ]
         },
         "kind": {
@@ -129,7 +129,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01"
+            "2022-09-01"
           ]
         },
         "name": {
@@ -424,7 +424,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01"
+            "2022-09-01"
           ]
         },
         "kind": {
@@ -467,7 +467,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-03-01"
+            "2022-09-01"
           ]
         },
         "name": {
