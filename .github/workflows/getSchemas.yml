@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron:  '30 5,17 * * *'
+    - cron:  '30 5 * * *'
 
 jobs:
   Update_Schemas:
