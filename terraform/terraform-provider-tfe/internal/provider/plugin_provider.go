@@ -11,6 +11,7 @@ import (
 	tfe "github.com/hashicorp/go-tfe"
 	"github.com/hashicorp/terraform-plugin-go/tfprotov5"
 	"github.com/hashicorp/terraform-plugin-go/tftypes"
+	"github.com/hashicorp/terraform-provider-tfe/internal/client"
 )
 
 type pluginProviderServer struct {
@@ -44,6 +45,10 @@ type providerMeta struct {
 	organization  string
 }
 
+func (p *pluginProviderServer) GetMetadata(ctx context.Context, req *tfprotov5.GetMetadataRequest) (*tfprotov5.GetMetadataResponse, error) {
+	return &tfprotov5.GetMetadataResponse{}, nil
+}
+
 func (p *pluginProviderServer) GetProviderSchema(ctx context.Context, req *tfprotov5.GetProviderSchemaRequest) (*tfprotov5.GetProviderSchemaResponse, error) {
 	return &tfprotov5.GetProviderSchemaResponse{
 		Provider:          p.providerSchema,
@@ -71,7 +76,7 @@ func (p *pluginProviderServer) ConfigureProvider(ctx context.Context, req *tfpro
 		return resp, nil
 	}
 
-	client, err := getClient(meta.hostname, meta.token, meta.sslSkipVerify)
+	client, err := client.GetClient(meta.hostname, meta.token, meta.sslSkipVerify)
 	if err != nil {
 		resp.Diagnostics = append(resp.Diagnostics, &tfprotov5.Diagnostic{
 			Severity: tfprotov5.DiagnosticSeverityError,

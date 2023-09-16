@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2023-06-01-preview/Microsoft.SignalRService.WebPubSub.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-08-01-preview/Microsoft.SignalRService.WebPubSub.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.SignalRService",
   "description": "Microsoft SignalRService Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-06-01-preview"
+            "2023-08-01-preview"
           ]
         },
         "identity": {
@@ -140,7 +140,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-06-01-preview"
+            "2023-08-01-preview"
           ]
         },
         "name": {
@@ -179,7 +179,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-06-01-preview"
+            "2023-08-01-preview"
           ]
         },
         "name": {
@@ -218,7 +218,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-06-01-preview"
+            "2023-08-01-preview"
           ]
         },
         "name": {
@@ -257,7 +257,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-06-01-preview"
+            "2023-08-01-preview"
           ]
         },
         "name": {
@@ -296,7 +296,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-06-01-preview"
+            "2023-08-01-preview"
           ]
         },
         "location": {
@@ -375,7 +375,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-06-01-preview"
+            "2023-08-01-preview"
           ]
         },
         "name": {
@@ -608,6 +608,30 @@
         "type"
       ],
       "description": "Filter events by their name."
+    },
+    "IPRule": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Allow",
+                "Deny"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "value": {
+          "type": "string",
+          "description": "An IP or CIDR or ServiceTag"
+        }
+      },
+      "description": "An IP rule"
     },
     "LiveTraceCategory": {
       "type": "object",
@@ -863,7 +887,18 @@
     },
     "ReplicaProperties": {
       "type": "object",
-      "properties": {}
+      "properties": {
+        "regionEndpointEnabled": {
+          "type": "string",
+          "default": "Enabled",
+          "description": "Enable or disable the regional endpoint. Default to \"Enabled\".\r\nWhen it's Disabled, new connections will not be routed to this endpoint, however existing connections will not be affected."
+        },
+        "resourceStopped": {
+          "type": "string",
+          "default": "false",
+          "description": "Stop or start the resource.  Default to \"false\".\r\nWhen it's true, the data plane of the resource is shutdown.\r\nWhen it's false, the data plane of the resource is started."
+        }
+      }
     },
     "ResourceLogCategory": {
       "type": "object",
@@ -1063,6 +1098,20 @@
             }
           ]
         },
+        "ipRules": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IPRule"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "IP rules for filtering public traffic"
+        },
         "privateEndpoints": {
           "oneOf": [
             {
@@ -1145,6 +1194,11 @@
           "default": "Enabled",
           "description": "Enable or disable public network access. Default to \"Enabled\".\r\nWhen it's Enabled, network ACLs still apply.\r\nWhen it's Disabled, public network access is always disabled no matter what you set in network ACLs."
         },
+        "regionEndpointEnabled": {
+          "type": "string",
+          "default": "Enabled",
+          "description": "Enable or disable the regional endpoint. Default to \"Enabled\".\r\nWhen it's Disabled, new connections will not be routed to this endpoint, however existing connections will not be affected.\r\nThis property is replica specific. Disable the regional endpoint without replica is not allowed."
+        },
         "resourceLogConfiguration": {
           "oneOf": [
             {
@@ -1155,6 +1209,11 @@
             }
           ],
           "description": "Resource log configuration of a Microsoft.SignalRService resource."
+        },
+        "resourceStopped": {
+          "type": "string",
+          "default": "false",
+          "description": "Stop or start the resource.  Default to \"false\".\r\nWhen it's true, the data plane of the resource is shutdown.\r\nWhen it's false, the data plane of the resource is started."
         },
         "tls": {
           "oneOf": [
@@ -1194,7 +1253,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-06-01-preview"
+            "2023-08-01-preview"
           ]
         },
         "name": {
@@ -1233,7 +1292,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-06-01-preview"
+            "2023-08-01-preview"
           ]
         },
         "name": {
@@ -1272,7 +1331,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-06-01-preview"
+            "2023-08-01-preview"
           ]
         },
         "name": {
@@ -1311,7 +1370,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-06-01-preview"
+            "2023-08-01-preview"
           ]
         },
         "name": {
@@ -1350,7 +1409,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-06-01-preview"
+            "2023-08-01-preview"
           ]
         },
         "location": {
@@ -1429,7 +1488,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-06-01-preview"
+            "2023-08-01-preview"
           ]
         },
         "name": {

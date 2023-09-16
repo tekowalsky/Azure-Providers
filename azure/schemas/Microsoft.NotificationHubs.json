@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2017-04-01/Microsoft.NotificationHubs.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-09-01/Microsoft.NotificationHubs.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.NotificationHubs",
   "description": "Microsoft NotificationHubs Resource Types",
@@ -10,16 +10,26 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-04-01"
+            "2023-09-01"
           ]
         },
         "location": {
           "type": "string",
-          "description": "Resource location"
+          "description": "The geo-location where the resource lives"
         },
         "name": {
-          "type": "string",
-          "description": "The namespace name."
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9-]*$",
+              "minLength": 1,
+              "maxLength": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Namespace name"
         },
         "properties": {
           "oneOf": [
@@ -30,17 +40,20 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Namespace properties."
+          "description": "Represents namespace properties."
         },
         "resources": {
           "type": "array",
           "items": {
             "oneOf": [
               {
-                "$ref": "#/definitions/namespaces_AuthorizationRules_childResource"
+                "$ref": "#/definitions/namespaces_notificationHubs_childResource"
               },
               {
-                "$ref": "#/definitions/namespaces_notificationHubs_childResource"
+                "$ref": "#/definitions/namespaces_authorizationRules_childResource"
+              },
+              {
+                "$ref": "#/definitions/namespaces_privateEndpointConnections_childResource"
               }
             ]
           }
@@ -69,7 +82,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Resource tags"
+          "description": "Resource tags."
         },
         "type": {
           "type": "string",
@@ -80,24 +93,40 @@
       },
       "required": [
         "apiVersion",
+        "location",
         "name",
         "properties",
+        "sku",
         "type"
       ],
       "description": "Microsoft.NotificationHubs/namespaces"
     },
-    "namespaces_AuthorizationRules": {
+    "namespaces_authorizationRules": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-04-01"
+            "2023-09-01"
           ]
         },
-        "name": {
+        "location": {
           "type": "string",
-          "description": "Authorization Rule Name."
+          "description": "Deprecated - only for compatibility."
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9!()*-._]+$",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Authorization Rule Name"
         },
         "properties": {
           "oneOf": [
@@ -110,10 +139,25 @@
           ],
           "description": "SharedAccessAuthorizationRule properties."
         },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Deprecated - only for compatibility."
+        },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.NotificationHubs/namespaces/AuthorizationRules"
+            "Microsoft.NotificationHubs/namespaces/authorizationRules"
           ]
         }
       },
@@ -123,7 +167,7 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.NotificationHubs/namespaces/AuthorizationRules"
+      "description": "Microsoft.NotificationHubs/namespaces/authorizationRules"
     },
     "namespaces_notificationHubs": {
       "type": "object",
@@ -131,16 +175,26 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-04-01"
+            "2023-09-01"
           ]
         },
         "location": {
           "type": "string",
-          "description": "Resource location"
+          "description": "The geo-location where the resource lives"
         },
         "name": {
-          "type": "string",
-          "description": "The notification hub name."
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9-./_]*$",
+              "minLength": 1,
+              "maxLength": 265
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Notification Hub name"
         },
         "properties": {
           "oneOf": [
@@ -158,7 +212,7 @@
           "items": {
             "oneOf": [
               {
-                "$ref": "#/definitions/namespaces_notificationHubs_AuthorizationRules_childResource"
+                "$ref": "#/definitions/namespaces_notificationHubs_authorizationRules_childResource"
               }
             ]
           }
@@ -187,7 +241,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Resource tags"
+          "description": "Resource tags."
         },
         "type": {
           "type": "string",
@@ -198,24 +252,39 @@
       },
       "required": [
         "apiVersion",
+        "location",
         "name",
         "properties",
         "type"
       ],
       "description": "Microsoft.NotificationHubs/namespaces/notificationHubs"
     },
-    "namespaces_notificationHubs_AuthorizationRules": {
+    "namespaces_notificationHubs_authorizationRules": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-04-01"
+            "2023-09-01"
           ]
         },
-        "name": {
+        "location": {
           "type": "string",
-          "description": "Authorization Rule Name."
+          "description": "Deprecated - only for compatibility."
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9!()*-._]+$",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Authorization Rule Name"
         },
         "properties": {
           "oneOf": [
@@ -228,10 +297,25 @@
           ],
           "description": "SharedAccessAuthorizationRule properties."
         },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Deprecated - only for compatibility."
+        },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.NotificationHubs/namespaces/notificationHubs/AuthorizationRules"
+            "Microsoft.NotificationHubs/namespaces/notificationHubs/authorizationRules"
           ]
         }
       },
@@ -241,7 +325,56 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.NotificationHubs/namespaces/notificationHubs/AuthorizationRules"
+      "description": "Microsoft.NotificationHubs/namespaces/notificationHubs/authorizationRules"
+    },
+    "namespaces_privateEndpointConnections": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-09-01"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9-]*\\.[a-fA-F0-9\\-]+$",
+              "minLength": 1,
+              "maxLength": 87
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Private Endpoint Connection Name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Private Endpoint Connection properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.NotificationHubs/namespaces/privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.NotificationHubs/namespaces/privateEndpointConnections"
     }
   },
   "definitions": {
@@ -260,6 +393,9 @@
           "description": "Description of a NotificationHub AdmCredential."
         }
       },
+      "required": [
+        "properties"
+      ],
       "description": "Description of a NotificationHub AdmCredential."
     },
     "AdmCredentialProperties": {
@@ -267,17 +403,25 @@
       "properties": {
         "authTokenUrl": {
           "type": "string",
-          "description": "The URL of the authorization token."
+          "minLength": 1,
+          "description": "Gets or sets the URL of the authorization token."
         },
         "clientId": {
           "type": "string",
-          "description": "The client identifier."
+          "minLength": 1,
+          "description": "Gets or sets the client identifier."
         },
         "clientSecret": {
           "type": "string",
-          "description": "The credential secret access key."
+          "minLength": 1,
+          "description": "Gets or sets the credential secret access key."
         }
       },
+      "required": [
+        "authTokenUrl",
+        "clientId",
+        "clientSecret"
+      ],
       "description": "Description of a NotificationHub AdmCredential."
     },
     "ApnsCredential": {
@@ -292,9 +436,12 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Description of a NotificationHub ApnsCredential. Note that there is no explicit switch between Certificate and Token Authentication Modes. The mode is determined based on the properties passed in."
+          "description": "Description of a NotificationHub ApnsCredential."
         }
       },
+      "required": [
+        "properties"
+      ],
       "description": "Description of a NotificationHub ApnsCredential."
     },
     "ApnsCredentialProperties": {
@@ -302,38 +449,42 @@
       "properties": {
         "apnsCertificate": {
           "type": "string",
-          "description": "The APNS certificate. Specify if using Certificate Authentication Mode."
+          "description": "Gets or sets the APNS certificate."
         },
         "appId": {
           "type": "string",
-          "description": "The issuer (iss) registered claim key. The value is a 10-character TeamId, obtained from your developer account. Specify if using Token Authentication Mode."
+          "description": "Gets or sets the issuer (iss) registered claim key, whose value is\r\nyour 10-character Team ID, obtained from your developer account"
         },
         "appName": {
           "type": "string",
-          "description": "The name of the application or BundleId. Specify if using Token Authentication Mode."
+          "description": "Gets or sets the name of the application"
         },
         "certificateKey": {
           "type": "string",
-          "description": "The APNS certificate password if it exists."
+          "description": "Gets or sets the certificate key."
         },
         "endpoint": {
           "type": "string",
-          "description": "The APNS endpoint of this credential. If using Certificate Authentication Mode and Sandbox specify 'gateway.sandbox.push.apple.com'. If using Certificate Authentication Mode and Production specify 'gateway.push.apple.com'. If using Token Authentication Mode and Sandbox specify 'https://api.development.push.apple.com:443/3/device'. If using Token Authentication Mode and Production specify 'https://api.push.apple.com:443/3/device'."
+          "minLength": 1,
+          "description": "Gets or sets the endpoint of this credential."
         },
         "keyId": {
           "type": "string",
-          "description": "A 10-character key identifier (kid) key, obtained from your developer account. Specify if using Token Authentication Mode."
+          "description": "Gets or sets a 10-character key identifier (kid) key, obtained from\r\nyour developer account"
         },
         "thumbprint": {
           "type": "string",
-          "description": "The APNS certificate thumbprint. Specify if using Certificate Authentication Mode."
+          "description": "Gets or sets the APNS certificate Thumbprint"
         },
         "token": {
           "type": "string",
-          "description": "Provider Authentication Token, obtained through your developer account. Specify if using Token Authentication Mode."
+          "description": "Gets or sets provider Authentication Token, obtained through your\r\ndeveloper account"
         }
       },
-      "description": "Description of a NotificationHub ApnsCredential. Note that there is no explicit switch between Certificate and Token Authentication Modes. The mode is determined based on the properties passed in."
+      "required": [
+        "endpoint"
+      ],
+      "description": "Description of a NotificationHub ApnsCredential."
     },
     "BaiduCredential": {
       "type": "object",
@@ -350,6 +501,9 @@
           "description": "Description of a NotificationHub BaiduCredential."
         }
       },
+      "required": [
+        "properties"
+      ],
       "description": "Description of a NotificationHub BaiduCredential."
     },
     "BaiduCredentialProperties": {
@@ -357,18 +511,72 @@
       "properties": {
         "baiduApiKey": {
           "type": "string",
-          "description": "Baidu Api Key."
+          "minLength": 1,
+          "description": "Gets or sets baidu Api Key."
         },
         "baiduEndPoint": {
           "type": "string",
-          "description": "Baidu Endpoint."
+          "minLength": 1,
+          "description": "Gets or sets baidu Endpoint."
         },
         "baiduSecretKey": {
           "type": "string",
-          "description": "Baidu Secret Key"
+          "minLength": 1,
+          "description": "Gets or sets baidu Secret Key"
         }
       },
+      "required": [
+        "baiduApiKey",
+        "baiduEndPoint",
+        "baiduSecretKey"
+      ],
       "description": "Description of a NotificationHub BaiduCredential."
+    },
+    "BrowserCredential": {
+      "type": "object",
+      "properties": {
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BrowserCredentialProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Description of a NotificationHub BrowserCredential."
+        }
+      },
+      "required": [
+        "properties"
+      ],
+      "description": "Description of a NotificationHub BrowserCredential."
+    },
+    "BrowserCredentialProperties": {
+      "type": "object",
+      "properties": {
+        "subject": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Gets or sets web push subject."
+        },
+        "vapidPrivateKey": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Gets or sets VAPID private key."
+        },
+        "vapidPublicKey": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Gets or sets VAPID public key."
+        }
+      },
+      "required": [
+        "subject",
+        "vapidPrivateKey",
+        "vapidPublicKey"
+      ],
+      "description": "Description of a NotificationHub BrowserCredential."
     },
     "GcmCredential": {
       "type": "object",
@@ -385,6 +593,9 @@
           "description": "Description of a NotificationHub GcmCredential."
         }
       },
+      "required": [
+        "properties"
+      ],
       "description": "Description of a NotificationHub GcmCredential."
     },
     "GcmCredentialProperties": {
@@ -392,14 +603,52 @@
       "properties": {
         "gcmEndpoint": {
           "type": "string",
-          "description": "The FCM legacy endpoint. Default value is 'https://fcm.googleapis.com/fcm/send'"
+          "description": "Gets or sets the GCM endpoint."
         },
         "googleApiKey": {
           "type": "string",
-          "description": "The Google API key."
+          "minLength": 1,
+          "description": "Gets or sets the Google API key."
         }
       },
+      "required": [
+        "googleApiKey"
+      ],
       "description": "Description of a NotificationHub GcmCredential."
+    },
+    "IpRule": {
+      "type": "object",
+      "properties": {
+        "ipMask": {
+          "type": "string",
+          "minLength": 1,
+          "description": "IP mask."
+        },
+        "rights": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Manage",
+                  "Send",
+                  "Listen"
+                ]
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of access rights."
+        }
+      },
+      "required": [
+        "ipMask",
+        "rights"
+      ],
+      "description": "A network authorization rule that filters traffic based on IP address."
     },
     "MpnsCredential": {
       "type": "object",
@@ -416,6 +665,9 @@
           "description": "Description of a NotificationHub MpnsCredential."
         }
       },
+      "required": [
+        "properties"
+      ],
       "description": "Description of a NotificationHub MpnsCredential."
     },
     "MpnsCredentialProperties": {
@@ -423,56 +675,33 @@
       "properties": {
         "certificateKey": {
           "type": "string",
-          "description": "The certificate key for this credential."
+          "minLength": 1,
+          "description": "Gets or sets the certificate key for this credential."
         },
         "mpnsCertificate": {
           "type": "string",
-          "description": "The MPNS certificate."
+          "minLength": 1,
+          "description": "Gets or sets the MPNS certificate."
         },
         "thumbprint": {
           "type": "string",
-          "description": "The MPNS certificate Thumbprint"
+          "minLength": 1,
+          "description": "Gets or sets the MPNS certificate Thumbprint"
         }
       },
+      "required": [
+        "certificateKey",
+        "mpnsCertificate",
+        "thumbprint"
+      ],
       "description": "Description of a NotificationHub MpnsCredential."
     },
     "NamespaceProperties": {
       "type": "object",
       "properties": {
-        "createdAt": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The time the namespace was created."
-        },
-        "critical": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Whether or not the namespace is set as Critical."
-        },
         "dataCenter": {
           "type": "string",
-          "description": "Data center for the namespace"
-        },
-        "enabled": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Whether or not the namespace is currently enabled."
-        },
-        "name": {
-          "type": "string",
-          "description": "The name of the namespace."
+          "description": "Deprecated."
         },
         "namespaceType": {
           "oneOf": [
@@ -486,53 +715,146 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
+          ]
+        },
+        "networkAcls": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/NetworkAcls"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
           ],
-          "description": "The namespace type."
+          "description": "A collection of network authorization rules."
+        },
+        "pnsCredentials": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PnsCredentials"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Collection of Notification Hub or Notification Hub Namespace PNS credentials."
         },
         "provisioningState": {
-          "type": "string",
-          "description": "Provisioning state of the Namespace."
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Unknown",
+                "InProgress",
+                "Succeeded",
+                "Failed",
+                "Canceled",
+                "Pending",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
         },
-        "region": {
-          "type": "string",
-          "description": "Specifies the targeted region in which the namespace should be created. It can be any of the following values: Australia East, Australia Southeast, Central US, East US, East US 2, West US, North Central US, South Central US, East Asia, Southeast Asia, Brazil South, Japan East, Japan West, North Europe, West Europe"
+        "publicNetworkAccess": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        },
+        "replicationRegion": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Default",
+                "WestUs2",
+                "NorthEurope",
+                "AustraliaEast",
+                "BrazilSouth",
+                "SouthEastAsia",
+                "SouthAfricaNorth",
+                "None"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
         },
         "scaleUnit": {
           "type": "string",
-          "description": "ScaleUnit where the namespace gets created"
-        },
-        "serviceBusEndpoint": {
-          "type": "string",
-          "description": "Endpoint you can use to perform NotificationHub operations."
+          "description": "Gets or sets scaleUnit where the namespace gets created"
         },
         "status": {
-          "type": "string",
-          "description": "Status of the namespace. It can be any of these values:1 = Created/Active2 = Creating3 = Suspended4 = Deleting"
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Created",
+                "Creating",
+                "Suspended",
+                "Deleting"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
         },
-        "subscriptionId": {
-          "type": "string",
-          "description": "The Id of the Azure subscription associated with the namespace."
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The time the namespace was updated."
+        "zoneRedundancy": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Disabled",
+                "Enabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
         }
       },
-      "description": "Namespace properties."
+      "description": "Represents namespace properties."
     },
-    "namespaces_AuthorizationRules_childResource": {
+    "namespaces_authorizationRules_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-04-01"
+            "2023-09-01"
           ]
         },
-        "name": {
+        "location": {
           "type": "string",
-          "description": "Authorization Rule Name."
+          "description": "Deprecated - only for compatibility."
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9!()*-._]+$",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Authorization Rule Name"
         },
         "properties": {
           "oneOf": [
@@ -545,10 +867,25 @@
           ],
           "description": "SharedAccessAuthorizationRule properties."
         },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Deprecated - only for compatibility."
+        },
         "type": {
           "type": "string",
           "enum": [
-            "AuthorizationRules"
+            "authorizationRules"
           ]
         }
       },
@@ -558,20 +895,34 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.NotificationHubs/namespaces/AuthorizationRules"
+      "description": "Microsoft.NotificationHubs/namespaces/authorizationRules"
     },
-    "namespaces_notificationHubs_AuthorizationRules_childResource": {
+    "namespaces_notificationHubs_authorizationRules_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-04-01"
+            "2023-09-01"
           ]
         },
-        "name": {
+        "location": {
           "type": "string",
-          "description": "Authorization Rule Name."
+          "description": "Deprecated - only for compatibility."
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9!()*-._]+$",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Authorization Rule Name"
         },
         "properties": {
           "oneOf": [
@@ -584,10 +935,25 @@
           ],
           "description": "SharedAccessAuthorizationRule properties."
         },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Deprecated - only for compatibility."
+        },
         "type": {
           "type": "string",
           "enum": [
-            "AuthorizationRules"
+            "authorizationRules"
           ]
         }
       },
@@ -597,7 +963,7 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.NotificationHubs/namespaces/notificationHubs/AuthorizationRules"
+      "description": "Microsoft.NotificationHubs/namespaces/notificationHubs/authorizationRules"
     },
     "namespaces_notificationHubs_childResource": {
       "type": "object",
@@ -605,16 +971,26 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2017-04-01"
+            "2023-09-01"
           ]
         },
         "location": {
           "type": "string",
-          "description": "Resource location"
+          "description": "The geo-location where the resource lives"
         },
         "name": {
-          "type": "string",
-          "description": "The notification hub name."
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9-./_]*$",
+              "minLength": 1,
+              "maxLength": 265
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Notification Hub name"
         },
         "properties": {
           "oneOf": [
@@ -651,7 +1027,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Resource tags"
+          "description": "Resource tags."
         },
         "type": {
           "type": "string",
@@ -662,11 +1038,92 @@
       },
       "required": [
         "apiVersion",
+        "location",
         "name",
         "properties",
         "type"
       ],
       "description": "Microsoft.NotificationHubs/namespaces/notificationHubs"
+    },
+    "namespaces_privateEndpointConnections_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-09-01"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9-]*\\.[a-fA-F0-9\\-]+$",
+              "minLength": 1,
+              "maxLength": 87
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Private Endpoint Connection Name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Private Endpoint Connection properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "privateEndpointConnections"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.NotificationHubs/namespaces/privateEndpointConnections"
+    },
+    "NetworkAcls": {
+      "type": "object",
+      "properties": {
+        "ipRules": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IpRule"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "List of IP rules."
+        },
+        "publicNetworkRule": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PublicInternetAuthorizationRule"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "A default (public Internet) network authorization rule, which contains rights if no other network rule matches."
+        }
+      },
+      "description": "A collection of network authorization rules."
     },
     "NotificationHubProperties": {
       "type": "object",
@@ -693,20 +1150,6 @@
           ],
           "description": "Description of a NotificationHub ApnsCredential."
         },
-        "authorizationRules": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/SharedAccessAuthorizationRuleProperties"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The AuthorizationRules of the created NotificationHub"
-        },
         "baiduCredential": {
           "oneOf": [
             {
@@ -717,6 +1160,17 @@
             }
           ],
           "description": "Description of a NotificationHub BaiduCredential."
+        },
+        "browserCredential": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BrowserCredential"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Description of a NotificationHub BrowserCredential."
         },
         "gcmCredential": {
           "oneOf": [
@@ -742,11 +1196,11 @@
         },
         "name": {
           "type": "string",
-          "description": "The NotificationHub name."
+          "description": "Gets or sets the NotificationHub name."
         },
         "registrationTtl": {
           "type": "string",
-          "description": "The RegistrationTtl of the created NotificationHub"
+          "description": "Gets or sets the RegistrationTtl of the created NotificationHub"
         },
         "wnsCredential": {
           "oneOf": [
@@ -758,11 +1212,164 @@
             }
           ],
           "description": "Description of a NotificationHub WnsCredential."
+        },
+        "xiaomiCredential": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/XiaomiCredential"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Description of a NotificationHub XiaomiCredential."
         }
       },
       "description": "NotificationHub properties."
     },
-    "SharedAccessAuthorizationRuleProperties": {
+    "PnsCredentials": {
+      "type": "object",
+      "properties": {
+        "admCredential": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AdmCredential"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Description of a NotificationHub AdmCredential."
+        },
+        "apnsCredential": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ApnsCredential"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Description of a NotificationHub ApnsCredential."
+        },
+        "baiduCredential": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BaiduCredential"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Description of a NotificationHub BaiduCredential."
+        },
+        "browserCredential": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BrowserCredential"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Description of a NotificationHub BrowserCredential."
+        },
+        "gcmCredential": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GcmCredential"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Description of a NotificationHub GcmCredential."
+        },
+        "mpnsCredential": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MpnsCredential"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Description of a NotificationHub MpnsCredential."
+        },
+        "wnsCredential": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/WnsCredential"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Description of a NotificationHub WnsCredential."
+        },
+        "xiaomiCredential": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/XiaomiCredential"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Description of a NotificationHub XiaomiCredential."
+        }
+      },
+      "description": "Collection of Notification Hub or Notification Hub Namespace PNS credentials."
+    },
+    "PrivateEndpointConnectionProperties": {
+      "type": "object",
+      "properties": {
+        "privateEndpoint": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RemotePrivateEndpointConnection"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Represents a Private Endpoint that is connected to Notification Hubs namespace using Private Endpoint Connection."
+        },
+        "privateLinkServiceConnectionState": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RemotePrivateLinkServiceConnectionState"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "State of the Private Link Service connection."
+        },
+        "provisioningState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Unknown",
+                "Succeeded",
+                "Creating",
+                "Updating",
+                "UpdatingByProxy",
+                "Deleting",
+                "DeletingByProxy",
+                "Deleted"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        }
+      },
+      "description": "Private Endpoint Connection properties."
+    },
+    "PublicInternetAuthorizationRule": {
       "type": "object",
       "properties": {
         "rights": {
@@ -782,9 +1389,75 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The rights associated with the rule."
+          "description": "List of access rights."
         }
       },
+      "required": [
+        "rights"
+      ],
+      "description": "A default (public Internet) network authorization rule, which contains rights if no other network rule matches."
+    },
+    "RemotePrivateEndpointConnection": {
+      "type": "object",
+      "properties": {},
+      "description": "Represents a Private Endpoint that is connected to Notification Hubs namespace using Private Endpoint Connection."
+    },
+    "RemotePrivateLinkServiceConnectionState": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Disconnected",
+                "Pending",
+                "Approved",
+                "Rejected"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
+        }
+      },
+      "description": "State of the Private Link Service connection."
+    },
+    "SharedAccessAuthorizationRuleProperties": {
+      "type": "object",
+      "properties": {
+        "primaryKey": {
+          "type": "string",
+          "description": "Gets a base64-encoded 256-bit primary key for signing and\r\nvalidating the SAS token."
+        },
+        "rights": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Manage",
+                  "Send",
+                  "Listen"
+                ]
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the rights associated with the rule."
+        },
+        "secondaryKey": {
+          "type": "string",
+          "description": "Gets a base64-encoded 256-bit primary key for signing and\r\nvalidating the SAS token."
+        }
+      },
+      "required": [
+        "rights"
+      ],
       "description": "SharedAccessAuthorizationRule properties."
     },
     "Sku": {
@@ -799,11 +1472,11 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The capacity of the resource"
+          "description": "Gets or sets the capacity of the resource"
         },
         "family": {
           "type": "string",
-          "description": "The Sku Family"
+          "description": "Gets or sets the Sku Family"
         },
         "name": {
           "oneOf": [
@@ -818,16 +1491,15 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "Name of the notification hub sku."
+          ]
         },
         "size": {
           "type": "string",
-          "description": "The Sku size"
+          "description": "Gets or sets the Sku size"
         },
         "tier": {
           "type": "string",
-          "description": "The tier of particular sku"
+          "description": "Gets or sets the tier of particular sku"
         }
       },
       "required": [
@@ -850,25 +1522,70 @@
           "description": "Description of a NotificationHub WnsCredential."
         }
       },
+      "required": [
+        "properties"
+      ],
       "description": "Description of a NotificationHub WnsCredential."
     },
     "WnsCredentialProperties": {
       "type": "object",
       "properties": {
+        "certificateKey": {
+          "type": "string",
+          "description": "Ges or sets the WNS Certificate Key."
+        },
         "packageSid": {
           "type": "string",
-          "description": "The package ID for this credential."
+          "description": "Gets or sets the package ID for this credential."
         },
         "secretKey": {
           "type": "string",
-          "description": "The secret key."
+          "description": "Gets or sets the secret key."
         },
         "windowsLiveEndpoint": {
           "type": "string",
-          "description": "The Windows Live endpoint."
+          "description": "Gets or sets the Windows Live endpoint."
+        },
+        "wnsCertificate": {
+          "type": "string",
+          "description": "Gets or sets the WNS Certificate."
         }
       },
       "description": "Description of a NotificationHub WnsCredential."
+    },
+    "XiaomiCredential": {
+      "type": "object",
+      "properties": {
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/XiaomiCredentialProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Description of a NotificationHub XiaomiCredentialProperties."
+        }
+      },
+      "required": [
+        "properties"
+      ],
+      "description": "Description of a NotificationHub XiaomiCredential."
+    },
+    "XiaomiCredentialProperties": {
+      "type": "object",
+      "properties": {
+        "appSecret": {
+          "type": "string",
+          "description": "Gets or sets app secret."
+        },
+        "endpoint": {
+          "type": "string",
+          "description": "Gets or sets xiaomi service endpoint."
+        }
+      },
+      "description": "Description of a NotificationHub XiaomiCredentialProperties."
     }
   }
 }

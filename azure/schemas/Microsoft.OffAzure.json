@@ -1,29 +1,33 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2020-07-07/Microsoft.OffAzure.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-06-06/Microsoft.OffAzure.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.OffAzure",
   "description": "Microsoft OffAzure Resource Types",
   "resourceDefinitions": {
-    "HyperVSites": {
+    "hypervSites": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-07"
+            "2023-06-06"
           ]
-        },
-        "eTag": {
-          "type": "string",
-          "description": "eTag for concurrency control."
         },
         "location": {
           "type": "string",
-          "description": "Azure location in which Sites is created."
+          "description": "The geo-location where the resource lives"
         },
         "name": {
-          "type": "string",
-          "description": "Site name."
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Site name"
         },
         "properties": {
           "oneOf": [
@@ -34,17 +38,17 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Class for site properties."
+          "description": "The properties of VMwareSiteResource"
         },
         "resources": {
           "type": "array",
           "items": {
             "oneOf": [
               {
-                "$ref": "#/definitions/HyperVSites_clusters_childResource"
+                "$ref": "#/definitions/hypervSites_clusters_childResource"
               },
               {
-                "$ref": "#/definitions/HyperVSites_hosts_childResource"
+                "$ref": "#/definitions/hypervSites_hosts_childResource"
               }
             ]
           }
@@ -61,90 +65,61 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "Resource tags."
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.OffAzure/HyperVSites"
+            "Microsoft.OffAzure/hypervSites"
           ]
         }
       },
       "required": [
         "apiVersion",
+        "location",
         "name",
         "properties",
         "type"
       ],
-      "description": "Microsoft.OffAzure/HyperVSites"
+      "description": "Microsoft.OffAzure/hypervSites"
     },
-    "HyperVSites_clusters": {
+    "hypervSites_clusters": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-07"
+            "2023-06-06"
           ]
         },
         "name": {
-          "type": "string",
-          "description": "Cluster ARM name."
-        },
-        "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/HyperVClusterProperties"
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Class for cluster properties."
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "Microsoft.OffAzure/HyperVSites/clusters"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.OffAzure/HyperVSites/clusters"
-    },
-    "HyperVSites_hosts": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2020-07-07"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "description": "Host ARM name."
+          "description": " Cluster ARM name"
         },
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/HyperVHostProperties"
+              "$ref": "#/definitions/HypervClusterProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Class for host properties."
+          "description": "The properties of Hyperv Cluster"
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.OffAzure/HyperVSites/hosts"
+            "Microsoft.OffAzure/hypervSites/clusters"
           ]
         }
       },
@@ -154,28 +129,146 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.OffAzure/HyperVSites/hosts"
+      "description": "Microsoft.OffAzure/hypervSites/clusters"
     },
-    "MasterSites": {
+    "hypervSites_hosts": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-07"
+            "2023-06-06"
           ]
         },
-        "eTag": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": " Host name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/HypervHostProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of Hyperv Host"
+        },
+        "type": {
           "type": "string",
-          "description": "eTag for concurrency control."
+          "enum": [
+            "Microsoft.OffAzure/hypervSites/hosts"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.OffAzure/hypervSites/hosts"
+    },
+    "importSites": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-06"
+          ]
         },
         "location": {
           "type": "string",
-          "description": "Azure location in which Sites is created."
+          "description": "The geo-location where the resource lives"
         },
         "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Site name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ImportSiteProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of ImportSiteResource"
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
           "type": "string",
-          "description": "Site name."
+          "enum": [
+            "Microsoft.OffAzure/importSites"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.OffAzure/importSites"
+    },
+    "masterSites": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-06"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Site name"
         },
         "properties": {
           "oneOf": [
@@ -194,90 +287,12 @@
             "oneOf": [
               {
                 "$ref": "#/definitions/masterSites_privateEndpointConnections_childResource"
-              }
-            ]
-          }
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "Microsoft.OffAzure/MasterSites"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.OffAzure/MasterSites"
-    },
-    "masterSites_privateEndpointConnections": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2020-07-07"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "description": "Private link resource name."
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "Microsoft.OffAzure/masterSites/privateEndpointConnections"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "name",
-        "type"
-      ],
-      "description": "Microsoft.OffAzure/masterSites/privateEndpointConnections"
-    },
-    "VMwareSites": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2020-07-07"
-          ]
-        },
-        "eTag": {
-          "type": "string",
-          "description": "eTag for concurrency control."
-        },
-        "location": {
-          "type": "string",
-          "description": "Azure location in which Sites is created."
-        },
-        "name": {
-          "type": "string",
-          "description": "Site name."
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/SiteProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Class for site properties."
-        },
-        "resources": {
-          "type": "array",
-          "items": {
-            "oneOf": [
+              },
               {
-                "$ref": "#/definitions/VMwareSites_vCenters_childResource"
+                "$ref": "#/definitions/masterSites_sqlSites_childResource"
+              },
+              {
+                "$ref": "#/definitions/masterSites_webAppSites_childResource"
               }
             ]
           }
@@ -294,51 +309,61 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ]
+          ],
+          "description": "Resource tags."
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.OffAzure/VMwareSites"
+            "Microsoft.OffAzure/masterSites"
           ]
         }
       },
       "required": [
         "apiVersion",
+        "location",
         "name",
         "properties",
         "type"
       ],
-      "description": "Microsoft.OffAzure/VMwareSites"
+      "description": "Microsoft.OffAzure/masterSites"
     },
-    "VMwareSites_vCenters": {
+    "masterSites_privateEndpointConnections": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-07"
+            "2023-06-06"
           ]
         },
         "name": {
-          "type": "string",
-          "description": "VCenter ARM name."
-        },
-        "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/VCenterProperties"
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Class for vCenter properties."
+          "description": " Private link resource name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionPropertiesV2"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "PrivateEndpointConnectionProperties V2"
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.OffAzure/VMwareSites/vCenters"
+            "Microsoft.OffAzure/masterSites/privateEndpointConnections"
           ]
         }
       },
@@ -348,16 +373,425 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.OffAzure/VMwareSites/vCenters"
+      "description": "Microsoft.OffAzure/masterSites/privateEndpointConnections"
+    },
+    "masterSites_sqlSites": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-06"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "SQL site name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SqlSiteProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Class for SQL site properties."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/masterSites_sqlSites_discoverySiteDataSources_childResource"
+              }
+            ]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.OffAzure/masterSites/sqlSites"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.OffAzure/masterSites/sqlSites"
+    },
+    "masterSites_sqlSites_discoverySiteDataSources": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-06"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "SQL Discovery site data source name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SqlDiscoverySiteDataSourceProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Discovery site data source properties class."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.OffAzure/masterSites/sqlSites/discoverySiteDataSources"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.OffAzure/masterSites/sqlSites/discoverySiteDataSources"
+    },
+    "masterSites_webAppSites": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-06"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Web app site name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/WebAppSiteProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Class for Web app site properties."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/masterSites_webAppSites_discoverySiteDataSources_childResource"
+              }
+            ]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.OffAzure/masterSites/webAppSites"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.OffAzure/masterSites/webAppSites"
+    },
+    "masterSites_webAppSites_discoverySiteDataSources": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-06"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Data Source ARM name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DiscoverySiteDataSourceProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Discovery site data source properties class."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.OffAzure/masterSites/webAppSites/discoverySiteDataSources"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.OffAzure/masterSites/webAppSites/discoverySiteDataSources"
+    },
+    "serverSites": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-06"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Site name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SitesProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of SiteResource"
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.OffAzure/serverSites"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.OffAzure/serverSites"
+    },
+    "vmwareSites": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-06"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The geo-location where the resource lives"
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Site name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SitesProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of SiteResource"
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/vmwareSites_vcenters_childResource"
+              }
+            ]
+          }
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "properties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.OffAzure/vmwareSites"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "location",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.OffAzure/vmwareSites"
+    },
+    "vmwareSites_vcenters": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-06"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": " VCenters name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/VcenterProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of VMwareSiteResource"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.OffAzure/vmwareSites/vcenters"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.OffAzure/vmwareSites/vcenters"
     }
   },
   "definitions": {
-    "HyperVClusterProperties": {
+    "DiscoverySiteDataSourceProperties": {
+      "type": "object",
+      "properties": {
+        "discoverySiteId": {
+          "type": "string",
+          "description": "Gets or sets the discovery site Id."
+        }
+      },
+      "description": "Discovery site data source properties class."
+    },
+    "HypervClusterProperties": {
       "type": "object",
       "properties": {
         "fqdn": {
           "type": "string",
-          "description": "FQDN/IPAddress of the Hyper-V cluster."
+          "description": "Gets or sets the FQDN/IPAddress of the Hyper-V cluster."
         },
         "hostFqdnList": {
           "oneOf": [
@@ -371,52 +805,100 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "List of hosts (FQDN) currently being tracked by the cluster."
+          "description": "Gets or sets list of hosts (FQDN) currently being tracked by the cluster."
         },
-        "runAsAccountId": {
-          "type": "string",
-          "description": "Run as account ID of the Hyper-V cluster."
-        }
-      },
-      "description": "Class for cluster properties."
-    },
-    "HyperVHostProperties": {
-      "type": "object",
-      "properties": {
-        "fqdn": {
-          "type": "string",
-          "description": "FQDN/IPAddress of the Hyper-V host."
-        },
-        "runAsAccountId": {
-          "type": "string",
-          "description": "Run as account ID of the Hyper-V host."
-        }
-      },
-      "description": "Class for host properties."
-    },
-    "HyperVSites_clusters_childResource": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2020-07-07"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "description": "Cluster ARM name."
-        },
-        "properties": {
+        "provisioningState": {
           "oneOf": [
             {
-              "$ref": "#/definitions/HyperVClusterProperties"
+              "type": "string",
+              "enum": [
+                "Created",
+                "Updated",
+                "Running",
+                "Completed",
+                "Failed",
+                "Succeeded",
+                "Canceled"
+              ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Class for cluster properties."
+          "description": "The status of the last operation."
+        },
+        "runAsAccountId": {
+          "type": "string",
+          "description": "Gets or sets Run as account ID of the Hyper-V cluster."
+        }
+      },
+      "description": "The properties of Hyperv Cluster"
+    },
+    "HypervHostProperties": {
+      "type": "object",
+      "properties": {
+        "fqdn": {
+          "type": "string",
+          "description": "Gets or sets the FQDN/IPAddress of the Hyper-V host."
+        },
+        "provisioningState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Created",
+                "Updated",
+                "Running",
+                "Completed",
+                "Failed",
+                "Succeeded",
+                "Canceled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The status of the last operation."
+        },
+        "runAsAccountId": {
+          "type": "string",
+          "description": "Gets or sets the run as account ID of the Hyper-V host."
+        }
+      },
+      "description": "The properties of Hyperv Host"
+    },
+    "hypervSites_clusters_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-06"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": " Cluster ARM name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/HypervClusterProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of Hyperv Cluster"
         },
         "type": {
           "type": "string",
@@ -431,31 +913,39 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.OffAzure/HyperVSites/clusters"
+      "description": "Microsoft.OffAzure/hypervSites/clusters"
     },
-    "HyperVSites_hosts_childResource": {
+    "hypervSites_hosts_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-07"
+            "2023-06-06"
           ]
         },
         "name": {
-          "type": "string",
-          "description": "Host ARM name."
-        },
-        "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/HyperVHostProperties"
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Class for host properties."
+          "description": " Host name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/HypervHostProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of Hyperv Host"
         },
         "type": {
           "type": "string",
@@ -470,7 +960,37 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.OffAzure/HyperVSites/hosts"
+      "description": "Microsoft.OffAzure/hypervSites/hosts"
+    },
+    "ImportSiteProperties": {
+      "type": "object",
+      "properties": {
+        "discoverySolutionId": {
+          "type": "string",
+          "description": "Gets or sets the ARM ID of migration hub solution for SDS."
+        },
+        "provisioningState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Created",
+                "Updated",
+                "Running",
+                "Completed",
+                "Failed",
+                "Succeeded",
+                "Canceled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The status of the last operation."
+        }
+      },
+      "description": "The properties of ImportSiteResource"
     },
     "MasterSiteProperties": {
       "type": "object",
@@ -484,7 +1004,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Value indicating whether multiple sites per site type are allowed."
+          "description": "Gets or sets a value indicating whether multiple sites per site type are\nallowed."
         },
         "customerStorageAccountArmId": {
           "type": "string",
@@ -518,7 +1038,7 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "List of sites that are a part of Master Site."
+          "description": "Gets or sets the sites that are a part of Master Site.\n            The key\nshould contain the Site ARM name."
         }
       },
       "description": "Class for site properties."
@@ -529,12 +1049,31 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2020-07-07"
+            "2023-06-06"
           ]
         },
         "name": {
-          "type": "string",
-          "description": "Private link resource name."
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": " Private link resource name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateEndpointConnectionPropertiesV2"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "PrivateEndpointConnectionProperties V2"
         },
         "type": {
           "type": "string",
@@ -546,23 +1085,292 @@
       "required": [
         "apiVersion",
         "name",
+        "properties",
         "type"
       ],
       "description": "Microsoft.OffAzure/masterSites/privateEndpointConnections"
+    },
+    "masterSites_sqlSites_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-06"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "SQL site name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SqlSiteProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Class for SQL site properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "sqlSites"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.OffAzure/masterSites/sqlSites"
+    },
+    "masterSites_sqlSites_discoverySiteDataSources_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-06"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "SQL Discovery site data source name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SqlDiscoverySiteDataSourceProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Discovery site data source properties class."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "discoverySiteDataSources"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.OffAzure/masterSites/sqlSites/discoverySiteDataSources"
+    },
+    "masterSites_webAppSites_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-06"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Web app site name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/WebAppSiteProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Class for Web app site properties."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "webAppSites"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.OffAzure/masterSites/webAppSites"
+    },
+    "masterSites_webAppSites_discoverySiteDataSources_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-06"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Data Source ARM name."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DiscoverySiteDataSourceProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Discovery site data source properties class."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "discoverySiteDataSources"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "name",
+        "properties",
+        "type"
+      ],
+      "description": "Microsoft.OffAzure/masterSites/webAppSites/discoverySiteDataSources"
+    },
+    "PrivateEndpointConnectionPropertiesV2": {
+      "type": "object",
+      "properties": {
+        "privateLinkServiceConnectionState": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PrivateLinkServiceConnectionState"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Service Connection State"
+        }
+      },
+      "description": "PrivateEndpointConnectionProperties V2"
+    },
+    "PrivateLinkServiceConnectionState": {
+      "type": "object",
+      "properties": {
+        "actionsRequired": {
+          "type": "string",
+          "description": "actions required"
+        },
+        "description": {
+          "type": "string",
+          "description": "description string"
+        },
+        "status": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Approved",
+                "Pending",
+                "Rejected",
+                "Disconnected"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "state status."
+        }
+      },
+      "description": "Service Connection State"
     },
     "SiteAgentProperties": {
       "type": "object",
       "properties": {
         "keyVaultId": {
           "type": "string",
-          "description": "Key vault ARM Id."
+          "description": "Gets or sets the key vault ARM Id."
         },
         "keyVaultUri": {
           "type": "string",
-          "description": "Key vault URI."
+          "description": "Gets or sets the key vault URI."
         }
       },
       "description": "Class for site agent properties."
+    },
+    "SiteApplianceProperties": {
+      "type": "object",
+      "properties": {
+        "agentDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SiteAgentProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Class for site agent properties."
+        },
+        "applianceName": {
+          "type": "string",
+          "description": "Gets or sets the Appliance Name."
+        },
+        "servicePrincipalIdentityDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SiteSpnProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Class for site properties."
+        }
+      },
+      "description": "Class for site appliance properties."
     },
     "SiteProperties": {
       "type": "object",
@@ -580,11 +1388,31 @@
         },
         "applianceName": {
           "type": "string",
-          "description": "Appliance Name."
+          "description": "Gets or sets the Appliance Name."
         },
         "discoverySolutionId": {
           "type": "string",
-          "description": "ARM ID of migration hub solution for SDS."
+          "description": "Gets or sets the ARM ID of migration hub solution for SDS."
+        },
+        "provisioningState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Created",
+                "Updated",
+                "Running",
+                "Completed",
+                "Failed",
+                "Succeeded",
+                "Canceled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The status of the last operation."
         },
         "servicePrincipalIdentityDetails": {
           "oneOf": [
@@ -598,84 +1426,197 @@
           "description": "Class for site properties."
         }
       },
-      "description": "Class for site properties."
+      "description": "The properties of VMwareSiteResource"
     },
     "SiteSpnProperties": {
       "type": "object",
       "properties": {
         "aadAuthority": {
           "type": "string",
-          "description": "AAD Authority URL which was used to request the token for the service principal."
+          "description": "Gets or sets the AAD Authority URL which was used to request the token for\nthe\n            service principal."
         },
         "applicationId": {
           "type": "string",
-          "description": "Application/client Id for the service principal with which the on-premise management/data plane components would communicate with our Azure services."
+          "description": "Gets or sets the application/client Id for the service principal with which\nthe\n            on-premise management/data plane components would communicate\nwith our Azure \n            services."
         },
         "audience": {
           "type": "string",
-          "description": "Intended audience for the service principal."
+          "description": "Gets or sets the intended audience for the service principal."
         },
         "objectId": {
           "type": "string",
-          "description": "Object Id of the service principal with which the on-premise management/data plane components would communicate with our Azure services."
+          "description": "Gets or sets the object Id of the service principal with which the on-premise\n\n           management/data plane components would communicate with our Azure\nservices."
         },
         "rawCertData": {
           "type": "string",
-          "description": "Raw certificate data for building certificate expiry flows."
+          "description": "Gets or sets the raw certificate data for building certificate expiry flows."
         },
         "tenantId": {
           "type": "string",
-          "description": "Tenant Id for the service principal with which the on-premise management/data plane components would communicate with our Azure services."
+          "description": "Gets or sets the tenant Id for the service principal with which the\non-premise\n            management/data plane components would communicate with\nour Azure services."
         }
       },
       "description": "Class for site properties."
     },
-    "VCenterProperties": {
+    "SitesProperties": {
       "type": "object",
       "properties": {
-        "fqdn": {
-          "type": "string",
-          "description": "FQDN/IPAddress of the vCenter."
-        },
-        "port": {
-          "type": "string",
-          "description": "Port of the vCenter."
-        },
-        "runAsAccountId": {
-          "type": "string",
-          "description": "Run as account ID of the vCenter."
-        }
-      },
-      "description": "Class for vCenter properties."
-    },
-    "VMwareSites_vCenters_childResource": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2020-07-07"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "description": "VCenter ARM name."
-        },
-        "properties": {
+        "agentDetails": {
           "oneOf": [
             {
-              "$ref": "#/definitions/VCenterProperties"
+              "$ref": "#/definitions/SiteAgentProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Class for vCenter properties."
+          "description": "Class for site agent properties."
+        },
+        "applianceName": {
+          "type": "string",
+          "description": "Gets or sets the Appliance Name."
+        },
+        "discoverySolutionId": {
+          "type": "string",
+          "description": "Gets or sets the ARM ID of migration hub solution for SDS."
+        },
+        "servicePrincipalIdentityDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SiteSpnProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Class for site properties."
+        }
+      },
+      "description": "The properties of SiteResource"
+    },
+    "SqlDiscoverySiteDataSourceProperties": {
+      "type": "object",
+      "properties": {
+        "discoverySiteId": {
+          "type": "string",
+          "description": "Gets or sets the discovery site Id."
+        }
+      },
+      "description": "Discovery site data source properties class."
+    },
+    "SqlSiteProperties": {
+      "type": "object",
+      "properties": {
+        "discoveryScenario": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Migrate",
+                "DR"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the discovery scenario."
+        },
+        "siteAppliancePropertiesCollection": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SiteApplianceProperties"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the appliance details used by service to communicate\n           \nto the appliance."
+        }
+      },
+      "description": "Class for SQL site properties."
+    },
+    "VcenterProperties": {
+      "type": "object",
+      "properties": {
+        "fqdn": {
+          "type": "string",
+          "description": "Gets or sets the FQDN/IPAddress of the vCenter."
+        },
+        "friendlyName": {
+          "type": "string",
+          "description": "Gets or sets the friendly name of the vCenter."
+        },
+        "port": {
+          "type": "string",
+          "description": "Gets or sets the port of the vCenter."
+        },
+        "provisioningState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Created",
+                "Updated",
+                "Running",
+                "Completed",
+                "Failed",
+                "Succeeded",
+                "Canceled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The status of the last operation."
+        },
+        "runAsAccountId": {
+          "type": "string",
+          "description": "Gets or sets the run as account ID of the vCenter."
+        }
+      },
+      "description": "The properties of VMwareSiteResource"
+    },
+    "vmwareSites_vcenters_childResource": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2023-06-06"
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9-]{3,24}$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": " VCenters name"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/VcenterProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of VMwareSiteResource"
         },
         "type": {
           "type": "string",
           "enum": [
-            "vCenters"
+            "vcenters"
           ]
         }
       },
@@ -685,7 +1626,42 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.OffAzure/VMwareSites/vCenters"
+      "description": "Microsoft.OffAzure/vmwareSites/vcenters"
+    },
+    "WebAppSiteProperties": {
+      "type": "object",
+      "properties": {
+        "discoveryScenario": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Migrate",
+                "DR"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the discovery scenario."
+        },
+        "siteAppliancePropertiesCollection": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SiteApplianceProperties"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Gets or sets the appliance details used by service to communicate\n           \nto the appliance."
+        }
+      },
+      "description": "Class for Web app site properties."
     }
   }
 }

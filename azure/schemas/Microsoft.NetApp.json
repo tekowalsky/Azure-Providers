@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-11-01/Microsoft.NetApp.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-05-01/Microsoft.NetApp.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.NetApp",
   "description": "Microsoft NetApp Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "identity": {
@@ -32,7 +32,7 @@
           "oneOf": [
             {
               "type": "string",
-              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-_]{0,63}$"
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-_]{0,127}$"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
@@ -107,7 +107,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -166,7 +166,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -245,7 +245,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -283,9 +283,6 @@
             "oneOf": [
               {
                 "$ref": "#/definitions/netAppAccounts_capacityPools_volumes_snapshots_childResource"
-              },
-              {
-                "$ref": "#/definitions/netAppAccounts_capacityPools_volumes_backups_childResource"
               },
               {
                 "$ref": "#/definitions/netAppAccounts_capacityPools_volumes_volumeQuotaRules_childResource"
@@ -341,65 +338,13 @@
       ],
       "description": "Microsoft.NetApp/netAppAccounts/capacityPools/volumes"
     },
-    "netAppAccounts_capacityPools_volumes_backups": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2022-11-01"
-          ]
-        },
-        "location": {
-          "type": "string",
-          "description": "Resource location"
-        },
-        "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-_]{0,63}$"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The name of the backup"
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/BackupProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Backup properties"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/backups"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "location",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/backups"
-    },
     "netAppAccounts_capacityPools_volumes_snapshots": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -443,7 +388,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -492,7 +437,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -551,7 +496,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -610,7 +555,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -875,6 +820,7 @@
         },
         "password": {
           "type": "string",
+          "maxLength": 64,
           "description": "Plain text password of Active Directory domain administrator, value is masked in the response"
         },
         "preferredServersForLdapClient": {
@@ -974,28 +920,6 @@
         }
       },
       "description": "Backup policy properties"
-    },
-    "BackupProperties": {
-      "type": "object",
-      "properties": {
-        "label": {
-          "type": "string",
-          "description": "Label for backup"
-        },
-        "useExistingSnapshot": {
-          "oneOf": [
-            {
-              "type": "boolean",
-              "default": false
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Manual backup an already existing snapshot. This will always be false for scheduled backups and true/false for manual backups"
-        }
-      },
-      "description": "Backup properties"
     },
     "DailySchedule": {
       "type": "object",
@@ -1415,7 +1339,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -1474,7 +1398,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -1537,65 +1461,13 @@
       ],
       "description": "Microsoft.NetApp/netAppAccounts/capacityPools"
     },
-    "netAppAccounts_capacityPools_volumes_backups_childResource": {
-      "type": "object",
-      "properties": {
-        "apiVersion": {
-          "type": "string",
-          "enum": [
-            "2022-11-01"
-          ]
-        },
-        "location": {
-          "type": "string",
-          "description": "Resource location"
-        },
-        "name": {
-          "oneOf": [
-            {
-              "type": "string",
-              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-_]{0,63}$"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The name of the backup"
-        },
-        "properties": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/BackupProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Backup properties"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "backups"
-          ]
-        }
-      },
-      "required": [
-        "apiVersion",
-        "location",
-        "name",
-        "properties",
-        "type"
-      ],
-      "description": "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/backups"
-    },
     "netAppAccounts_capacityPools_volumes_childResource": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -1678,7 +1550,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -1722,7 +1594,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "name": {
@@ -1771,7 +1643,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -1830,7 +1702,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -1889,7 +1761,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-11-01"
+            "2023-05-01"
           ]
         },
         "location": {
@@ -2060,10 +1932,6 @@
           "type": "string",
           "description": "The resource ID of the remote volume."
         },
-        "replicationId": {
-          "type": "string",
-          "description": "Id"
-        },
         "replicationSchedule": {
           "oneOf": [
             {
@@ -2182,38 +2050,6 @@
       "properties": {},
       "description": "User assigned identity properties"
     },
-    "VolumeBackupProperties": {
-      "type": "object",
-      "properties": {
-        "backupEnabled": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Backup Enabled"
-        },
-        "backupPolicyId": {
-          "type": "string",
-          "description": "Backup Policy Resource ID"
-        },
-        "policyEnforced": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Policy Enforced"
-        }
-      },
-      "description": "Volume Backup Properties"
-    },
     "VolumeGroupMetaData": {
       "type": "object",
       "properties": {
@@ -2226,7 +2062,8 @@
             {
               "type": "string",
               "enum": [
-                "SAP-HANA"
+                "SAP-HANA",
+                "ORACLE"
               ]
             },
             {
@@ -2323,6 +2160,20 @@
             }
           ],
           "description": "Tags are a list of key-value pairs that describe the resource"
+        },
+        "zones": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Availability Zone"
         }
       },
       "required": [
@@ -2367,6 +2218,21 @@
             }
           ],
           "description": "Specifies whether Cool Access(tiering) is enabled for the volume."
+        },
+        "coolAccessRetrievalPolicy": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Default",
+                "OnRead",
+                "Never"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ]
         },
         "coolnessPeriod": {
           "oneOf": [
@@ -2551,14 +2417,15 @@
               "type": "string",
               "enum": [
                 "Basic",
-                "Standard"
+                "Standard",
+                "Basic_Standard",
+                "Standard_Basic"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "Basic network, or Standard features available to the volume."
+          ]
         },
         "placementRules": {
           "oneOf": [
@@ -2635,8 +2502,7 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "Enables access based enumeration share property for SMB Shares. Only applicable for SMB/DualProtocol volume."
+          ]
         },
         "smbContinuouslyAvailable": {
           "oneOf": [
@@ -2674,8 +2540,7 @@
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "Enables non browsable property for SMB Shares. Only applicable for SMB/DualProtocol volume."
+          ]
         },
         "snapshotDirectoryVisible": {
           "oneOf": [
@@ -2711,7 +2576,6 @@
           "type": "string",
           "minLength": 4,
           "maxLength": 4,
-          "default": "0770",
           "description": "UNIX permissions for NFS volume accepted in octal 4 digit format. First digit selects the set user ID(4), set group ID (2) and sticky (1) attributes. Second digit selects permission for the owner of the file: read (4), write (2) and execute (1). Third selects permissions for other users in the same group. the fourth for other users not in the group. 0755 - gives read/write/execute permissions to owner and read/execute to group and other users."
         },
         "usageThreshold": {
@@ -2719,14 +2583,14 @@
             {
               "type": "integer",
               "minimum": 107374182400,
-              "maximum": 549755813888000,
+              "maximum": 2638827906662400,
               "default": "107374182400"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Maximum storage quota allowed for a file system in bytes. This is a soft quota used for alerting only. Minimum size is 100 GiB. Upper limit is 100TiB, 500Tib for LargeVolume. Specified in bytes."
+          "description": "Maximum storage quota allowed for a file system in bytes. This is a soft quota used for alerting only. Minimum size is 100 GiB. Upper limit is 100TiB, 500Tib for LargeVolume or 2400Tib for LargeVolume on exceptional basis. Specified in bytes."
         },
         "volumeSpecName": {
           "type": "string",
@@ -2747,17 +2611,6 @@
     "VolumePropertiesDataProtection": {
       "type": "object",
       "properties": {
-        "backup": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/VolumeBackupProperties"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Volume Backup Properties"
-        },
         "replication": {
           "oneOf": [
             {

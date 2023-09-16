@@ -1,52 +1,65 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2022-06-15/Microsoft.Insights.Application.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-06-01/Microsoft.Insights.Application.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.Insights",
   "description": "Microsoft Insights Resource Types",
   "resourceDefinitions": {
-    "webtests": {
+    "workbooks": {
       "type": "object",
       "properties": {
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2022-06-15"
+            "2023-06-01"
           ]
+        },
+        "etag": {
+          "type": "string",
+          "description": "Resource etag"
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/WorkbookResourceIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Identity used for BYOS"
         },
         "kind": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
-                "ping",
-                "multistep",
-                "standard"
+                "shared"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "The kind of WebTest that this web test watches. Choices are ping, multistep and standard."
+          "description": "The kind of workbook. Only valid value is shared."
         },
         "location": {
           "type": "string",
-          "description": "Resource location"
+          "description": "The geo-location where the resource lives"
         },
         "name": {
           "type": "string",
-          "description": "The name of the Application Insights WebTest resource."
+          "description": "The name of the workbook resource. The value must be an UUID."
         },
         "properties": {
           "oneOf": [
             {
-              "$ref": "#/definitions/WebTestProperties"
+              "$ref": "#/definitions/WorkbookProperties"
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Metadata describing a web test for an Azure resource."
+          "description": "Properties that contain a workbook."
         },
         "tags": {
           "oneOf": [
@@ -61,12 +74,12 @@
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "Resource tags"
+          "description": "Resource tags."
         },
         "type": {
           "type": "string",
           "enum": [
-            "Microsoft.Insights/webtests"
+            "Microsoft.Insights/workbooks"
           ]
         }
       },
@@ -77,323 +90,107 @@
         "properties",
         "type"
       ],
-      "description": "Microsoft.Insights/webtests"
+      "description": "Microsoft.Insights/workbooks"
     }
   },
   "definitions": {
-    "HeaderField": {
+    "UserAssignedIdentity": {
+      "type": "object",
+      "properties": {},
+      "description": "User assigned identity properties"
+    },
+    "WorkbookProperties": {
       "type": "object",
       "properties": {
-        "key": {
+        "category": {
           "type": "string",
-          "description": "The name of the header."
+          "description": "Workbook category, as defined by the user at creation time."
         },
-        "value": {
+        "description": {
           "type": "string",
-          "description": "The value of the header."
+          "description": "The description of the workbook."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The user-defined name (display name) of the workbook."
+        },
+        "serializedData": {
+          "type": "string",
+          "description": "Configuration of this particular workbook. Configuration data is a string containing valid JSON"
+        },
+        "sourceId": {
+          "type": "string",
+          "description": "ResourceId for a source resource."
+        },
+        "storageUri": {
+          "type": "string",
+          "description": "The resourceId to the storage account when bring your own storage is used"
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Being deprecated, please use the other tags field"
+        },
+        "version": {
+          "type": "string",
+          "description": "Workbook schema version format, like 'Notebook/1.0', which should match the workbook in serializedData"
         }
       },
-      "description": "A header to add to the WebTest."
+      "required": [
+        "category",
+        "displayName",
+        "serializedData"
+      ],
+      "description": "Properties that contain a workbook."
     },
-    "WebTestGeolocation": {
+    "WorkbookResourceIdentity": {
       "type": "object",
       "properties": {
-        "Id": {
-          "type": "string",
-          "description": "Location ID for the WebTest to run from."
-        }
-      },
-      "description": "Geo-physical location to run a WebTest from. You must specify one or more locations for the test to run from."
-    },
-    "WebTestProperties": {
-      "type": "object",
-      "properties": {
-        "Configuration": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/WebTestPropertiesConfiguration"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "An XML configuration specification for a WebTest."
-        },
-        "Description": {
-          "type": "string",
-          "description": "User defined description for this WebTest."
-        },
-        "Enabled": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Is the test actively being monitored."
-        },
-        "Frequency": {
-          "oneOf": [
-            {
-              "type": "integer",
-              "default": "300"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Interval in seconds between test runs for this WebTest. Default value is 300."
-        },
-        "Kind": {
+        "type": {
           "oneOf": [
             {
               "type": "string",
               "enum": [
-                "ping",
-                "multistep",
-                "standard"
+                "None",
+                "SystemAssigned",
+                "UserAssigned",
+                "SystemAssigned,UserAssigned"
               ]
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
-          ],
-          "description": "The kind of web test this is, valid choices are ping, multistep and standard."
+          ]
         },
-        "Locations": {
+        "userAssignedIdentities": {
           "oneOf": [
             {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/WebTestGeolocation"
-              }
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/UserAssignedIdentity"
+              },
+              "properties": {}
             },
             {
               "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
             }
           ],
-          "description": "A list of where to physically run the tests from to give global coverage for accessibility of your application."
-        },
-        "Name": {
-          "type": "string",
-          "description": "User defined name if this WebTest."
-        },
-        "Request": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/WebTestPropertiesRequest"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The collection of request properties"
-        },
-        "RetryEnabled": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Allow for retries should this WebTest fail."
-        },
-        "SyntheticMonitorId": {
-          "type": "string",
-          "description": "Unique ID of this WebTest. This is typically the same value as the Name field."
-        },
-        "Timeout": {
-          "oneOf": [
-            {
-              "type": "integer",
-              "default": "30"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Seconds until this WebTest will timeout and fail. Default value is 30."
-        },
-        "ValidationRules": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/WebTestPropertiesValidationRules"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The collection of validation rule properties"
+          "description": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
         }
       },
       "required": [
-        "Kind",
-        "Locations",
-        "Name",
-        "SyntheticMonitorId"
+        "type"
       ],
-      "description": "Metadata describing a web test for an Azure resource."
-    },
-    "WebTestPropertiesConfiguration": {
-      "type": "object",
-      "properties": {
-        "WebTest": {
-          "type": "string",
-          "description": "The XML specification of a WebTest to run against an application."
-        }
-      },
-      "description": "An XML configuration specification for a WebTest."
-    },
-    "WebTestPropertiesRequest": {
-      "type": "object",
-      "properties": {
-        "FollowRedirects": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Follow redirects for this web test."
-        },
-        "Headers": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/HeaderField"
-              }
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "List of headers and their values to add to the WebTest call."
-        },
-        "HttpVerb": {
-          "type": "string",
-          "description": "Http verb to use for this web test."
-        },
-        "ParseDependentRequests": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Parse Dependent request for this WebTest."
-        },
-        "RequestBody": {
-          "type": "string",
-          "description": "Base64 encoded string body to send with this web test."
-        },
-        "RequestUrl": {
-          "type": "string",
-          "description": "Url location to test."
-        }
-      },
-      "description": "The collection of request properties"
-    },
-    "WebTestPropertiesValidationRules": {
-      "type": "object",
-      "properties": {
-        "ContentValidation": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/WebTestPropertiesValidationRulesContentValidation"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "The collection of content validation properties"
-        },
-        "ExpectedHttpStatusCode": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Validate that the WebTest returns the http status code provided."
-        },
-        "IgnoreHttpStatusCode": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "When set, validation will ignore the status code."
-        },
-        "SSLCertRemainingLifetimeCheck": {
-          "oneOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "A number of days to check still remain before the the existing SSL cert expires.  Value must be positive and the SSLCheck must be set to true."
-        },
-        "SSLCheck": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "Checks to see if the SSL cert is still valid."
-        }
-      },
-      "description": "The collection of validation rule properties"
-    },
-    "WebTestPropertiesValidationRulesContentValidation": {
-      "type": "object",
-      "properties": {
-        "ContentMatch": {
-          "type": "string",
-          "description": "Content to look for in the return of the WebTest.  Must not be null or empty."
-        },
-        "IgnoreCase": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "When set, this value makes the ContentMatch validation case insensitive."
-        },
-        "PassIfTextFound": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
-            }
-          ],
-          "description": "When true, validation will pass if there is a match for the ContentMatch string.  If false, validation will fail if there is a match"
-        }
-      },
-      "description": "The collection of content validation properties"
+      "description": "Identity used for BYOS"
     }
   }
 }

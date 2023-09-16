@@ -2,11 +2,14 @@
 
 BUG FIXES:
 * `r/tfe_team_project_access`: Fixes a panic that occurs when the client is configured against an older TFE release, by @sebasslash [1011](https://github.com/hashicorp/terraform-provider-tfe/pull/1011)
+* The provider no longer makes two service discovery requests per provider config, by @brandonc [1034](https://github.com/hashicorp/terraform-provider-tfe/pull/1034)
+* `d/tfe_policy_set`: Add `excluded_workspace_ids` attribute, by @Netra2104 [1035](https://github.com/hashicorp/terraform-provider-tfe/pull/1035)
 
 FEATURES:
 * `d/tfe_organization_membership`: Add `organization_membership_id` attribute, by @laurenolivia [997](https://github.com/hashicorp/terraform-provider-tfe/pull/997)
 * `d/tfe_variable_set`: Add `project_ids` attribute, by @Netra2104 [994](https://github.com/hashicorp/terraform-provider-tfe/pull/994)
 * **New Data Source**: `d/tfe_teams` is a new data source to return names and IDs of Teams in an Organization, by @isaacmcollins [992](https://github.com/hashicorp/terraform-provider-tfe/pull/992)
+* **New Resource**: `r/tfe_workspace_policy_set_exclusion` is a new resource allowing the exclusion of one or more existing workspaces from an existing `policy set`, by @Netra2104 [1033](https://github.com/hashicorp/terraform-provider-tfe/pull/1033)
 
 ## v0.48.0 (August 7, 2023)
 

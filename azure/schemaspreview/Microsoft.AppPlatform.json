@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2023-07-01-preview/Microsoft.AppPlatform.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-09-01-preview/Microsoft.AppPlatform.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.AppPlatform",
   "description": "Microsoft AppPlatform Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "location": {
@@ -153,7 +153,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -224,7 +224,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -274,7 +274,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -332,7 +332,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -403,7 +403,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -464,7 +464,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -514,7 +514,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "identity": {
@@ -595,7 +595,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -645,7 +645,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -706,7 +706,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -756,7 +756,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -822,7 +822,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -872,7 +872,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -932,7 +932,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -982,7 +982,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -1032,7 +1032,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -1082,7 +1082,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -1139,7 +1139,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -1197,7 +1197,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -1255,7 +1255,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -1305,7 +1305,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -1362,7 +1362,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -1444,7 +1444,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -1494,7 +1494,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -1544,7 +1544,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -1601,7 +1601,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -1628,7 +1628,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -1754,6 +1754,10 @@
             }
           ],
           "description": "Interval for checking for updates to Git or image repository."
+        },
+        "subPath": {
+          "type": "string",
+          "description": "Folder path inside the git repository to consider as the root of the accelerator or fragment."
         },
         "url": {
           "type": "string",
@@ -3110,6 +3114,21 @@
             }
           ]
         },
+        "acceleratorType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Accelerator",
+                "Fragment"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Type of the customized accelerator."
+        },
         "description": {
           "type": "string"
         },
@@ -3874,6 +3893,20 @@
           ],
           "description": "API metadata property for Spring Cloud Gateway"
         },
+        "apms": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ApmReference"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Collection of ApmReferences"
+        },
         "apmTypes": {
           "oneOf": [
             {
@@ -4470,6 +4503,21 @@
     "KeyVaultCertificateProperties": {
       "type": "object",
       "properties": {
+        "autoSync": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Disabled",
+                "Enabled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/common/definitions.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates whether to automatically synchronize certificate from key vault or not."
+        },
         "certVersion": {
           "type": "string",
           "description": "The certificate version of key vault."
@@ -5113,7 +5161,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -5174,7 +5222,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -5224,7 +5272,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -5282,7 +5330,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -5343,7 +5391,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -5404,7 +5452,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -5454,7 +5502,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -5504,7 +5552,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "identity": {
@@ -5569,7 +5617,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -5630,7 +5678,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -5680,7 +5728,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -5730,7 +5778,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -5780,7 +5828,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -5830,7 +5878,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -5880,7 +5928,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -5930,7 +5978,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -5980,7 +6028,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -6032,7 +6080,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -6090,7 +6138,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -6148,7 +6196,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -6198,7 +6246,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -6250,7 +6298,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -6319,7 +6367,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -6369,7 +6417,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -6419,7 +6467,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -6471,7 +6519,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -6498,7 +6546,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-07-01-preview"
+            "2023-09-01-preview"
           ]
         },
         "name": {
@@ -6772,6 +6820,9 @@
           "$ref": "#/definitions/JarUploadedUserSourceInfo"
         },
         {
+          "$ref": "#/definitions/WarUploadedUserSourceInfo"
+        },
+        {
           "$ref": "#/definitions/SourceUploadedUserSourceInfo"
         },
         {
@@ -6820,6 +6871,33 @@
         }
       },
       "description": "Source information for a deployment"
+    },
+    "WarUploadedUserSourceInfo": {
+      "type": "object",
+      "properties": {
+        "jvmOptions": {
+          "type": "string",
+          "description": "JVM parameter"
+        },
+        "runtimeVersion": {
+          "type": "string",
+          "description": "Runtime version of the war file"
+        },
+        "serverVersion": {
+          "type": "string",
+          "description": "Server version, currently only Apache Tomcat is supported"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "War"
+          ]
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "description": "Uploaded War binary for a deployment"
     },
     "WeeklyMaintenanceScheduleConfiguration": {
       "type": "object",

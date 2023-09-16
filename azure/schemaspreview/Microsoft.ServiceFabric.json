@@ -1,5 +1,5 @@
 {
-  "id": "https://schema.management.azure.com/schemas/2023-03-01-preview/Microsoft.ServiceFabric.json#",
+  "id": "https://schema.management.azure.com/schemas/2023-07-01-preview/Microsoft.ServiceFabric.json#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Microsoft.ServiceFabric",
   "description": "Microsoft ServiceFabric Resource Types",
@@ -10,7 +10,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-03-01-preview"
+            "2023-07-01-preview"
           ]
         },
         "location": {
@@ -108,7 +108,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-03-01-preview"
+            "2023-07-01-preview"
           ]
         },
         "identity": {
@@ -198,7 +198,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-03-01-preview"
+            "2023-07-01-preview"
           ]
         },
         "location": {
@@ -267,7 +267,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-03-01-preview"
+            "2023-07-01-preview"
           ]
         },
         "location": {
@@ -346,7 +346,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-03-01-preview"
+            "2023-07-01-preview"
           ]
         },
         "location": {
@@ -415,7 +415,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-03-01-preview"
+            "2023-07-01-preview"
           ]
         },
         "name": {
@@ -1100,6 +1100,11 @@
             }
           ]
         },
+        "ddosProtectionPlanId": {
+          "type": "string",
+          "format": "arm-id",
+          "description": "Specify the resource id of a DDoS network protection plan that will be associated with the virtual network of the cluster."
+        },
         "dnsName": {
           "type": "string",
           "description": "The cluster dns name."
@@ -1279,7 +1284,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-03-01-preview"
+            "2023-07-01-preview"
           ]
         },
         "identity": {
@@ -1359,7 +1364,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-03-01-preview"
+            "2023-07-01-preview"
           ]
         },
         "location": {
@@ -1428,7 +1433,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-03-01-preview"
+            "2023-07-01-preview"
           ]
         },
         "location": {
@@ -1497,7 +1502,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-03-01-preview"
+            "2023-07-01-preview"
           ]
         },
         "location": {
@@ -1566,7 +1571,7 @@
         "apiVersion": {
           "type": "string",
           "enum": [
-            "2023-03-01-preview"
+            "2023-07-01-preview"
           ]
         },
         "name": {
@@ -1911,6 +1916,11 @@
           ],
           "description": "Managed data disk type. Specifies the storage account type for the managed disk."
         },
+        "dscpConfigurationId": {
+          "type": "string",
+          "format": "arm-id",
+          "description": "Specifies the resource id of the DSCP configuration to apply to the node type network interface."
+        },
         "enableAcceleratedNetworking": {
           "oneOf": [
             {
@@ -2104,6 +2114,11 @@
             }
           ],
           "description": "Specifies the security type of the nodeType. Only TrustedLaunch is currently supported."
+        },
+        "serviceArtifactReferenceId": {
+          "type": "string",
+          "format": "arm-id",
+          "description": "Specifies the service artifact reference id used to set same image version for all virtual machines in the scale set when using 'latest' image version."
         },
         "spotRestoreTimeout": {
           "type": "string",
